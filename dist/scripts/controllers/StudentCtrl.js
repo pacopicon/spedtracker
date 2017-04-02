@@ -39,122 +39,30 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     };
 
     $scope.editDeleteTip = {
-      "title": "click on me to edit, or check the item off and delete!",
+      "title": "click on me to edit, or check the student off and delete!",
       "checked": false
     };
 
-// Begin AngularStrap timePicker
+// Begin ExtendTime
 
-    $scope.newDueDate = new Date(new Date().setMinutes(0, 0));
+    $scope.timewrap = {};
 
-    $scope.updatedDueDate = new Date();
-
-// End AngularStrap timePicker
-
-// Begin Estimate
-
-    $scope.hourwrap = {};
-
-    $scope.hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    $scope.times = [1.5, 2, 2.5, 3];
 
     $scope.minutewrap = {};
 
     $scope.minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 
-// End Estimate
-
-// Begin Importance
-
-    $scope.iconwrap = {};
-
-    // var string1 = "<i ng-class='{'redText': (item.isPastDue && !makeYellow), yellowText: makeYellow}' class='fa fa-star'></i>";
-    // var string2 = "<i ng-class='{'redText': (item.isPastDue && !makeYellow), yellowText: makeYellow}' class='fa fa-star'></i><i class='fa fa-star-half'></i>";
-    // var string3 = "<i ng-class='{'redText': (item.isPastDue && !makeYellow), yellowText: makeYellow}' class='fa fa-star'></i><i class='fa fa-star'></i>";
-    // var string4 = "<i ng-class='{'redText': (item.isPastDue && !makeYellow), yellowText: makeYellow}' class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star-half'></i>";
-    // var string5 = "<i ng-class='{'redText': (item.isPastDue && !makeYellow), yellowText: makeYellow}' class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i>";
-    //
-    // $scope.trustAsHtml = function(string) {
-    //   return $sce.trustAsHtml(string);
-    // }
-    //
-    // $scope.icons = [
-    //   {label: $scope.trustAsHtml(string1)},
-    //   {label: $scope.trustAsHtml(string2)},
-    //   {label: $scope.trustAsHtml(string3)},
-    //   {label: $scope.trustAsHtml(string4)},
-    //   {label: $scope.trustAsHtml(string5)}
-    // ];
-
-    $scope.icons = [
-      {label:"<i class='fa fa-star'></i>"},
-      {label:"<i class='fa fa-star'></i><i class='fa fa-star-half'></i>"},
-      {label:"<i class='fa fa-star'></i><i class='fa fa-star'></i>"},
-      {label:"<i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star-half'></i>"},
-      {label:"<i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i>"}
-    ];
-
-// End Importance
-
-// Begin Custom Modal
-
-    $scope.showComplex = function(item) {
-      $scope.oldItem = item;
-      $scope.oldItemName = item.name;
-      $scope.oldItemDueDate = item.dueDate;
-
-      // var t = new Date();
-      // console.log("step 1 - old name: " + $scope.oldItemName + ", old date: " + new Date($scope.oldItemDueDate) + ", Time: " + t.getMinutes() + ":" + t.getSeconds() + ":" + t.getMilliseconds());
-      // StudentCtrl.js showComplex: item $id: -KUnjnUG90g4Ms_pkbC5 and name: short and item date 1478707118727
-
-      modalService.showModal({
-        templateUrl: "templates/modal.html",
-        controller: "ModalController",
-        inputs: {
-          title: "Edit item",
-          item: item
-        }
-      }).then(function(modal) {
-        modal.element.modal();
-        // This instance of "close" receives the new updated item properties from the Modal controller
-        modal.close.then(function(newItemProps) {
-
-          newName = newItemProps.newName;
-          newDueDate = newItemProps.newDueDate;
-          newImportance = newItemProps.newImportance;
-          newUrgent = newItemProps.newUrgent;
-          newHours = newItemProps.newHours;
-          newMinutes = newItemProps.newMinutes;
-
-          // var t = new Date();
-          // console.log("step 4 - StudentCtrl close: old name: " + $scope.oldItemName + ", new name: " + newItemProps.name + ", date: " + newItemProps.dueDate + ", Time: " + t.getMinutes() + ":" + t.getSeconds() + ":" + t.getMilliseconds());
-          StudentCrud.updateItem($scope.oldItem, newName, newDueDate, newImportance, newUrgent, newHours, newMinutes);
-
-          StudentCrud.processOldCompletestudents();
-        });
-      });
-    };
-    // End Custom Modal-------------------
+// End ExtendTime
 
 // Begin CRUD Functions
 
-// Brought this over from GraphCtrl, since DOM makes many $scope calls to it and cannot simplify GraphCtrl into a service incjectable into the present controller.
-
-    // $scope.addTestItem = function() {
-    //   var day = new Date();
-    //   var dueDate = day.setDate(17);
-    //   var dueDateObj = new Date(dueDate);
-    //   var name = "test"
-    //   StudentCrud.addItem(name, dueDateObj, "<i class='fa fa-star'></i>", 10, 10);
-    //   // StudentCrud.processOldCompletestudents();
-    // };
-
-    $scope.addItem = function() {
-      StudentCrud.addItem($scope.newItemName, $scope.newDueDate, $scope.iconwrap.selectedIcon, $scope.hourwrap.selectedHour, $scope.minutewrap.selectedMinute);
-      StudentCrud.processOldCompletestudents();
+    $scope.addStudent = function() {
+      StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newTestName);
     };
 
-    $scope.saveAndToggleInvert = function(item) {
-      students.$save(item);
+    $scope.saveAndToggleInvert = function(student) {
+      students.$save(student);
       toggleInvert();
     };
 
@@ -227,8 +135,8 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         }
     };
 
-    $scope.updateCompletion = function(item, newDueDate, newhours, newMinutes) {
-      StudentCrud.updateCompletion(item, newDueDate, newhours, newMinutes);
+    $scope.updateCompletion = function(student, newDueDate, newhours, newMinutes) {
+      StudentCrud.updateCompletion(student, newDueDate, newhours, newMinutes);
       StudentCrud.processOldCompletestudents();
     };
 

@@ -180,29 +180,13 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         };
       },
 // This function is called by the submit button in testTracker.html when user creates an item in the form
-      addItem: function(itemName, dueDate, importance, eHour, eMinute) {
-
-        // empty the below variables in order to contextualize the 'prioritize' call for the 'addItem' function
-        var item = null;
-        var urgency = null;
-
-        var dueDate = dueDate.getTime();
-
-        var itemProperties = prioritize(item, dueDate, importance, urgency, eHour, eMinute);
+      addItem: function(studentName, extendTime, testName) {
 
         students.$add({
-          name: itemName,
-          // dueDate: dueDate.getTime(),
-          dueDate: dueDate,
-          eHour: eHour,
-          eMinute: eMinute,
-          importance: importance,
-          isSafeToComplete: false,
-          isComplete: false,
-          isPastDue: false,
-          isUrgent: itemProperties.urgency,
-          rank: itemProperties.rank,
-          created_at: firebase.database.ServerValue.TIMESTAMP,
+          name: studentName,
+          extendTime: extendTime,
+          testName: testName,
+          created_at: firebase.database.ServerValue.TIMESTAMP
           completed_at: 0
         }).then(function(studentsRef) {
           var id = studentsRef.key;

@@ -25,40 +25,23 @@
       <form ng-submit="addItem()"><!-- push a new message onto the array-->
 <!--name-->
         <div class="col-lg-2 col-md-2 col-sm-5 col-xs-12 formFormat name">
-          <input class="form-control" ng-model="newItemName" placeholder="enter item name" />
-        </div>
-<!--date-->
-        <!-- available animations:
-        am-fade-and-scale, am-fade-and-slide-bottom/top/left/right,
-        am-slide-bottom/top/left/right
-        am-fade-->
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 date">
-          <input type="text" size="1" class="btn-date form-control" ng-model="newDueDate" data-date-format="longDate" data-autoclose="1" data-animation="am-fade-and-scale" placeholder="enter <i class='fa fa-calendar'></i>" bs-datepicker>
-        </div>
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 time">
-          <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate" data-time-format="h:mm a" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="15" bs-timepicker>
-        </div>
-<!--importance-->
-        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12 importance formFormat">
-          <a href class="tip" data-animation="am-flip-x" bs-tooltip="importanceTip">
-            <button type="button" class="btn-importance btn btn-default" ng-model="iconwrap.selectedIcon" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" placeholder="enter <i class='fa fa-star'>" bs-options="icon.label as icon.label for icon in icons" bs-select>Action<span class="caret"></span>
-          </button></a>
+          <input class="form-control" ng-model="newStudentName" placeholder="enter student name or id" />
         </div>
 <!--est. time-->
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 hour-and-minute">
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 hour">
-            <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="btn-hour btn btn-default" ng-model="hourwrap.selectedHour" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="hour as hour for hour in hours" placeholder="estimate hours <i class='fa fa-clock-o'></i>" bs-select><span class="caret"></span></button></a>
+            <input class="form-control" ng-model="newTestName" placeholder="enter test name" />
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 minute">
-            <a href class="tip" data-animation="am-flip-x" bs-tooltip="timeTip"><button type="button" class="btn-minute btn btn-default" ng-model="minutewrap.selectedMinute" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="minute as minute for minute in minutes" placeholder="estimate minutes <i class='fa fa-clock-o'></i>" bs-select>Action<span class="caret"></span></button></a>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 hour">
+            <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="btn-hour btn btn-default" ng-model="timewrap.selectedTime" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="time as time for time in times" placeholder="select extended time multiple" bs-select><span class="caret"></span></button></a>
           </div>
         </div>
 <!--Add Button--->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-div">
-          <button type="submit" type="button" class="btn-add">Add to-do item</button>
-          <!-- <button ng-click="addTestItem()" class="btn-add btn-test">T E S T: add test item</button> -->
+          <button type="submit" type="button" class="btn-add">Add to-do student</button>
+          <!-- <button ng-click="addTestItem()" class="btn-add btn-test">T E S T: add test student</button> -->
           <!-- <button ng-click="initiateDataItemsWorkAround()" class="btn-add btn-test">T E S T: add dataItem</button> -->
-          <!-- <button ng-click="addOrUpdateDataItems('itemLeftCount', 'hoursLeft', 'minutesLeft', 200, 200, 200)" class="btn-add btn-test">T E S T: update existing dataItem</button> -->
+          <!-- <button ng-click="addOrUpdateDataItems('studentLeftCount', 'hoursLeft', 'minutesLeft', 200, 200, 200)" class="btn-add btn-test">T E S T: update existing dataItem</button> -->
         </div>
       </form>
     </div> <!--end row-->
@@ -72,13 +55,13 @@
   <div class="row formControls">
 
     <div class="col-md-12 col-sm-12 col-xs-12 left-wrap right-wrap btn-wrap mainBtn" ng-class="{'col-lg-6 col-md-6 col-sm-6 col-xs-12 left-wrap btn-wrap mainBtn': clickedToDelete, 'col-lg-12 col-md-12 col-sm-12 col-xs-12 left-wrap right-wrap btn-wrap mainBtn': !clickedToDelete}">
-      <button class="controlBtn selectAll" ng-click="selectAllForDelete(items)" ng-show="!allSelected && !selectionInversion" ng-init="allSelected">
+      <button class="controlBtn selectAll" ng-click="selectAllForDelete(students)" ng-show="!allSelected && !selectionInversion" ng-init="allSelected">
         <p>select all</p>
       </button>
-      <button class="controlBtn clearAll" ng-click="undoAllSelectForDelete(items)" ng-show="allSelected && !selectionInversion">
+      <button class="controlBtn clearAll" ng-click="undoAllSelectForDelete(students)" ng-show="allSelected && !selectionInversion">
         <p>clear selected</p>
       </button>
-      <button class="controlBtn invertSelection" ng-click="invertSelectForDelete(items)" ng-show="selectionInversion">
+      <button class="controlBtn invertSelection" ng-click="invertSelectForDelete(students)" ng-show="selectionInversion">
         <p>invert selection</p>
       </button>
     </div>
@@ -90,9 +73,9 @@
     </div>
   </div>
 
-  <p class="noItemAnnounce" ng-show="dataItems.itemLeftCount === 0">There are no to do items at this time</p>
+  <p class="noItemAnnounce" ng-show="dataItems.studentLeftCount === 0">There are no to do students at this time</p>
 <!--end select all / clear selected / delete selected-->
-  <div class="row itemDisplay" ng-repeat="item in items | orderBy: '-rank'" ng-show="!item.isComplete" ng-hide="item.isComplete" ng-mouseleave="hover = false">
+  <div class="row studentDisplay" ng-repeat="student in students | orderBy: '-rank'" ng-show="!student.isComplete" ng-hide="student.isComplete" ng-mouseleave="hover = false">
 
 
 
