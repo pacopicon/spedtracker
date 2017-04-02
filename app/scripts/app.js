@@ -15,57 +15,37 @@ spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvid
         })
         .state('user', {
             url: '/user',
-            controller: 'UserCtrl',
+            controller: 'StudentCtrl',
             templateUrl: '/templates/user.html'
         })
         .state('navbar', {
             url: '/navbar',
-            controller: 'UserCtrl',
+            controller: 'StudentCtrl',
             templateUrl: '/templates/navbar.html'
         })
-        .state('userIncompleteItems', {
-            url: '/userIncompleteItems',
-            controller: 'UserCtrl',
-            templateUrl: '/templates/userIncompleteItems.html'
+        .state('testTracker', {
+            url: '/testTracker',
+            controller: 'StudentCtrl',
+            templateUrl: '/templates/testTracker.html'
         })
-        .state('userCompleteItems', {
-            url: '/userCompleteItems',
-            controller: 'UserCtrl',
-            templateUrl: '/templates/userCompleteItems.html'
-        })
-        .state('calendar', {
-            url: '/calendar',
-            controller: 'CalendarCtrl',
-            templateUrl: '/templates/calendar.html'
-        })
-        .state('daily', {
-            url: '/daily',
-            controller: 'CalendarCtrl',
-            templateUrl: '/templates/daily.html'
-        })
-        .state('weekly', {
-            url: '/weekly',
-            controller: 'CalendarCtrl',
-            templateUrl: '/templates/weekly.html'
-        })
-        .state('monthly', {
-            url: '/monthly',
-            controller: 'CalendarCtrl',
-            templateUrl: '/templates/monthly.html'
+        .state('behvTracker', {
+            url: '/behvTracker',
+            controller: 'StudentCtrl',
+            templateUrl: '/templates/behvTracker.html'
         })
         .state('clock', {
             url: '/clock',
-            controller: 'UserCtrl',
+            controller: 'StudentCtrl',
             templateUrl: '/templates/clock.html'
         })
         .state('graphs', {
             url: '/graphs',
-            controller: 'UserCtrl',
+            controller: 'StudentCtrl',
             templateUrl: '/templates/graphs.html'
         })
         .state('pacooverTooltip', {
             url: '/pacooverTooltip',
-            controller: 'UserCtrl',
+            controller: 'StudentCtrl',
             templateUrl: '/templates/pacooverTooltip.html'
         })
         .state('adminPortal', {
@@ -122,7 +102,7 @@ spedtracker.config(['ChartJsProvider', function (ChartJsProvider) {
 //            })
 //            .state('user', {
 //                url: '/user',
-//                controller: 'UserCtrl as user',
+//                controller: 'StudentCtrl as user',
 //                templateUrl: '/templates/user.html'
 //            });
 //    }

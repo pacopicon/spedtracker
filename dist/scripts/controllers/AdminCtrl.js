@@ -1,5 +1,5 @@
-spedtracker.controller('AdminCtrl', ["$scope", "$firebaseAuth", "FirebaseRef", "UserCrud", "ItemCrud",
-  function($scope, $firebaseAuth, FirebaseRef, UserCrud, ItemCrud) {
+spedtracker.controller('AdminCtrl', ["$scope", "$firebaseAuth", "FirebaseRef", "UserCrud", "StudentCrud",
+  function($scope, $firebaseAuth, FirebaseRef, UserCrud, StudentCrud) {
 
     // var items = FirebaseRef.getItems();
     //

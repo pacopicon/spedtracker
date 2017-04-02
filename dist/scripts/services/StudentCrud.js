@@ -1,4 +1,4 @@
-spedtracker.factory("ItemCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
+spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
   function($firebaseArray, FirebaseRef, UserCrud, DataCrud) {
 
 // Public variables below
@@ -63,7 +63,7 @@ spedtracker.factory("ItemCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
       } else {
         importanceMultiple = 1.1 + urgencyAddend;
       }
-      // The Ranking calculation below prioritizes to do items whose estimated time to completion are larger relative to their time till due dates.  The second influence is the importance factor, however this is not as important unless the item is due soon as well.
+      // The Ranking calculation below prioritizes to do students whose estimated time to completion are larger relative to their time till due dates.  The second influence is the importance factor, however this is not as important unless the item is due soon as well.
       var rank = Math.round((ratio * importanceMultiple + ratio) * 1000000);
       return rank;
     };
@@ -88,14 +88,14 @@ spedtracker.factory("ItemCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
       };
     };
 
-    // The function below marks item as complete or incomplete depending on its original state.  It is called by 'userincompleteItems.html' by the delete button and by 'userCompleteItems.html' by the modal.
+    // The function below marks item as complete or incomplete depending on its original state.  It is called by 'testTracker.html' by the delete button and by 'behvTracker.html' by the modal.
     var updateCompletion = function(item, newDueDate, newhours, newMinutes) {
-      // Remember: Both IF conditions below can only be executed by the deleteBtn in userincompleteItems.html, which effectively delets the item from to do and relegates it to the archive.
+      // Remember: Both IF conditions below can only be executed by the deleteBtn in testTracker.html, which effectively delets the item from to do and relegates it to the archive.
       // Both The ELSE (below) and the ELSE IF condition (further below) can be executed by BOTH the un-delete button in archive and the Modal when this latter is executed from archive.
 
       console.log("item: " + item);
 
-      var item = items.$getRecord(item.$id);
+      var item = students.$getRecord(item.$id);
 
       if (!item.isComplete) {
         item.isComplete = true;
@@ -106,20 +106,20 @@ spedtracker.factory("ItemCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         item.completed_at = 0;
         item.isSafeToComplete = false;
       }
-      items.$save(item);
+      students.$save(item);
     };
 
 // -- FUNCTIONS CALLED BY CONTROLLER --
     return {
       // handing ref over to AuthCtrl.js for User creation and authentication.
-      getAllItems: function() {
-        return items;
+      getAllStudents: function() {
+        return students;
       },
 
-      getItemsRef: function() {
-        return itemsRef;
+      getStudentsRef: function() {
+        return studentsRef;
       },
-      // The function below and the one underneath, 'parseTime' are both called by '$scope.parseTime' in UserCtrl to display detailed estimated time to completion info for item in DOM
+      // The function below and the one underneath, 'parseTime' are both called by '$scope.parseTime' in StudentCtrl to display detailed estimated time to completion info for item in DOM
       calculateTimeTillDueDate: function(dueDate, time) {
         if (typeof dueDate === "object") {
           dueDate = dueDate.getTime();
@@ -179,7 +179,7 @@ spedtracker.factory("ItemCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           second: seconds
         };
       },
-// This function is called by the submit button in userincompleteItems.html when user creates an item in the form
+// This function is called by the submit button in testTracker.html when user creates an item in the form
       addItem: function(itemName, dueDate, importance, eHour, eMinute) {
 
         // empty the below variables in order to contextualize the 'prioritize' call for the 'addItem' function
@@ -190,7 +190,7 @@ spedtracker.factory("ItemCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
         var itemProperties = prioritize(item, dueDate, importance, urgency, eHour, eMinute);
 
-        items.$add({
+        students.$add({
           name: itemName,
           // dueDate: dueDate.getTime(),
           dueDate: dueDate,
@@ -204,14 +204,14 @@ spedtracker.factory("ItemCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           rank: itemProperties.rank,
           created_at: firebase.database.ServerValue.TIMESTAMP,
           completed_at: 0
-        }).then(function(itemsRef) {
-          var id = itemsRef.key;
+        }).then(function(studentsRef) {
+          var id = studentsRef.key;
           // console.log(itemName + ": end.  Added item with id " + id);
-          items.$indexFor(id);
+          students.$indexFor(id);
 
         });
       }, // end of AddItem
-// This function is called by UserCtrl '$scope.showComplex' function, which is in turn called by 'userincompleteItems.html' when the user clicks on the 'edit' button for a given item.  The $scope.showComplex' function creates a modal that offers update options to the user.  Clicking close on the modal resolves '$scope.updateItem' which calls 'updateItem' below
+// This function is called by StudentCtrl '$scope.showComplex' function, which is in turn called by 'testTracker.html' when the user clicks on the 'edit' button for a given item.  The $scope.showComplex' function creates a modal that offers update options to the user.  Clicking close on the modal resolves '$scope.updateItem' which calls 'updateItem' below
       updateItem: function(oldItem, newName, newDueDate, newImportance, newUrgent, newHours, newMinutes) {
 
         if (typeof newDueDate == "object") {
@@ -233,20 +233,20 @@ spedtracker.factory("ItemCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         oldItem.eMinute = newMinutes;
         oldItem.rank = updatedItemProperties.rank;
 
-        items.$save(oldItem).then(function(itemsRef) {
-          // console.log("items.$save called");
+        students.$save(oldItem).then(function(studentsRef) {
+          // console.log("students.$save called");
         });
 
       },
 
-// The function below is the actual deletion process for items.  The user has the power to only mark items as complete.  Complete or Past Due (i.e. incomplete but not marked as complete after the due date) items are rescuable and able to be set as incomplete for up to a week.  After one week, all Complete and Past Due items are deleted when this function is called by UserCtrl function 'refreshTalliesAndData', which is called when (1) 'userincompleteItems.html' is initialized, and when either (2) '$scope.updateItems', or (3) '$scope.addItem', or (4) '$scope.updateCompletion' are called.
-      processOldCompleteItems: function () {
-        var totalItems = items.length;
+// The function below is the actual deletion process for students.  The user has the power to only mark students as complete.  Complete or Past Due (i.e. incomplete but not marked as complete after the due date) students are rescuable and able to be set as incomplete for up to a week.  After one week, all Complete and Past Due students are deleted when this function is called by StudentCtrl function 'refreshTalliesAndData', which is called when (1) 'testTracker.html' is initialized, and when either (2) '$scope.updatestudents', or (3) '$scope.addItem', or (4) '$scope.updateCompletion' are called.
+      processOldCompletestudents: function () {
+        var totalstudents = students.length;
 
-        for (var i = 0; i < totalItems; i++) {
-          if (items[i].isComplete && items[i].dueDate + week < now) {
+        for (var i = 0; i < totalstudents; i++) {
+          if (students[i].isComplete && students[i].dueDate + week < now) {
 
-            var itemToDelete = items.$getRecord(items[i].$id);
+            var itemToDelete = students.$getRecord(students[i].$id);
 
             // 'date' is part of the console.log
             var date = new Date(itemToDelete.dueDate);
@@ -254,36 +254,36 @@ spedtracker.factory("ItemCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
             console.log("item named " + itemToDelete.name + " with date: " + date.toString() + ", is about to be removed");
 
-            items.$remove(itemToDelete).then(function() {
+            students.$remove(itemToDelete).then(function() {
                 console.log("item, which is now " + itemToDelete + ", has been removed");
               });
-            // Still figuring out how to $destroy items and avoid memory leaks.
-            // items.$destroy(items[i]);
+            // Still figuring out how to $destroy students and avoid memory leaks.
+            // students.$destroy(students[i]);
           }
         }
       },
-// The function below updates items that are past due (i.e. incomplete but not marked as complete after the due date) with pastDue = true.  It also tallies these items.  It is called by UserCtrl function '$scope.refreshTalliesAndData'
-      updateAllItemsPastDue: function() {
-        var totalItems = items.length;
+// The function below updates students that are past due (i.e. incomplete but not marked as complete after the due date) with pastDue = true.  It also tallies these students.  It is called by StudentCtrl function '$scope.refreshTalliesAndData'
+      updateAllstudentsPastDue: function() {
+        var totalstudents = students.length;
 
-        for (var i = 0; i < totalItems; i++) {
+        for (var i = 0; i < totalstudents; i++) {
 
-          var dueDate = items[i].dueDate;
+          var dueDate = students[i].dueDate;
 
-          if (!items[i].isComplete && items.$loaded()) {
-            if ((items[i].dueDate < now) && !(items[i].isPastDue)) {
-              items[i].isPastDue = true;
-              items.$save(items[i]);
-            } else if ((items[i].dueDate > now) && (items[i].isPastDue)) {
-              items[i].isPastDue = false;
-              items.$save(items[i]);
+          if (!students[i].isComplete && students.$loaded()) {
+            if ((students[i].dueDate < now) && !(students[i].isPastDue)) {
+              students[i].isPastDue = true;
+              students.$save(students[i]);
+            } else if ((students[i].dueDate > now) && (students[i].isPastDue)) {
+              students[i].isPastDue = false;
+              students.$save(students[i]);
             }
           }
         }
       },
 
       toggleItemToDelete: function(item) {
-        var queriedItem = items.$getRecord(item.$id);
+        var queriedItem = students.$getRecord(item.$id);
 
         if (queriedItem.isSafeToComplete === false) {
           item.isSafeToComplete = true;
@@ -291,17 +291,17 @@ spedtracker.factory("ItemCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           item.isSafeToComplete = false;
         }
 
-        items.$save(queriedItem);
+        students.$save(queriedItem);
       },
 
-      toggleSelectForDelete: function(items) {
-        for (var i = 0; i < items.length; i++) {
-          if (!items[i].isSafeToComplete && !items[i].isComplete) {
-            items[i].isSafeToComplete = true;
-          } else if (items[i].isSafeToComplete && !items[i].isComplete) {
-            items[i].isSafeToComplete = false;
+      toggleSelectForDelete: function(students) {
+        for (var i = 0; i < students.length; i++) {
+          if (!students[i].isSafeToComplete && !students[i].isComplete) {
+            students[i].isSafeToComplete = true;
+          } else if (students[i].isSafeToComplete && !students[i].isComplete) {
+            students[i].isSafeToComplete = false;
           }
-          items.$save(items[i]);
+          students.$save(students[i]);
         }
       },
 
@@ -311,5 +311,5 @@ spedtracker.factory("ItemCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
     }; // end of Return
 
-  } // end of ItemCrud function
+  } // end of StudentCrud function
 ]); // end of factory initialization

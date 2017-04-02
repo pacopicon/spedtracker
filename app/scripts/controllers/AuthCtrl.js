@@ -1,7 +1,7 @@
-spedtracker.controller('AuthCtrl', ["$scope", "$state", "ItemCrud", "UserCrud", "$rootScope", "$interval", "$log", "$http", "$locale", "$location", "$templateCache", "$timeout", "$q", "$sce", "$firebaseAuth",
-  function($scope, $state, ItemCrud, UserCrud, $rootScope, $interval, $log, $http, $locale, $location, $templateCache, $timeout, $q, $sce, $firebaseAuth) {
+spedtracker.controller('AuthCtrl', ["$scope", "$state", "StudentCrud", "UserCrud", "$rootScope", "$interval", "$log", "$http", "$locale", "$location", "$templateCache", "$timeout", "$q", "$sce", "$firebaseAuth",
+  function($scope, $state, StudentCrud, UserCrud, $rootScope, $interval, $log, $http, $locale, $location, $templateCache, $timeout, $q, $sce, $firebaseAuth) {
 
-    // var ref = ItemCrud.getRef;
+    // var ref = StudentCrud.getRef;
 
     // var a = $firebase.auth();
     var auth = $firebaseAuth();
@@ -14,7 +14,7 @@ spedtracker.controller('AuthCtrl', ["$scope", "$state", "ItemCrud", "UserCrud", 
 
     $scope.login = function(email, pass) {
       if (email === 'guest@guest.com' && pass === "palmtreerooskee@gmail.com") {
-        changeState('userIncompleteItems');
+        changeState('testTracker');
       } else {
         $window.alert("wrong e-mail and password");
       }

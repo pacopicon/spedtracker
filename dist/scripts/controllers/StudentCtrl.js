@@ -1,23 +1,23 @@
-spedtracker.controller('UserCtrl', ["$scope", "ItemCrud", "UserCrud", "dateCruncher", "modalService", "$rootScope", "$interval", "$log", "$http", "$locale", "$location", "$templateCache", '$timeout', "$q", "$sce", "$tooltip", "$popover", "$firebaseAuth", "$cookies",
-  function($scope, ItemCrud, UserCrud, dateCruncher, modalService, $rootScope, $interval, $log, $http, $locale, $location, $templateCache, $timeout, $q, $sce, $tooltip, $popover, $firebaseAuth, $cookies) {
+spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "modalService", "$rootScope", "$interval", "$log", "$http", "$locale", "$location", "$templateCache", '$timeout', "$q", "$sce", "$tooltip", "$popover", "$firebaseAuth", "$cookies",
+  function($scope, StudentCrud, UserCrud, modalService, $rootScope, $interval, $log, $http, $locale, $location, $templateCache, $timeout, $q, $sce, $tooltip, $popover, $firebaseAuth, $cookies) {
 
     // Remember, Firebase only accepts object, array, string, number, boolean, or null (see: https://www.firebase.com/docs/web/api/firebase/set.html)
 
-    $scope.items = ItemCrud.getAllItems();
+    $scope.students = StudentCrud.getAllStudents();
 
     var refreshTime = function() {
       time = Date.now();
       $scope.time = time;
 
-      ItemCrud.updateAllItemsPastDue();
+      StudentCrud.updateAllstudentsPastDue();
       return time;
     };
 
     $interval(refreshTime, 1000);
 
     $scope.parseTime = function(dueDate) {
-      var timeLeftInMillisecs = ItemCrud.calculateTimeTillDueDate(dueDate, $scope.time);
-      var countdown = ItemCrud.parseTime(timeLeftInMillisecs);
+      var timeLeftInMillisecs = StudentCrud.calculateTimeTillDueDate(dueDate, $scope.time);
+      var countdown = StudentCrud.parseTime(timeLeftInMillisecs);
       return countdown;
     };
 
@@ -104,7 +104,7 @@ spedtracker.controller('UserCtrl', ["$scope", "ItemCrud", "UserCrud", "dateCrunc
 
       // var t = new Date();
       // console.log("step 1 - old name: " + $scope.oldItemName + ", old date: " + new Date($scope.oldItemDueDate) + ", Time: " + t.getMinutes() + ":" + t.getSeconds() + ":" + t.getMilliseconds());
-      // UserCtrl.js showComplex: item $id: -KUnjnUG90g4Ms_pkbC5 and name: short and item date 1478707118727
+      // StudentCtrl.js showComplex: item $id: -KUnjnUG90g4Ms_pkbC5 and name: short and item date 1478707118727
 
       modalService.showModal({
         templateUrl: "templates/modal.html",
@@ -126,10 +126,10 @@ spedtracker.controller('UserCtrl', ["$scope", "ItemCrud", "UserCrud", "dateCrunc
           newMinutes = newItemProps.newMinutes;
 
           // var t = new Date();
-          // console.log("step 4 - UserCtrl close: old name: " + $scope.oldItemName + ", new name: " + newItemProps.name + ", date: " + newItemProps.dueDate + ", Time: " + t.getMinutes() + ":" + t.getSeconds() + ":" + t.getMilliseconds());
-          ItemCrud.updateItem($scope.oldItem, newName, newDueDate, newImportance, newUrgent, newHours, newMinutes);
+          // console.log("step 4 - StudentCtrl close: old name: " + $scope.oldItemName + ", new name: " + newItemProps.name + ", date: " + newItemProps.dueDate + ", Time: " + t.getMinutes() + ":" + t.getSeconds() + ":" + t.getMilliseconds());
+          StudentCrud.updateItem($scope.oldItem, newName, newDueDate, newImportance, newUrgent, newHours, newMinutes);
 
-          ItemCrud.processOldCompleteItems();
+          StudentCrud.processOldCompletestudents();
         });
       });
     };
@@ -144,17 +144,17 @@ spedtracker.controller('UserCtrl', ["$scope", "ItemCrud", "UserCrud", "dateCrunc
     //   var dueDate = day.setDate(17);
     //   var dueDateObj = new Date(dueDate);
     //   var name = "test"
-    //   ItemCrud.addItem(name, dueDateObj, "<i class='fa fa-star'></i>", 10, 10);
-    //   // ItemCrud.processOldCompleteItems();
+    //   StudentCrud.addItem(name, dueDateObj, "<i class='fa fa-star'></i>", 10, 10);
+    //   // StudentCrud.processOldCompletestudents();
     // };
 
     $scope.addItem = function() {
-      ItemCrud.addItem($scope.newItemName, $scope.newDueDate, $scope.iconwrap.selectedIcon, $scope.hourwrap.selectedHour, $scope.minutewrap.selectedMinute);
-      ItemCrud.processOldCompleteItems();
+      StudentCrud.addItem($scope.newItemName, $scope.newDueDate, $scope.iconwrap.selectedIcon, $scope.hourwrap.selectedHour, $scope.minutewrap.selectedMinute);
+      StudentCrud.processOldCompletestudents();
     };
 
     $scope.saveAndToggleInvert = function(item) {
-      items.$save(item);
+      students.$save(item);
       toggleInvert();
     };
 
@@ -163,14 +163,14 @@ spedtracker.controller('UserCtrl', ["$scope", "ItemCrud", "UserCrud", "dateCrunc
       var incompCount = 0;
       var safeCount = 0;
 
-      for (i = 0; i < items.length; i++) {
-        if (items[i] && !items[i].isComplete) {
+      for (i = 0; i < students.length; i++) {
+        if (students[i] && !students[i].isComplete) {
           incompCount++;
         }
       }
 
-      for (i = 0; i < items.length; i++) {
-        if (items[i] && items[i].isSafeToComplete) {
+      for (i = 0; i < students.length; i++) {
+        if (students[i] && students[i].isSafeToComplete) {
           safeCount++;
         }
       }
@@ -203,33 +203,33 @@ spedtracker.controller('UserCtrl', ["$scope", "ItemCrud", "UserCrud", "dateCrunc
       console.log("selectionInversion: " + $scope.selectionInversion);
     }
 
-    $scope.selectAllForDelete = function(items) {
-      ItemCrud.toggleSelectForDelete(items);
+    $scope.selectAllForDelete = function(students) {
+      StudentCrud.toggleSelectForDelete(students);
       $scope.allSelected = true;
     };
 
-    $scope.undoAllSelectForDelete = function(items) {
-      ItemCrud.toggleSelectForDelete(items);
+    $scope.undoAllSelectForDelete = function(students) {
+      StudentCrud.toggleSelectForDelete(students);
       $scope.allSelected = false;
     };
 
-    $scope.invertSelectForDelete = function(items) {
-      ItemCrud.toggleSelectForDelete(items);
+    $scope.invertSelectForDelete = function(students) {
+      StudentCrud.toggleSelectForDelete(students);
     }
 
     $scope.deleteSelected = function() {
-      for (var i = 0; i < items.length; i++)
-        if (items[i].isComplete === false && items[i].isSafeToComplete === true) {
+      for (var i = 0; i < students.length; i++)
+        if (students[i].isComplete === false && students[i].isSafeToComplete === true) {
           var newDueDate = 0;
           var newhours = 0;
           var newMinutes = 0;
-          $scope.updateCompletion(items[i], newDueDate, newhours, newMinutes);
+          $scope.updateCompletion(students[i], newDueDate, newhours, newMinutes);
         }
     };
 
     $scope.updateCompletion = function(item, newDueDate, newhours, newMinutes) {
-      ItemCrud.updateCompletion(item, newDueDate, newhours, newMinutes);
-      ItemCrud.processOldCompleteItems();
+      StudentCrud.updateCompletion(item, newDueDate, newhours, newMinutes);
+      StudentCrud.processOldCompletestudents();
     };
 
 // End CRUD Functions

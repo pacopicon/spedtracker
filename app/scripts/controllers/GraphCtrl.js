@@ -1,5 +1,5 @@
-spedtracker.controller('GraphCtrl', ["$scope", "ItemCrud", "dateCruncher", "$rootScope", "$interval", "$locale", '$timeout', "$q", "$sce", "$tooltip", "$state",
-  function($scope, ItemCrud, dateCruncher, $rootScope, $interval, $locale, $timeout, $q, $sce, $tooltip, $state) {
+spedtracker.controller('GraphCtrl', ["$scope", "StudentCrud", "dateCruncher", "$rootScope", "$interval", "$locale", '$timeout', "$q", "$sce", "$tooltip", "$state",
+  function($scope, StudentCrud, dateCruncher, $rootScope, $interval, $locale, $timeout, $q, $sce, $tooltip, $state) {
 
   // PUBLIC VARIABLES
     $scope.chartTip = {
@@ -7,8 +7,8 @@ spedtracker.controller('GraphCtrl', ["$scope", "ItemCrud", "dateCruncher", "$roo
       "checked": false
     };
 
-    $scope.items = ItemCrud.getAllItems();
-    items = ItemCrud.getAllItems();
+    $scope.items = StudentCrud.getAllItems();
+    items = StudentCrud.getAllItems();
 
     var now = new Date(),
         nowNum = now.getTime(),
@@ -132,7 +132,7 @@ spedtracker.controller('GraphCtrl', ["$scope", "ItemCrud", "dateCruncher", "$roo
 
     $scope.$watch(getItems, watcherFunction, true);
       function getItems() {
-        return ItemCrud.getAllItems();
+        return StudentCrud.getAllItems();
     };
 
     function watcherFunction(newData) {
