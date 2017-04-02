@@ -1,0 +1,27 @@
+<section ng-controller="CalendarCtrl" class="user">
+  <div ng-include="'/templates/navbar.html'"></div>
+<body>
+  <div class="list-group">
+<!--begin Clock-->
+    <div class="clock-container-fluid">
+      <div class="clock-row row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 column1">
+          <div class="clock">
+            <p><b>{{time | date: 'EEEE'}}, </b><b>{{time | date: 'MMMM'}} {{time | date: 'dd'}}, </b><b>{{time | date: 'yyyy'}} </b><b>at {{time | date: 'shortTime'}} </b></p>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 column2">
+          <div class= "page-name">
+            <b><p>calendar</p></b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--end Clock-->
+    <h1>Calendar is under construction!</h1>
+    <div ng-include="'/templates/monthly.html'"></div>
+  </div>
+
+</body>
+</section>

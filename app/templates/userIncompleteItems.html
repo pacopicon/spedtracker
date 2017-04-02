@@ -1,0 +1,153 @@
+<section ng-controller="UserCtrl" class="user">
+  <div ng-include="'/templates/navbar.html'"></div>
+<body>
+<div class="list-group">
+<!--begin Clock-->
+<div class="clock-container-fluid">
+  <div class="clock-row row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 column1">
+      <div class="clock">
+        <p><b>{{time | date: 'EEEE'}}, </b><b>{{time | date: 'MMMM'}} {{time | date: 'dd'}}, </b><b>{{time | date: 'yyyy'}}, </b><b> {{time | date: 'shortTime'}}</b></p>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 column2">
+      <div class= "page-name">
+        <b><p>to do list</p></b>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end Clock-->
+<!--begin FORM-->
+<div class="containerPad">
+  <div class="container-fluid main-body form-body">
+    <div class="form row">
+      <form ng-submit="addItem()"><!-- push a new message onto the array-->
+<!--name-->
+        <div class="col-lg-2 col-md-2 col-sm-5 col-xs-12 formFormat name">
+          <input class="form-control" ng-model="newItemName" placeholder="enter item name" />
+        </div>
+<!--date-->
+        <!-- available animations:
+        am-fade-and-scale, am-fade-and-slide-bottom/top/left/right,
+        am-slide-bottom/top/left/right
+        am-fade-->
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 date">
+          <input type="text" size="1" class="btn-date form-control" ng-model="newDueDate" data-date-format="longDate" data-autoclose="1" data-animation="am-fade-and-scale" placeholder="enter <i class='fa fa-calendar'></i>" bs-datepicker>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 time">
+          <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate" data-time-format="h:mm a" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="15" bs-timepicker>
+        </div>
+<!--importance-->
+        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12 importance formFormat">
+          <a href class="tip" data-animation="am-flip-x" bs-tooltip="importanceTip">
+            <button type="button" class="btn-importance btn btn-default" ng-model="iconwrap.selectedIcon" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" placeholder="enter <i class='fa fa-star'>" bs-options="icon.label as icon.label for icon in icons" bs-select>Action<span class="caret"></span>
+          </button></a>
+        </div>
+<!--est. time-->
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 hour-and-minute">
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 hour">
+            <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="btn-hour btn btn-default" ng-model="hourwrap.selectedHour" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="hour as hour for hour in hours" placeholder="estimate hours <i class='fa fa-clock-o'></i>" bs-select><span class="caret"></span></button></a>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 minute">
+            <a href class="tip" data-animation="am-flip-x" bs-tooltip="timeTip"><button type="button" class="btn-minute btn btn-default" ng-model="minutewrap.selectedMinute" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="minute as minute for minute in minutes" placeholder="estimate minutes <i class='fa fa-clock-o'></i>" bs-select>Action<span class="caret"></span></button></a>
+          </div>
+        </div>
+<!--Add Button--->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-div">
+          <button type="submit" type="button" class="btn-add">Add to-do item</button>
+          <!-- <button ng-click="addTestItem()" class="btn-add btn-test">T E S T: add test item</button> -->
+          <!-- <button ng-click="initiateDataItemsWorkAround()" class="btn-add btn-test">T E S T: add dataItem</button> -->
+          <!-- <button ng-click="addOrUpdateDataItems('itemLeftCount', 'hoursLeft', 'minutesLeft', 200, 200, 200)" class="btn-add btn-test">T E S T: update existing dataItem</button> -->
+        </div>
+      </form>
+    </div> <!--end row-->
+  </div> <!--end container-fluid-->
+</div> <!--end containerPad-->
+<!--end FORM-->
+
+<!--begin ItemDisplay-->
+<div class="container-fluid main-body">
+<!--begin select all / clear selected / delete selected-->
+  <div class="row formControls">
+
+    <div class="col-md-12 col-sm-12 col-xs-12 left-wrap right-wrap btn-wrap mainBtn" ng-class="{'col-lg-6 col-md-6 col-sm-6 col-xs-12 left-wrap btn-wrap mainBtn': clickedToDelete, 'col-lg-12 col-md-12 col-sm-12 col-xs-12 left-wrap right-wrap btn-wrap mainBtn': !clickedToDelete}">
+      <button class="controlBtn selectAll" ng-click="selectAllForDelete(items)" ng-show="!allSelected && !selectionInversion" ng-init="allSelected">
+        <p>select all</p>
+      </button>
+      <button class="controlBtn clearAll" ng-click="undoAllSelectForDelete(items)" ng-show="allSelected && !selectionInversion">
+        <p>clear selected</p>
+      </button>
+      <button class="controlBtn invertSelection" ng-click="invertSelectForDelete(items)" ng-show="selectionInversion">
+        <p>invert selection</p>
+      </button>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right-wrap btn-wrap IIndaryBtn" ng-show="appear">
+    <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right-wrap btn-wrap IIndaryBtn" ng-class="{'IIndaryBtnYes': clickedToDelete, 'IIndaryBtnNo': !clickedToDelete}"> -->
+      <button class="controlBtn deleteSelected" ng-click="deleteSelected()">
+        <p>archive selected</p>
+      </button>
+    </div>
+  </div>
+
+  <p class="noItemAnnounce" ng-show="dataItems.itemLeftCount === 0">There are no to do items at this time</p>
+<!--end select all / clear selected / delete selected-->
+  <div class="row itemDisplay" ng-repeat="item in items | orderBy: '-rank'" ng-show="!item.isComplete" ng-hide="item.isComplete" ng-mouseleave="hover = false">
+
+
+
+    <div class="priorityCheckboxImportanceNameDate">
+<!--PRIORITY & CHECKBOX-->
+      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 priorityAndCheckbox">
+    <!-- <div class="priorityCheckboxImportanceName"> -->
+<!--CHECKBOX-->
+        <div class="completedBox">
+          <input type="checkbox" id="cb" ng-model="item.isSafeToComplete" ng-change="saveAndToggleInvert(item)"/>
+        </div>
+        <!-- ng-change="items.$save(item)" -->
+<!--PRIORITY-->
+        <div class="priorityCell" ng-class="{'redCell': (item.isPastDue && !item.isSafeToComplete), yellowCell: item.isSafeToComplete}">
+          <p>{{$index + 1}}</p>
+        </div>
+      </div>
+<!--IMPORTANCE-->
+      <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 importanceCell">
+        <!-- {{item.importance}} -->
+        <p ng-bind-html="item.importance"></p>
+        <!-- <div ng-class="{'redText': (item.isPastDue && !item.isSafeToComplete), yellowText: item.isSafeToComplete}" data-ng-bind-html="item.importance"></div> -->
+      </div>
+<!--NAME-->
+      <div class="col-lg-5 col-md-5 col-sm-5 col-sx-5 nameCell">
+          <p ng-class="{'redText': (item.isPastDue && !item.isSafeToComplete), yellowText: item.isSafeToComplete}">{{item.name}}</P>
+      </div>
+<!--DATE-->
+      <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 dateCell" ng-class="{'redText': (item.isPastDue && !item.isSafeToComplete), yellowText: item.isSafeToComplete}">
+        {{item.dueDate | date: 'MMM'}} {{item.dueDate | date: 'dd'}} <span ng-hide="isCurrentOrPreviousYear(item.dueDate)">{{item.dueDate | date: 'yyyy'}}</span>  {{item.dueDate | date: 'shortTime'}}
+      </div>
+    </div>
+<!-- begin INFO TOOLTIP -->
+    <div ng-if="hover" class="pacoover">
+      <div ng-include="'/templates/pacooverTooltip.html'"></div>
+    </div>
+<!-- end INFO TOOLTIP -->
+
+<!-- being EDIT + DELETE + INFO-->
+    <div class="InfoEditDeleteCell">
+      <div ng-mouseover="hover = true" class="info"><i class="fa fa-info-circle" ng-class="{'redText': (item.isPastDue && !item.isSafeToComplete), yellowText: item.isSafeToComplete}"></i></div>
+      <!-- ng-mouseleave="hover = false" -->
+      <a href class="editBtn" ng-model="item" ng-hide="item.isSafeToComplete" ng-class="{'redCell': (item.isPastDue && !item.isSafeToComplete), yellowCell: item.isSafeToComplete}" ng-click="showComplex(item)"><p><i class="fa fa-pencil"></i></p></a>
+      <button class="deleteBtn" ng-model="item" ng-click="updateCompletion(item, 0, 0, 0)" ng-show="item.isSafeToComplete" ><p><i class="fa fa-times"></i></p></button>
+      <!-- <div class="deleteCheckbox">
+        <input type="checkbox" id="cb" ng-change="updateCompletion(item, 0)"/>
+      </div> -->
+    </div>
+<!-- end EDIT + DELETE + INFO-->
+
+  </div> <!-- item Display and ng-repeat end -->
+</div> <!--container-fluid main-body end-->
+<!--end ITEM DISPLAY-->
+<div ng-include="'/templates/graphs.html'"></div>
+
+</div>
+</body>
+</section>

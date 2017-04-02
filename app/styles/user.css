@@ -1,0 +1,1106 @@
+/*begin css for navbar*/
+.navbar {
+  background-color: #4c91cd;
+  z-index: 1;
+  min-height: 4.5em;
+ }
+
+ .left {
+   width: 63em;
+ }
+
+.link {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  width: 3.5em;
+  bottom: 0.35em;
+  color: white;
+  font-size: 3em;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link:active {
+  /*border: solid 0.01em #d6f3ff;
+  font-size: 80%;*/
+}
+
+.admin {
+  width: 7em;
+}
+
+li {
+  padding-left: 0.5em;
+  padding-top: 0.15em;
+}
+
+.navbar .fa {
+  color: white;
+  font-size: 0.5em;
+  /*font-family: 'Montserrat', sans-serif;*/
+}
+
+.navbar p {
+  color: white;
+  float: right;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.navbar p .fa {
+  padding-bottom: 2em;
+  border: 0;
+}
+
+.navbar .fa:hover {
+  color: #d6f3ff;
+}
+
+.navbar-header {
+  float: right;
+}
+
+.navbar-toggle {
+  padding-top: 0.85em;
+  padding-right: 0.8em;
+  padding-bottom: 0;
+  padding-left: 0;
+  margin: 0;
+}
+
+.navbar-header .fa {
+  font-size: 2.5em;
+}
+
+/*end css for navbar*/
+
+.body {
+  white-space: nowrap;
+  height: 100%
+}
+
+section {
+  height: 100%;
+}
+
+.list-group {
+  position: relative;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 100%;
+  font-size: 1.2em;
+}
+
+/* begin css for clock */
+
+.clock-container, .clock-row {
+  margin: 0;
+  padding: 0;
+}
+
+.clock, .page-name {
+  position: relative;
+  font-size: 1.5em;
+  overflow: hidden;
+  /*max-width: 23.7em;*/
+  min-width: 7.5em;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+.clock {
+  background-color: #3f4e62;
+  color: white;
+  padding-top: 0.09em;
+  padding-bottom: 0.09em;
+}
+
+.clock p, .page-name p {
+  padding-top: 0.45em;
+  text-align: center;
+}
+
+.page-name p {
+  /*letter-spacing: 0.2em;*/
+}
+
+.page-name {
+  background-color: #d6f3ff;
+  border: 2.5px solid #3f4e62;
+}
+
+/* end css for clock */
+
+.main-body {
+  border-radius: 1em;
+  background-color: white;
+  padding: 1em;
+  margin-bottom: 2em;
+}
+
+/* Begin CSS for Form */
+
+.tip {
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.name, .date, .importance, .time, .hour, .minute {
+  padding-right: 0;
+  padding-left: 0;
+  /*height: 4em;*/
+}
+
+.name, .date, .importance, .time, .hour-and-minute, .minute {
+  margin-left: 0.9em;
+}
+
+.formFormat {
+  padding-bottom: 1em;
+  color: #3f4e62;
+  padding-right: 0;
+}
+
+.date, .minute, .importance {
+  overflow: visible;
+}
+
+.date, .time, .hour, .minute {
+  padding-bottom: 0.9em;
+}
+
+.date, .time, .importance, .hour, .minute, .hour-and-minute, .btn-add {
+  min-width: 4em;
+}
+
+.date, .btn-date, .time, .btn-time, .importance, .btn-importance, .hour-and-minute, .hour, .btn-hour, .minute, .btn-minute {
+  resize: horizontal;
+}
+
+.btn-date:hover, .btn-time:hover, .name:hover {
+  color: #d8dddf;
+}
+
+.btn-date, .btn-time, .btn-importance, .btn-hour, .btn-minute, .btn-add {
+  width: 100%
+}
+
+.fa {
+  color: #3f4e62;
+}
+
+.datepicker.dropdown-menu {
+  width: 250px;
+  height: 270px;
+  button {
+    outline: none;
+    border: 0px;
+  }
+  tbody {
+    height: 180px;
+  }
+  tbody button {
+    padding: 6px;
+  }
+  &.datepicker-mode-1, &.datepicker-mode-2 {
+    tbody button {
+      height: 65px;
+    }
+  }
+}
+
+.hour-and-minute {
+  width: 33.1%;
+  padding: 0;
+  margin-right: 0;
+}
+
+.hour {
+  width: 47.5%;
+}
+
+.minute {
+  width: 47.5%;
+}
+
+.btn-div {
+  padding-right: 0.9;
+  padding-left: 0.9;
+}
+
+.btn-add {
+  border-radius: 1em;
+  min-height: 2em;
+  border: 2.5px solid #4c91cd;
+  color: #4c91cd;
+  background-color: white;
+}
+
+.btn-test {
+  border: 2.5px solid #e05d6f;
+  color: #e05d6f;
+}
+
+.btn-add:hover {
+  background-color: #4c91cd;
+  color: white;
+}
+
+.btn-test:hover {
+  border: 3.5px solid #e05d6f;
+}
+
+.btn-add:active {
+  background-color: #0B5FAA;
+  color: white;
+}
+
+.btn-test:active {
+  background-color: #e05d6f;
+  color: white
+}
+
+
+/* end CSS for Form */
+
+.formControls {
+  border-radius: 1em;
+  background-color: white;
+  min-height: 1.8em;
+  margin: 0.5em;
+}
+
+.left-wrap {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.right-wrap {
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.mainBtn {
+  transition: all 1s ease-in-out;
+}
+
+.IIndaryBtnYes {
+  transition: all 1s ease-in-out;
+}
+
+.IIndaryBtnNo {
+  transition: all 1s ease-in-out;
+  /*position: absolute;
+  top: -9999px;
+  left: -9999px;*/
+  display: none;
+}
+
+
+.controlBtn {
+  border: 2.5px solid #3f4e62;
+  background-color: white;
+  color: #3f4e62;
+  height: 1.8em;
+  border-radius: 1em;
+  text-decoration: none;
+  text-align: center;
+  overflow: hidden;
+  width: 100%;
+  /*margin-left: 1em;*/
+}
+
+.controlBtn:hover {
+  background-color: #3f4e62;
+  color: white
+}
+
+.controlBtn:active {
+  background-color: #e7eaeb;
+}
+
+.noItemAnnounce {
+  text-align: center;
+  padding-top: 0.6em;
+  color: #3f4e62;
+}
+
+.itemDisplay {
+  border-radius: 1em;
+  background-color: #e7eaeb;
+  color: #3f4e62;
+  min-height: 1.8em;
+  margin: 0.5em;
+}
+
+.itemDisplay:hover {
+  background-color: #d8dddf;
+  /*background-color: white;*/
+  /*border: 0.1px solid #3f4e62;*/
+}
+
+
+
+.pacoover {
+  min-height: 1.8em;
+  border-radius: 0.5em;
+  position: absolute;
+  right: 5em;
+  z-index: 999;
+  width: 30%;
+  margin-bottom: 1em;
+  /*border: 0.1px solid #3f4e62;*/
+  /*border: 5px solid white;*/
+  background-color: black;
+  opacity: 0.8;
+}
+
+.pacoover p {
+  margin-left: 0.5em;
+  margin-bottom: 0.05em;
+  font-size: 0.8em;
+  color: white;
+}
+
+.priorityCheckboxImportanceNameDate {
+  float: left;
+  width: 87%;
+  min-height: 1.8em;
+  overflow: hidden;
+}
+
+.priorityAndCheckbox {
+  padding-right: 0;
+  padding-left: 0.5em;
+  height: 1.7em;
+  min-width: 3.7em;
+  max-width: 3.8em;
+  overflow: hidden;
+}
+
+.completedBox {
+  position: relative;
+  overflow: hidden;
+  float: left;
+  padding-top: 0.15em;
+}
+
+/*@import url(//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
+input[type="checkbox"] {
+  display:none;
+  overflow: hidden;
+  border-radius: 1px;
+  width: 1em;
+  height: 1em;
+}
+
+input[type="checkbox"] + label:before {
+  display:inline-block;
+   width:19px;
+   height:21px;
+   vertical-align:middle;
+   font-family: FontAwesome;
+   cursor:pointer;
+   content: "\f006";
+   letter-spacing: 10px;
+}
+
+input[type="checkbox"]:checked + label:before {
+    content: "\f005";
+    letter-spacing: 10px;
+}*/
+
+
+
+.priorityCell, .lonePriorityCell, .editBtn, .deleteBtn {
+  width: 1.7em;
+  height: 1.7em;
+}
+
+.priorityCell, .lonePriorityCell {
+  border-radius: 1em;
+  background-color: #3f4e62;
+  color: white;
+  border-style: none;
+  text-align: center;
+  float: right;
+  padding-top: 0.2em;
+}
+
+.lonePriorityCell {
+  float: left;
+}
+
+.priorityCell p, .lonePriorityCell p {
+  text-align: center;
+}
+
+.importanceCell, .nameCell, .dateCell {
+  position: relative;
+  padding-top: 0.2em;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.importanceCell {
+  margin-right: 0.1em;
+  padding-left: 0.1em;
+  min-width: 0.5em;
+  height: 1.7em;
+}
+
+.importanceCell .fa {
+  /*color: blue;*/
+}
+
+.nameCell {
+  display: block;
+  min-width: 50%;
+  padding-right: 0;
+  overflow: hidden;
+}
+
+.nameCell p {
+  text-align: left;
+  white-space: normal;
+  margin-bottom: 0;
+}
+
+.dateCell {
+  width: 11em;
+  right: -0.3em;
+  padding-right: 0;
+  overflow: hidden;
+}
+
+.InfoEditDeleteCell {
+  position: relative;
+  overflow: hidden;
+  float: right;
+  padding: 0;
+  min-width: 3.5em;
+}
+
+/*.info-wrapper {
+  position: relative;
+  border-radius: 0.5em;
+  border: 2.5px solid #3f4e62;
+  height: 1.5em;
+  width: 1.5em;
+  float: left;
+  z-index: 0;
+}*/
+
+.info {
+  height: 1.5em;
+  width: 1.3em;
+  padding: 0em;
+  margin: 0em;
+  margin-right: 0em;
+  left: 1.5em;
+  float: left;
+  z-index: 100;
+}
+
+.fa-info-circle {
+  color: #3f4e62;
+  font-size: 1.5em;
+  z-index: 1;
+  margin: 0;
+}
+
+.editBtn, .deleteBtn {
+  border-radius: 1em;
+  border-style: none;
+  float: right;
+  text-decoration: none;
+  text-align: center;
+}
+
+.editBtn {
+  background-color: #6FC853;
+}
+
+.editBtn .fa-pencil, .deleteBtn .fa-times {
+  text-align: center;
+  color: #e7eaeb;
+}
+
+.editBtn .fa-pencil {
+  font-size: 1.2em;
+  padding-top: 0.15em;
+}
+
+.deleteBtn .fa-times {
+  font-size: 1.3em;
+  padding-top: 0.1em;
+  padding-left: 0;
+}
+
+.editBtn .fa-pencil:hover, .deleteBtn .fa-times:hover {
+  border: 3.5px solid
+  color: #d6f3ff;
+  text-decoration: none;
+}
+
+.btn-test:hover {
+  color: #e05d6f;
+}
+
+.deleteBtn {
+  background-color: #C3C300;
+}
+
+.deleteCheckbox {
+  margin: 0;
+  padding: 0;
+  height: 0;
+  width: 0;
+}
+
+.redText {
+  /*This will color an item's text red when the item checkbox is checked.*/
+  color: #e05d6f;
+}
+
+.redBorder {
+  border: #e05d6f;
+}
+
+.redCell {
+  background-color: #e05d6f;
+}
+
+.yellowText {
+  color: #C3C300;
+}
+
+.yellowCell {
+  background-color: #C3C300;
+}
+
+.yellowBorder {
+  border: #C3C300;
+}
+
+/*End Item Display elements*/
+
+/*Begin Modal elements*/
+
+/*.nameEditBox, .dateEditBox, .importanceEditBox, .urgentCell, .numberCell {
+  color: #3f4e62;
+}
+
+.nameEditBox {
+  margin-left: 2.9em;
+  width: 10em;
+  border-radius: 0.3em;
+  color: black;
+  /*margin-bottom: 0.5em;*/
+}
+
+.dateCell {
+  position: relative;
+}
+
+.urgentCell {
+  position: relative;
+  overflow: auto;
+  width: 6em;
+  height: 3.5em;
+}
+
+.urgentLine {
+  width: 100%;
+}
+
+.urgentEditBox {
+  width: 100%;
+}
+
+.durationCell {
+  /*Should be double the width of .numberCell*/
+  width: 7em;
+}
+.numberCell {
+  position: relative;
+  overflow: auto;
+  width: 3.5em;
+}
+
+/*End Modal elements*/
+
+/*Begin Chart elements */
+
+.containerPad {
+  margin-top: 2em;
+}
+
+.label {
+  color: #3f4e62;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.btn-chart {
+  border-radius: 0.3em;
+  height: 1.5em;
+  width: 1.5em;
+  border-style: none;
+  background-color: #e7eaeb;
+  float: right;
+}
+
+.fa-refresh {
+  margin-top: 0.25em;
+}
+
+.btn-chart:hover {
+  background-color: #d8dddf;
+}
+
+.barChart {
+  margin-top: 5%;
+}
+
+.chart-legend {
+  margin-top: 1em;
+}
+
+.statement {
+  float: right;
+  width: 30%;
+}
+
+.statement2 {
+  float: right;
+  width: 40%;
+}
+
+.itemsCompleted, .itemsYetToComplete, .itemsOverdue, .itemsDueComplete, .timeCompleted, .timeYetToComplete, .timeOverdue, .timeDueComplete {
+  color: white;
+  width: 70%;
+  float: left;
+}
+
+.itemsCompleted, .timeCompleted, .comNumber {
+  color: #C3C300;
+}
+
+.itemsYetToComplete, .timeYetToComplete, .incomNumber {
+  color: #6FC853;
+}
+
+.itemsOverdue, .timeOverdue, .overdueNumber {
+  color: #e05d6f;
+}
+
+.itemsDueComplete, .timeDueComplete, .dueCompleteNumber {
+  color: #3f4e62;
+}
+
+.total {
+  color: #AC6D39;
+}
+
+.totalPercent {
+  color: #8E5EC5;
+}
+
+.comNumber, .incomNumber, .overdueNumber, .dueCompleteNumber {
+  float: left;
+}
+
+.timeCompleted, .timeYetToComplete, .timeOverdue, .timeDueComplete {
+  width: 55%;
+}
+
+/*End Chart elements */
+
+/*begin Daily, Weekly and Monthly (calendar) views*/
+
+
+
+.day {
+  border: 2.5px solid #3f4e62;
+  /*margin-left: 0;*/
+}
+
+
+
+
+
+
+
+
+
+
+/*end Daily, Weekly and Monthly (calendar) views*/
+
+
+@media only screen and (min-width : 768px) {
+
+  .hamburger {
+    display: none;
+  }
+
+}
+
+@media only screen and (max-width : 585px) {
+/*actually 641*/
+  .priorityCheckboxImportanceNameDate {
+    width: 85%;
+  }
+
+}
+
+@media only screen and (max-width : 767px) {
+/*actually 844*/
+  .priorityAndCheckbox, .nameCell {
+    padding-left: 1em;
+  }
+
+  .dateCell {
+    padding-left: 0.5em;
+  }
+
+  .name {
+    padding-right: 0.9em;
+    position: relative;
+    min-width: 85%;
+  }
+
+  .btn-wrap {
+    padding-left: 0;
+    margin-left: 0;
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  .middle-wrap, .left-wrap {
+    margin-bottom: 0.5em;
+  }
+}
+
+@media only screen and (max-width : 767px) {
+
+  .priorityAndCheckbox {
+    margin-left: 0.5em;
+  }
+
+  .nameCell {
+    margin-left: 0.9em;
+  }
+
+  .dateCell {
+    margin-left: 0.55em;
+  }
+
+  .minute {
+    margin-left: 0;
+  }
+
+}
+
+@media only screen and (max-width : 781px) {
+  /*actually 858*/
+  .nameCell {
+    min-width: 50%;
+  }
+
+}
+
+@media only screen and (max-width : 969px) {
+
+  .hour-and-minute {
+    margin-right: 0.9em;
+    width: 100%;
+  }
+
+}
+
+@media only screen and (max-width : 429px) {
+
+  .name {
+    width: 95%;
+  }
+
+  .date, .time, .importance, .hour, .minute {
+    /*padding-right: -1em;*/
+    width: 93%;
+  }
+
+}
+
+@media only screen and (max-width : 529px) and (min-width : 430px) {
+
+  .name {
+    width: 96%;
+  }
+
+  .date, .time, .importance, .hour, .minute {
+    /*padding-right: -1em;*/
+    width: 94%;
+  }
+
+}
+
+@media only screen and (max-width : 607px) and (min-width : 530px) {
+
+  .name {
+    width: 97%;
+  }
+
+  .date, .time, .importance, .hour, .minute {
+    width: 95%;
+  }
+
+  .minute {
+    margin-left: 0;
+  }
+
+  .hour-and-minute {
+    margin-right: 0.9em;
+    width: 100%;
+  }
+
+}
+
+@media only screen and (max-width : 767px) and (min-width : 608px) {
+
+  .name {
+    width: 97%;
+  }
+
+  .date, .time, .importance, .hour, .minute {
+    width: 95%
+  }
+
+  .minute {
+    margin-left: 0;
+  }
+
+  .hour-and-minute {
+    margin-right: 0.9em;
+    /*margin-left: 0;*/
+    width: 100%;
+  }
+
+}
+
+@media only screen and (max-width : 799px) and (min-width : 768px) {
+
+
+  .name {
+    width: 96.2%
+  }
+
+  .date, .time {
+    width: 30.5%;
+  }
+
+  .importance {
+    width: 30.5%;
+  }
+
+  .hour, .minute {
+    width: 46.7%;
+  }
+
+  .hour-and-minute {
+    margin-right: 0.9em;
+    /*margin-left: 0.9em;*/
+    width: 100%;
+  }
+
+}
+
+@media only screen and (max-width : 969px) and (min-width : 800px) {
+
+
+  .name {
+    width: 96.6%
+  }
+
+  .date, .time {
+    width: 31%;
+  }
+
+  .importance {
+    width: 31%;
+  }
+
+  .hour, .minute {
+    width: 47.5%;
+  }
+
+  .hour-and-minute {
+    margin-right: 0.9em;
+    /*margin-left: 0.9em;*/
+    width: 100%;
+  }
+
+}
+
+@media only screen and (max-width : 991px) and (min-width : 970px) {
+
+  /*.time {
+    width: 18%;
+  }*/
+
+  .name {
+    width: 16.5%;
+  }
+
+  .time {
+    width: 10%;
+  }
+
+  .date {
+    width: 14%;
+  }
+
+  .importance {
+    width: 10%;
+  }
+
+  .hour-and-minute {
+    margin-right: 0.9em;
+    margin-left: 0.9em;
+    width: 38.2%;
+  }
+
+}
+
+
+@media only screen and (max-width : 1076px) and (min-width : 992px) {
+
+  /*.time {
+    width: 13%;
+  }*/
+
+
+
+  .date {
+    width: 14%;
+  }
+
+  .time {
+    width: 10%;
+  }
+
+  .importance {
+    width: 10%;
+  }
+
+  .hour-and-minute {
+    margin-right: 0.9em;
+    margin-left: 0.9em;
+    width: 38.8%;
+  }
+
+  /*.hour {
+    width: 50%;
+  }
+
+  .minute {
+    width: 20%;
+  }*/
+
+}
+
+@media only screen and (max-width : 1199px) and (min-width : 1077px) {
+
+  /*.name {
+    width: 70%;
+  }*/
+
+  .importance {
+    width: 9%;
+  }
+
+  .hour-and-minute {
+    margin-right: 0.9em;
+    margin-left: 0.9em;
+    width: 39.8%;
+  }
+
+}
+
+@media only screen and (max-width : 1425px) and (min-width : 1200px) {
+
+  /*.name {
+    width: 70%;
+  }*/
+
+  .importance {
+    width: 9.5%;
+  }
+
+  .hour-and-minute {
+    /*margin-right: 0.9em;*/
+    /*margin-left: 0.9em;*/
+    width: 40.2%;
+  }
+
+}
+
+@media only screen and (max-width : 1716px) and (min-width : 1426px) {
+
+  /*.name {
+    width: 70%;
+  }*/
+
+  .importance {
+    width: 11%;
+  }
+
+  .hour-and-minute {
+    /*margin-right: 0.9em;*/
+    /*margin-left: 0.9em;*/
+    width: 40.6%;
+  }
+
+}
+
+@media only screen and (max-width : 2153px) and (min-width : 1717px) {
+
+  /*.name {
+    width: 70%;
+  }*/
+
+  .importance {
+    width: 12%;
+  }
+
+  .hour-and-minute {
+    /*margin-right: 0.9em;*/
+    /*margin-left: 0.9em;*/
+    width: 41%;
+  }
+
+}
+
+@media only screen and (max-width : 2600px) and (min-width : 2154px) {
+
+  /*.name {
+    width: 70%;
+  }*/
+
+  .importance {
+    width: 13%;
+  }
+
+  .hour-and-minute {
+    /*margin-right: 0.9em;*/
+    /*margin-left: 0.9em;*/
+    width: 41.4%;
+  }
+
+}
