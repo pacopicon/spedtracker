@@ -2,7 +2,7 @@
 
 'use strict';
 
-listo.factory('modalService', ['$animate', '$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout',
+spedtracker.factory('modalService', ['$animate', '$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout',
   function($animate, $document, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {
 
   function modalService() {

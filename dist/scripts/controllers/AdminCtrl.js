@@ -1,4 +1,4 @@
-listo.controller('AdminCtrl', ["$scope", "$firebaseAuth", "FirebaseRef", "UserCrud", "ItemCrud",
+spedtracker.controller('AdminCtrl', ["$scope", "$firebaseAuth", "FirebaseRef", "UserCrud", "ItemCrud",
   function($scope, $firebaseAuth, FirebaseRef, UserCrud, ItemCrud) {
 
     // var items = FirebaseRef.getItems();

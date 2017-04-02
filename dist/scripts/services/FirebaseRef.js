@@ -1,27 +1,27 @@
-listo.factory("FirebaseRef", ["$firebaseArray", "$firebaseObject",
+spedtracker.factory("FirebaseRef", ["$firebaseArray", "$firebaseObject",
   function($firebaseArray, $firebaseObject) {
 
 // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyDJSMDWkPVq7PGxvfB8XRMWlfVNOfmQj9I",
-      authDomain: "listo-1f3db.firebaseapp.com",
-      databaseURL: "https://listo-1f3db.firebaseio.com",
-      storageBucket: "listo-1f3db.appspot.com",
-      messagingSenderId: "1095679246609"
-    };
+var config = {
+  apiKey: "AIzaSyDu2ZzSnoFkDWE3_IqMlz-gQpaadVl2Uvc",
+  authDomain: "spedtracker.firebaseapp.com",
+  databaseURL: "https://spedtracker.firebaseio.com",
+  projectId: "spedtracker",
+  storageBucket: "spedtracker.appspot.com",
+  messagingSenderId: "71048131235"
+};
+firebase.initializeApp(config);
 
-    firebase.initializeApp(config);
-
-    var itemsRef = firebase.database().ref().child("items");
-    var items = $firebaseArray(itemsRef);
+    var studentsRef = firebase.database().ref().child("students");
+    var students = $firebaseArray(studentsRef);
 
     return {
-      getItems: function() {
-        return items;
+      getStudents: function() {
+        return students;
       },
 
-      getItemsRef: function() {
-        return itemsRef;
+      getStudentsRef: function() {
+        return studentsRef;
       }
 
     };

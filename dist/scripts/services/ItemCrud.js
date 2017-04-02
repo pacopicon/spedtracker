@@ -1,10 +1,10 @@
-listo.factory("ItemCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
+spedtracker.factory("ItemCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
   function($firebaseArray, FirebaseRef, UserCrud, DataCrud) {
 
 // Public variables below
     // holds data as array of objects.  Each object is one item.
-    var itemsRef = FirebaseRef.getItemsRef();
-    var items = FirebaseRef.getItems();
+    var studentsRef = FirebaseRef.getStudentsRef();
+    var students = FirebaseRef.getStudents();
 
     var now = new Date();
     var nowNum = now.getTime();

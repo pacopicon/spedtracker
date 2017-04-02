@@ -1,4 +1,4 @@
-listo.controller('GraphCtrl', ["$scope", "ItemCrud", "dateCruncher", "$rootScope", "$interval", "$locale", '$timeout', "$q", "$sce", "$tooltip", "$state",
+spedtracker.controller('GraphCtrl', ["$scope", "ItemCrud", "dateCruncher", "$rootScope", "$interval", "$locale", '$timeout', "$q", "$sce", "$tooltip", "$state",
   function($scope, ItemCrud, dateCruncher, $rootScope, $interval, $locale, $timeout, $q, $sce, $tooltip, $state) {
 
   // PUBLIC VARIABLES

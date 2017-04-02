@@ -1,4 +1,4 @@
-listo.controller('CalendarCtrl', ["$scope", "ItemCrud", "dateCruncher", "$rootScope", "$interval", "$log", "$http", "$locale", "$location", "$templateCache", '$timeout', "$q", "$sce", "$tooltip",
+spedtracker.controller('CalendarCtrl', ["$scope", "ItemCrud", "dateCruncher", "$rootScope", "$interval", "$log", "$http", "$locale", "$location", "$templateCache", '$timeout', "$q", "$sce", "$tooltip",
   function($scope, ItemCrud, dateCruncher, $rootScope, $interval, $log, $http, $locale, $location, $templateCache, $timeout, $q, $sce, $tooltip) {
 
   

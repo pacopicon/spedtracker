@@ -1,4 +1,4 @@
-listo.filter("parseTime", "$interval",
+spedtracker.filter("parseTime", "$interval",
     function () {
       return function (timeInMillisecs, timeUnit) {
         //   'timeUnit' can be one and only one of these: year, month, //   day, hour, minute, second.

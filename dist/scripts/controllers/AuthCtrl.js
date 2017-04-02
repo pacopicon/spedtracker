@@ -1,4 +1,4 @@
-listo.controller('AuthCtrl', ["$scope", "$state", "ItemCrud", "UserCrud", "$rootScope", "$interval", "$log", "$http", "$locale", "$location", "$templateCache", "$timeout", "$q", "$sce", "$firebaseAuth",
+spedtracker.controller('AuthCtrl', ["$scope", "$state", "ItemCrud", "UserCrud", "$rootScope", "$interval", "$log", "$http", "$locale", "$location", "$templateCache", "$timeout", "$q", "$sce", "$firebaseAuth",
   function($scope, $state, ItemCrud, UserCrud, $rootScope, $interval, $log, $http, $locale, $location, $templateCache, $timeout, $q, $sce, $firebaseAuth) {
 
     // var ref = ItemCrud.getRef;

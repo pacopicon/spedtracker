@@ -1,4 +1,4 @@
-listo.factory("DataCrud", ["FirebaseRef", "$firebaseArray", "$firebaseObject",
+spedtracker.factory("DataCrud", ["FirebaseRef", "$firebaseArray", "$firebaseObject",
   function(FirebaseRef, firebaseArray, firebaseObject) {
 
 

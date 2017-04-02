@@ -1,6 +1,6 @@
-var listo = angular.module("listo", ["ui.router", "firebase", "ui.bootstrap", "ngAnimate", "ngSanitize", "mgcrea.ngStrap", "chart.js", "wt.responsive"]);
+var spedtracker = angular.module("spedtracker", ["ui.router", "firebase", "ui.bootstrap", "ngAnimate", "ngSanitize", "mgcrea.ngStrap", "chart.js", "wt.responsive", "ngCookies"]);
 
-listo.config(function($stateProvider, $locationProvider, $datepickerProvider, $modalProvider, $popoverProvider) {
+spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvider, $modalProvider, $popoverProvider) {
 
     $locationProvider.html5Mode({
         enabled: true,
@@ -89,7 +89,7 @@ listo.config(function($stateProvider, $locationProvider, $datepickerProvider, $m
 
 });
 
-listo.config(['ChartJsProvider', function (ChartJsProvider) {
+spedtracker.config(['ChartJsProvider', function (ChartJsProvider) {
     // Configure all charts
 
     // '#C3C300' --> yellow,
@@ -128,6 +128,6 @@ listo.config(['ChartJsProvider', function (ChartJsProvider) {
 //    }
 //
 //    angular
-//        .module('listo', ['ui.router', 'firebase'])
+//        .module('spedtracker', ['ui.router', 'firebase'])
 //        .config(config);
 //})();

@@ -1,4 +1,4 @@
-listo.factory('dimensions', function () {
+spedtracker.factory('dimensions', function () {
 
     var fn = {};
 

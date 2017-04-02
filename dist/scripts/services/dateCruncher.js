@@ -1,4 +1,4 @@
-listo.factory("dateCruncher", ["ItemCrud",
+spedtracker.factory("dateCruncher", ["ItemCrud",
   function(ItemCrud) {
 
     var items = ItemCrud.getAllItems();

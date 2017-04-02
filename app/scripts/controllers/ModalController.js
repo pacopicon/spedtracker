@@ -1,4 +1,4 @@
-listo.controller('ModalController', [
+spedtracker.controller('ModalController', [
   '$scope', '$element', 'title', 'item', 'close', '$tooltip',
   function($scope, $element, title, item, close, $tooltip) {
 

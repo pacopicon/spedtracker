@@ -1,4 +1,4 @@
-listo.factory("UserCrud", ["FirebaseRef",
+spedtracker.factory("UserCrud", ["FirebaseRef",
   function(FirebaseRef) {
 
   // var users = FirebaseRef.getUsers();

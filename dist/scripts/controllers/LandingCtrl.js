@@ -1,7 +1,7 @@
-listo.controller("LandingCtrl", function($scope, $rootScope) {
+spedtracker.controller("LandingCtrl", function($scope, $rootScope) {
 
     $scope.hero = {};
-    $scope.hero.title = "Listo!"
+    $scope.hero.title = "spedtracker!"
 
 
 
@@ -17,6 +17,6 @@ listo.controller("LandingCtrl", function($scope, $rootScope) {
 //    }
 //
 //    angular
-//        .module('listo')
+//        .module('spedtracker')
 //        .controller('LandingCtrl', LandingCtrl);
 //})();
