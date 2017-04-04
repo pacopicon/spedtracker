@@ -22,12 +22,12 @@
 <div class="containerPad">
   <div class="container-fluid main-body form-body">
     <div class="form row">
-      <form ng-submit="addItem()"><!-- push a new message onto the array-->
+      <form ng-submit="addStudent()"><!-- push a new message onto the array-->
 <!--name-->
         <div class="col-lg-2 col-md-2 col-sm-5 col-xs-12 formFormat name">
           <input class="form-control" ng-model="newStudentName" placeholder="enter student name or id" />
         </div>
-<!--est. time-->
+<!--extendTime-->
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 hour-and-minute">
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 hour">
             <input class="form-control" ng-model="newTestName" placeholder="enter test name" />
@@ -38,7 +38,7 @@
         </div>
 <!--Add Button--->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-div">
-          <button type="submit" type="button" class="btn-add">Add to-do student</button>
+          <button type="submit" type="button" class="btn-add">Add student</button>
           <!-- <button ng-click="addTestItem()" class="btn-add btn-test">T E S T: add test student</button> -->
           <!-- <button ng-click="initiateDataItemsWorkAround()" class="btn-add btn-test">T E S T: add dataItem</button> -->
           <!-- <button ng-click="addOrUpdateDataItems('studentLeftCount', 'hoursLeft', 'minutesLeft', 200, 200, 200)" class="btn-add btn-test">T E S T: update existing dataItem</button> -->
@@ -75,37 +75,33 @@
 
   <p class="noItemAnnounce" ng-show="dataItems.studentLeftCount === 0">There are no to do students at this time</p>
 <!--end select all / clear selected / delete selected-->
-  <div class="row studentDisplay" ng-repeat="student in students | orderBy: '-rank'" ng-show="!student.isComplete" ng-hide="student.isComplete" ng-mouseleave="hover = false">
+  <!-- <div class="row studentDisplay" ng-repeat="student in students | orderBy: '-rank'" ng-show="!student.isComplete" ng-hide="student.isComplete" ng-mouseleave="hover = false"> -->
+  <div class="row studentDisplay" ng-repeat="student in students" ng-mouseleave="hover = false">
 
 
 
     <div class="priorityCheckboxImportanceNameDate">
 <!--PRIORITY & CHECKBOX-->
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 priorityAndCheckbox">
-    <!-- <div class="priorityCheckboxImportanceName"> -->
 <!--CHECKBOX-->
-        <div class="completedBox">
-          <input type="checkbox" id="cb" ng-model="item.isSafeToComplete" ng-change="saveAndToggleInvert(item)"/>
-        </div>
-        <!-- ng-change="items.$save(item)" -->
 <!--PRIORITY-->
         <div class="priorityCell" ng-class="{'redCell': (item.isPastDue && !item.isSafeToComplete), yellowCell: item.isSafeToComplete}">
           <p>{{$index + 1}}</p>
         </div>
       </div>
-<!--IMPORTANCE-->
-      <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 importanceCell">
-        <!-- {{item.importance}} -->
-        <p ng-bind-html="item.importance"></p>
-        <!-- <div ng-class="{'redText': (item.isPastDue && !item.isSafeToComplete), yellowText: item.isSafeToComplete}" data-ng-bind-html="item.importance"></div> -->
-      </div>
 <!--NAME-->
       <div class="col-lg-5 col-md-5 col-sm-5 col-sx-5 nameCell">
-          <p ng-class="{'redText': (item.isPastDue && !item.isSafeToComplete), yellowText: item.isSafeToComplete}">{{item.name}}</P>
+          <!-- <p ng-class="{'redText': (item.isPastDue && !item.isSafeToComplete), yellowText: item.isSafeToComplete}">{{student.name}}</p> -->
+          <p>{{student.name}}</p>
+      </div>
+<!--EXTEND-TIME-->
+      <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 importanceCell">
+        {{student.extendTime}}
       </div>
 <!--DATE-->
-      <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 dateCell" ng-class="{'redText': (item.isPastDue && !item.isSafeToComplete), yellowText: item.isSafeToComplete}">
-        {{item.dueDate | date: 'MMM'}} {{item.dueDate | date: 'dd'}} <span ng-hide="isCurrentOrPreviousYear(item.dueDate)">{{item.dueDate | date: 'yyyy'}}</span>  {{item.dueDate | date: 'shortTime'}}
+      <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 dateCell">
+        <button></button>
+        {{item.dueDate | date: 'MMM'}} {{item.dueDate | date: 'dd'}}
       </div>
     </div>
 <!-- begin INFO TOOLTIP -->
