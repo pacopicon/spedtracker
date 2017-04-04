@@ -36,6 +36,15 @@
             <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="btn-hour btn btn-default" ng-model="timewrap.selectedTime" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="time as time for time in times" placeholder="select extended time multiple" bs-select><span class="caret"></span></button></a>
           </div>
         </div>
+<!--est. time-->
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 hour-and-minute">
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 hour">
+            <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="btn-hour btn btn-default" ng-model="hourwrap.selectedHour" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="hour as hour for hour in hours" placeholder="estimate hours <i class='fa fa-clock-o'></i>" bs-select><span class="caret"></span></button></a>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 minute">
+            <a href class="tip" data-animation="am-flip-x" bs-tooltip="timeTip"><button type="button" class="btn-minute btn btn-default" ng-model="minutewrap.selectedMinute" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="minute as minute for minute in minutes" placeholder="estimate minutes <i class='fa fa-clock-o'></i>" bs-select>Action<span class="caret"></span></button></a>
+          </div>
+        </div>
 <!--Add Button--->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-div">
           <button type="submit" type="button" class="btn-add">Add student</button>
@@ -85,23 +94,27 @@
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 priorityAndCheckbox">
 <!--CHECKBOX-->
 <!--PRIORITY-->
-        <div class="priorityCell" ng-class="{'redCell': (item.isPastDue && !item.isSafeToComplete), yellowCell: item.isSafeToComplete}">
+        <div class="priorityCell" ng-class="{'redCell': (student.isPastDue && !student.isSafeToComplete), yellowCell: student.isSafeToComplete}">
           <p>{{$index + 1}}</p>
         </div>
       </div>
 <!--NAME-->
       <div class="col-lg-5 col-md-5 col-sm-5 col-sx-5 nameCell">
-          <!-- <p ng-class="{'redText': (item.isPastDue && !item.isSafeToComplete), yellowText: item.isSafeToComplete}">{{student.name}}</p> -->
+          <!-- <p ng-class="{'redText': (student.isPastDue && !student.isSafeToComplete), yellowText: student.isSafeToComplete}">{{student.name}}</p> -->
           <p>{{student.name}}</p>
       </div>
 <!--EXTEND-TIME-->
       <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 importanceCell">
         {{student.extendTime}}
       </div>
-<!--DATE-->
+<!--ExamTime-->
+      <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 importanceCell">
+        {{student.examTime}}
+      </div>
+<!--Countdown-->
       <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 dateCell">
-        <button></button>
-        {{item.dueDate | date: 'MMM'}} {{item.dueDate | date: 'dd'}}
+        <button ng-click="startTimer(student.examTime * student.extendTime)">Start Exam</button>
+        {{$scope.countdown.hour}}: {{$scope.countdown.minute}}: {{$scope.countdown.second}}
       </div>
     </div>
 <!-- begin INFO TOOLTIP -->
@@ -112,17 +125,17 @@
 
 <!-- being EDIT + DELETE + INFO-->
     <div class="InfoEditDeleteCell">
-      <div ng-mouseover="hover = true" class="info"><i class="fa fa-info-circle" ng-class="{'redText': (item.isPastDue && !item.isSafeToComplete), yellowText: item.isSafeToComplete}"></i></div>
+      <div ng-mouseover="hover = true" class="info"><i class="fa fa-info-circle" ng-class="{'redText': (student.isPastDue && !student.isSafeToComplete), yellowText: student.isSafeToComplete}"></i></div>
       <!-- ng-mouseleave="hover = false" -->
-      <a href class="editBtn" ng-model="item" ng-hide="item.isSafeToComplete" ng-class="{'redCell': (item.isPastDue && !item.isSafeToComplete), yellowCell: item.isSafeToComplete}" ng-click="showComplex(item)"><p><i class="fa fa-pencil"></i></p></a>
-      <button class="deleteBtn" ng-model="item" ng-click="updateCompletion(item, 0, 0, 0)" ng-show="item.isSafeToComplete" ><p><i class="fa fa-times"></i></p></button>
+      <a href class="editBtn" ng-model="student" ng-hide="student.isSafeToComplete" ng-class="{'redCell': (student.isPastDue && !student.isSafeToComplete), yellowCell: student.isSafeToComplete}" ng-click="showComplex(student)"><p><i class="fa fa-pencil"></i></p></a>
+      <button class="deleteBtn" ng-model="student" ng-click="updateCompletion(student, 0, 0, 0)" ng-show="student.isSafeToComplete" ><p><i class="fa fa-times"></i></p></button>
       <!-- <div class="deleteCheckbox">
-        <input type="checkbox" id="cb" ng-change="updateCompletion(item, 0)"/>
+        <input type="checkbox" id="cb" ng-change="updateCompletion(student, 0)"/>
       </div> -->
     </div>
 <!-- end EDIT + DELETE + INFO-->
 
-  </div> <!-- item Display and ng-repeat end -->
+  </div> <!-- student Display and ng-repeat end -->
 </div> <!--container-fluid main-body end-->
 <!--end ITEM DISPLAY-->
 <!-- <div ng-include="'/templates/graphs.html'"></div> -->

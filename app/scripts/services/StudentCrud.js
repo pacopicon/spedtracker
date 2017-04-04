@@ -10,6 +10,11 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
     var nowNum = now.getTime();
     var week = 604800000;
 
+    var addHoursAndMinutes = function(hours, minutes) {
+      var timeInMillisecs = (hours * 60 * 60 * 1000) + (minutes * 60 * 1000);
+      return timeInMillisecs;
+    };
+
 // Public functions below.
 
 // -- FUNCTIONS CALLED BY CONTROLLER --
@@ -75,12 +80,13 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         };
       },
 // This function is called by the submit button in testTracker.html when user creates an item in the form
-      addStudent: function(studentName, extendTime, testName) {
+      addStudent: function(studentName, extendTime, testName, hours, minutes) {
 
         students.$add({
           name: studentName,
           extendTime: extendTime,
           testName: testName,
+          examTime: addHoursAndMinutes(hours, minutes),
           created_at: firebase.database.ServerValue.TIMESTAMP
         }).then(function(studentsRef) {
           var id = studentsRef.key;

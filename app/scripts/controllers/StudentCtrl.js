@@ -13,31 +13,17 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $interval(refreshTime, 1000);
 
-    // $scope.parseTime = function(dueDate) {
-    //   var timeLeftInMillisecs = StudentCrud.calculateTimeTillDueDate(dueDate, $scope.time);
-    //   var countdown = StudentCrud.parseTime(timeLeftInMillisecs);
-    //   return countdown;
-    // };
+    $scope.startTimer = function(examTime) {
+      var examEndTime = $scope.time + examTime;
+      var timeLeftInMillisecs = examEndTime - $scope.time;
+      $scope.countdown = StudentCrud.parseTime(timeLeftInMillisecs);
+      return $scope.countdown;
+    };
 
     // Begin AngularStrap popover
 
-    $scope.importanceTip = {
-      "title": "rate importance with stars",
-      "checked": false
-    };
-
     $scope.dateTip = {
       "title": "enter estimated time to complete in hours",
-      "checked": false
-    };
-
-    $scope.timeTip = {
-      "title": "enter estimated time to complete in minutes",
-      "checked": false
-    };
-
-    $scope.editDeleteTip = {
-      "title": "click on me to edit, or check the student off and delete!",
       "checked": false
     };
 
@@ -47,19 +33,25 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $scope.times = [1.5, 2, 2.5, 3];
 
+// End ExtendTime
+
+// Begin Estimate
+
+    $scope.hourwrap = {};
+
+    $scope.hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
     $scope.minutewrap = {};
 
     $scope.minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 
-// End ExtendTime
+// End Estimate
 
 // Begin CRUD Functions
 
     $scope.addStudent = function() {
-      StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newTestName);
+      StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newTestName, $scope.hourwrap.selectedHour, $scope.minutewrap.selectedMinute);
     };
-
-    $scope.startTimer =
 
     $scope.saveAndToggleInvert = function(student) {
       students.$save(student);
