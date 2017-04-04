@@ -87,6 +87,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           extendTime: extendTime,
           testName: testName,
           examTime: addHoursAndMinutes(hours, minutes),
+          isSafeToDelete: false,
           created_at: firebase.database.ServerValue.TIMESTAMP
         }).then(function(studentsRef) {
           var id = studentsRef.key;
@@ -99,10 +100,10 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
       toggleItemToDelete: function(item) {
         var queriedItem = students.$getRecord(item.$id);
 
-        if (queriedItem.isSafeToComplete === false) {
-          item.isSafeToComplete = true;
-        } else if (queriedItem.isSafeToComplete === true){
-          item.isSafeToComplete = false;
+        if (queriedItem.isSafeToDelete === false) {
+          item.isSafeToDelete = true;
+        } else if (queriedItem.isSafeToDelete === true){
+          item.isSafeToDelete = false;
         }
 
         students.$save(queriedItem);
@@ -110,14 +111,22 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
       toggleSelectForDelete: function(students) {
         for (var i = 0; i < students.length; i++) {
-          if (!students[i].isSafeToComplete && !students[i].isComplete) {
-            students[i].isSafeToComplete = true;
-          } else if (students[i].isSafeToComplete && !students[i].isComplete) {
-            students[i].isSafeToComplete = false;
+          if (!students[i].isSafeToDelete) {
+            students[i].isSafeToDelete = true;
+          } else if (students[i].isSafeToDelete) {
+            students[i].isSafeToDelete = false;
           }
           students.$save(students[i]);
         }
-      }
+      },
+
+      delete: function (student) {
+        var student = students.$getRecord(student.$id);
+
+        students.$remove(student).then(function() {
+          console.log("student, which is now " + student + ", has been removed");
+          });
+        }
 
     }; // end of Return
 

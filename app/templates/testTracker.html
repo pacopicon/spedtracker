@@ -64,13 +64,13 @@
   <div class="row formControls">
 
     <div class="col-md-12 col-sm-12 col-xs-12 left-wrap right-wrap btn-wrap mainBtn" ng-class="{'col-lg-6 col-md-6 col-sm-6 col-xs-12 left-wrap btn-wrap mainBtn': clickedToDelete, 'col-lg-12 col-md-12 col-sm-12 col-xs-12 left-wrap right-wrap btn-wrap mainBtn': !clickedToDelete}">
-      <button class="controlBtn selectAll" ng-click="selectAllForDelete(students)" ng-show="!allSelected && !selectionInversion" ng-init="allSelected">
+      <button class="controlBtn selectAll" ng-click="selectAllForDelete(students)" ng-show="selectAll && !invertSelect">
         <p>select all</p>
       </button>
-      <button class="controlBtn clearAll" ng-click="undoAllSelectForDelete(students)" ng-show="allSelected && !selectionInversion">
+      <button class="controlBtn clearAll" ng-click="undoAllSelectForDelete(students)" ng-show="!selectAll && !invertSelect">
         <p>clear selected</p>
       </button>
-      <button class="controlBtn invertSelection" ng-click="invertSelectForDelete(students)" ng-show="selectionInversion">
+      <button class="controlBtn invertSelection" ng-click="invertSelectForDelete(students)" ng-show="!selectAll && invertSelect">
         <p>invert selection</p>
       </button>
     </div>
@@ -93,14 +93,17 @@
 <!--PRIORITY & CHECKBOX-->
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 priorityAndCheckbox">
 <!--CHECKBOX-->
+      <div class="completedBox">
+        <input type="checkbox" id="cb" ng-model="student.isSafeToDelete" ng-change="saveAndToggleInvert(student)"/>
+      </div>
 <!--PRIORITY-->
-        <div class="priorityCell" ng-class="{'redCell': (student.isPastDue && !student.isSafeToComplete), yellowCell: student.isSafeToComplete}">
+        <div class="priorityCell" ng-class="{'redCell': (student.isPastDue && !student.isSafeToDelete), yellowCell: student.isSafeToDelete}">
           <p>{{$index + 1}}</p>
         </div>
       </div>
 <!--NAME-->
       <div class="col-lg-5 col-md-5 col-sm-5 col-sx-5 nameCell">
-          <!-- <p ng-class="{'redText': (student.isPastDue && !student.isSafeToComplete), yellowText: student.isSafeToComplete}">{{student.name}}</p> -->
+          <!-- <p ng-class="{'redText': (student.isPastDue && !student.isSafeToDelete), yellowText: student.isSafeToDelete}">{{student.name}}</p> -->
           <p>{{student.name}}</p>
       </div>
 <!--EXTEND-TIME-->
@@ -109,11 +112,11 @@
       </div>
 <!--ExamTime-->
       <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 importanceCell">
-        {{student.examTime}}
+        {{parseTime(student.examTime).minute}}
       </div>
 <!--Countdown-->
       <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 dateCell">
-        <button ng-click="startTimer(student.examTime * student.extendTime)">Start Exam</button>
+        <button ng-click="">Start Exam</button>
         {{$scope.countdown.hour}}: {{$scope.countdown.minute}}: {{$scope.countdown.second}}
       </div>
     </div>
@@ -125,10 +128,10 @@
 
 <!-- being EDIT + DELETE + INFO-->
     <div class="InfoEditDeleteCell">
-      <div ng-mouseover="hover = true" class="info"><i class="fa fa-info-circle" ng-class="{'redText': (student.isPastDue && !student.isSafeToComplete), yellowText: student.isSafeToComplete}"></i></div>
+      <div ng-mouseover="hover = true" class="info"><i class="fa fa-info-circle" ng-class="{'redText': (student.isPastDue && !student.isSafeToDelete), yellowText: student.isSafeToDelete}"></i></div>
       <!-- ng-mouseleave="hover = false" -->
-      <a href class="editBtn" ng-model="student" ng-hide="student.isSafeToComplete" ng-class="{'redCell': (student.isPastDue && !student.isSafeToComplete), yellowCell: student.isSafeToComplete}" ng-click="showComplex(student)"><p><i class="fa fa-pencil"></i></p></a>
-      <button class="deleteBtn" ng-model="student" ng-click="updateCompletion(student, 0, 0, 0)" ng-show="student.isSafeToComplete" ><p><i class="fa fa-times"></i></p></button>
+      <a href class="editBtn" ng-model="student" ng-hide="student.isSafeToDelete" ng-class="{'redCell': (student.isPastDue && !student.isSafeToDelete), yellowCell: student.isSafeToDelete}" ng-click="showComplex(student)"><p><i class="fa fa-pencil"></i></p></a>
+      <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete" ><p><i class="fa fa-times"></i></p></button>
       <!-- <div class="deleteCheckbox">
         <input type="checkbox" id="cb" ng-change="updateCompletion(student, 0)"/>
       </div> -->
