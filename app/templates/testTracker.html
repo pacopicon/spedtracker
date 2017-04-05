@@ -86,40 +86,42 @@
   <!-- <div class="row studentDisplay" ng-repeat="student in students | orderBy: '-rank'" ng-show="!student.isComplete" ng-hide="student.isComplete" ng-mouseleave="hover = false"> -->
   <table>
     <tr>
+      <td>
+      </td>
       <td class="nameCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
         <p class="nameCell">name:</p>
         <!-- <p class="extendTimeCell">Ex</p> -->
       </td>
       <!--Countdown BTN-->
       <td class="countdownBtnCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <p class="nameCell">name:</p>
+        <p class="nameCell">press to begin test:</p>
       </td>
       <!--TEST NAME-->
       <td class="testNameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="nameCell">name:</p>
+        <p class="testName">test name:</p>
       </td>
       <!--ExamTime-->
       <td class="examTimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="nameCell">name:</p>
+        <p class="nameCell">standard time:</p>
       </td>
       <!--Countdown-->
       <td class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="nameCell">name:</p>
+        <p class="nameCell">time remaining:</p>
       </td>
       <!--TEST NAME-->
       <td class="testNameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="nameCell">name:</p>
+        <p class="testName">test name:</p>
       </td>
       <!--ExamTime-->
       <td class="examTimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="nameCell">name:</p>
+        <p class="nameCell">standard time:</p>
       </td>
       <!--Countdown-->
       <td class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="nameCell">name:</p>
+        <p class="nameCell">time remaining:</p>
       </td>
       <!--DELETE-->
-      <td clas="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <td class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
       </td>
     </tr>
     <tr class="row studentDisplay" ng-repeat="student in students" ng-mouseleave="hover = false">
@@ -159,8 +161,9 @@
       </td>
 
 <!--DELETE-->
-      <td clas="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <td class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
         <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete" ><p><i class="fa fa-times"></i></p></button>
+        <!-- <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ><p><i class="fa fa-times"></i></p></button> -->
       </td>
     </tr> <!-- student Display and ng-repeat end -->
   </table>
