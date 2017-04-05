@@ -77,68 +77,74 @@
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right-wrap btn-wrap IIndaryBtn" ng-show="appear">
     <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right-wrap btn-wrap IIndaryBtn" ng-class="{'IIndaryBtnYes': clickedToDelete, 'IIndaryBtnNo': !clickedToDelete}"> -->
       <button class="controlBtn deleteSelected" ng-click="deleteSelected()">
-        <p>archive selected</p>
+        <p>delete selected</p>
       </button>
     </div>
   </div>
 
-  <p class="noItemAnnounce" ng-show="dataItems.studentLeftCount === 0">There are no to do students at this time</p>
+  <p class="noItemAnnounce" ng-show="dataItems.studentLeftCount === 0">There are no students at this time</p>
 <!--end select all / clear selected / delete selected-->
   <!-- <div class="row studentDisplay" ng-repeat="student in students | orderBy: '-rank'" ng-show="!student.isComplete" ng-hide="student.isComplete" ng-mouseleave="hover = false"> -->
-  <div class="row studentDisplay" ng-repeat="student in students" ng-mouseleave="hover = false">
-
-
-
-    <div class="priorityCheckboxImportanceNameDate">
+  <table>
+    <tr>
+    </tr>
+    <tr class="row studentDisplay" ng-repeat="student in students" ng-mouseleave="hover = false">
 <!--PRIORITY & CHECKBOX-->
-      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 priorityAndCheckbox">
+      <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 priorityAndCheckbox"> -->
 <!--CHECKBOX-->
-      <div class="completedBox">
-        <input type="checkbox" id="cb" ng-model="student.isSafeToDelete" ng-change="saveAndToggleInvert(student)"/>
-      </div>
+      <td class="checkboxPriority col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <input type="checkbox" class="cb" ng-model="student.isSafeToDelete" ng-change="saveAndToggleInvert(student)"/>
 <!--PRIORITY-->
-        <div class="priorityCell" ng-class="{'redCell': (student.isPastDue && !student.isSafeToDelete), yellowCell: student.isSafeToDelete}">
+        <div class="priorityCell" ng-class="{'redCell': student.isSafeToDelete}">
           <p>{{$index + 1}}</p>
         </div>
-      </div>
+      </td>
 <!--NAME-->
-      <div class="col-lg-5 col-md-5 col-sm-5 col-sx-5 nameCell">
-          <!-- <p ng-class="{'redText': (student.isPastDue && !student.isSafeToDelete), yellowText: student.isSafeToDelete}">{{student.name}}</p> -->
-          <p>{{student.name}}</p>
-      </div>
-<!--EXTEND-TIME-->
-      <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 importanceCell">
-        {{student.extendTime}}
-      </div>
+      <td class="nameCell col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <p ng-class="{'redText': student.isSafeToDelete}">{{student.name}}</p>
+      </td>
+<!--Countdown BTN-->
+      <td class="countdownCell col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete}" ng-click="startTimer(student.examTime)"><p>begin Exam</p></button>
+      </td>
+<!--TEST NAME-->
+      <td class="nameCell col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <p class="testName" ng-class="{'redText': student.isSafeToDelete}">{{student.testName}}</p>
 <!--ExamTime-->
-      <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 importanceCell">
-        {{parseTime(student.examTime).minute}}
-      </div>
+        <p class="examTime" ng-class="{'redText': student.isSafeToDelete}">{{parseTime(student.examTime).minute}}</p>
+<!--EXTEND-TIME-->
+        <p class="extendTime" ng-class="{'redText': student.isSafeToDelete}">{{student.extendTime}}</p>
+      </td>
 <!--Countdown-->
-      <div class="col-lg-1 col-md-1 col-sm-1 col-sx-1 dateCell">
-        <button ng-click="">Start Exam</button>
+      <td class="countdownCell col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        {{$scope.startTimer(student).hour}}: {{$scope.startTimer(student).minute}}: {{$scope.startTimer(student).second}}
+      </td>
+<!--TEST NAME-->
+      <td class="nameCell col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <p class="testName" ng-class="{'redText': student.isSafeToDelete}">{{student.testName}}</p>
+<!--ExamTime-->
+        <p class="extendTime" ng-class="{'redText': student.isSafeToDelete}">{{parseTime(student.examTime).minute}}</p>
+      </td>
+<!--Countdown-->
+      <td class="countdownCell col-lg-1 col-md-1 col-sm-1 col-xs-1">
         {{$scope.countdown.hour}}: {{$scope.countdown.minute}}: {{$scope.countdown.second}}
-      </div>
-    </div>
-<!-- begin INFO TOOLTIP -->
-    <div ng-if="hover" class="pacoover">
-      <div ng-include="'/templates/pacooverTooltip.html'"></div>
-    </div>
-<!-- end INFO TOOLTIP -->
+      </td>
+<!--TEST NAME-->
+      <td class="nameCell col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <p class="testName" ng-class="{'redText': student.isSafeToDelete}">{{student.testName}}</p>
+<!--ExamTime-->
+        <p class="extendTime" ng-class="{'redText': student.isSafeToDelete}">{{parseTime(student.examTime).minute}}</p>
+      </td>
+<!--Countdown-->
+      <td class="countdownCell col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        {{$scope.countdown.hour}}: {{$scope.countdown.minute}}: {{$scope.countdown.second}}
+      </td>
 
-<!-- being EDIT + DELETE + INFO-->
-    <div class="InfoEditDeleteCell">
-      <div ng-mouseover="hover = true" class="info"><i class="fa fa-info-circle" ng-class="{'redText': (student.isPastDue && !student.isSafeToDelete), yellowText: student.isSafeToDelete}"></i></div>
-      <!-- ng-mouseleave="hover = false" -->
-      <a href class="editBtn" ng-model="student" ng-hide="student.isSafeToDelete" ng-class="{'redCell': (student.isPastDue && !student.isSafeToDelete), yellowCell: student.isSafeToDelete}" ng-click="showComplex(student)"><p><i class="fa fa-pencil"></i></p></a>
+
+<!--DELETE-->
       <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete" ><p><i class="fa fa-times"></i></p></button>
-      <!-- <div class="deleteCheckbox">
-        <input type="checkbox" id="cb" ng-change="updateCompletion(student, 0)"/>
-      </div> -->
-    </div>
-<!-- end EDIT + DELETE + INFO-->
-
-  </div> <!-- student Display and ng-repeat end -->
+    </tr> <!-- student Display and ng-repeat end -->
+  </table>
 </div> <!--container-fluid main-body end-->
 <!--end ITEM DISPLAY-->
 <!-- <div ng-include="'/templates/graphs.html'"></div> -->

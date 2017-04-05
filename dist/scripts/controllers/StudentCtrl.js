@@ -19,11 +19,15 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       StudentCrud.parseTime(timeInMillisecs);
     }
 
-    $scope.startTimer = function(examTime) {
-      var examEndTime = $scope.time + examTime;
-      var timeLeftInMillisecs = examEndTime - $scope.time;
-      $scope.countdown = StudentCrud.parseTime(timeLeftInMillisecs);
-      return $scope.countdown;
+    $scope.startTimer = function(student) {
+      console.log("startTimer called");
+      var fullTime = student.examTime * student.extendTime
+      var examEndTime = $scope.time + fullTime;
+
+      for (var i = examEndTime; i > $scope.time; i-= 1000) {
+        return StudentCrud.parseTime(timeLeftInMillisecs);
+      }
+
     };
 
     // Begin AngularStrap popover
@@ -57,15 +61,23 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $scope.addStudent = function() {
       StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newTestName, $scope.hourwrap.selectedHour, $scope.minutewrap.selectedMinute);
+      var owner = "addStudent at " + Date.now();
+      toggleInvert(owner);
     };
 
     $scope.saveAndToggleInvert = function(student) {
       students.$save(student);
-      toggleInvert();
+      var owner = "saveAndToggleInvert at " + Date.now();
+      toggleInvert(owner);
     };
 
-    var toggleInvert = function() {
-      console.log("called");
+    $scope.invertSelect = false;
+    $scope.selectAll = true;
+
+    var toggleInvert = function(owner) {
+
+      console.log("called by " + owner);
+
       var unsafeCount = 0;
       var safeCount = 0;
 
@@ -88,34 +100,37 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         $scope.appear = false;
       }
 
-      console.log("clickedToDelete: " + $scope.clickedToDelete)
-
-      $scope.invertSelect = false;
-      $scope.selectAll = true;
+      console.log("clickedToDelete: " + $scope.clickedToDelete);
 
       if (safeCount > 0 && unsafeCount > 1) {
         $scope.invertSelect = true;
         $scope.selectAll = false;
+        console.log("safeCount: " + safeCount);
+        console.log("invertSelect is true; selectAll is false");
       } else if (safeCount == students.length) {
         $scope.invertSelect = false;
         $scope.selectAll = false;
+        console.log("invertSelect is false; selectAll is true");
       } else if (safeCount == 0) {
         $scope.invertSelect = false;
         $scope.selectAll = true;
+        console.log("invertSelect is false; selectAll is true");
       }
 
-      console.log("selectAll: " + $scope.selectAll);
-      console.log("invertSelect: " + $scope.invertSelect);
     }
 
     $scope.selectAllForDelete = function(students) {
       StudentCrud.toggleSelectForDelete(students);
-      $scope.selectAll = true;
+      $scope.selectAll = false;
+      console.log("selectAll: " + $scope.selectAll);
+      console.log("invertSelect: " + $scope.invertSelect);
     };
 
     $scope.undoAllSelectForDelete = function(students) {
       StudentCrud.toggleSelectForDelete(students);
       $scope.selectAll = false;
+      console.log("selectAll: " + $scope.selectAll);
+      console.log("invertSelect: " + $scope.invertSelect);
     };
 
     $scope.invertSelectForDelete = function(students) {
@@ -130,6 +145,8 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     };
 
     $scope.delete = function(student) {
+      var owner = "delete at " + Date.now();
+      $timeout(toggleInvert(owner), 1000);
       StudentCrud.delete(student);
     };
 
