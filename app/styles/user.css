@@ -194,26 +194,6 @@ section {
   color: #3f4e62;
 }
 
-.datepicker.dropdown-menu {
-  width: 250px;
-  height: 270px;
-  button {
-    outline: none;
-    border: 0px;
-  }
-  tbody {
-    height: 180px;
-  }
-  tbody button {
-    padding: 6px;
-  }
-  &.datepicker-mode-1, &.datepicker-mode-2 {
-    tbody button {
-      height: 65px;
-    }
-  }
-}
-
 .hour-and-minute {
   width: 33.1%;
   padding: 0;
@@ -329,32 +309,27 @@ section {
 
 /* begin CSS for StudentDisplay */
 
-.studentDisplay {
-  height: 1em;
-  display:table-row;
-}
-
 .noItemAnnounce {
   text-align: center;
   padding-top: 0.6em;
   color: #3f4e62;
 }
 
-/*.checkboxPriority, .nameCell, .countdownBtn, .countDownCell {
-  display:table-cell;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-}*/
+.studentDisplay {
+  height: 1em;
+  display:table-row;
+}
 
+.nameCell, .countdownBtnCell, .testNameCell, .examTimeCell, .countdownCell {
+  height: 100%;
+}
 .checkbox {
   float: left;
-  padding-top: 5px;
+  top: 8px;
 }
 
 .marginTop {
-  margin-top: 5px;
+  margin-top: 6.5px;
 }
 
 .marginRight {
@@ -364,6 +339,7 @@ section {
 
 .nameCell {
   float: left;
+  margin-left: 3px;
 }
 
 .extendTimeCell {
@@ -372,17 +348,18 @@ section {
 
 .countdownBtnCell {
   padding-top: 0;
-  padding-bottom: 5px;
+  margin-bottom: 8px;
+  /*padding-bottom: 5px;*/
 }
 
 .countBtn {
-  border: 2.5px solid #6FC853;
   border-radius: 1em;
+  border: 2.5px solid #6FC853;
   /*min-height: 2em;*/
   background-color: white;
-  /*color: #6FC853;*/
+  color: #6FC853;
   float: left;
-  height: 1.7em;
+  height: 2em;
   /*padding-top: 0;*/
 }
 
@@ -391,16 +368,16 @@ section {
   color: white;
 }
 
-.countBtn, .editBtn, .deleteBtn {
+.countBtnText {
+  /*padding-bottom: 5px;*/
+}
+
+.editBtn, .deleteBtn {
   border-radius: 1em;
   border-style: none;
   text-decoration: none;
   text-align: center;
   float: right;
-}
-
-.countBtn p {
-  /*margin-bottom: 2em;*/
 }
 
 .testNameCell {
