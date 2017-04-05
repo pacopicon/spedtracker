@@ -268,6 +268,8 @@ section {
 
 /* end CSS for Form */
 
+/* begin CSS for SelectAll / ClearAll / InvertSelect */
+
 .formControls {
   border-radius: 1em;
   background-color: white;
@@ -301,7 +303,6 @@ section {
   display: none;
 }
 
-
 .controlBtn {
   border: 2.5px solid #3f4e62;
   background-color: white;
@@ -324,14 +325,27 @@ section {
   background-color: #e7eaeb;
 }
 
+/* end CSS for SelectAll / ClearAll / InvertSelect */
+
+/* begin CSS for StudentDisplay */
+
+.studentDisplay {
+  height: 1em;
+  display:table-row;
+}
+
 .noItemAnnounce {
   text-align: center;
   padding-top: 0.6em;
   color: #3f4e62;
 }
 
-.checkboxPriority {
-
+.checkboxPriority, .nameCell, .countdownBtn, .countDownCell {
+  display:table-cell;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .cb {
@@ -366,7 +380,15 @@ section {
   /*margin-left: 1em;*/
 }
 
-.countDownCell {
+.nameCell {
+
+}
+
+.extendTimeCell {
+
+}
+
+.countdownBtnCell {
 }
 
 .countBtn {
@@ -396,12 +418,16 @@ section {
   /*margin-bottom: 2em;*/
 }
 
+.testNameCell {
+  display: inline;
+}
+
 .testName {
   float: left;
 }
 
-.extendTime {
-  float: right;
+.examTime {
+
 }
 
 .deleteBtn .fa-times {

@@ -15,20 +15,46 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $interval(refreshTime, 1000);
 
-    $scope.parseTime = function(timeInMillisecs) {
-      StudentCrud.parseTime(timeInMillisecs);
+    $scope.parseTime = function(student) {
+      var fullTime = student.examTime * student.extendTime;
+      var timeLeftInMillisecs = calculateTimeTillFinish(fullTime, $scope.time);
+      var countdown = StudentCrud.parseTime(timeLeftInMillisecs);
+      return countdown;
+    };
+
+    var calculateTimeTillFinish = function(fullTime, time) {
+      timeLeftInMillisecs = fullTime - time;
+      return timeLeftInMillisecs;
+    };
+
+    $scope.nameAndExtendTime = function(student) {
+      var nameAndNum = "" + student.name + "     " + student.extendTime;
+      return nameAndNum;
+    };
+
+    $scope.examTime = function(student) {
+      var time = "" + StudentCrud.parseTime(student.examTime).hour + ": " + StudentCrud.parseTime(student.examTime).minute;
+      return time;
     }
 
-    $scope.startTimer = function(student) {
-      console.log("startTimer called");
-      var fullTime = student.examTime * student.extendTime
-      var examEndTime = $scope.time + fullTime;
 
-      for (var i = examEndTime; i > $scope.time; i-= 1000) {
-        return StudentCrud.parseTime(timeLeftInMillisecs);
-      }
-
-    };
+    //
+    // $scope.parseTime = function(timeInMillisecs) {
+    //   StudentCrud.parseTime(timeInMillisecs);
+    // }
+    //
+    // $scope.startTimer = function(student) {
+    //   var fullTime = student.examTime * student.extendTime;
+    //   var startTime = examEndTime
+    //   var examEndTime = startTime + fullTime;
+    //   $scope.timer(startTime, examEndTime);
+    // };
+    //
+    // $scope.timer = function(startTime, examEndTime) {
+    //   for (var i = examEndTime; i > startTime; i-= 1000) {
+    //     return StudentCrud.parseTime(examEndTime);
+    //   }
+    // };
 
     // Begin AngularStrap popover
 
@@ -110,6 +136,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       } else if (safeCount == students.length) {
         $scope.invertSelect = false;
         $scope.selectAll = false;
+        $scope.clickedToDelete = true;
         console.log("invertSelect is false; selectAll is true");
       } else if (safeCount == 0) {
         $scope.invertSelect = false;
@@ -122,13 +149,17 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     $scope.selectAllForDelete = function(students) {
       StudentCrud.toggleSelectForDelete(students);
       $scope.selectAll = false;
+      $scope.clickedToDelete = true;
+      $timeout(function appear() {$scope.appear = true}, 1000)
       console.log("selectAll: " + $scope.selectAll);
       console.log("invertSelect: " + $scope.invertSelect);
     };
 
     $scope.undoAllSelectForDelete = function(students) {
       StudentCrud.toggleSelectForDelete(students);
-      $scope.selectAll = false;
+      $scope.selectAll = true;
+      $scope.clickedToDelete = false;
+      $scope.appear = false;
       console.log("selectAll: " + $scope.selectAll);
       console.log("invertSelect: " + $scope.invertSelect);
     };
