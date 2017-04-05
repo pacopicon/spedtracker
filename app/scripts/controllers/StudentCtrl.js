@@ -27,13 +27,8 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       return timeLeftInMillisecs;
     };
 
-    $scope.nameAndExtendTime = function(student) {
-      var nameAndNum = "" + student.name + "     " + student.extendTime;
-      return nameAndNum;
-    };
-
     $scope.examTime = function(student) {
-      var time = "" + StudentCrud.parseTime(student.examTime).hour + ": " + StudentCrud.parseTime(student.examTime).minute;
+      var time = "" + StudentCrud.parseTime(student.examTime).hour + "h, " + StudentCrud.parseTime(student.examTime).minute + "m";
       return time;
     }
 
