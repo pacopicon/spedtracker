@@ -90,52 +90,43 @@
       </td>
     </tr>
     <tr class="row studentDisplay" ng-repeat="student in students" ng-mouseleave="hover = false">
-<!--PRIORITY & CHECKBOX-->
-      <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 priorityAndCheckbox"> -->
-<!--CHECKBOX-->
-      <!-- <td class="checkboxPriority col-lg-1 col-md-1 col-sm-1 col-xs-1"> -->
-        <!-- <input type="checkbox" class="cb" ng-model="student.isSafeToDelete" ng-change="saveAndToggleInvert(student)"/> -->
-<!--PRIORITY-->
-        <!-- <div class="priorityCell" ng-class="{'redCell': student.isSafeToDelete}">
-          <p>{{$index + 1}}</p>
-        </div>
-      </td> -->
 <!--NAME and EXTEND-TIME-->
-      <td class="nameCell col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <input type="checkbox" class="cb" ng-model="student.isSafeToDelete" ng-change="saveAndToggleInvert(student)"/>
-        <p class="name" ng-class="{'redText': student.isSafeToDelete}">{{$index + 1}}) {{nameAndExtendTime(student)}}</p>
+      <td class="nameCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <input type="checkbox" class="checkbox marginTop" ng-model="student.isSafeToDelete" ng-change="saveAndToggleInvert(student)"/>
+        <p class="nameCell marginTop" ng-class="{'redText': student.isSafeToDelete}"> {{$index + 1}}. {{student.name}}</p>
+        <p class="extendTimeCell marginTop" ng-class="{'redText': student.isSafeToDelete}"> {{student.extendTime}}</p>
       </td>
 <!--Countdown BTN-->
-      <td class="countdownBtnCell col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete}" ng-click="parseTime(student)"><p>begin Exam</p></button>
+      <td class="countdownBtnCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete}" ng-click="parseTime(student)"><p>begin exam</p></button>
       </td>
 <!--TEST NAME-->
-      <td class="testNameCell col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="testName" ng-class="{'redText': student.isSafeToDelete}">{{student.testName}}</p>
+      <td class="testNameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <p class="testName marginTop" ng-class="{'redText': student.isSafeToDelete}">{{student.testName}}</p>
       </td>
 <!--ExamTime-->
-      <td class="examTimeCell col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p ng-class="{'redText': student.isSafeToDelete}">{{examTime(student)}}</p>
+      <td class="examTimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{examTime(student)}}</p>
       </td>
 <!--Countdown-->
-      <td class="countdownCell col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        {{parseTime(student).hour}}: {{parseTime(student).minute}}: {{parseTime(student).second}}
+      <td class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{parseTime(student).hour}}: {{parseTime(student).minute}}: {{parseTime(student).second}}</p>
       </td>
 <!--TEST NAME-->
-      <td class="testNameCell col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="testName" ng-class="{'redText': student.isSafeToDelete}">{{student.testName}}</p>
+      <td class="testNameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <p class="testName marginTop" ng-class="{'redText': student.isSafeToDelete}">{{student.testName}}</p>
       </td>
 <!--ExamTime-->
-      <td class="examTimeCell col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p ng-class="{'redText': student.isSafeToDelete}">{{examTime(student)}}</p>
+      <td class="examTimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{examTime(student)}}</p>
       </td>
 <!--Countdown-->
-      <td class="countdownCell col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        {{$scope.countdown.hour}}: {{$scope.countdown.minute}}: {{$scope.countdown.second}}
+      <td class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{parseTime(student).hour}}: {{parseTime(student).minute}}: {{parseTime(student).second}}</p>
       </td>
 
 <!--DELETE-->
-      <td clas="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <td clas="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
         <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete" ><p><i class="fa fa-times"></i></p></button>
       </td>
     </tr> <!-- student Display and ng-repeat end -->

@@ -340,55 +340,39 @@ section {
   color: #3f4e62;
 }
 
-.checkboxPriority, .nameCell, .countdownBtn, .countDownCell {
+/*.checkboxPriority, .nameCell, .countdownBtn, .countDownCell {
   display:table-cell;
   margin-top: 0;
   margin-bottom: 0;
   padding-top: 0;
   padding-bottom: 0;
-}
-
-.cb {
-  float: left;
-}
-
-.priorityCell, .editBtn, .deleteBtn {
-  position: relative;
-  width: 1.7em;
-  height: 1.7em;
-  text-align: center;
-}
-
-.priorityCell p {
-  position: relative;
-
-  /*margin-left: -6px;*/
-}
-
-.priorityCell {
-  border-radius: 1em;
-  background-color: #3f4e62;
-  color: white;
-  border-style: none;
-  text-align: center;
-  padding-top: 0.2em;
-  margin-left: 1em;
-  float: right;
-}
+}*/
 
 .checkbox {
-  /*margin-left: 1em;*/
+  float: left;
+  padding-top: 5px;
+}
+
+.marginTop {
+  margin-top: 5px;
+}
+
+.marginRight {
+  margin-right: 0;
+  padding-right: 0;
 }
 
 .nameCell {
-
+  float: left;
 }
 
 .extendTimeCell {
-
+  float: right;
 }
 
 .countdownBtnCell {
+  padding-top: 0;
+  padding-bottom: 5px;
 }
 
 .countBtn {
@@ -399,6 +383,7 @@ section {
   /*color: #6FC853;*/
   float: left;
   height: 1.7em;
+  /*padding-top: 0;*/
 }
 
 .countBtn:hover {
