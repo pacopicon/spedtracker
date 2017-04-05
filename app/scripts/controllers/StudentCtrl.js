@@ -16,15 +16,11 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     $interval(refreshTime, 1000);
 
     $scope.parseTime = function(student) {
+      time = Date.now();
       var fullTime = student.examTime * student.extendTime;
-      var timeLeftInMillisecs = calculateTimeTillFinish(fullTime, $scope.time);
+      var timeLeftInMillisecs = fullTime - time;
       var countdown = StudentCrud.parseTime(timeLeftInMillisecs);
       return countdown;
-    };
-
-    var calculateTimeTillFinish = function(fullTime, time) {
-      timeLeftInMillisecs = fullTime - time;
-      return timeLeftInMillisecs;
     };
 
     $scope.examTime = function(student) {
@@ -32,24 +28,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       return time;
     }
 
-
-    //
-    // $scope.parseTime = function(timeInMillisecs) {
-    //   StudentCrud.parseTime(timeInMillisecs);
-    // }
-    //
-    // $scope.startTimer = function(student) {
-    //   var fullTime = student.examTime * student.extendTime;
-    //   var startTime = examEndTime
-    //   var examEndTime = startTime + fullTime;
-    //   $scope.timer(startTime, examEndTime);
-    // };
-    //
-    // $scope.timer = function(startTime, examEndTime) {
-    //   for (var i = examEndTime; i > startTime; i-= 1000) {
-    //     return StudentCrud.parseTime(examEndTime);
-    //   }
-    // };
 
     // Begin AngularStrap popover
 
