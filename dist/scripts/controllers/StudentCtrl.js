@@ -10,28 +10,45 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     var refreshTime = function() {
       time = Date.now();
       $scope.time = time;
-      return time;
+      return $scope.time;
     };
 
     $interval(refreshTime, 1000);
 
-    var parseTime = function(millis) {
-      var countdown = StudentCrud.parseTime(millis);
-      return countdown;
-    };
+    // var parseTime = function(millis) {
+    //   var countdown = StudentCrud.parseTime(millis);
+    //   return countdown;
+    // };
 
     // $scope.timerOff = true;
 
+    // $scope.startTimer = function() {
+    //   $interval($scope.timer, 1000);
+    // }
+
+    // $scope.startTime = 0;
+
     $scope.startTimer = function(student) {
-      $scope.startTime = Date.now() + (student.examTime * student.extendTime);
-      $scope.timerOff = false;
-      return $scope.startTime;
+      $scope.startTime = Date.now();
+      $scope.timer(student);
     }
 
-    $scope.startTime = 0;
-
     $scope.timer = function(student) {
+      if (typeof $scope.startTime === "undefined") {
+        $scope.startTime = 0;
+        return $scope.startTime;
+      } else {
+        var time = $scope.startTime;
+      }
 
+      var fullTime = $scope.startTime + (student.examTime * student.extendTime);
+      var timeLeftInMillisecs = fullTime - $scope.time;
+      var countdown = StudentCrud.parseTime(timeLeftInMillisecs);
+      return countdown;
+    };
+
+    $scope.timer3 = function(student) {
+      time = Date.now();
       var startTime = Date.now() + (student.extendTime * student.examTime);
 
       var fullTime = startTime - time;
@@ -39,8 +56,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       // console.log("seconds: " + parseTime(fullTime).second);
 
       if (fullTime < 0 || $scope.timerOff) {
-        $interval.cancel($scope.timer);
-        $scope.timerOff = true;
         return {
           hour: 0,
           minute: 0,
@@ -55,6 +70,8 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       }
 
     };
+
+    $interval($scope.timer, 1000);
 
     $scope.examTime = function(student) {
       var time = "" + StudentCrud.parseTime(student.examTime).hour + "h, " + StudentCrud.parseTime(student.examTime).minute + "m";
