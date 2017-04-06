@@ -15,15 +15,12 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $interval(refreshTime, 1000);
 
-    var parseTime = function(student) {
-      time = Date.now();
-      var fullTime = student.examTime * student.extendTime;
-      var timeLeftInMillisecs = fullTime - time;
-      var countdown = StudentCrud.parseTime(timeLeftInMillisecs);
+    var parseTime = function(millis) {
+      var countdown = StudentCrud.parseTime(millis);
       return countdown;
     };
 
-    $scope.timerOff = true;
+    // $scope.timerOff = true;
 
     $scope.startTimer = function(student) {
       $scope.startTime = Date.now() + (student.examTime * student.extendTime);
@@ -33,29 +30,31 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $scope.startTime = 0;
 
-    $scope.timer = $interval(function() {
-      var startTime = new Date("Apr 6, 2017 15:37:25").getTime();
-      var now = Date.now();
+    $scope.timer = function(student) {
 
-      var distance = startTime - now;
+      var startTime = Date.now() + (student.extendTime * student.examTime);
 
-      if (distance < 0 || $scope.timerOff) {
+      var fullTime = startTime - time;
+
+      // console.log("seconds: " + parseTime(fullTime).second);
+
+      if (fullTime < 0 || $scope.timerOff) {
         $interval.cancel($scope.timer);
         $scope.timerOff = true;
         return {
-          hours: 0,
-          minutes: 0,
-          seconds: 0
+          hour: 0,
+          minute: 0,
+          second: 0
         };
       } else {
         return {
-          hours: parseTime(distance).hour,
-          minutes: parseTime(distance).minute,
-          seconds: parseTime(distance).second
+          hour: parseTime(fullTime).hour,
+          minute: parseTime(fullTime).minute,
+          second: parseTime(fullTime).second
         };
       }
 
-    }, 1000);
+    };
 
     $scope.examTime = function(student) {
       var time = "" + StudentCrud.parseTime(student.examTime).hour + "h, " + StudentCrud.parseTime(student.examTime).minute + "m";

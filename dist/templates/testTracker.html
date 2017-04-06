@@ -145,7 +145,7 @@
       </td>
 <!--Countdown-->
       <td class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{hourTimer}}: {{minTimer}}: {{secTimer}}</p>
+        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{timer(student).hour}}: {{timer(student).minute}}: {{timer(student).second}}</p>
       </td>
 <!--TEST NAME-->
       <td class="testNameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -157,7 +157,7 @@
       </td>
 <!--Countdown-->
       <td class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{hourTimer}}: {{minTimer}}: {{secTimer}}</p>
+        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{timer(student).hour}}: {{timer(student).minute}}: {{timer(student).second}}</p>
       </td>
 
 <!--DELETE-->
