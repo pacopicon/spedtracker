@@ -149,36 +149,41 @@
       <td class="countdownBtnCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
         <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete}" ng-click="startTimer(student)"><p class="countBtnText">begin exam</p></button>
       </td>
-<!--TEST NAME-->
+      <td>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 time">
+          <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate" data-time-format="h:mm a" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="15" bs-timepicker>
+        </div>
+      </td>
+<!--TEST1 NAME-->
       <td class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
         <p class="test1Name marginTop" ng-class="{'redText': student.isSafeToDelete}">{{student.test1Name}}</p>
       </td>
 <!--test1Time-->
       <td class="test1TimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{student.test1Time}}</p>
+        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{test1Time(student)}}</p>
       </td>
 <!--Countdown-->
       <td class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{timer(student).hour}}: {{timer(student).minute}}: {{timer(student).second}}</p>
+        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{timer(student, "test1").hour}}: {{timer(student, "test1").minute}}: {{timer(student, "test1").second}}</p>
       </td>
-<!--TEST NAME-->
+<!--TEST2 NAME-->
       <td class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="test1Name marginTop" ng-class="{'redText': student.isSafeToDelete}">{{student.test1Name}}</p>
+        <p class="test1Name marginTop" ng-class="{'redText': student.isSafeToDelete}">{{student.test2Name}}</p>
       </td>
-<!--test1Time-->
+<!--test2Time-->
       <td class="test1TimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{student.test2Time}}</p>
+        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{test2Time(student)}}</p>
       </td>
 <!--Countdown-->
       <td class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{timer(student).hour}}: {{timer(student).minute}}: {{timer(student).second}}</p>
+        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{timer(student, "test2").hour}}: {{timer(student, "test2").minute}}: {{timer(student, "test2").second}}</p>
       </td>
 
 <!--DELETE-->
-      <td class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <!-- <td class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1"> -->
         <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete" ><p><i class="fa fa-times"></i></p></button>
         <!-- <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ><p><i class="fa fa-times"></i></p></button> -->
-      </td>
+      <!-- </td> -->
     </tr> <!-- student Display and ng-repeat end -->
     <tr class="headingBorderBottom form row">
       <form ng-submit="addStudent()"><!-- push a new message onto the array-->

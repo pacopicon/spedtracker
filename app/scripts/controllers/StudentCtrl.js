@@ -15,69 +15,48 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $interval(refreshTime, 1000);
 
-    // var parseTime = function(millis) {
-    //   var countdown = StudentCrud.parseTime(millis);
-    //   return countdown;
-    // };
-
-    // $scope.timerOff = true;
-
-    // $scope.startTimer = function() {
-    //   $interval($scope.timer, 1000);
-    // }
-
-    // $scope.startTime = 0;
-
     $scope.startTimer = function(student) {
       student.test1StartTime = Date.now();
       students.$save(student);
       $scope.timer(student);
     }
 
-    $scope.timer = function(student) {
-      var fullTime = student.test1StartTime + (student.test1Time * student.extendTime);
+    $scope.timer = function(student, testNo) {
+
+      var totalTime1 = student.test1Time * student.extendTime;
+      var totalTime2 = student.test2Time * student.extendTime;
+
+      if (testNo == "test1") {
+        var fullTime = student.test1StartTime + totalTime1;
+      } else if (testNo == "test2") {
+        var fullTime = student.test2StartTime + totalTime2;
+      }
+
+      if (student.test1StartTime == 0 || typeof student.test1StartTime == "undefined") {
+        var countdown = StudentCrud.parseTime(totalTime1);
+        return countdown;
+      }
+
+      if (student.test1StartTime == 0 || typeof student.test1StartTime == "undefined") {
+        var countdown = StudentCrud.parseTime(totalTime2);
+        return countdown;
+      }
+
       var timeLeftInMillisecs = fullTime - $scope.time;
-
-      // if (student.test1StartTime == 0) {
-      //
-      //   return StudentCrud.parseTime(0);
-      // } else {
-      //   var time = $scope.startTime;
-      // }
-
 
       var countdown = StudentCrud.parseTime(timeLeftInMillisecs);
       return countdown;
-    };
-
-    $scope.timer3 = function(student) {
-      time = Date.now();
-      var startTime = Date.now() + (student.extendTime * student.test1Time);
-
-      var fullTime = startTime - time;
-
-      // console.log("seconds: " + parseTime(fullTime).second);
-
-      if (fullTime < 0 || $scope.timerOff) {
-        return {
-          hour: 0,
-          minute: 0,
-          second: 0
-        };
-      } else {
-        return {
-          hour: parseTime(fullTime).hour,
-          minute: parseTime(fullTime).minute,
-          second: parseTime(fullTime).second
-        };
-      }
-
     };
 
     $interval($scope.timer, 1000);
 
     $scope.test1Time = function(student) {
       var time = "" + StudentCrud.parseTime(student.test1Time).hour + "h, " + StudentCrud.parseTime(student.test1Time).minute + "m";
+      return time;
+    }
+
+    $scope.test2Time = function(student) {
+      var time = "" + StudentCrud.parseTime(student.test2Time).hour + "h, " + StudentCrud.parseTime(student.test2Time).minute + "m";
       return time;
     }
 
@@ -93,7 +72,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $scope.timewrap = {};
 
-    $scope.times = [1.5, 2, 2.5, 3];
+    $scope.times = [1, 1.5, 2, 2.5, 3];
 
 // End ExtendTime
 
