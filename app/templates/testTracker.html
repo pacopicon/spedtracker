@@ -133,7 +133,7 @@
       </td>
 <!--Countdown BTN-->
       <td class="countdownBtnCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete}" ng-click="parseTime(student)"><p class="countBtnText">begin exam</p></button>
+        <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete}" ng-click="startTimer(student)"><p class="countBtnText">begin exam</p></button>
       </td>
 <!--TEST NAME-->
       <td class="testNameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -145,7 +145,7 @@
       </td>
 <!--Countdown-->
       <td class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{parseTime(student).hour}}: {{parseTime(student).minute}}: {{parseTime(student).second}}</p>
+        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{timer(startTime).hours}}: {{timer(startTime).minutes}}: {{timer(startTime).seconds}}</p>
       </td>
 <!--TEST NAME-->
       <td class="testNameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -157,7 +157,7 @@
       </td>
 <!--Countdown-->
       <td class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{parseTime(student).hour}}: {{parseTime(student).minute}}: {{parseTime(student).second}}</p>
+        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{timer(startTime).hours}}: {{timer(startTime).minutes}}: {{timer(startTime).seconds}}</p>
       </td>
 
 <!--DELETE-->

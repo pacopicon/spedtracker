@@ -15,13 +15,47 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $interval(refreshTime, 1000);
 
-    $scope.parseTime = function(student) {
+    var parseTime = function(student) {
       time = Date.now();
       var fullTime = student.examTime * student.extendTime;
       var timeLeftInMillisecs = fullTime - time;
       var countdown = StudentCrud.parseTime(timeLeftInMillisecs);
       return countdown;
     };
+
+    $scope.timerOff = true;
+
+    var startTime = new Date("Apr 6, 2017 15:37:25").getTime();
+
+    $scope.startTimer = function(student) {
+      $scope.startTime = Date.now() + (student.examTime * student.extendTime);
+      $scope.timerOff = false;
+      return $scope.startTime;
+    }
+
+    $scope.timer = $interval(function(startTime) {
+
+      var now = Date.now();
+
+      var distance = startTime - now;
+
+      if (distance < 0 || $scope.timerOff) {
+        $interval.cancel($scope.timer);
+        $scope.timerOff = true;
+        return {
+          hours: 0,
+          minutes: 0,
+          seconds: 0
+        };
+      } else {
+        return {
+          hours: parseTime(distance).hour,
+          minutes: parseTime(distance).minute,
+          seconds: parseTime(distance).second
+        };
+      }
+
+    }, 1000);
 
     $scope.examTime = function(student) {
       var time = "" + StudentCrud.parseTime(student.examTime).hour + "h, " + StudentCrud.parseTime(student.examTime).minute + "m";
