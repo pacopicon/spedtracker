@@ -178,7 +178,7 @@ section {
   min-width: 4em;
 }
 
-.date, .btn-date, .time, .btn-time, .importance, .btn-importance, .hour-and-minute, .hour, .btn-hour, .minute, .btn-minute {
+.date, .btn-date, .time, .btn-time, .importance, .hour-and-minute, .hour, .btn-hour, .minute, .hourInput, .minInput, .extendInput, .nameInput {
   resize: horizontal;
 }
 
@@ -186,7 +186,7 @@ section {
   color: #d8dddf;
 }
 
-.btn-date, .btn-time, .btn-importance, .btn-hour, .btn-minute, .btn-add {
+.btn-date, .btn-time, .btn-add {
   width: 100%
 }
 
@@ -374,6 +374,7 @@ section {
   color: #6FC853;
   float: left;
   height: 2em;
+  width: 100%;
   /*padding-top: 0;*/
 }
 
@@ -446,6 +447,28 @@ section {
 
 .yellowBorder {
   border: #C3C300;
+}
+
+.nameInput {
+  float: left;
+  width: 67%;
+}
+
+.extendInput {
+  float: right;
+  width: 31%;
+}
+
+.hourInput, .minInput {
+  width: 49%;
+}
+
+.hourInput {
+  float: left;
+}
+
+.minInput {
+  float: right;
 }
 
 /*End Item Display elements*/

@@ -15,6 +15,9 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $interval(refreshTime, 1000);
 
+    // Custom Time in case a student already began the test
+    $scope.newDueDate = new Date().setMinutes(0, 0);
+
     $scope.startTimer = function(student) {
       if (student.test1StartTime == 0 || typeof student.test1StartTime == "undefined") {
         student.test1StartTime = Date.now();
@@ -66,7 +69,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     }
 
 
-    // Begin AngularStrap popover
+// Begin AngularStrap popover
 
     $scope.dateTip = {
       "title": "enter estimated time to complete in hours",
