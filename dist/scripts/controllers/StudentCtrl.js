@@ -25,16 +25,16 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $scope.timerOff = true;
 
-    var startTime = new Date("Apr 6, 2017 15:37:25").getTime();
-
     $scope.startTimer = function(student) {
       $scope.startTime = Date.now() + (student.examTime * student.extendTime);
       $scope.timerOff = false;
       return $scope.startTime;
     }
 
-    $scope.timer = $interval(function(startTime) {
+    $scope.startTime = 0;
 
+    $scope.timer = $interval(function() {
+      var startTime = new Date("Apr 6, 2017 15:37:25").getTime();
       var now = Date.now();
 
       var distance = startTime - now;
