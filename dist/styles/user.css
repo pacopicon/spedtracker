@@ -334,7 +334,7 @@ section {
   display:table-row;
 }
 
-.nameCell, .countdownBtnCell, .testNameCell, .examTimeCell, .countdownCell {
+.nameCell, .countdownBtnCell, .test1NameCell, .test1TimeCell, .countdownCell {
   height: 100%;
 }
 .checkbox {
@@ -394,15 +394,15 @@ section {
   float: right;
 }
 
-.testNameCell {
+.test1NameCell {
   display: inline;
 }
 
-.testName {
+.test1Name {
   float: left;
 }
 
-.examTime {
+.test1Time {
 
 }
 
