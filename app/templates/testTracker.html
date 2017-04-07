@@ -98,124 +98,148 @@
   <p class="noItemAnnounce" ng-show="dataItems.studentLeftCount === 0">There are no students at this time</p>
 <!--end select all / clear selected / delete selected-->
   <!-- <div class="row studentDisplay" ng-repeat="student in students | orderBy: '-rank'" ng-show="!student.isComplete" ng-hide="student.isComplete" ng-mouseleave="hover = false"> -->
-  <table>
-    <tr class="headingBorderBottom">
-      <td>
-      </td>
-      <td class="nameCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
+  <div class="container-fluid main-body form-body">
+    <div class="header col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="nameCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
         <p class="nameHeading">student:</p>
         <p class="extendedTimeHeading">Ext. time:</p>
-      </td>
+      </div>
       <!--TEST NAME-->
-      <td class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="testName">press test to begin:</p>
-      </td>
+      <div class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <p class="testName">begin test:</p>
+      </div>
       <!--test1Time-->
-      <td class="test1TimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <div class="test1TimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
         <p class="nameCell">std time:</p>
-      </td>
+      </div>
       <!--Countdown-->
-      <td class="countdownCell marginRight col-lg-2 col-md-2 col-sm-1 col-xs-2">
+      <div class="countdownCell marginRight col-lg-2 col-md-2 col-sm-1 col-xs-2">
         <p class="nameCell">timer:</p>
-      </td>
+      </div>
       <!--TEST NAME-->
-      <td class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <div class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
         <p class="testName">press test to begin:</p>
-      </td>
+      </div>
       <!--test1Time-->
-      <td class="test1TimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <div class="test1TimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
         <p class="nameCell">std time:</p>
-      </td>
+      </div>
       <!--Countdown-->
-      <td class="countdownCell marginRight col-lg-2 col-md-2 col-sm-1 col-xs-2">
+      <div class="countdownCell marginRight col-lg-2 col-md-2 col-sm-1 col-xs-2">
         <p class="nameCell">timer:</p>
-      </td>
+      </div>
       <!--DELETE-->
-      <td class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-      </td>
-    </tr>
-    <tr class="row studentDisplay" ng-repeat="student in students" ng-mouseleave="hover = false">
+      <div class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      </div>
+    </div>
+    <div class="row studentDisplay col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="student in students" ng-mouseleave="hover = false">
 <!--NAME and EXTEND-TIME-->
-      <td class="nameCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
+      <div class="nameCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
         <input type="checkbox" class="checkbox marginTop" ng-model="student.isSafeToDelete" ng-change="saveAndToggleInvert(student)"/>
         <p class="nameCell marginTop" ng-class="{'redText': student.isSafeToDelete}"> {{$index + 1}}. {{student.name}}</p>
         <p class="extendTimeCell marginTop" ng-class="{'redText': student.isSafeToDelete}"> {{student.extendTime}}</p>
-      </td>
+      </div>
 <!--TEST1 NAME-->
-      <td class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <div class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
         <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete}" ng-click="startTimer(student, newDueDate)"><p class="countBtnText test1Name marginTop" ng-class="{'redText': student.isSafeToDelete}">{{student.test1Name}}</p></p></button>
-      </td>
+      </div>
 <!--test1Time-->
-      <td class="test1TimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{test1Time(student)}}</p>
-      </td>
+      <div class="test1TimeCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <table>
+          <tr>
+            <td>
+              <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{test1Time(student)}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{test1Extend(student)}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{timer(student, "test1").hour}}h, {{timer(student, "test1").minute}}m, {{timer(student, "test1").second}}s</p>
+            </td>
+          </tr>
+        </table>
+      </div>
 <!--Countdown-->
-      <td class="countdownCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{timer(student, "test1").hour}}h, {{timer(student, "test1").minute}}m, {{timer(student, "test1").second}}s</p>
-      </td>
-<!--TEST2 NAME-->
-      <td class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete}" ng-click="startTimer(student, newDueDate)"><p class="countBtnText test1Name marginTop" ng-class="{'redText': student.isSafeToDelete}">{{student.test2Name}}</p></p></button>
-      </td>
-<!--test2Time-->
-      <td class="test1TimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{test2Time(student)}}</p>
-      </td>
-<!--Countdown-->
-      <td class="countdownCell marginRight col-lg-2 col-md-2 col-sm-1 col-xs-2">
-        <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{timer(student, "test2").hour}}h, {{timer(student, "test2").minute}}m, {{timer(student, "test2").second}}s</p>
-      </td>
+      <div class="countdownCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
 
+      </div>
+<!--TEST2 NAME-->
+      <div class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete}" ng-click="startTimer(student, newDueDate)"><p class="countBtnText test1Name marginTop" ng-class="{'redText': student.isSafeToDelete}">{{student.test2Name}}</p></p></button>
+      </div>
+<!--test2Time-->
+      <div class="test1TimeCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <table>
+          <tr>
+            <td>
+              <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{test2Time(student)}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{test2Extend(student)}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="marginTop" ng-class="{'redText': student.isSafeToDelete}">{{timer(student, "test2").hour}}h, {{timer(student, "test2").minute}}m, {{timer(student, "test2").second}}s</p>
+            </td>
+          </tr>
+        </table>
+      </div>
 <!--DELETE-->
-      <td class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+      <!-- <div class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1"> -->
         <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete" ><p><i class="fa fa-times"></i></p></button>
         <!-- <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ><p><i class="fa fa-times"></i></p></button> -->
-      </td>
-    </tr> <!-- student Display and ng-repeat end -->
-    <tr class="headingBorderBottom form row">
+      <!-- </div> -->
+    </div> <!-- student Display and ng-repeat end -->
+    <div class="form row">
       <form ng-submit="addStudent()"><!-- push a new message onto the array-->
-      <td class="nameCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-12">
 <!--Student NAME-->
-        <input class="form-control nameInput" ng-model="newStudentName" placeholder="enter student name or id"/>
-        <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="extendInput btn btn-default" ng-model="timewrap.selectedTime" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="time as time for time in times" placeholder="time x" bs-select><span class="caret"></span></button></a>
-      </td>
-<!--Countdown BTN TEST NAME-->
-      <td class="countdownBtnCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <input class="form-control" ng-model="newtest1Name" placeholder="enter test name" />
-      </td>
-<!--test1Time-->
-      <td class="test1TimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="hourInput btn btn-default" ng-model="test1hourwrap.selectedHour" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="hour as hour for hour in hours" placeholder="hrs" bs-select><span class="caret"></span></button></a>
-        <a href class="tip" data-animation="am-flip-x" bs-tooltip="timeTip"><button type="button" class="minInput btn btn-default" ng-model="test1minutewrap.selectedMinute" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="minute as minute for minute in minutes" placeholder="min" bs-select>Action<span class="caret"></span></button></a>
-      </td>
-      <td>
-      </td>
-<!--Countdown BTN TEST NAME-->
-      <td class="countdownBtnCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <input class="form-control" ng-model="newtest2Name" placeholder="enter test name" />
-      </td>
-      <!--test2Time-->
-      <td class="test1TimeCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="hourInput btn btn-default" ng-model="test2hourwrap.selectedHour" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="hour as hour for hour in hours" placeholder="hrs" bs-select><span class="caret"></span></button></a>
-        <a href class="tip" data-animation="am-flip-x" bs-tooltip="timeTip"><button type="button" class="minInput btn btn-default" ng-model="test2minutewrap.selectedMinute" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="minute as minute for minute in minutes" placeholder="min" bs-select>Action<span class="caret"></span></button></a>
-      </td>
-      <!--Countdown-->
-      <!-- <td class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="nameCell"></p>
-      </td> -->
-      <!--DELETE-->
-      <td class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-      </td>
-    </tr>
-    <tr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-div">
-      <button type="submit" type="button" class="btn-add">Add student</button>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="nameCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <input class="form-control nameInput" ng-model="newStudentName" placeholder="enter student name or id"/>
+            <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="extendInput btn btn-default" ng-model="timewrap.selectedTime" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="time as time for time in times" placeholder="time x" bs-select><span class="caret"></span></button></a>
+          </div>
+  <!--Countdown BTN TEST NAME-->
+          <div class="countdownBtnCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <input class="form-control" ng-model="newtest1Name" placeholder="enter test name" />
+          </div>
+  <!--test1Time-->
+          <div class="test1TimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="hourInput btn btn-default" ng-model="test1hourwrap.selectedHour" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="hour as hour for hour in hours" placeholder="hrs" bs-select><span class="caret"></span></button></a>
+            <a href class="tip" data-animation="am-flip-x" bs-tooltip="timeTip"><button type="button" class="minInput btn btn-default" ng-model="test1minutewrap.selectedMinute" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="minute as minute for minute in minutes" placeholder="min" bs-select>Action<span class="caret"></span></button></a>
+          </div>
+  <!--Countdown BTN TEST NAME-->
+          <div class="countdownBtnCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <input class="form-control" ng-model="newtest2Name" placeholder="enter test name" />
+          </div>
+  <!--test2Time-->
+          <div class="test1TimeCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="hourInput btn btn-default" ng-model="test2hourwrap.selectedHour" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="hour as hour for hour in hours" placeholder="hrs" bs-select><span class="caret"></span></button></a>
+            <a href class="tip" data-animation="am-flip-x" bs-tooltip="timeTip"><button type="button" class="minInput btn btn-default" ng-model="test2minutewrap.selectedMinute" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="minute as minute for minute in minutes" placeholder="min" bs-select>Action<span class="caret"></span></button></a>
+          </div>
+  <!--Countdown-->
+          <div class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <p class="nameCell"></p>
+          </div>
+  <!--DELETE-->
+          <div class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-div">
+          <button type="submit" type="button" class="btn-add">Add student</button>
+        </div>
       </form>
-    </tr>
-  </table>
-</div> <!--container-fluid main-body end-->
+    </div>
+  </div> <!--container-fluid main-body end-->
+</div>
 <!--end ITEM DISPLAY-->
 <!-- <div ng-include="'/templates/graphs.html'"></div> -->
 
-</div>
 </body>
 </section>
