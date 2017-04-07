@@ -118,7 +118,7 @@
       </div>
       <!--TEST NAME-->
       <div class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <p class="testName">press test to begin:</p>
+        <p class="testName">begin test:</p>
       </div>
       <!--test1Time-->
       <div class="test1TimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -144,7 +144,7 @@
         <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete}" ng-click="startTimer(student, newDueDate)"><p class="countBtnText test1Name marginTop" ng-class="{'redText': student.isSafeToDelete}">{{student.test1Name}}</p></p></button>
       </div>
 <!--test1Time-->
-      <div class="test1TimeCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <div class="test1TimeCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
         <table>
           <tr>
             <td>
@@ -164,9 +164,9 @@
         </table>
       </div>
 <!--Countdown-->
-      <div class="countdownCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <!-- <div class="countdownCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
 
-      </div>
+      </div> -->
 <!--TEST2 NAME-->
       <div class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
         <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete}" ng-click="startTimer(student, newDueDate)"><p class="countBtnText test1Name marginTop" ng-class="{'redText': student.isSafeToDelete}">{{student.test2Name}}</p></p></button>
@@ -192,10 +192,9 @@
         </table>
       </div>
 <!--DELETE-->
-      <!-- <div class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1"> -->
+      <div class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
         <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete" ><p><i class="fa fa-times"></i></p></button>
-        <!-- <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ><p><i class="fa fa-times"></i></p></button> -->
-      <!-- </div> -->
+      </div>
     </div> <!-- student Display and ng-repeat end -->
     <div class="form row">
       <form ng-submit="addStudent()"><!-- push a new message onto the array-->

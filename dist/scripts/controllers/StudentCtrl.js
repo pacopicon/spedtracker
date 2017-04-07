@@ -68,6 +68,16 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       return time;
     }
 
+    $scope.test1Extend = function(student) {
+      var time = "" + StudentCrud.parseTime(student.test1Time * student.extendTime).hour + "h, " + StudentCrud.parseTime(student.test1Time).minute + "m";
+      return time;
+    }
+
+    $scope.test2Extend = function(student) {
+      var time = "" + StudentCrud.parseTime(student.test2Time * student.extendTime).hour + "h, " + StudentCrud.parseTime(student.test2Time).minute + "m";
+      return time;
+    }
+
 
 // Begin AngularStrap popover
 

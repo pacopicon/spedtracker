@@ -330,7 +330,7 @@ section {
 }
 
 .studentDisplay {
-  height: 3em;
+  height: 12em;
   display:table-row;
   width: 100%;
 }
@@ -388,12 +388,13 @@ section {
   /*padding-bottom: 5px;*/
 }
 
-.editBtn, .deleteBtn {
+.deleteBtn {
   border-radius: 1em;
   border-style: none;
   text-decoration: none;
   text-align: center;
-  float: right;
+  float: left;
+
 }
 
 .test1NameCell {
