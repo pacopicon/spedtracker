@@ -254,7 +254,9 @@ section {
   border-radius: 1em;
   background-color: white;
   min-height: 1.8em;
-  margin: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+
 }
 
 .left-wrap {
@@ -309,8 +311,11 @@ section {
 
 /* begin CSS for StudentDisplay */
 
-.headingBorderBottom {
-  /*border: 2px solid #3f4e62;*/
+.displayText p {
+  font-size: 13px;
+}
+
+.header {
 }
 
 .nameHeading {
@@ -323,20 +328,10 @@ section {
   float: right;
 }
 
-.noItemAnnounce {
-  text-align: center;
-  padding-top: 0.6em;
-  color: #3f4e62;
-}
-
 .studentDisplay {
-  height: 12em;
+  height: 4em;
   display:table-row;
   width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  padding-right: 0;
 }
 
 .nameCell, .countdownBtnCell, .test1NameCell, .test1TimeCell, .countdownCell {
@@ -344,11 +339,11 @@ section {
 }
 .checkbox {
   float: left;
-  top: 8px;
+  top: 16.5px;
 }
 
 .marginTop {
-  margin-top: 6.5px;
+  margin-top: 16.5px;
 }
 
 .marginRight {
@@ -358,7 +353,8 @@ section {
 
 .nameCell {
   float: left;
-  margin-left: 3px;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .extendTimeCell {
@@ -377,9 +373,11 @@ section {
   /*min-height: 2em;*/
   background-color: white;
   color: #6FC853;
-  float: left;
-  height: 2em;
+  /*float: left;*/
+  height: 75%;
   width: 100%;
+  /*margin-top: 5%;*/
+  margin-bottom: 25%;
   /*padding-top: 0;*/
 }
 
@@ -389,7 +387,7 @@ section {
 }
 
 .countBtnText {
-  /*padding-bottom: 5px;*/
+  margin-top: 12px;
 }
 
 .deleteBtn {
@@ -409,10 +407,17 @@ section {
   float: left;
 }
 
-.test1Time {
-
+.test1TimeCell {
+  height: 3em;
 }
 
+.dataPointLabel {
+  margin-right: 1em;
+}
+
+.dataPoint, .dataPointLabel {
+  height: 0.5em;
+}
 .deleteBtn .fa-times {
   font-size: 1.3em;
   padding-top: 0.1em;
