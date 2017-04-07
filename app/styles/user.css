@@ -135,7 +135,7 @@ section {
 /* end css for clock */
 
 .main-body {
-  border-radius: 1em;
+  border-radius: 0em;
   background-color: white;
   padding: 1em;
   margin-bottom: 2em;
@@ -333,6 +333,10 @@ section {
   height: 12em;
   display:table-row;
   width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .nameCell, .countdownBtnCell, .test1NameCell, .test1TimeCell, .countdownCell {
