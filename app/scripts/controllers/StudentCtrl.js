@@ -142,7 +142,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
       if (safeCount > 0) {
         $scope.clickedToDelete = true;
-        $timeout(function appear() {$scope.appear = true}, 1000)
+        $timeout(function appear() {$scope.appear = true}, 1200)
       } else {
         $scope.clickedToDelete = false;
         $scope.appear = false;

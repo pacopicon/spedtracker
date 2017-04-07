@@ -319,7 +319,7 @@ section {
 }
 
 .nameHeading {
-  /*margin-left: 30px;*/
+  margin-left: 2.6em;
   float: left;
 }
 
@@ -332,6 +332,7 @@ section {
   height: 4em;
   display:table-row;
   width: 100%;
+  margin-left: 0.5em;
 }
 
 .nameCell, .countdownBtnCell, .test1NameCell, .test1TimeCell, .countdownCell {
@@ -354,7 +355,7 @@ section {
 .nameCell {
   float: left;
   margin-left: 0;
-  padding-left: 0;
+  padding-left: 0.5em;
 }
 
 .extendTimeCell {
@@ -390,15 +391,6 @@ section {
   margin-top: 12px;
 }
 
-.deleteBtn {
-  border-radius: 1em;
-  border-style: none;
-  text-decoration: none;
-  text-align: center;
-  float: left;
-
-}
-
 .test1NameCell {
   display: inline;
 }
@@ -418,17 +410,18 @@ section {
 .dataPoint, .dataPointLabel {
   height: 0.5em;
 }
-.deleteBtn .fa-times {
-  font-size: 1.3em;
-  padding-top: 0.1em;
+.deleteBtn {
+  font-size: 4em;
+  margin-top: 1px;
   padding-left: 0;
-  background-color: #e05d6f;
+  color: #e05d6f;
+  float: left;
+  transition: all 0.5s ease-in-out;
 }
 
-.editBtn .fa-pencil:hover, .deleteBtn .fa-times:hover {
-  border: 3.5px solid
-  color: #d6f3ff;
-  text-decoration: none;
+.deleteBtn:hover {
+  transition: all 0.5s ease-in-out;
+  padding-left: 0.2em;
 }
 
 .btn-test:hover {
@@ -462,12 +455,13 @@ section {
 
 .nameInput {
   float: left;
-  width: 67%;
+  width: 65%;
+  margin-left: 0.5em;
 }
 
 .extendInput {
   float: right;
-  width: 31%;
+  width: 30%;
 }
 
 .hourInput, .minInput {
@@ -495,8 +489,8 @@ section {
   width: 10em;
   border-radius: 0.3em;
   color: black;
-  /*margin-bottom: 0.5em;*/
-}
+  margin-bottom: 0.5em;
+}*/
 
 .dateCell {
   position: relative;

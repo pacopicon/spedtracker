@@ -103,11 +103,11 @@
     </div>
     <!--test name-->
     <div class="test1NameCell marginRight col-lg-4 col-md-4 col-sm-4 col-xs-4">
-      <p class="testName">begin test:</p>
+      <!-- <p class="testName">begin test:</p> -->
     </div>
     <!--test name-->
     <div class="test1NameCell marginRight col-lg-4 col-md-4 col-sm-4 col-xs-4">
-      <p class="testName">begin test:</p>
+      <!-- <p class="testName">begin test:</p> -->
     </div>
     <!--Delete-->
     <div class="marginRight right-wrap col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -155,10 +155,6 @@
         </tr>
       </table>
     </div>
-<!--Countdown-->
-    <!-- <div class="countdownCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
-
-    </div> -->
 <!--test 2 name-->
     <div class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
       <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete}" ng-click="startTimer(student, newDueDate)"><p class="countBtnText marginTop" ng-class="{'redText': student.isSafeToDelete}">{{student.test2Name}}</p></p></button>
@@ -194,10 +190,12 @@
     </div>
 <!--delete-->
     <div class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-      <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete" ><p><i class="fa fa-times"></i></p></button>
+      <!-- <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete" ><p><i class="fa fa-times"></i></p></button> -->
+      <p><i class="fa fa-times deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete"></i></p>
     </div>
   </div> <!-- student Display and ng-repeat end -->
 <!--FORM-->
+  <div class="displayText">
     <div class="form row">
       <form ng-submit="addStudent()"><!-- push a new message onto the array-->
 <!--student name-->
@@ -237,6 +235,7 @@
         </div>
       </form>
     </div>
+  </div>
 </div>
 <!--end ITEM DISPLAY-->
 <!-- <div ng-include="'/templates/graphs.html'"></div> -->
