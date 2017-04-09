@@ -18,16 +18,16 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     // Custom Time in case a student already began the test
     $scope.newDueDate = new Date().setMinutes(0, 0);
 
-    $scope.startTimer = function(student) {
+    $scope.startTimer = function(student, testNo) {
       if (student.test1StartTime == 0 || typeof student.test1StartTime == "undefined") {
         student.test1StartTime = Date.now();
         student.isTest1Over = true;
         students.$save(student);
-        $scope.timer(student);
+        $scope.timer(student, testNo);
       } else {
         student.test2StartTime = Date.now();
         students.$save(student);
-        $scope.timer(student);
+        $scope.timer(student, testNo);
       }
 
 
@@ -38,10 +38,10 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       var totalTime1 = student.test1Time * student.extendTime;
       var totalTime2 = student.test2Time * student.extendTime;
 
-      if (student.test1StartTime == 0 || typeof student.test1StartTime == "undefined") {
+      if (testNo == "test1" && student.test1StartTime == 0 || typeof student.test1StartTime == "undefined") {
         var countdown = StudentCrud.parseTime(totalTime1);
         return countdown;
-      } else if (student.test2StartTime == 0 || typeof student.test2StartTime == "undefined") {
+      } else if (testNo == "test2" && student.test2StartTime == 0 || typeof student.test2StartTime == "undefined") {
         var countdown = StudentCrud.parseTime(totalTime2);
         return countdown;
       } else if (testNo == "test1") {
@@ -59,22 +59,32 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     $interval($scope.timer, 1000);
 
     $scope.test1Time = function(student) {
-      var time = "" + StudentCrud.parseTime(student.test1Time).hour + "h, " + StudentCrud.parseTime(student.test1Time).minute + "m";
+      var time = "" + StudentCrud.parseTime(student.test1Time).hour + "h, "
+      + StudentCrud.parseTime(student.test1Time).minute + "m, "
+      + StudentCrud.parseTime(student.test1Time).second + "s";
       return time;
     }
 
     $scope.test2Time = function(student) {
-      var time = "" + StudentCrud.parseTime(student.test2Time).hour + "h, " + StudentCrud.parseTime(student.test2Time).minute + "m";
+      var time = "" + StudentCrud.parseTime(student.test2Time).hour + "h, "
+      + StudentCrud.parseTime(student.test2Time).minute + "m, "
+      + StudentCrud.parseTime(student.test2Time).second + "s";
       return time;
     }
 
     $scope.test1Extend = function(student) {
-      var time = "" + StudentCrud.parseTime(student.test1Time * student.extendTime).hour + "h, " + StudentCrud.parseTime(student.test1Time).minute + "m";
+      var totalTime1 = student.test1Time * student.extendTime;
+      var time = "" + StudentCrud.parseTime(totalTime1).hour + "h, "
+      + StudentCrud.parseTime(student.test1Time).minute + "m, "
+      + StudentCrud.parseTime(student.test1Time).second + "s";
       return time;
     }
 
     $scope.test2Extend = function(student) {
-      var time = "" + StudentCrud.parseTime(student.test2Time * student.extendTime).hour + "h, " + StudentCrud.parseTime(student.test2Time).minute + "m";
+      var totalTime2 = student.test2Time * student.extendTime;
+      var time = "" + StudentCrud.parseTime(totalTime2).hour + "h, "
+      + StudentCrud.parseTime(student.test2Time).minute + "m, "
+      + StudentCrud.parseTime(student.test2Time).second + "s";
       return time;
     }
 
