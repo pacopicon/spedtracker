@@ -354,8 +354,9 @@ section {
 
 .nameCell {
   float: left;
-  margin-left: 0;
-  padding-left: 0.5em;
+  /*margin-left: 0;*/
+  /*padding-left: 2em;*/
+  /*margin-right: 3em;*/
 }
 
 .extendTimeCell {
@@ -462,6 +463,11 @@ section {
 .extendInput {
   float: right;
   width: 30%;
+}
+
+.testNameInput {
+  margin-left: 0.5em;
+  width: 100%;
 }
 
 .hourInput, .minInput {

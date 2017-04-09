@@ -19,25 +19,19 @@
 </div>
 <!--end Clock-->
 <!--begin FORM-->
-<div class="containerPad">
+<!-- <div class="containerPad">
   <div class="container-fluid main-body form-body">
     <div class="form row">
-      <form ng-submit="addStudent()"><!-- push a new message onto the array-->
-<!--name-->
+      <form ng-submit="addStudent()">
         <div class="col-lg-2 col-md-2 col-sm-5 col-xs-12 formFormat name">
           <input class="form-control" ng-model="newStudentName" placeholder="enter student name or id"/>
         </div>
-<!--extendTime-->
-        <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 hour-and-minute">       -->
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 hour">
             <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="btn-hour btn btn-default" ng-model="timewrap.selectedTime" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="time as time for time in times" placeholder="select extended time multiple" bs-select><span class="caret"></span></button></a>
           </div>
-<!--test1 name-->
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 hour">
             <input class="form-control" ng-model="newtest1Name" placeholder="enter test name" />
           </div>
-        <!-- </div> -->
-<!--test1 time-->
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 hour-and-minute">
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 hour">
             <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="btn-hour btn btn-default" ng-model="test1hourwrap.selectedHour" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="hour as hour for hour in hours" placeholder="test hours" bs-select><span class="caret"></span></button></a>
@@ -46,11 +40,9 @@
             <a href class="tip" data-animation="am-flip-x" bs-tooltip="timeTip"><button type="button" class="btn-minute btn btn-default" ng-model="test1minutewrap.selectedMinute" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="minute as minute for minute in minutes" placeholder="test minutes" bs-select>Action<span class="caret"></span></button></a>
           </div>
         </div>
-<!--test2 name-->
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 hour">
           <input class="form-control" ng-model="newtest2Name" placeholder="enter test name" />
         </div>
-<!--test2 time-->
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 hour-and-minute">
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 hour">
             <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="btn-hour btn btn-default" ng-model="test2hourwrap.selectedHour" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="hour as hour for hour in hours" placeholder="test hours" bs-select><span class="caret"></span></button></a>
@@ -59,17 +51,13 @@
             <a href class="tip" data-animation="am-flip-x" bs-tooltip="timeTip"><button type="button" class="btn-minute btn btn-default" ng-model="test2minutewrap.selectedMinute" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="minute as minute for minute in minutes" placeholder="test minutes" bs-select>Action<span class="caret"></span></button></a>
           </div>
         </div>
-<!--Add Button--->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-div">
           <button type="submit" type="button" class="btn-add">Add student</button>
-          <!-- <button ng-click="addTestItem()" class="btn-add btn-test">T E S T: add test student</button> -->
-          <!-- <button ng-click="initiateDataItemsWorkAround()" class="btn-add btn-test">T E S T: add dataItem</button> -->
-          <!-- <button ng-click="addOrUpdateDataItems('studentLeftCount', 'hoursLeft', 'minutesLeft', 200, 200, 200)" class="btn-add btn-test">T E S T: update existing dataItem</button> -->
         </div>
       </form>
-    </div> <!--end row-->
-  </div> <!--end container-fluid-->
-</div> <!--end containerPad-->
+    </div>
+  </div>
+</div> -->
 <!--end FORM-->
 
 <!--begin ItemDisplay-->
@@ -206,26 +194,28 @@
           </div>
   <!--countdown btn + test name-->
           <div class="countdownBtnCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-            <input class="form-control" ng-model="newtest1Name" placeholder="enter test name" />
+            <input class="form-control testNameInput" ng-model="newtest1Name" placeholder="enter test name" />
           </div>
   <!--test 1 time-->
-          <div class="test1TimeCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+          <div class="test1TimeCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="hourInput btn btn-default" ng-model="test1hourwrap.selectedHour" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="hour as hour for hour in hours" placeholder="hrs" bs-select><span class="caret"></span></button></a>
             <a href class="tip" data-animation="am-flip-x" bs-tooltip="timeTip"><button type="button" class="minInput btn btn-default" ng-model="test1minutewrap.selectedMinute" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="minute as minute for minute in minutes" placeholder="min" bs-select>Action<span class="caret"></span></button></a>
           </div>
+  <!--empty space-->
+          <!-- <div class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+          </div> -->
   <!--countdown btn + test name-->
           <div class="countdownBtnCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-            <input class="form-control" ng-model="newtest2Name" placeholder="enter test name" />
+            <input class="form-control testNameInput" ng-model="newtest2Name" placeholder="enter test name" />
           </div>
   <!--test 2 time-->
-          <div class="test1TimeCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div class="test1TimeCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="hourInput btn btn-default" ng-model="test2hourwrap.selectedHour" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="hour as hour for hour in hours" placeholder="hrs" bs-select><span class="caret"></span></button></a>
             <a href class="tip" data-animation="am-flip-x" bs-tooltip="timeTip"><button type="button" class="minInput btn btn-default" ng-model="test2minutewrap.selectedMinute" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="minute as minute for minute in minutes" placeholder="min" bs-select>Action<span class="caret"></span></button></a>
           </div>
-  <!--countdown-->
-          <div class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-            <p class="nameCell"></p>
-          </div>
+  <!--empty space-->
+          <!-- <div class="countdownCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
+          </div> -->
   <!--delete-->
           <div class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
           </div>
