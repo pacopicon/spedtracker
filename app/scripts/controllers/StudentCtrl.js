@@ -29,9 +29,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         students.$save(student);
         $scope.timer(student, testNo);
       }
-
-
-    }
+    };
 
     $scope.timer = function(student, testNo) {
 
@@ -58,36 +56,25 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $interval($scope.timer, 1000);
 
-    $scope.test1Time = function(student) {
-      var time = "" + StudentCrud.parseTime(student.test1Time).hour + "h, "
-      + StudentCrud.parseTime(student.test1Time).minute + "m, "
-      + StudentCrud.parseTime(student.test1Time).second + "s";
-      return time;
-    }
+    // $scope.parseTime = function(timeInMillisecs) {
+    //   StudentCrud.parseTime(timeInMillisecs);
+    // };
 
-    $scope.test2Time = function(student) {
-      var time = "" + StudentCrud.parseTime(student.test2Time).hour + "h, "
-      + StudentCrud.parseTime(student.test2Time).minute + "m, "
-      + StudentCrud.parseTime(student.test2Time).second + "s";
-      return time;
-    }
-
-    $scope.test1Extend = function(student) {
+    $scope.testTime = function(student, testNo) {
       var totalTime1 = student.test1Time * student.extendTime;
-      var time = "" + StudentCrud.parseTime(totalTime1).hour + "h, "
-      + StudentCrud.parseTime(student.test1Time).minute + "m, "
-      + StudentCrud.parseTime(student.test1Time).second + "s";
-      return time;
-    }
-
-    $scope.test2Extend = function(student) {
       var totalTime2 = student.test2Time * student.extendTime;
-      var time = "" + StudentCrud.parseTime(totalTime2).hour + "h, "
-      + StudentCrud.parseTime(student.test2Time).minute + "m, "
-      + StudentCrud.parseTime(student.test2Time).second + "s";
+
+      if (testNo == "test1") {
+        var time = StudentCrud.parseTime(student.test1Time);
+      } else if (testNo == "test2") {
+        var time = StudentCrud.parseTime(student.test2Time);
+      } else if (testNo == "test1Ext") {
+        var time = StudentCrud.parseTime(totalTime1);
+      } else if (testNo == "test2Ext") {
+        var time = StudentCrud.parseTime(totalTime2);
+      }
       return time;
     }
-
 
 // Begin AngularStrap popover
 
@@ -152,7 +139,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
       if (safeCount > 0) {
         $scope.clickedToDelete = true;
-        $timeout(function appear() {$scope.appear = true}, 1200)
+        $timeout(function appear() {$scope.appear = true}, 600)
       } else {
         $scope.clickedToDelete = false;
         $scope.appear = false;
@@ -165,7 +152,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         $scope.selectAll = false;
         console.log("safeCount: " + safeCount);
         console.log("invertSelect is true; selectAll is false");
-      } else if (safeCount == students.length) {
+      } else if (safeCount > 0 && safeCount == students.length) {
         $scope.invertSelect = false;
         $scope.selectAll = false;
         $scope.clickedToDelete = true;
@@ -173,6 +160,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       } else if (safeCount == 0) {
         $scope.invertSelect = false;
         $scope.selectAll = true;
+        $scope.clickedToDelete = false;
         console.log("invertSelect is false; selectAll is true");
       }
 
@@ -198,7 +186,16 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $scope.invertSelectForDelete = function(students) {
       StudentCrud.toggleSelectForDelete(students);
-    }
+    };
+
+    // $scope.$watch(getItems, watcherFunction, true);
+    //   function getItems() {
+    //     return StudentCrud.getAllStudents();
+    //   };
+    //
+    // function watcherFunction(newData) {
+    //   toggleInvert("delete");
+    // };
 
     $scope.deleteSelected = function() {
       for (var i = 0; i < students.length; i++)

@@ -56,27 +56,41 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           var lessThanMinute = Math.abs(lessThanHour % millisecsInMinute);
           var seconds = Math.abs(Math.round(lessThanMinute / millisecsInSecs));
         } else {
-          var years = timeInMillisecs / millisecsInYear;
+          var single = 9 || 8 || 7 || 6 || 5 || 4 || 3 || 2 || 2 || 1 || 0;
+
+          var years = Math.floor(timeInMillisecs / millisecsInYear);
           var lessThanYear = timeInMillisecs % millisecsInYear;
-          var months = lessThanYear / millisecsInMonth;
+          var months = Math.floor(lessThanYear / millisecsInMonth);
           var lessThanMonth = lessThanYear % millisecsInMonth;
-          var days = lessThanMonth / millisecsInDay;
+          var days = Math.floor(lessThanMonth / millisecsInDay);
           var lessThanDay = lessThanMonth % millisecsInDay;
-          var hours = lessThanDay / millisecsInHour;
+          var hours = Math.floor(lessThanDay / millisecsInHour);
           var lessThanHour = lessThanDay % millisecsInHour;
-          var minutes = lessThanHour / millisecsInMinute;
+          var minutes = Math.floor(lessThanHour / millisecsInMinute);
           var lessThanMinute = lessThanHour % millisecsInMinute;
           var seconds = Math.round(lessThanMinute / millisecsInSecs);
+
+          var addZero = function(timeUnit) {
+            if (timeUnit == 0 || timeUnit == 1 || timeUnit == 2 || timeUnit == 3 || timeUnit == 4 || timeUnit == 5 || timeUnit == 6 || timeUnit == 7 || timeUnit == 8 || timeUnit == 9) {
+              return "0" + timeUnit;
+            } else if (timeUnit == 60) {
+              return "00";
+            } else {
+              return timeUnit;
+            }
+          };
+
+
         }
 
         return {
           total: timeInMillisecs,
-          year: Math.floor(years),
-          month: Math.floor(months),
-          day: Math.floor(days),
-          hour: Math.floor(hours),
-          minute: Math.floor(minutes),
-          second: seconds
+          year: years,
+          month: months,
+          day: days,
+          hour: hours,
+          minute: addZero(minutes),
+          second: addZero(seconds)
         };
       },
 // This function is called by the submit button in testTracker.html when user creates an item in the form

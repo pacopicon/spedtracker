@@ -122,7 +122,7 @@
             <p class="dataPointLabel" ng-class="{'redText': student.isSafeToDelete}">std. time: </p>
           </td>
           <td>
-            <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">{{test1Time(student)}}</p>
+            <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">{{testTime(student, "test1").hour}}h, {{testTime(student, "test1").minute}}m, {{testTime(student, "test1").second}}s</p>
           </td>
         </tr>
         <tr>
@@ -130,7 +130,7 @@
             <p class="dataPointLabel" ng-class="{'redText': student.isSafeToDelete}">ext. time: </p>
           </td>
           <td>
-            <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">{{test1Extend(student)}}</p>
+            <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">{{testTime(student, "test1Ext").hour}}h, {{testTime(student, "test1Ext").minute}}m, {{testTime(student, "test1Ext").second}}s</p>
           </td>
         </tr>
         <tr>
@@ -155,7 +155,7 @@
             <p class="dataPointLabel" ng-class="{'redText': student.isSafeToDelete}">std. time: </p>
           </td>
           <td>
-            <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">{{test2Time(student)}}</p>
+            <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">{{testTime(student, "test2").hour}}h, {{testTime(student, "test2").minute}}m, {{testTime(student, "test2").second}}s</p>
           </td>
         </tr>
         <tr>
@@ -163,7 +163,7 @@
             <p class="dataPointLabel" ng-class="{'redText': student.isSafeToDelete}">ext. time: </p>
           </td>
           <td>
-            <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">{{test2Extend(student)}}</p>
+            <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">{{testTime(student, "test2Ext").hour}}h, {{testTime(student, "test2Ext").minute}}m, {{testTime(student, "test2Ext").second}}s</p>
           </td>
         </tr>
         <tr>
