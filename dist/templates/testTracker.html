@@ -112,7 +112,8 @@
     </div>
 <!--TEST1 name-->
     <div class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-      <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete}" ng-click="startTimer(student, 'test1')"><p class="countBtnText" ng-class="{'redText': student.isSafeToDelete}">{{student.test1Name}}</p></p></button>
+      <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete, 'redText': student.isSafeToDelete}" ng-click="pauseTimer(student, 'test1')"><p class="countBtnText" ng-class="{'redText': student.isSafeToDelete}" ng-show="!isTimer1Start">{{student.test1Name}}</p></p></button>
+      <!-- <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete, 'redText': student.isSafeToDelete}" ng-click="startTimer(student, 'test1')"><p class="countBtnText" ng-class="{'redText': student.isSafeToDelete}" ng-show="isTimer1Start">{{student.test1Name}}</p></p></button> -->
     </div>
 <!--test1Time-->
     <div class="test1TimeCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">

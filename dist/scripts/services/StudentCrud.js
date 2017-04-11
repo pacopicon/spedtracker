@@ -79,8 +79,6 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
               return timeUnit;
             }
           };
-
-
         }
 
         return {

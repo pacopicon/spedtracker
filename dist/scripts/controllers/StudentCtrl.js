@@ -31,6 +31,9 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       }
     };
 
+    $scope.isTimer1Start = false;
+    $scope.isTimer2Start = false;
+
     $scope.timer = function(student, testNo) {
 
       var totalTime1 = student.test1Time * student.extendTime;
@@ -44,8 +47,10 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         return countdown;
       } else if (testNo == "test1") {
         var fullTime = student.test1StartTime + totalTime1;
+        $scope.isTimer1Start = true;
       } else if (testNo == "test2") {
         var fullTime = student.test2StartTime + totalTime2;
+        $scope.isTimer2Start = true;
       }
 
       var timeLeftInMillisecs = fullTime - $scope.time;
@@ -56,9 +61,15 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $interval($scope.timer, 1000);
 
-    // $scope.parseTime = function(timeInMillisecs) {
-    //   StudentCrud.parseTime(timeInMillisecs);
-    // };
+    $scope.pauseTimer = function(student, testNo) {
+      if (testNo == "test1") {
+        $scope.isTimer1Start = false;
+      } else if (testNo == "test2") {
+        $scope.isTimer2Start = false;
+      }
+      var timerFunction = $scope.timer(student, testNo);
+      $interval.cancel(timerFunction);
+    };
 
     $scope.testTime = function(student, testNo) {
       var totalTime1 = student.test1Time * student.extendTime;

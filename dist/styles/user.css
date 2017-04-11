@@ -439,7 +439,8 @@ section {
 }
 
 .redCell {
-  background-color: #e05d6f;
+  border: 2.5px solid #e05d6f;
+  color: #e05d6f;
 }
 
 .yellowText {
