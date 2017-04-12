@@ -369,18 +369,14 @@ section {
   /*padding-bottom: 5px;*/
 }
 
-.countBtn {
+.countBtn, .pauseBtn {
   border-radius: 1em;
   border: 2.5px solid #6FC853;
-  /*min-height: 2em;*/
   background-color: white;
   color: #6FC853;
-  /*float: left;*/
   height: 75%;
   width: 100%;
-  /*margin-top: 5%;*/
   margin-bottom: 25%;
-  /*padding-top: 0;*/
 }
 
 .countBtn:hover {
@@ -388,8 +384,52 @@ section {
   color: white;
 }
 
-.countBtnText {
+.countBtnText, .pauseBtnText {
   margin-top: 12px;
+}
+
+.pauseBtn:hover {
+  background-color: #C3C300;
+  color: white
+}
+
+.pauseBtn {
+  border: 2.5px solid #C3C300;
+  color: #C3C300;
+}
+
+.resumeBtn, .restartBtn {
+  border-radius: 1em;
+  border: 2.5px solid #e05d6f;
+  background-color: white;
+  color: #e05d6f;
+  height: 1.4em;
+  width: 100%;
+  /*transition: all 0.4s ease-in-out;*/
+}
+
+.resumeBtn {
+  margin-bottom: 1%;
+  border: 2.5px solid #6FC853;
+  color: #6FC853;
+}
+
+.resumeBtn:Hover {
+  color: white;
+  background-color: #6FC853;
+}
+
+.restartBtn {
+  margin-bottom: 25%;
+}
+
+.restartBtn:hover {
+  background-color: #e05d6f;
+  color: white;
+}
+
+.pauseBtnText, .restartBtnText {
+  margin-bottom: 10%;
 }
 
 .test1NameCell {

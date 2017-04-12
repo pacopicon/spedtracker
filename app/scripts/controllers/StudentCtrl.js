@@ -20,19 +20,17 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $scope.startTimer = function(student, testNo) {
       if (student.test1StartTime == 0 || typeof student.test1StartTime == "undefined") {
+        student.isTimer1Start = true;
         student.test1StartTime = Date.now();
-        student.isTest1Over = true;
         students.$save(student);
         $scope.timer(student, testNo);
       } else {
+        student.isTimer2Start = true;
         student.test2StartTime = Date.now();
         students.$save(student);
         $scope.timer(student, testNo);
       }
     };
-
-    $scope.isTimer1Start = false;
-    $scope.isTimer2Start = false;
 
     $scope.timer = function(student, testNo) {
 
@@ -47,10 +45,8 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         return countdown;
       } else if (testNo == "test1") {
         var fullTime = student.test1StartTime + totalTime1;
-        $scope.isTimer1Start = true;
       } else if (testNo == "test2") {
         var fullTime = student.test2StartTime + totalTime2;
-        $scope.isTimer2Start = true;
       }
 
       var timeLeftInMillisecs = fullTime - $scope.time;
@@ -63,12 +59,23 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $scope.pauseTimer = function(student, testNo) {
       if (testNo == "test1") {
-        $scope.isTimer1Start = false;
+        student.isTimer1Paused = true;
       } else if (testNo == "test2") {
-        $scope.isTimer2Start = false;
+        student.isTimer2Paused = true;
       }
+      students.$save(student);
       var timerFunction = $scope.timer(student, testNo);
       $interval.cancel(timerFunction);
+    };
+
+    $scope.resumeTimer = function(student, testNo) {
+      if (testNo == "test1") {
+        student.isTimer1Paused = false;
+      } else if (testNo == "test2") {
+        student.isTimer2Paused = false;
+      }
+      console.log("resumeTimer called");
+      students.$save(student);
     };
 
     $scope.testTime = function(student, testNo) {
