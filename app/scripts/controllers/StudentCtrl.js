@@ -52,12 +52,9 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       } else if (testNo == "test2") {
         fullTime = student.test2StartTime + totalTime2;
       }
-
       // timeLeftInMillisecs = fullTime - $scope.time;
       timeLeftInMillisecs = fullTime - timerTime;
-
       // console.log("timerTime = " + timerTime);
-
       countdown = StudentCrud.parseTime(timeLeftInMillisecs);
       return countdown;
     };
@@ -70,6 +67,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       }
       students.$save(student);
       $interval.cancel(promise);
+      console.log()
     };
 
     $scope.resumeTimer = function(student, testNo) {

@@ -298,6 +298,14 @@ section {
   /*margin-left: 1em;*/
 }
 
+.controlBtn:hover, .btn-add:hover, .countBtn:hover, .pauseBtn:hover, .resumeBtn:hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.controlBtn, .btn-add, .countBtn, .pauseBtn, .resumeBtn {
+  transition: all 0.2s ease-in-out;
+}
+
 .controlBtn:hover {
   background-color: #3f4e62;
   color: white
