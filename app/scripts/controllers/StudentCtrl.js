@@ -63,10 +63,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       return countdown;
     };
 
-    $scope.stopTheClock = function() {
-      $interval.cancel(promise);
-    }
-
     $scope.pauseTimer = function(student, testNo) {
       if (testNo == "test1") {
         student.isTimer1Paused = true;
@@ -75,12 +71,18 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       }
       students.$save(student);
 
-      $scope.stopTheClock();
+      // $scope.timer(student, testNo);
+
+      $interval.cancel(promise);
+
+      var promise = null;
 
       $scope.$on('$destroy', function() {
           // Make sure that the interval is destroyed too
-          $scope.stopTheClock();
+          $interval.cancel(promise);
       });
+
+      $scope.timer(student, testNo);
 
       console.log("promise: " + promise);
     };
