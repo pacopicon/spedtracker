@@ -149,7 +149,7 @@ spedtracker.controller('GraphCtrl', ["$scope", "StudentCrud", "dateCruncher", "$
       $scope.itemDataLastSeven = [$scope.count("lastSeven").completeNotDue, 0, $scope.count("lastSeven").incompleteDue, $scope.count("lastSeven").completeDue];
 
       // chart 2: hour bar chart
-      $scope.hourDataLastSeven = [$scope.count("lastSeven").hoursCompleteNotDue, 0, $scope.count("lastSeven").hoursIncompleteDue, $scope.count("lastSeven").hoursCompleteDue]
+      $scope.hourDataLastSeven = [$scope.count("lastSeven").hoursCompleteNotDue, 0, $scope.count("lastSeven").hoursIncompleteDue, $scope.count("lastSeven").hoursCompleteDue];
 
       // chart 3: summary pie chart
       $scope.itemDataCompleteIncompleteTotalLastSeven = [$scope.w, $scope.x, $scope.y, $scope.z, $scope.count("lastSeven").simplyComplete, $scope.count("lastSeven").simplyIncomplete];

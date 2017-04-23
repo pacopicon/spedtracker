@@ -12,7 +12,8 @@
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column1">
       <div class="clock">
-        <p><b>{{time | date: 'EEEE'}}, </b><b>{{time | date: 'MMMM'}} {{time | date: 'dd'}}, </b><b>{{time | date: 'yyyy'}}, </b><b> {{time | date: 'shortTime'}}</b></p>
+        <p><b>{{time | date: 'EEEE'}}, </b><b>{{time | date: 'MMMM'}} {{time | date: 'dd'}}, </b><b>{{time | date: 'yyyy'}}, </b><b> {{time | date: 'mediumTime'}}</b></p>
+        <!-- <p ng-click="stopClock()">stop clock</p> -->
       </div>
     </div>
   </div>
@@ -71,15 +72,15 @@
     </div>
 <!--TEST1 name-->
     <div class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-      <div ng-show="!student.isTimer1Start">
+      <div ng-show="!student.isTimer1Going">
         <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete, 'redText': student.isSafeToDelete}" ng-click="startTimer(student, 'test1')"><p class="countBtnText">{{student.test1Name}}</p></p></button>
       </div>
-      <div ng-show="student.isTimer1Start && !student.isTimer1Paused">
+      <div ng-show="student.isTimer1Going && !student.isTimer1Paused">
         <button class="pauseBtn" ng-click="pauseTimer(student, 'test1')"><p class="pauseBtnText">pause</p></p></button>
       </div>
       <div ng-show="student.isTimer1Paused">
         <button class="resumeBtn" ng-click="resumeTimer(student, 'test1')"><p class="resumeBtnText">resume</p></p></button>
-        <button class="restartBtn" ng-click="restartTimer(student, 'test1')"><p class="restartBtnText">restart</p></p></button>
+        <button class="restartBtn" ng-click="startTimer(student, 'test1')"><p class="restartBtnText">restart</p></p></button>
       </div>
     </div>
 <!--test1Time-->
@@ -113,15 +114,15 @@
     </div>
 <!--test 2 name-->
 <div class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-  <div ng-show="!student.isTimer2Start">
+  <div ng-show="!student.isTimer2Going">
     <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete, 'redText': student.isSafeToDelete}" ng-click="startTimer(student, 'test2')"><p class="countBtnText">{{student.test2Name}}</p></p></button>
   </div>
-  <div ng-show="student.isTimer2Start && !student.isTimer2Paused">
+  <div ng-show="student.isTimer2Going && !student.isTimer2Paused">
     <button class="pauseBtn" ng-click="pauseTimer(student, 'test2')"><p class="pauseBtnText">pause</p></p></button>
   </div>
   <div ng-show="student.isTimer2Paused">
     <button class="resumeBtn" ng-click="resumeTimer(student, 'test2')"><p class="resumeBtnText">resume</p></p></button>
-    <button class="restartBtn" ng-click="restartTimer(student, 'test2')"><p class="restartBtnText">restart</p></p></button>
+    <button class="restartBtn" ng-click="startTimer(student, 'test2')"><p class="restartBtnText">restart</p></p></button>
   </div>
 </div>
 <!--test 2 time-->
