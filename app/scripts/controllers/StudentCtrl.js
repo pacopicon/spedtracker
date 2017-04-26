@@ -18,96 +18,55 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     // Custom Time in case a student already began the test
     $scope.newDueDate = new Date().setMinutes(0, 0);
 
-    var promise,
-        x = 2000000000,
-        y = 2000000000;
-
     $scope.startTimer = function(student, testNo) {
       if (student.test1StartTime == 0 || typeof student.test1StartTime == "undefined") {
-        student.isTimer1Going = true;
+        student.isTimer1Start = true;
         student.test1StartTime = Date.now();
         students.$save(student);
-        // var totalTime1 = student.test1Time * student.extendTime;
-        // $scope.timer(student, testNo);
-        // promise = $interval(function() {$scope.timer(student, testNo)}, 1000);
+        $scope.timer(student, testNo);
       } else {
-        student.isTimer2Going = true;
+        student.isTimer2Start = true;
         student.test2StartTime = Date.now();
         students.$save(student);
-        // var totalTime2 = student.test2Time * student.extendTime;
-        // $scope.timer(student, testNo);
-        // promise = $interval(function() {$scope.timer(student, testNo)}, 1000);
+        $scope.timer(student, testNo);
       }
-      var promise = $interval(function() {$scope.timer(student, testNo)}, 1000);
-      console.log("promise: " + JSON.stringify(promise, null, 4));
-      return promise;
     };
 
     $scope.timer = function(student, testNo) {
 
-      // timerTime = Date.now();
+      var totalTime1 = student.test1Time * student.extendTime;
+      var totalTime2 = student.test2Time * student.extendTime;
 
-      // if startTimer has not been called yet for test 1
-      if (testNo == "test1" && !student.isTimer1Going && !student.isTimer1Paused) {
-        // totalTime1 = student.test1Time * student.extendTime;
-        countdown = StudentCrud.parseTime(totalTime1);
+      if (testNo == "test1" && student.test1StartTime == 0 || typeof student.test1StartTime == "undefined") {
+        var countdown = StudentCrud.parseTime(totalTime1);
         return countdown;
-      // if startTimer has not been called yet for test 2
-      } else if (testNo == "test2" && !student.isTimer2Going && !student.isTimer2Paused) {
-        // totalTime2 = student.test2Time * student.extendTime;
-        countdown = StudentCrud.parseTime(totalTime2);
+      } else if (testNo == "test2" && student.test2StartTime == 0 || typeof student.test2StartTime == "undefined") {
+        var countdown = StudentCrud.parseTime(totalTime2);
         return countdown;
-      // if test 1 timer is paused
-      } else if (testNo == "test1" && student.isTimer1Paused) {
-        countdown = StudentCrud.parseTime(student.test1PausedAt);
-        return countdown;
-      // if test 2 timer is paused
-      } else if (testNo == "test2" && student.isTimer2Paused) {
-        countdown = StudentCrud.parseTime(student.test2PausedAt);
-        return countdown;
-      // if test 1 timer has started and is not paused
-      } else if (testNo == "test1" && student.isTimer1Going) {
-        // console.log("test 1 timer called: " + totalTime1);
-        x -= 1000;  // minus one second
-        console.log("test 1 timer called: " + x);
-        countdown = StudentCrud.parseTime(x);
-        // fullTime = student.test1StartTime + totalTime1;
-
-      // if test 2 timer has started and is not paused
-      } else if (testNo == "test2" && student.isTimer2Going) {
-        y -= 1000;  // minus one second
-        countdown = StudentCrud.parseTime(y);
-        // fullTime = student.test2StartTime + totalTime2;
+      } else if (testNo == "test1") {
+        var fullTime = student.test1StartTime + totalTime1;
+      } else if (testNo == "test2") {
+        var fullTime = student.test2StartTime + totalTime2;
       }
 
-      // timeLeftInMillisecs = fullTime - timerTime;
-      // console.log("timer called");
+      var timeLeftInMillisecs = fullTime - $scope.time;
+
+      var countdown = StudentCrud.parseTime(timeLeftInMillisecs);
       return countdown;
     };
 
+    $interval($scope.timer, 1000);
+
     $scope.pauseTimer = function(student, testNo) {
-
-      $interval.cancel(promise);
-
-      $scope.$on('$destroy', function() {
-        // Make sure that the interval is destroyed too
-        $interval.cancel(promise);
-      });
-
       if (testNo == "test1") {
         student.isTimer1Paused = true;
-        student.test1PausedAt = totalTime1;
       } else if (testNo == "test2") {
         student.isTimer2Paused = true;
-        student.test2PausedAt = totalTime2;
       }
-
       students.$save(student);
-      $scope.timer(student, testNo);
-
-      console.log("pauseTimer promise: " + JSON.stringify(promise, null, 4));
+      var timerFunction = $scope.timer(student, testNo);
+      $interval.cancel(timerFunction);
     };
-
 
     $scope.resumeTimer = function(student, testNo) {
       if (testNo == "test1") {
@@ -117,25 +76,11 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       }
       console.log("resumeTimer called");
       students.$save(student);
-
-      var promise = $interval(function() {$scope.timer(student, testNo)}, 1000);
-      console.log("promise: " + JSON.stringify(promise, null, 4));
-      return promise;
     };
 
-    $scope.restartTimer = function(student, testNo) {
-      if (testNo == "test1") {
-        student.isTimer1Paused = false;
-      } else if (testNo == "test2") {
-        student.isTimer2Paused = false;
-      }
-
-      $scope.startTimer(student, testNo);
-    }
-
     $scope.testTime = function(student, testNo) {
-      totalTime1 = student.test1Time * student.extendTime;
-      totalTime2 = student.test2Time * student.extendTime;
+      var totalTime1 = student.test1Time * student.extendTime;
+      var totalTime2 = student.test2Time * student.extendTime;
 
       if (testNo == "test1") {
         var time = StudentCrud.parseTime(student.test1Time);
@@ -280,9 +225,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     $scope.delete = function(student) {
       var owner = "delete at " + Date.now();
       $timeout(toggleInvert(owner), 1000);
-      $scope.selectAll = true;
-      $scope.clickedToDelete = false;
-      $scope.appear = false;
       StudentCrud.delete(student);
     };
 
@@ -290,3 +232,4 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
   }
 ]);
+Contact GitHub API Training Shop Blog About
