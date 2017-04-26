@@ -176,16 +176,16 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
       if (safeCount > 0) {
         $scope.clickedToDelete = true;
-        $timeout(function appear() {$scope.appear = true}, 600)
+        $timeout(function appear() {$scope.deleteAppear = true}, 600);
       } else {
         $scope.clickedToDelete = false;
-        $scope.appear = false;
+        $scope.deleteAppear = false;
       }
 
       console.log("clickedToDelete: " + $scope.clickedToDelete);
 
       if (safeCount > 0 && unsafeCount > 1) {
-        $scope.invertSelect = true;
+        $timeout(function appear() {$scope.invertSelect = true}, 600);
         $scope.selectAll = false;
         console.log("safeCount: " + safeCount);
         console.log("invertSelect is true; selectAll is false");
@@ -207,7 +207,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       StudentCrud.toggleSelectForDelete(students);
       $scope.selectAll = false;
       $scope.clickedToDelete = true;
-      $timeout(function appear() {$scope.appear = true}, 1000)
+      $timeout(function appear() {$scope.deleteAppear = true}, 600);;
       console.log("selectAll: " + $scope.selectAll);
       console.log("invertSelect: " + $scope.invertSelect);
     };
@@ -216,7 +216,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       StudentCrud.toggleSelectForDelete(students);
       $scope.selectAll = true;
       $scope.clickedToDelete = false;
-      $scope.appear = false;
+      $scope.deleteAppear = false;
       console.log("selectAll: " + $scope.selectAll);
       console.log("invertSelect: " + $scope.invertSelect);
     };
@@ -246,7 +246,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       $timeout(toggleInvert(owner), 1000);
       $scope.selectAll = true;
       $scope.clickedToDelete = false;
-      $scope.appear = false;
+      $scope.deleteAppear = false;
       StudentCrud.delete(student);
     };
 
