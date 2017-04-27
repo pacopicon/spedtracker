@@ -23,12 +23,16 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     $scope.startTimer = function(student, testNo) {
       if (student.test1StartTime == 0 || typeof student.test1StartTime == "undefined") {
         student.isTimer1Start = true;
-        student.test1StartTime = Date.now();
+        if (student.test1StartTime == 0) {
+          student.test1StartTime = Date.now();
+        }
         students.$save(student);
         var promise = $interval(function() {$scope.timer(student, testNo)}, 1000);
       } else {
         student.isTimer2Start = true;
-        student.test2StartTime = Date.now();
+        if (student.test2StartTime == 0) {
+          student.test2StartTime = Date.now();
+        }
         students.$save(student);
         var promise = $interval(function() {$scope.timer(student, testNo)}, 1000);
       }
@@ -41,25 +45,31 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
       timerTime = Date.now();
 
-      if (testNo == "test1" && student.test1StartTime == 0 || typeof student.test1StartTime == "undefined") {
+      // in case timer has not started yet (test 1)
+      if (testNo == "test1" && student.test1StartTime == 0) {
         countdown = StudentCrud.parseTime(student.totalTime1);
         return countdown;
-      } else if (testNo == "test2" && student.test2StartTime == 0 || typeof student.test2StartTime == "undefined") {
+      // in case timer has not started yet (test 2)
+      } else if (testNo == "test2" && student.test2StartTime == 0) {
         countdown = StudentCrud.parseTime(student.totalTime2);
         return countdown;
+      // timer is counting down (test 1)
       } else if (testNo == "test1" && !student.isTimer1Paused) {
-        fullTime = student.test1StartTime + student.totalTime1;
+        dueTime = student.test1StartTime + student.totalTime1;
+      // timer is counting down (test 2)
       } else if (testNo == "test2" && !student.isTimer2Paused) {
-        fullTime = student.test2StartTime + student.totalTime2;
-      } else if (student.isTimer1Paused) {
+        dueTime = student.test2StartTime + student.totalTime2;
+      // timer is paused (test 1)
+      } else if (testNo == "test1" && student.isTimer1Paused) {
         countdown = StudentCrud.parseTime(student.totalTime1);
         return countdown;
-      } else if (student.isTimer2Paused) {
+      // timer is paused (test 2)
+      } else if (testNo == "test2" && student.isTimer2Paused) {
         countdown = StudentCrud.parseTime(student.totalTime2);
         return countdown;
       }
-      // timeLeftInMillisecs = fullTime - $scope.time;
-      timeLeftInMillisecs = fullTime - timerTime;
+      // timeLeftInMillisecs = dueTime - $scope.time;
+      timeLeftInMillisecs = dueTime - timerTime;
       // console.log("timerTime = " + timerTime);
       countdown = StudentCrud.parseTime(timeLeftInMillisecs);
       return countdown;
@@ -67,19 +77,23 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $scope.pauseTimer = function(student, testNo) {
 
+// Solution: (1) you need to record test-time remaining at moment of pause and then make this the totalTime1.  Then, (2) reset test1StartTime to the moment of test-resume (e.g. resumeTimer fn call) and make resumed timer countdown = this test1StartTime + this totalTime1.
 
       if (testNo == "test1") {
         student.isTimer1Paused = true;
-        fullTime = student.test1StartTime + student.totalTime1;
-        timeLeftInMillisecs = fullTime - Date.now();
+        student.test1StartTime = Date.now();
+        dueTime = Date.now() + student.totalTime1;
+        timeLeftInMillisecs = dueTime - Date.now();
         student.totalTime1 = timeLeftInMillisecs;
+        students.$save(student);
       } else if (testNo == "test2") {
         student.isTimer2Paused = true;
-        fullTime = student.test2StartTime + student.totalTime2;
-        timeLeftInMillisecs = fullTime - Date.now();
+        dueTime = student.test2StartTime + student.totalTime2;
+        timeLeftInMillisecs = dueTime - Date.now();
         student.totalTime2 = timeLeftInMillisecs;
+        students.$save(student);
       }
-      students.$save(student);
+
 
       // $scope.timer(student, testNo);
 

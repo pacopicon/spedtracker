@@ -94,14 +94,6 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 // This function is called by the submit button in testTracker.html when user creates an item in the form
       addStudent: function(studentName, extendTime, test1Name, hours1, minutes1, test2Name, hours2, minutes2) {
 
-        if (typeof test1StartTime === "undefined") {
-          test1StartTime = 0;
-        }
-
-        if (typeof test2StartTime === "undefined") {
-          test2StartTime = 0;
-        }
-
         test1Time = addHoursAndMinutes(hours1, minutes1);
         test2Time = addHoursAndMinutes(hours2, minutes2);
 
@@ -111,7 +103,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           test1Name: test1Name,
           test1Time: test1Time,
           totalTime1: test1Time * extendTime,
-          test1StartTime: test1StartTime,
+          test1StartTime: 0,
           isTimer1Start: false,
           isTimer1Paused: false,
           isTest1Over: false,
@@ -119,7 +111,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           test2Name: test2Name,
           test2Time: test2Time,
           totalTime2: test2Time * extendTime,
-          test2StartTime: test2StartTime,
+          test2StartTime: 0,
           isTimer2Start: false,
           isTimer2Paused: false,
           pausedAt2: 0,
