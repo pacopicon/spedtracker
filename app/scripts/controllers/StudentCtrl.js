@@ -18,23 +18,27 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     // Custom Time in case a student already began the test
     $scope.newDueDate = new Date().setMinutes(0, 0);
 
-    var promise,
-        x = 2000000000,
-        y = 2000000000;
+    var promise;
+    // var x = 2000000000;
+    // var y = 2000000000;
 
     $scope.startTimer = function(student, testNo) {
       if (student.test1StartTime == 0 || typeof student.test1StartTime == "undefined") {
         student.isTimer1Going = true;
         student.test1StartTime = Date.now();
         students.$save(student);
-        // var totalTime1 = student.test1Time * student.extendTime;
+        if (!student.isTimer1Start) {
+          var totalTime1 = student.test1Time * student.extendTime;
+        }
         // $scope.timer(student, testNo);
         // promise = $interval(function() {$scope.timer(student, testNo)}, 1000);
       } else {
         student.isTimer2Going = true;
         student.test2StartTime = Date.now();
         students.$save(student);
-        // var totalTime2 = student.test2Time * student.extendTime;
+        if (!student.isTimer2Start) {
+          var totalTime2 = student.test2Time * student.extendTime;
+        }
         // $scope.timer(student, testNo);
         // promise = $interval(function() {$scope.timer(student, testNo)}, 1000);
       }
@@ -44,6 +48,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     };
 
     $scope.timer = function(student, testNo) {
+
 
       // timerTime = Date.now();
 
@@ -68,15 +73,19 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       // if test 1 timer has started and is not paused
       } else if (testNo == "test1" && student.isTimer1Going) {
         // console.log("test 1 timer called: " + totalTime1);
-        x -= 1000;  // minus one second
-        console.log("test 1 timer called: " + x);
-        countdown = StudentCrud.parseTime(x);
+        student.isTimer1Start = true;
+        students.$save(student);
+        totalTime1 -= 1000;  // minus one second
+        console.log("test 1 timer called: " + totalTime1);
+        countdown = StudentCrud.parseTime(totalTime1);
         // fullTime = student.test1StartTime + totalTime1;
 
       // if test 2 timer has started and is not paused
       } else if (testNo == "test2" && student.isTimer2Going) {
-        y -= 1000;  // minus one second
-        countdown = StudentCrud.parseTime(y);
+        student.isTimer2Start = true;
+        students.$save(student);
+        totalTime2 -= 1000;  // minus one second
+        countdown = StudentCrud.parseTime(totalTime2);
         // fullTime = student.test2StartTime + totalTime2;
       }
 
@@ -107,7 +116,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
       console.log("pauseTimer promise: " + JSON.stringify(promise, null, 4));
     };
-
 
     $scope.resumeTimer = function(student, testNo) {
       if (testNo == "test1") {
