@@ -377,7 +377,7 @@ section {
   /*padding-bottom: 5px;*/
 }
 
-.countBtn, .pauseBtn {
+.countBtn, .pauseBtn, .grayCell {
   border-radius: 1em;
   border: 2.5px solid #6FC853;
   background-color: white;
@@ -392,7 +392,7 @@ section {
   color: white;
 }
 
-.countBtnText, .pauseBtnText {
+.countBtnText, .pauseBtnText, .grayText {
   margin-top: 12px;
 }
 
@@ -489,6 +489,15 @@ section {
 .redCell {
   border: 2.5px solid #e05d6f;
   color: #e05d6f;
+}
+
+.grayCell {
+  border: 2.5px solid #3f4e62;
+  color: #3f4e62;
+}
+
+.grayText {
+  color: #3f4e62;
 }
 
 .yellowText {

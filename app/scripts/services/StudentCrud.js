@@ -102,22 +102,26 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           test2StartTime = 0;
         }
 
+        test1Time = addHoursAndMinutes(hours1, minutes1);
+        test2Time = addHoursAndMinutes(hours2, minutes2);
+
         students.$add({
           name: studentName,
           extendTime: extendTime,
           test1Name: test1Name,
-          test1Time: addHoursAndMinutes(hours1, minutes1),
+          test1Time: test1Time,
+          totalTime1: test1Time * extendTime,
           test1StartTime: test1StartTime,
           isTimer1Start: false,
           isTimer1Paused: false,
           isTest1Over: false,
           pausedAt1: 0,
           test2Name: test2Name,
-          test2Time: addHoursAndMinutes(hours2, minutes2),
+          test2Time: test2Time,
+          totalTime2: test2Time * extendTime,
           test2StartTime: test2StartTime,
           isTimer2Start: false,
           isTimer2Paused: false,
-          isTest2Over: false,
           pausedAt2: 0,
           isSafeToDelete: false,
           created_at: firebase.database.ServerValue.TIMESTAMP

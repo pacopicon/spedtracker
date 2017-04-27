@@ -25,13 +25,11 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         student.isTimer1Start = true;
         student.test1StartTime = Date.now();
         students.$save(student);
-        // $scope.timer(student, testNo);
         var promise = $interval(function() {$scope.timer(student, testNo)}, 1000);
       } else {
         student.isTimer2Start = true;
         student.test2StartTime = Date.now();
         students.$save(student);
-        // $scope.timer(student, testNo);
         var promise = $interval(function() {$scope.timer(student, testNo)}, 1000);
       }
       // var promise = $interval(function() {$scope.timer(student, testNo)}, 1000);
@@ -41,25 +39,23 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $scope.timer = function(student, testNo) {
 
-      totalTime1 = student.test1Time * student.extendTime;
-      totalTime2 = student.test2Time * student.extendTime;
       timerTime = Date.now();
 
       if (testNo == "test1" && student.test1StartTime == 0 || typeof student.test1StartTime == "undefined") {
-        countdown = StudentCrud.parseTime(totalTime1);
+        countdown = StudentCrud.parseTime(student.totalTime1);
         return countdown;
       } else if (testNo == "test2" && student.test2StartTime == 0 || typeof student.test2StartTime == "undefined") {
-        countdown = StudentCrud.parseTime(totalTime2);
+        countdown = StudentCrud.parseTime(student.totalTime2);
         return countdown;
       } else if (testNo == "test1" && !student.isTimer1Paused) {
-        fullTime = student.test1StartTime + totalTime1;
+        fullTime = student.test1StartTime + student.totalTime1;
       } else if (testNo == "test2" && !student.isTimer2Paused) {
-        fullTime = student.test2StartTime + totalTime2;
+        fullTime = student.test2StartTime + student.totalTime2;
       } else if (student.isTimer1Paused) {
-        countdown = StudentCrud.parseTime(student.pausedAt1);
+        countdown = StudentCrud.parseTime(student.totalTime1);
         return countdown;
       } else if (student.isTimer2Paused) {
-        countdown = StudentCrud.parseTime(student.pausedAt2);
+        countdown = StudentCrud.parseTime(student.totalTime2);
         return countdown;
       }
       // timeLeftInMillisecs = fullTime - $scope.time;
@@ -71,19 +67,17 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $scope.pauseTimer = function(student, testNo) {
 
-      totalTime1 = student.test1Time * student.extendTime;
-      totalTime2 = student.test2Time * student.extendTime;
 
       if (testNo == "test1") {
         student.isTimer1Paused = true;
-        fullTime = student.test1StartTime + totalTime1;
+        fullTime = student.test1StartTime + student.totalTime1;
         timeLeftInMillisecs = fullTime - Date.now();
-        student.pausedAt1 = timeLeftInMillisecs;
+        student.totalTime1 = timeLeftInMillisecs;
       } else if (testNo == "test2") {
         student.isTimer2Paused = true;
-        fullTime = student.test2StartTime + totalTime2;
+        fullTime = student.test2StartTime + student.totalTime2;
         timeLeftInMillisecs = fullTime - Date.now();
-        student.pausedAt2 = timeLeftInMillisecs;
+        student.totalTime2 = timeLeftInMillisecs;
       }
       students.$save(student);
 
@@ -111,20 +105,32 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       }
       console.log("resumeTimer called");
       students.$save(student);
+
+      $scope.startTimer(student, testNo);
+    };
+
+    $scope.restartTimer = function(student, testNo) {
+      if (testNo == "test1") {
+        student.isTimer1Paused = false;
+      } else if (testNo == "test2") {
+        student.isTimer2Paused = false;
+      }
+      console.log("resumeTimer called");
+      students.$save(student);
+
+      $scope.startTimer(student, testNo);
     };
 
     $scope.testTime = function(student, testNo) {
-      var totalTime1 = student.test1Time * student.extendTime;
-      var totalTime2 = student.test2Time * student.extendTime;
 
       if (testNo == "test1") {
         var time = StudentCrud.parseTime(student.test1Time);
       } else if (testNo == "test2") {
         var time = StudentCrud.parseTime(student.test2Time);
       } else if (testNo == "test1Ext") {
-        var time = StudentCrud.parseTime(totalTime1);
+        var time = StudentCrud.parseTime(student.test1Time * student.extendTime);
       } else if (testNo == "test2Ext") {
-        var time = StudentCrud.parseTime(totalTime2);
+        var time = StudentCrud.parseTime(student.test2Time * student.extendTime);
       }
       return time;
     }
