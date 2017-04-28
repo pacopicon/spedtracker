@@ -81,32 +81,24 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
       if (testNo == "test1") {
         student.isTimer1Paused = true;
-        student.test1StartTime = Date.now();
-        dueTime = Date.now() + student.totalTime1;
-        timeLeftInMillisecs = dueTime - Date.now();
-        student.totalTime1 = timeLeftInMillisecs;
+        timeLeftAtPause1 = (student.test1StartTime + student.totalTime1) - Date.now();
+        student.totalTime1 = timeLeftAtPause1;
+        student.test1StartTime = 0;
         students.$save(student);
       } else if (testNo == "test2") {
         student.isTimer2Paused = true;
-        dueTime = student.test2StartTime + student.totalTime2;
-        timeLeftInMillisecs = dueTime - Date.now();
-        student.totalTime2 = timeLeftInMillisecs;
+        timeLeftAtPause2 = (student.test2StartTime + student.totalTime2) - Date.now();
+        student.totalTime2 = timeLeftAtPause2;
+        student.test2StartTime = 0;
         students.$save(student);
       }
 
-
-      // $scope.timer(student, testNo);
-
       $interval.cancel(promise);
-
-      var promise = null;
 
       $scope.$on('$destroy', function() {
           // Make sure that the interval is destroyed too
           $interval.cancel(promise);
       });
-
-      // $scope.timer(student, testNo);
 
       console.log("promise: " + promise);
     };
@@ -126,8 +118,10 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     $scope.restartTimer = function(student, testNo) {
       if (testNo == "test1") {
         student.isTimer1Paused = false;
+        student.totalTime1 = student.test1Time * student.extendTime;
       } else if (testNo == "test2") {
         student.isTimer2Paused = false;
+        student.totalTime2 = student.test2Time * student.extendTime;
       }
       console.log("resumeTimer called");
       students.$save(student);
