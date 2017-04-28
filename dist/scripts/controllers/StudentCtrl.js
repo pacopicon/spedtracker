@@ -46,7 +46,19 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       timerTime = Date.now();
 
       // in case timer has not started yet (test 1)
-      if (testNo == "test1" && student.test1StartTime == 0) {
+      if (student.totalTime1 + test1StartTime <= Date.now()) {
+        countdown = StudentCrud.parseTime(0);
+        student.isTest1Over = true;
+        student.isTimer1Start = false;
+        students.$save(student);
+        return countdown;
+      } else if (student.totalTime2 + test2StartTime <= Date.now()) {
+        countdown = StudentCrud.parseTime(0);
+        student.isTest2Over = true;
+        student.isTimer2Start = false;
+        students.$save(student);
+        return countdown;
+      } else if (testNo == "test1" && student.test1StartTime == 0) {
         countdown = StudentCrud.parseTime(student.totalTime1);
         return countdown;
       // in case timer has not started yet (test 2)
