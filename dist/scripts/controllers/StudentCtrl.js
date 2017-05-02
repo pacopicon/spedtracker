@@ -45,38 +45,51 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
       timerTime = Date.now();
 
+      // console.log("student data, isTest1Over: " + student.isTest1Over + ". test end: " + student.totalTime1 + student.test1StartTime + ". Date now: " + Date.now());
+
+      // todo:  student.isTest1Over == true.  Fix
+      // todo: student.total1Time + student.test1StartTime < Date.now() by a long shot.  Fix
+
       // in case timer has not started yet (test 1)
-      if (student.totalTime1 + test1StartTime <= Date.now()) {
+      if (student.totalTime1 + student.test1StartTime >= Date.now()) {
         countdown = StudentCrud.parseTime(0);
         student.isTest1Over = true;
         student.isTimer1Start = false;
         students.$save(student);
+        console.log("option 1a called");
         return countdown;
-      } else if (student.totalTime2 + test2StartTime <= Date.now()) {
+      } else if (student.totalTime2 + student.test2StartTime >= Date.now()) {
         countdown = StudentCrud.parseTime(0);
         student.isTest2Over = true;
         student.isTimer2Start = false;
         students.$save(student);
+        console.log("option 1b called");
         return countdown;
       } else if (testNo == "test1" && student.test1StartTime == 0) {
         countdown = StudentCrud.parseTime(student.totalTime1);
+        console.log("option 2a called");
         return countdown;
       // in case timer has not started yet (test 2)
       } else if (testNo == "test2" && student.test2StartTime == 0) {
+        console.log("option 2b called");
         countdown = StudentCrud.parseTime(student.totalTime2);
         return countdown;
       // timer is counting down (test 1)
       } else if (testNo == "test1" && !student.isTimer1Paused) {
+        console.log("option 3a called");
         dueTime = student.test1StartTime + student.totalTime1;
       // timer is counting down (test 2)
       } else if (testNo == "test2" && !student.isTimer2Paused) {
+        console.log("option 3b called");
         dueTime = student.test2StartTime + student.totalTime2;
       // timer is paused (test 1)
       } else if (testNo == "test1" && student.isTimer1Paused) {
+        console.log("option 4a called");
         countdown = StudentCrud.parseTime(student.totalTime1);
         return countdown;
       // timer is paused (test 2)
       } else if (testNo == "test2" && student.isTimer2Paused) {
+        console.log("option 4b called");
         countdown = StudentCrud.parseTime(student.totalTime2);
         return countdown;
       }
