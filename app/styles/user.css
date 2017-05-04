@@ -429,18 +429,17 @@ section {
 
 .restartBtn {
   margin-bottom: 1%;
-  border: 2.5px solid #6FC853;
-  color: #6FC853;
+  border: 2.5px solid #C3C300;
+  color: #C3C300;
 }
 
 .restartBtn:hover {
   color: white;
-  background-color: #6FC853;
+  background-color: #C3C300;
 }
 
 .endBtn {
   margin-bottom: 25%;
-  border: 2.5px solid #e05d6f;
 }
 
 .endBtn:hover {

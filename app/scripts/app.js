@@ -77,6 +77,7 @@ spedtracker.config(['ChartJsProvider', function (ChartJsProvider) {
     // '#e05d6f' --> red
     // '#3f4e62'--> black
     ChartJsProvider.setOptions({
+      // yellow, green, red, dark navy, brown, purple, blue
       chartColors: ['#C3C300', '#6FC853', '#e05d6f', '#3f4e62',  '#AC6D39', '#8E5EC5', '#4c91cd'],
       responsive: true
     });

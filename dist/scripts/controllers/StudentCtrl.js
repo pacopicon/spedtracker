@@ -83,19 +83,11 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         // in case timer has not started yet (test 1)
         if (student.test1StartTime == 0 && !student.isTest1Over) {
           countdown = StudentCrud.parseTime(student.totalTime1);
-          console.log("option 2a called");
-          return countdown;
-        // timer is counting down (test 1)
-        } else if (!student.isTimer1Paused && !student.isTest1Over) {
-        console.log("option 3a called");
-        dueTime = student.test1StartTime + student.totalTime1;
-        // timer is paused (test 1)
-        } else if (student.isTimer1Paused && !student.isTest1Over) {
-          console.log("option 4a called");
-          countdown = StudentCrud.parseTime(student.totalTime1);
+          // console.log("option 1a called");
           return countdown;
         // timer 1 runs out to zero
         } else if (student.totalTime1 + student.test1StartTime <= Date.now()) {
+          // console.log("option 2a called");
           countdown = StudentCrud.parseTime(0);
           student.isTest1Over = true;
           student.isTimer1Paused = false;
@@ -103,32 +95,42 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
           students.$save(student);
           // console.log("option 1a called.  student.totalTime1 + .test1StartTime = " + student.totalTime1 + student.test1StartTime + ". Date.now = " + Date.now());
           return countdown;
+        // timer is counting down (test 1)
+        } else if (!student.isTimer1Paused && !student.isTest1Over) {
+        // console.log("option 3a called");
+        dueTime = student.test1StartTime + student.totalTime1;
+        // timer is paused (test 1)
+        } else if (student.isTimer1Paused && !student.isTest1Over) {
+          // console.log("option 4a called");
+          countdown = StudentCrud.parseTime(student.totalTime1);
+          return countdown;
         }
 
       } else if (testNo == "test2") {
         // in case timer has not started yet (test 2)
         if (student.test2StartTime == 0 && !student.isTest2Over) {
-         console.log("option 2b called");
+        //  console.log("option 1b called");
          countdown = StudentCrud.parseTime(student.totalTime2);
          return countdown;
-        // timer is counting down (test 2)
-        } else if (testNo == "test2" && !student.isTimer2Paused && !student.isTest2Over) {
-         console.log("option 3b called");
-         dueTime = student.test2StartTime + student.totalTime2;
-         // timer is paused (test 2)
-        } else if (student.isTimer2Paused && !student.isTest2Over) {
-          console.log("option 4b called");
-          countdown = StudentCrud.parseTime(student.totalTime2);
-          return countdown;
         // timer 2 runs out to zero
         } else if (student.totalTime2 + student.test2StartTime <= Date.now()) {
+          // console.log("option 2b called");
           countdown = StudentCrud.parseTime(0);
           student.isTest2Over = true;
           student.isTimer2Paused = false;
           student.isTimer2Start = false;
           students.$save(student);
-          console.log("option 1b called");
           return countdown;
+        // timer is counting down (test 2)
+        } else if (!student.isTimer2Paused && !student.isTest2Over) {
+        //  console.log("option 3b called");
+         dueTime = student.test2StartTime + student.totalTime2;
+        // timer is paused (test 2)
+        } else if (student.isTimer2Paused && !student.isTest2Over) {
+          // console.log("option 4b called");
+          countdown = StudentCrud.parseTime(student.totalTime2);
+          return countdown;
+
         }
       }
 
@@ -140,8 +142,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     };
 
     $scope.pauseTimer = function(student, testNo) {
-
-// Solution: (1) you need to record test-time remaining at moment of pause and then make this the totalTime1.  Then, (2) reset test1StartTime to the moment of test-resume (e.g. resumeTimer fn call) and make resumed timer countdown = this test1StartTime + this totalTime1.
 
       if (testNo == "test1") {
         student.isTimer1Paused = true;
@@ -191,6 +191,16 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       students.$save(student);
 
       $scope.startTimer(student, testNo);
+    };
+
+    $scope.endTimer = function(student, testNo) {
+      if (testNo == "test1") {
+        student.test1StartTime = 0;
+      } else if (testNo == "test2") {
+        student.test2StartTime = 0;
+      }
+      console.log("endTimer called");
+      students.$save(student);
     };
 
     $scope.testTime = function(student, testNo) {
