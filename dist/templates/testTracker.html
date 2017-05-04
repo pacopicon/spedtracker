@@ -75,12 +75,12 @@
         <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete, 'redText': student.isSafeToDelete}"  ng-click="startTimer(student, 'test1')"><p class="countBtnText">{{student.test1Name}}</p></p></button>
       </div>
       <div ng-show="student.isTest1Over">
-        <button class="redCell redText"><p class="countBtnText">{{student.test1Name}}</p></p></button>
+        <button class="redBtn redBtnText"><p class="countBtnText">{{student.test1Name}}</p></p></button>
       </div>
       <div ng-show="student.isTimer1Start && !student.isTimer1Paused">
         <button class="pauseBtn" ng-click="pauseTimer(student, 'test1')"><p class="pauseBtnText">pause</p></p></button>
       </div>
-      <div ng-show="!student.isTimer1Start && student.isTimer1Paused">
+      <div ng-show="student.isTimer1Start && student.isTimer1Paused">
         <button class="resumeBtn" ng-click="resumeTimer(student, 'test1')"><p class="resumeBtnText">resume</p></p></button>
         <button class="restartBtn" ng-click="restartTimer(student, 'test1')"><p class="restartBtnText">restart</p></p></button>
         <button class="endBtn" ng-click="endTimer(student, 'test1')"><p class="endBtnText">restart</p></p></button>

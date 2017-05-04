@@ -298,11 +298,11 @@ section {
   /*margin-left: 1em;*/
 }
 
-.controlBtn:hover, .btn-add:hover, .countBtn:hover, .pauseBtn:hover, .resumeBtn:hover {
+.controlBtn:hover, .btn-add:hover, .countBtn:hover, .pauseBtn:hover, .resumeBtn:hover, .endBtn:hover {
   transition: all 0.2s ease-in-out;
 }
 
-.controlBtn, .btn-add, .countBtn, .pauseBtn, .resumeBtn {
+.controlBtn, .btn-add, .countBtn, .pauseBtn, .resumeBtn, .endBtn {
   transition: all 0.2s ease-in-out;
 }
 
@@ -377,7 +377,7 @@ section {
   /*padding-bottom: 5px;*/
 }
 
-.countBtn, .pauseBtn, .grayCell {
+.countBtn, .pauseBtn, .grayCell, .redBtn {
   border-radius: 1em;
   border: 2.5px solid #6FC853;
   background-color: white;
@@ -392,7 +392,7 @@ section {
   color: white;
 }
 
-.countBtnText, .pauseBtnText, .grayText {
+.countBtnText, .pauseBtnText, .grayText, .redBtnText {
   margin-top: 12px;
 }
 
@@ -417,7 +417,7 @@ section {
 }
 
 .resumeBtn {
-  margin-bottom: 1%;
+  /*margin-bottom: 1%;*/
   border: 2.5px solid #6FC853;
   color: #6FC853;
 }
@@ -428,7 +428,7 @@ section {
 }
 
 .restartBtn {
-  margin-bottom: 1%;
+  /*margin-bottom: 1%;*/
   border: 2.5px solid #C3C300;
   color: #C3C300;
 }
@@ -439,7 +439,7 @@ section {
 }
 
 .endBtn {
-  margin-bottom: 25%;
+  /*margin-bottom: 25%;*/
 }
 
 .endBtn:hover {
@@ -447,8 +447,8 @@ section {
   background-color: #e05d6f;
 }
 
-.pauseBtnText, .restartBtnText {
-  margin-bottom: 10%;
+.pauseBtnText, .restartBtnText, .endBtnText {
+  /*margin-bottom: 15%;*/
 }
 
 .test1NameCell {
@@ -507,8 +507,17 @@ section {
   color: #3f4e62;
 }
 
+.redBtn {
+  border: 2.5px solid #e05d6f;
+  color: #e05d6f;
+}
+
 .grayText {
   color: #3f4e62;
+}
+
+.redBtnText {
+  color: #e05d6f;
 }
 
 .yellowText {
