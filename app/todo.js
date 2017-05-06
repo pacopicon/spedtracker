@@ -4,3 +4,5 @@
 3) Fix resume, restart and stop buttons
 4) Add Bootstrap data-vis
 5) Make display display start time and end time.
+6) problem arose where previous student test begins to tick even after time ran out.  fix it
+7) end button not working

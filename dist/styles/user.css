@@ -337,7 +337,7 @@ section {
 }
 
 .studentDisplay {
-  height: 4em;
+  height: 8em;
   display:table-row;
   width: 100%;
   margin-left: 0.5em;
@@ -406,13 +406,13 @@ section {
   color: #C3C300;
 }
 
-.resumeBtn, .restartBtn, .endBtn {
+.resumeBtn, .resetBtn, .endBtn {
   border-radius: 1em;
-  border: 2.5px solid #e05d6f;
   background-color: white;
-  color: #e05d6f;
-  height: 1em;
+  height: 1.5em;
   width: 100%;
+  margin-bottom: 0;
+  padding-bottom: 0;
   /*transition: all 0.4s ease-in-out;*/
 }
 
@@ -427,28 +427,31 @@ section {
   background-color: #6FC853;
 }
 
-.restartBtn {
+.resetBtn {
   /*margin-bottom: 1%;*/
   border: 2.5px solid #C3C300;
   color: #C3C300;
 }
 
-.restartBtn:hover {
+.resetBtn:hover {
   color: white;
   background-color: #C3C300;
 }
 
 .endBtn {
-  /*margin-bottom: 25%;*/
+  border: 2.5px solid #8E5EC5;
+  color: #8E5EC5;
 }
 
 .endBtn:hover {
   color: white;
-  background-color: #e05d6f;
+  background-color: #8E5EC5;
 }
 
-.pauseBtnText, .restartBtnText, .endBtnText {
-  /*margin-bottom: 15%;*/
+.resumeBtnText, .resetBtnText, .endBtnText {
+  margin: 0;
+  padding: 0;
+  bottom: 0.5em;
 }
 
 .test1NameCell {

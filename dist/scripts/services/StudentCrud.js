@@ -56,8 +56,6 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           var lessThanMinute = Math.abs(lessThanHour % millisecsInMinute);
           var seconds = Math.abs(Math.round(lessThanMinute / millisecsInSecs));
         } else {
-          var single = 9 || 8 || 7 || 6 || 5 || 4 || 3 || 2 || 2 || 1 || 0;
-
           var years = Math.floor(timeInMillisecs / millisecsInYear);
           var lessThanYear = timeInMillisecs % millisecsInYear;
           var months = Math.floor(lessThanYear / millisecsInMonth);
@@ -73,12 +71,23 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           var addZero = function(timeUnit) {
             if (timeUnit == 0 || timeUnit == 1 || timeUnit == 2 || timeUnit == 3 || timeUnit == 4 || timeUnit == 5 || timeUnit == 6 || timeUnit == 7 || timeUnit == 8 || timeUnit == 9) {
               return "0" + timeUnit;
-            } else if (timeUnit == 60) {
-              return "00";
+            // } else if (timeUnit == 60) {
+            //   return "00";
             } else {
               return timeUnit;
             }
           };
+
+          // var addZero = function(timeUnit) {
+          //
+          //   timeUnit = timeUnit - 1;
+          //
+          //   if (timeUnit == 0 || timeUnit == 1 || timeUnit == 2 || timeUnit == 3 || timeUnit == 4 || timeUnit == 5 || timeUnit == 6 || timeUnit == 7 || timeUnit == 8 || timeUnit == 9) {
+          //     return "0" + timeUnit;
+          //   } else {
+          //     return timeUnit;
+          //   }
+          // };
         }
 
         return {
@@ -103,16 +112,22 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           test1Name: test1Name,
           test1Time: test1Time,
           totalTime1: test1Time * extendTime,
+          test1StartRecord: 0,
           test1StartTime: 0,
           isTimer1Start: false,
           isTimer1Paused: false,
+          pausedTime1: 0,
+          pausedTotal1: 0,
           isTest1Over: false,
           test2Name: test2Name,
           test2Time: test2Time,
           totalTime2: test2Time * extendTime,
+          test2StartRecord: 0,
           test2StartTime: 0,
           isTimer2Start: false,
           isTimer2Paused: false,
+          pausedTime1: 0,
+          pausedTotal1: 0,
           isTest2Over: false,
           isSafeToDelete: false,
           created_at: firebase.database.ServerValue.TIMESTAMP
