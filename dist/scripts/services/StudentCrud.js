@@ -101,17 +101,17 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         };
       },
 // This function is called by the submit button in testTracker.html when user creates an item in the form
-      addStudent: function(studentName, extendTime, test1Name, hours1, minutes1, test2Name, hours2, minutes2) {
+      addStudent: function(studentName, extendTime, test1Name, test1TimeObj, test2Name, test2TimeObj) {
 
-        test1Time = addHoursAndMinutes(hours1, minutes1);
-        test2Time = addHoursAndMinutes(hours2, minutes2);
+        test1TimeNum = addHoursAndMinutes(test1TimeObj.getHours(), test1TimeObj.getMinutes());
+        test2TimeNum = addHoursAndMinutes(test2TimeObj.getHours(), test2TimeObj.getMinutes());
 
         students.$add({
           name: studentName,
           extendTime: extendTime,
           test1Name: test1Name,
-          test1Time: test1Time,
-          totalTime1: test1Time * extendTime,
+          test1Time: test1TimeNum,
+          totalTime1: test1TimeNum * extendTime,
           test1StartRecord: 0,
           test1StartTime: 0,
           isTimer1Start: false,
@@ -120,14 +120,14 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           pausedTotal1: 0,
           isTest1Over: false,
           test2Name: test2Name,
-          test2Time: test2Time,
-          totalTime2: test2Time * extendTime,
+          test2Time: test2TimeNum,
+          totalTime2: test2TimeNum * extendTime,
           test2StartRecord: 0,
           test2StartTime: 0,
           isTimer2Start: false,
           isTimer2Paused: false,
           pausedTime1: 0,
-          pausedTotal1: 0,
+          pausedTotal2: 0,
           isTest2Over: false,
           isSafeToDelete: false,
           created_at: firebase.database.ServerValue.TIMESTAMP

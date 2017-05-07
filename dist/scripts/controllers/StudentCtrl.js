@@ -51,73 +51,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       return promise;
     };
 
-    // $scope.timer = function(student, testNo) {
-    //
-    //   timerTime = Date.now();
-    //
-    //   if (testNo == "test1") {
-    //     // in case timer has not started yet (test 1)
-    //     if (student.test1StartTime == 0 && !student.isTest1Over) {
-    //       countdown = StudentCrud.parseTime(student.totalTime1);
-    //       // console.log("option 1a called");
-    //       return countdown;
-    //     // timer 1 runs out to zero
-    //     } else if (student.totalTime1 + student.test1StartTime <= Date.now()) {
-    //       // console.log("option 2a called");
-    //       countdown = StudentCrud.parseTime(0);
-    //       student.isTest1Over = true;
-    //       student.isTimer1Paused = false;
-    //       student.isTimer1Start = false;
-    //       students.$save(student).then(function() {
-    //         return countdown;
-    //       });
-    //     // timer is counting down (test 1)
-    //     } else if (!student.isTimer1Paused && !student.isTest1Over) {
-    //     // console.log("option 3a called");
-    //     var dueTime = student.test1StartTime + student.totalTime1;
-    //     // timer is paused (test 1)
-    //     } else if (student.isTimer1Paused && !student.isTest1Over) {
-    //       // console.log("option 4a called");
-    //       countdown = StudentCrud.parseTime(student.totalTime1);
-    //       return countdown;
-    //     }
-    //
-    //   } else if (testNo == "test2") {
-    //     // in case timer has not started yet (test 2)
-    //     if (student.test2StartTime == 0 && !student.isTest2Over) {
-    //     //  console.log("option 1b called");
-    //      countdown = StudentCrud.parseTime(student.totalTime2);
-    //      return countdown;
-    //     // timer 2 runs out to zero
-    //     } else if (student.totalTime2 + student.test2StartTime <= Date.now()) {
-    //       // console.log("option 2b called");
-    //       countdown = StudentCrud.parseTime(0);
-    //       student.isTest2Over = true;
-    //       student.isTimer2Paused = false;
-    //       student.isTimer2Start = false;
-    //       students.$save(student).then(function() {
-    //         return countdown;
-    //       });
-    //     // timer is counting down (test 2)
-    //     } else if (!student.isTimer2Paused && !student.isTest2Over) {
-    //     //  console.log("option 3b called");
-    //      var dueTime = student.test2StartTime + student.totalTime2;
-    //     // timer is paused (test 2)
-    //     } else if (student.isTimer2Paused && !student.isTest2Over) {
-    //       // console.log("option 4b called");
-    //       countdown = StudentCrud.parseTime(student.totalTime2);
-    //       return countdown;
-    //
-    //     }
-    //   }
-    //
-    //   // timeLeftInMillisecs = dueTime - $scope.time;
-    //   timeLeftInMillisecs = dueTime - timerTime;
-    //   // console.log("timerTime = " + timerTime);
-    //   countdown = StudentCrud.parseTime(timeLeftInMillisecs);
-    //   return countdown;
-    // };
-
     $scope.timer = function(student, testNo) {
 
       timerTime = Date.now();
@@ -125,26 +58,40 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       if (testNo == "test1") {
         // in case timer has not started yet (test 1)
         if (student.test1StartTime == 0 && !student.isTest1Over) {
-          countdown = student.totalTime1;
           // console.log("option 1a called");
+          unprocessedTimeObj = new Date(student.totalTime1);
+          unprocessedHour = unprocessedTimeObj.getHours();
+          processedHour = unprocessedHour - 7;
+          countdown = unprocessedTimeObj.setHours(processedHour);
           return countdown;
-        // timer 1 runs out to zero
-        } else if (student.totalTime1 + student.test1StartTime <= Date.now()) {
+          // timer 1 runs out to zero
+        } else if (student.totalTime1 + student.test1StartTime <= Date.now() && !student.isTest1Over) {
           // console.log("option 2a called");
           countdown = 0;
           student.isTest1Over = true;
           student.isTimer1Paused = false;
-          student.isTimer1Start = false;
           students.$save(student).then(function() {
             return countdown;
           });
+        // timer has ended
+        } else if (student.isTest1Over) {
+          // console.log("option 3a called");
+          unprocessedTimeObj = new Date(student.totalTime1);
+          unprocessedHour = unprocessedTimeObj.getHours();
+          processedHour = unprocessedHour - 7;
+          countdown = unprocessedTimeObj.setHours(processedHour);
+          return countdown;
         // timer is counting down (test 1)
         } else if (!student.isTimer1Paused && !student.isTest1Over) {
-        // console.log("option 3a called");
-        var dueTime = student.test1StartTime + student.totalTime1;
+        // console.log("option 4a called");
+        unprocessedTime = student.test1StartTime + student.totalTime1;
+        unprocessedTimeObj = new Date(unprocessedTime);
+        unprocessedHour = unprocessedTimeObj.getHours();
+        processedHour = unprocessedHour - 7;
+        var dueTime = unprocessedTimeObj.setHours(processedHour);
         // timer is paused (test 1)
         } else if (student.isTimer1Paused && !student.isTest1Over) {
-          // console.log("option 4a called");
+          // console.log("option 5a called");
           countdown = student.totalTime1;
           return countdown;
         }
@@ -152,29 +99,42 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       } else if (testNo == "test2") {
         // in case timer has not started yet (test 2)
         if (student.test2StartTime == 0 && !student.isTest2Over) {
-        //  console.log("option 1b called");
-         countdown = student.totalTime2;
-         return countdown;
-        // timer 2 runs out to zero
-        } else if (student.totalTime2 + student.test2StartTime <= Date.now()) {
+          // console.log("option 1b called");
+          unprocessedTimeObj = new Date(student.totalTime2);
+          unprocessedHour = unprocessedTimeObj.getHours();
+          processedHour = unprocessedHour - 7;
+          countdown = unprocessedTimeObj.setHours(processedHour);
+          return countdown;
+          // timer 2 runs out to zero
+        } else if (student.totalTime2 + student.test2StartTime <= Date.now() && !student.isTest2Over) {
           // console.log("option 2b called");
           countdown = 0;
           student.isTest2Over = true;
           student.isTimer2Paused = false;
-          student.isTimer2Start = false;
           students.$save(student).then(function() {
             return countdown;
           });
+        // timer has ended
+      } else if (student.isTest2Over) {
+          // console.log("option 3b called");
+          unprocessedTimeObj = new Date(student.totalTime2);
+          unprocessedHour = unprocessedTimeObj.getHours();
+          processedHour = unprocessedHour - 7;
+          countdown = unprocessedTimeObj.setHours(processedHour);
+          return countdown;
         // timer is counting down (test 2)
-        } else if (!student.isTimer2Paused && !student.isTest2Over) {
-        //  console.log("option 3b called");
-         var dueTime = student.test2StartTime + student.totalTime2;
+      } else if (!student.isTimer2Paused && !student.isTest2Over) {
+        // console.log("option 4b called");
+        unprocessedTime = student.test2StartTime + student.totalTime2;
+        unprocessedTimeObj = new Date(unprocessedTime);
+        unprocessedHour = unprocessedTimeObj.getHours();
+        processedHour = unprocessedHour - 7;
+        var dueTime = unprocessedTimeObj.setHours(processedHour);
         // timer is paused (test 2)
-        } else if (student.isTimer2Paused && !student.isTest2Over) {
-          // console.log("option 4b called");
+      } else if (student.isTimer2Paused && !student.isTest2Over) {
+          // console.log("option 5b called");
           countdown = student.totalTime2;
           return countdown;
-
         }
       }
 
@@ -249,30 +209,41 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
     $scope.endTimer = function(student, testNo) {
       if (testNo == "test1") {
-        student.test1StartTime = 0;
+        // student.totalTime1 = (student.test1StartTime + student.totalTime1) - Date.now();
+        // student.test1StartTime = 0;
+        student.isTest1Over = true;
+        timeEnded = Date.now();
       } else if (testNo == "test2") {
-        student.test2StartTime = 0;
+        // student.totalTime2 = (student.test2StartTime + student.totalTime2) - Date.now();
+        // student.test2StartTime = 0;
+        student.isTest2Over = true;
       }
       console.log("endTimer called");
-      students.$save(student);
-    };
+      students.$save(student).then(function() {
+        $interval.cancel(promise);
+      });
 
-    // $scope.startTime = function(student, testNo) {
-    //
-    //   if (testNo == "test1") {
-    //     var time = StudentCrud.parseTime(student.test1StartRecord);
-    //   } else if (testNo == "test2") {
-    //     var time = StudentCrud.parseTime(student.test2StartRecord);
-    //   }
-    //   return time;
-    // };
+
+      $scope.$on('$destroy', function() {
+        // Make sure that the interval is destroyed too
+        $interval.cancel(promise);
+      });
+    };
 
     $scope.startTime = function(student, testNo) {
 
       if (testNo == "test1") {
-        var time = student.test1StartRecord;
+        if (student.test1StartRecord == 0) {
+          time = "-- : -- : --";
+        } else if (student.test1StartRecord > 0) {
+          time = student.test1StartRecord;
+        }
       } else if (testNo == "test2") {
-        var time = student.test2StartRecord;
+        if (student.test2StartRecord == 0) {
+          time = "-- : -- : --";
+        } else if (student.test2StartRecord > 0) {
+          time = student.test2StartRecord;
+        }
       }
       return time;
     };
@@ -280,30 +251,46 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     $scope.endTime = function(student, testNo) {
 
       if (testNo == "test1") {
-        time = student.test1Time + student.test1StartRecord;
+        if (student.test1StartRecord == 0) {
+          time = "-- : -- : --";
+        } else if (student.test1StartRecord > 0) {
+          time = student.test1Time + student.test1StartRecord;
+        }
       } else if (testNo == "test2") {
-        time = student.test2Time + student.test2StartRecord;
-      }
-      return time;
-    };
-
-    $scope.extEndTime = function(student, testNo) {
-
-      if (testNo == "test1") {
-        totalEndTime1 = (student.test1Time * student.extendTime) + student.test1StartRecord;
-        var time = StudentCrud.parseTime(totalEndTime1);
-      } else if (testNo == "test2") {
-        totalEndTime2 = (student.test2Time * student.extendTime) + student.test2StartRecord;
-        var time = StudentCrud.parseTime(totalEndTime2);
+        if (student.test2StartRecord == 0) {
+          time = "-- : -- : --";
+        } else if (student.test2StartRecord > 0) {
+          time = student.test2Time + student.test2StartRecord;
+        }
+      } else if (testNo == "extTest1") {
+        if (student.test1StartRecord == 0) {
+          time = "-- : -- : --";
+        } else if (student.test1StartRecord > 0) {
+          time = (student.test1Time * student.extendTime) + student.test1StartRecord;
+        }
+      } else if (testNo == "extTest2") {
+        if (student.test2StartRecord == 0) {
+          time = "-- : -- : --";
+        } else if (student.test2StartRecord > 0) {
+          time = (student.test2Time * student.extendTime) + student.test2StartRecord;
+        }
       }
       return time;
     };
 
     $scope.totalPausedTime = function(student, testNo) {
       if (testNo == "test1") {
-        var time = StudentCrud.parseTime(student.pausedTotal1);
+        if (student.pausedTotal1 <= 0) {
+          time = "-- : -- : --";
+        } else if (student.pausedTotal1 > 0) {
+          time = StudentCrud.parseTime(student.pausedTotal1);
+        }
       } else if (testNo == "test2") {
-        var time = StudentCrud.parseTime(student.pausedTotal2);
+        if (student.pausedTotal2 <= 0) {
+          time = "-- : -- : --";
+        } else if (student.pausedTotal2 > 0) {
+          time = StudentCrud.parseTime(student.pausedTotal2);
+        }
       }
       return time;
     }
@@ -311,13 +298,13 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     $scope.testTime = function(student, testNo) {
 
       if (testNo == "test1") {
-        var time = StudentCrud.parseTime(student.test1Time);
+        time = StudentCrud.parseTime(student.test1Time);
       } else if (testNo == "test2") {
-        var time = StudentCrud.parseTime(student.test2Time);
+        time = StudentCrud.parseTime(student.test2Time);
       } else if (testNo == "test1Ext") {
-        var time = StudentCrud.parseTime(student.test1Time * student.extendTime);
+        time = StudentCrud.parseTime(student.test1Time * student.extendTime);
       } else if (testNo == "test2Ext") {
-        var time = StudentCrud.parseTime(student.test2Time * student.extendTime);
+        time = StudentCrud.parseTime(student.test2Time * student.extendTime);
       }
       return time;
     };
@@ -330,6 +317,12 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     };
 
 // Begin ExtendTime
+
+    // $scope.newDueDate1 = new Date(new Date().setMinutes(0, 0));
+    // $scope.newDueDate2 = new Date(new Date().setMinutes(0, 0));
+    $scope.newDueDate1 = new Date(new Date().setHours(1,0,0));
+    $scope.newDueDate2 = new Date(new Date().setHours(1,0,0));
+
 
     $scope.timewrap = {};
 
@@ -351,7 +344,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 // Begin CRUD Functions
 
     $scope.addStudent = function() {
-      StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newtest1Name, $scope.test1hourwrap.selectedHour, $scope.test1minutewrap.selectedMinute, $scope.newtest2Name, $scope.test2hourwrap.selectedHour, $scope.test2minutewrap.selectedMinute);
+      StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newtest1Name, $scope.newDueDate1, $scope.newtest2Name, $scope.newDueDate2);
       var owner = "addStudent at " + Date.now();
       toggleInvert(owner);
     };

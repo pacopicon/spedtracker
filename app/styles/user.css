@@ -377,6 +377,7 @@ section {
   /*padding-bottom: 5px;*/
 }
 
+
 .countBtn, .pauseBtn, .grayCell, .redBtn {
   border-radius: 1em;
   border: 2.5px solid #6FC853;
@@ -385,6 +386,11 @@ section {
   height: 75%;
   width: 100%;
   margin-bottom: 25%;
+}
+
+.redBtn {
+  cursor: default;
+  cursor:
 }
 
 .countBtn:hover {
@@ -489,6 +495,10 @@ section {
 
 .btn-test:hover {
   color: #e05d6f;
+}
+
+.greenText {
+  color: #6FC853;
 }
 
 .redText {

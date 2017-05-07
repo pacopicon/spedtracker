@@ -1,8 +1,6 @@
 "todo:
-1) switch angularstrap number dropdowns into hour and minute pickers
-2) Make it so 0 hours or 0 minutes can be a viable option
-3) Fix resume, restart and stop buttons
-4) Add Bootstrap data-vis
-5) Make display display start time and end time.
-6) problem arose where previous student test begins to tick even after time ran out.  fix it
-7) end button not working
+1) Make it so 0 hours or 0 minutes can be a viable option
+2) Add Bootstrap data-vis
+3) display hour data in two columns
+4) save data onto cookies, instead of Firebase
+5) switch angularstrap number dropdowns into hour and minute pickers
