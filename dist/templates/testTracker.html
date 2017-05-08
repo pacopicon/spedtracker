@@ -45,12 +45,12 @@
 <div class="displayText">
   <div class="header left-wrap right-wrap col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="nameCell marginRight leftWrap col-lg-3 col-md-3 col-sm-3 col-xs-3">
-      <p class="nameHeading">student:</p>
-      <p class="extendedTimeHeading">Ext. time:</p>
+      <!-- <p class="nameHeading">student:</p>
+      <p class="extendedTimeHeading">Ext. time:</p> -->
     </div>
     <!--test name-->
     <div class="test1NameCell marginRight col-lg-4 col-md-4 col-sm-4 col-xs-4">
-      <!-- <p class="testName">begin test:</p> -->
+      <!-- <p class="testName">first test:</p> -->
     </div>
     <!--test name-->
     <div class="test1NameCell marginRight col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -64,10 +64,12 @@
 <!--STUDENT DISPLAY-->
   <div class="row studentDisplay left-wrap right-wrap col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="student in students" ng-mouseleave="hover = false">
 <!--name and extend-time-->
-    <div class="nameCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
+    <div class="nameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
       <input type="checkbox" class="checkbox" ng-model="student.isSafeToDelete" ng-change="saveAndToggleInvert(student)"/>
-      <p class="nameCell marginTop" ng-class="{'redText': student.isSafeToDelete}"> {{$index + 1}}. {{student.name}}</p>
-      <p class="extendTimeCell marginTop" ng-class="{'redText': student.isSafeToDelete}"> {{student.extendTime}}</p>
+      <p class="nameCell marginTop" ng-class="{'redText': student.isSafeToDelete}">
+        {{$index + 1}}. {{student.name}}
+      </p>
+      <p class="extendTimeCell marginTop" ng-class="{'redText': student.isSafeToDelete}"> {{student.extendTime}}x</p>
     </div>
 <!--TEST 1 name-->
     <div class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -79,7 +81,7 @@
         </button>
       </div>
       <div ng-show="student.isTest1Over">
-        <button class="disabledBtn redBtn redBtnText">
+        <button class="disabledBtn redBtn">
           <p class="countBtnText">
             {{student.test1Name}}
           </p>
@@ -111,7 +113,7 @@
       </div>
     </div>
 <!--test1Time-->
-    <div class="test1TimeCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
+    <div class="test1TimeCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
       <table>
         <tr>
           <td>
@@ -158,6 +160,10 @@
             <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">{{totalPausedTime(student, "test1").hour}}:{{totalPausedTime(student, "test1").minute}}:{{totalPausedTime(student, "test1").second}}</p>
           </td>
         </tr>
+      </table>
+    </div>
+    <div class="test1TimeCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <table>
         <tr>
           <td>
             <p class="dataPointLabel" ng-class="{'redText': student.isSafeToDelete}">std. time: </p>
@@ -201,7 +207,7 @@
         </button>
       </div>
       <div ng-show="!student.isTest1Over || student.isTest2Over">
-        <button ng-class="{'redBtn': student.isTest2Over, 'redBtnText': student.isTest2Over, 'grayCell': !student.isTest1Over, 'grayText': !student.isTest1Over}">
+        <button ng-class="{'redBtn': student.isTest2Over, 'grayCell': !student.isTest1Over}">
           <p class="countBtnText">
             {{student.test1Name}}
           </p>
@@ -233,7 +239,7 @@
       </div>
     </div>
 <!--test 2 time-->
-    <div class="test1TimeCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
+    <div class="test1TimeCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
       <table>
         <tr>
           <td>
@@ -280,6 +286,10 @@
             <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">{{totalPausedTime(student, "test2").hour}}:{{totalPausedTime(student, "test2").minute}}:{{totalPausedTime(student, "test2").second}}</p>
           </td>
         </tr>
+      </table>
+    </div>
+    <div class="test1TimeCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <table>
         <tr>
           <td>
             <p class="dataPointLabel" ng-class="{'redText': student.isSafeToDelete}">std. time: </p>
@@ -325,19 +335,24 @@
       <form ng-submit="addStudent()"><!-- push a new message onto the array-->
 <!--student name-->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="nameCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <div class="nameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-12">
             <input class="form-control nameInput" ng-model="newStudentName" placeholder="enter student name or id"/>
-            <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="extendInput btn btn-default" ng-model="timewrap.selectedTime" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="time as time for time in times" placeholder="time x" bs-select><span class="caret"></span></button></a>
+            <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip">
+              <button type="button" class="extendInput btn btn-default" ng-model="timewrap.selectedTime" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="time as time for time in times" placeholder="X" bs-select>
+                <span class="caret">
+                </span>
+              </button>
+            </a>
           </div>
   <!--countdown btn + test name-->
           <div class="countdownBtnCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
             <input class="form-control testNameInput" ng-model="newtest1Name" placeholder="enter test name" />
           </div>
   <!--test 1 time-->
-          <div class="test1TimeCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
+          <div class="marginRight col-lg-4 col-md-4 col-sm-4 col-xs-4">
             <!-- <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="hourInput btn btn-default" ng-model="test1hourwrap.selectedHour" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="hour as hour for hour in hours" placeholder="hrs" bs-select><span class="caret"></span></button></a> -->
 
-            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate1" data-time-format="h:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
+            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate1" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
 
             <!-- <a href class="tip" data-animation="am-flip-x" bs-tooltip="timeTip"><button type="button" class="minInput btn btn-default" ng-model="test1minutewrap.selectedMinute" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="minute as minute for minute in minutes" placeholder="min" bs-select>Action<span class="caret"></span></button></a> -->
           </div>
@@ -349,10 +364,10 @@
             <input class="form-control testNameInput" ng-model="newtest2Name" placeholder="enter test name" />
           </div>
   <!--test 2 time-->
-          <div class="test1TimeCell marginRight col-lg-3 col-md-3 col-sm-3 col-xs-3">
+          <div class="marginRight col-lg-4 col-md-4 col-sm-4 col-xs-4">
             <!-- <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip"><button type="button" class="hourInput btn btn-default" ng-model="test2hourwrap.selectedHour" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="hour as hour for hour in hours" placeholder="hrs" bs-select><span class="caret"></span></button></a> -->
 
-            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate2" data-time-format="h:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
+            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate2" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
 
             <!-- <a href class="tip" data-animation="am-flip-x" bs-tooltip="timeTip"><button type="button" class="minInput btn btn-default" ng-model="test2minutewrap.selectedMinute" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="minute as minute for minute in minutes" placeholder="min" bs-select>Action<span class="caret"></span></button></a> -->
           </div>

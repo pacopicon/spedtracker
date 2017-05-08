@@ -147,7 +147,10 @@ section {
   width: 0;
   height: 0;
   margin: 0;
+  /*padding-right: 0.5em;
+  margin-right: 0.5em;*/
   padding: 0;
+  float: right;
 }
 
 .name, .date, .importance, .time, .hour, .minute {
@@ -186,8 +189,12 @@ section {
   color: #d8dddf;
 }
 
-.btn-date, .btn-time, .btn-add {
+.btn-date, .btn-add {
   width: 100%
+}
+
+.btn-time {
+  width: 30%;
 }
 
 .fa {
@@ -337,7 +344,7 @@ section {
 }
 
 .studentDisplay {
-  height: 7.5em;
+  height: 5em;
   display:table-row;
   width: 100%;
   margin-left: 0.5em;
@@ -346,6 +353,7 @@ section {
 .nameCell, .countdownBtnCell, .test1NameCell, .test1TimeCell, .countdownCell {
   height: 100%;
 }
+
 .checkbox {
   float: left;
   top: 16.5px;
@@ -362,7 +370,7 @@ section {
 
 .nameCell {
   float: left;
-  /*margin-left: 0;*/
+  margin-left: 0.5em;
   /*padding-left: 2em;*/
   /*margin-right: 3em;*/
 }
@@ -374,9 +382,10 @@ section {
 .countdownBtnCell {
   padding-top: 0;
   margin-bottom: 8px;
+  padding-left: 0;
+  margin-left: 0;
   /*padding-bottom: 5px;*/
 }
-
 
 .countBtn, .pauseBtn, .grayCell, .redBtn {
   border-radius: 1em;
@@ -398,7 +407,7 @@ section {
   color: white;
 }
 
-.countBtnText, .pauseBtnText, .grayText, .redBtnText {
+.countBtnText, .pauseBtnText, .grayText {
   margin-top: 12px;
 }
 
@@ -480,8 +489,7 @@ section {
 }
 
 .test1TimeCell {
-  height: 100%;
-  top: 0.5em;
+  margin-top: 0.7em;
 }
 
 .dataPointLabel {
@@ -513,14 +521,13 @@ section {
   color: #6FC853;
 }
 
-.redText {
-  /*This will color an item's text red when the item checkbox is checked.*/
+.redText, .redBtnText {
   color: #e05d6f;
 }
 
-.redBorder {
+/*.redBorder {
   border: #e05d6f;
-}
+}*/
 
 .redCell {
   border: 2.5px solid #e05d6f;
@@ -539,10 +546,6 @@ section {
 
 .grayText {
   color: #3f4e62;
-}
-
-.redBtnText {
-  color: #e05d6f;
 }
 
 .yellowText {
@@ -565,8 +568,12 @@ section {
 
 .extendInput {
   float: right;
-  width: 30%;
+  width: 100%;
+  padding-right: 0.5em;
+  margin-right: 0.5em;
 }
+
+
 
 .testNameInput {
   margin-left: 0.5em;
@@ -750,15 +757,12 @@ section {
 
 @media only screen and (max-width : 585px) {
 /*actually 641*/
-  .priorityCheckboxImportanceNameDate {
-    width: 85%;
-  }
 
 }
 
 @media only screen and (max-width : 767px) {
 /*actually 844*/
-  .priorityAndCheckbox, .nameCell {
+  .nameCell {
     padding-left: 1em;
   }
 
@@ -785,10 +789,6 @@ section {
 }
 
 @media only screen and (max-width : 767px) {
-
-  .priorityAndCheckbox {
-    margin-left: 0.5em;
-  }
 
   .nameCell {
     margin-left: 0.9em;
