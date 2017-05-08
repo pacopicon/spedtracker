@@ -344,7 +344,7 @@ section {
 }
 
 .studentDisplay {
-  height: 5em;
+  height: 12em;
   display:table-row;
   width: 100%;
   margin-left: 0.5em;
@@ -499,6 +499,11 @@ section {
 .dataPoint, .dataPointLabel {
   height: 0.5em;
 }
+
+.countdown {
+  font-weight: bolder;
+}
+
 .deleteBtn {
   font-size: 4em;
   margin-top: 1px;
@@ -563,14 +568,14 @@ section {
 .nameInput {
   float: left;
   width: 65%;
-  margin-left: 0.5em;
+  /*margin-left: 0.5em;*/
 }
 
 .extendInput {
   float: right;
-  width: 100%;
-  padding-right: 0.5em;
-  margin-right: 0.5em;
+  width: 3em;
+  /*padding-right: 0.5em;
+  margin-right: 0.5em;*/
 }
 
 
