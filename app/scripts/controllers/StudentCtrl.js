@@ -192,18 +192,26 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         student.totalTime1 = student.test1Time * student.extendTime;
         student.pausedTime1 = 0;
         student.pausedTotal1 = 0;
+        student.test1StartTime = 0;
         student.isTimer1Start = false;
       } else if (testNo == "test2") {
         student.isTimer2Paused = false;
         student.totalTime2 = student.test2Time * student.extendTime;
         student.pausedTime2 = 0;
         student.pausedTotal2 = 0;
+        student.test2StartTime = 0;
         student.isTimer2Start = false;
       }
 
       console.log("resumeTimer called");
       students.$save(student).then(function() {
-        $scope.startTimer(student, testNo);
+        $interval.cancel(promise);
+      });
+
+
+      $scope.$on('$destroy', function() {
+        // Make sure that the interval is destroyed too
+        $interval.cancel(promise);
       });
     };
 
@@ -318,8 +326,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
 // Begin ExtendTime
 
-    // $scope.newDueDate1 = new Date(new Date().setMinutes(0, 0));
-    // $scope.newDueDate2 = new Date(new Date().setMinutes(0, 0));
     $scope.newDueDate1 = new Date(new Date().setHours(1,0,0));
     $scope.newDueDate2 = new Date(new Date().setHours(1,0,0));
 

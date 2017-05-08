@@ -71,15 +71,15 @@
     </div>
 <!--TEST 1 name-->
     <div class="test1NameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
-      <div ng-show="!student.isTimer1Start && !student.isTest1Over">
-        <button class="countBtn" ng-class="{'redCell': student.isSafeToDelete, 'redText': student.isSafeToDelete}"  ng-click="startTimer(student, 'test1')">
+      <div ng-show="!student.isTimer1Start">
+        <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete || student.isTest1Over}"  ng-click="startTimer(student, 'test1')">
           <p class="countBtnText">
             {{student.test1Name}}
           </p>
         </button>
       </div>
       <div ng-show="student.isTest1Over">
-        <button class="redBtn redBtnText">
+        <button class="disabledBtn redBtn redBtnText">
           <p class="countBtnText">
             {{student.test1Name}}
           </p>

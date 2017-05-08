@@ -337,7 +337,7 @@ section {
 }
 
 .studentDisplay {
-  height: 8em;
+  height: 7.5em;
   display:table-row;
   width: 100%;
   margin-left: 0.5em;
@@ -383,14 +383,14 @@ section {
   border: 2.5px solid #6FC853;
   background-color: white;
   color: #6FC853;
-  height: 75%;
+  height: 85%;
   width: 100%;
-  margin-bottom: 25%;
+  /*margin-bottom: 25%;*/
+  margin-top: 0.7em;
 }
 
 .redBtn {
   cursor: default;
-  cursor:
 }
 
 .countBtn:hover {
@@ -426,6 +426,11 @@ section {
   /*margin-bottom: 1%;*/
   border: 2.5px solid #6FC853;
   color: #6FC853;
+  margin-top: 0.7em;
+  border-top-right-radius: 1em;
+  border-top-left-radius: 1em;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .resumeBtn:Hover {
@@ -437,6 +442,7 @@ section {
   /*margin-bottom: 1%;*/
   border: 2.5px solid #C3C300;
   color: #C3C300;
+  border-radius: 0;
 }
 
 .resetBtn:hover {
@@ -445,19 +451,24 @@ section {
 }
 
 .endBtn {
-  border: 2.5px solid #8E5EC5;
-  color: #8E5EC5;
+  border: 2.5px solid #e05d6f;
+  color: #e05d6f;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 1em;
+  border-bottom-left-radius: 1em;
 }
 
 .endBtn:hover {
   color: white;
-  background-color: #8E5EC5;
+  background-color: #e05d6f;
 }
 
 .resumeBtnText, .resetBtnText, .endBtnText {
   margin: 0;
   padding: 0;
-  bottom: 0.5em;
+  bottom: 0.7em;
+  margin-bottom: 0.5em;
 }
 
 .test1NameCell {
@@ -469,7 +480,8 @@ section {
 }
 
 .test1TimeCell {
-  height: 3em;
+  height: 100%;
+  top: 0.5em;
 }
 
 .dataPointLabel {
