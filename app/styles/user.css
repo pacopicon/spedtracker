@@ -518,9 +518,39 @@ section {
   padding-left: 0.2em;
 }
 
-.btn-test:hover {
-  color: #e05d6f;
+/* d3 charts d3 charts d3 charts d3 charts d3 charts d3 charts d3 charts */
+
+.d3Bars {
+  height: 10em;
 }
+
+.d3charts {
+  height: 10em;
+}
+
+.chart {
+    background: #eee;
+    padding: 3px;
+}
+
+.chart div {
+  width: 0;
+  transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+}
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 5px;
+  color: white;
+  box-shadow: 2px 2px 2px #666;
+}
+
+/* d3 charts d3 charts d3 charts d3 charts d3 charts d3 charts d3 charts */
 
 .greenText {
   color: #6FC853;

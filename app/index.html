@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ui<!DOCTYPE html>
 <html ng-app="spedtracker">
 <head lang="en">
 <meta charset="UTF-8">
@@ -9,6 +9,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <!---jQuery MUST GO FIRST!-------------------------------->
+
+<!-- D3 -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
 <!--AngularJS-->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
@@ -77,6 +80,9 @@
 <!--Native Script  files-->
 
 <script src="/scripts/app.js"></script>
+<script src="/scripts/modules/d3.js"></script>
+<script src="/scripts/directives/d3Bars.js"></script>
+<!-- <script src="/scripts/directives/d3Charts.js"></script> -->
 <script src="/scripts/services/FirebaseRef.js"></script>
 <script src="/scripts/services/StudentCrud.js"></script>
 <script src="/scripts/services/UserCrud.js"></script>
@@ -89,6 +95,7 @@
 <script src="/scripts/controllers/GraphCtrl.js"></script>
 <script src="/scripts/controllers/CalendarCtrl.js"></script>
 <script src="/scripts/controllers/ModalController.js"></script>
+
 <!-- <script src="/scripts/controllers/ModalCtrl.js"></script> -->
 
 <!--Bootstrap CSS-->
