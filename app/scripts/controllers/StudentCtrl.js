@@ -317,6 +317,9 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       return time;
     };
 
+// Begin D3.JS charts data
+
+
 // Begin AngularStrap popover
 
     $scope.dateTip = {
