@@ -147,6 +147,8 @@ section {
   background-color: white;
   padding: 1em;
   margin-bottom: 2em;
+  min-height: 30%;
+  resize: vertical;
 }
 
 /* Begin CSS for Form */
@@ -274,16 +276,6 @@ section {
 
 }
 
-.left-wrap {
-  padding-left: 0;
-  margin-left: 0;
-}
-
-.right-wrap {
-  padding-right: 0;
-  margin-right: 0;
-}
-
 .mainBtn {
   transition: all 0.5s ease-in-out;
 }
@@ -352,7 +344,7 @@ section {
 }
 
 .studentDisplay {
-  height: 4.5em;
+  height: 7em;
   display:table-row;
   width: 100%;
   margin-left: 0.5em;
@@ -374,6 +366,11 @@ section {
 .marginRight {
   margin-right: 0;
   padding-right: 0;
+}
+
+.marginLeft {
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .nameCell {
@@ -796,7 +793,7 @@ section {
     margin-right: 0;
   }
 
-  .middle-wrap, .left-wrap {
+  .middle-wrap {
     margin-bottom: 0.5em;
   }
 }

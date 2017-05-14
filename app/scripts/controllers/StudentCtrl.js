@@ -317,7 +317,9 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       return time;
     };
 
-// Begin D3.JS charts data
+// progress bar data
+
+
 
 
 // Begin AngularStrap popover
