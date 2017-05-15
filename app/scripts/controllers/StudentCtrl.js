@@ -59,6 +59,8 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       return processedTime;
     };
 
+    // var countup = 18000000;
+
     $scope.timer = function(student, testNo) {
 
       timerTime = Date.now();
@@ -67,13 +69,13 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         // in case timer has not started yet (test 1) OR: timer has ended
         if ((student.test1StartTime == 0 && !student.isTest1Over) || student.isTest1Over) {
           // console.log("option 1a called");
-          countup = 0;
+          countup = 18000000;
           countdown = processTime(student.totalTime1, 7);
           progressBar = student.totalTime1;
           // timer 1 runs out to zero
         } else if (student.totalTime1 + student.test1StartTime <= Date.now() && !student.isTest1Over) {
           // console.log("option 2a called");
-          countdown = 0;
+          countdown = 18000000;
           countup = student.totalTime1;
           progressBar = 0;
           student.isTest1Over = true;
@@ -86,7 +88,9 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
           dueTime = processTime(student.test1StartTime + student.totalTime1, 7);
           countdown = dueTime - timerTime;
           // countup = processTime(student.test1StartTime + timerTime, 2);
-          countup = timerTime;
+          diff = new Date().getMilliseconds() - new Date(timerTime).getMilliseconds();
+          // countup = new Date().setHours(0,0,0);
+          countup =
           progressBar = student.test1StartTime + student.totalTime1 - timerTime;
           // timer is paused (test 1)
         } else if (student.isTimer1Paused && !student.isTest1Over) {
@@ -100,13 +104,13 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         // in case timer has not started yet (test 2) OR: timer has ended
         if ((student.test2StartTime == 0 && !student.isTest2Over) || student.isTest2Over) {
           // console.log("option 1a called");
-          countup = 0;
+          countup = 18000000;
           countdown = processTime(student.totalTime2, 7);
           progressBar = student.totalTime2;
           // timer 2 runs out to zero
         } else if (student.totalTime2 + student.test2StartTime <= Date.now() && !student.isTest2Over) {
           // console.log("option 2a called");
-          countdown = 0;
+          countdown = 18000000;
           countup = student.totalTime2;
           progressBar = 0;
           student.isTest2Over = true;
