@@ -51,98 +51,90 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       return promise;
     };
 
+    var processTime = function(unprocessedTime, hourOption) {
+      unprocessedTimeObj = new Date(unprocessedTime);
+      unprocessedHour = unprocessedTimeObj.getHours();
+      processedHour = unprocessedHour - hourOption;
+      var processedTime = unprocessedTimeObj.setHours(processedHour);
+      return processedTime;
+    };
+
     $scope.timer = function(student, testNo) {
 
       timerTime = Date.now();
 
       if (testNo == "test1") {
-        // in case timer has not started yet (test 1)
-        if (student.test1StartTime == 0 && !student.isTest1Over) {
+        // in case timer has not started yet (test 1) OR: timer has ended
+        if ((student.test1StartTime == 0 && !student.isTest1Over) || student.isTest1Over) {
           // console.log("option 1a called");
-          unprocessedTimeObj = new Date(student.totalTime1);
-          unprocessedHour = unprocessedTimeObj.getHours();
-          processedHour = unprocessedHour - 7;
-          countdown = unprocessedTimeObj.setHours(processedHour);
-          return countdown;
+          countup = 0;
+          countdown = processTime(student.totalTime1, 7);
+          progressBar = student.totalTime1;
           // timer 1 runs out to zero
         } else if (student.totalTime1 + student.test1StartTime <= Date.now() && !student.isTest1Over) {
           // console.log("option 2a called");
           countdown = 0;
+          countup = student.totalTime1;
+          progressBar = 0;
           student.isTest1Over = true;
           student.isTimer1Paused = false;
           students.$save(student).then(function() {
-            return countdown;
           });
-        // timer has ended
-        } else if (student.isTest1Over) {
-          // console.log("option 3a called");
-          unprocessedTimeObj = new Date(student.totalTime1);
-          unprocessedHour = unprocessedTimeObj.getHours();
-          processedHour = unprocessedHour - 7;
-          countdown = unprocessedTimeObj.setHours(processedHour);
-          return countdown;
         // timer is counting down (test 1)
         } else if (!student.isTimer1Paused && !student.isTest1Over) {
-        // console.log("option 4a called");
-        unprocessedTime = student.test1StartTime + student.totalTime1;
-        unprocessedTimeObj = new Date(unprocessedTime);
-        unprocessedHour = unprocessedTimeObj.getHours();
-        processedHour = unprocessedHour - 7;
-        var dueTime = unprocessedTimeObj.setHours(processedHour);
-        // timer is paused (test 1)
+          // console.log("option 3a called");
+          dueTime = processTime(student.test1StartTime + student.totalTime1, 7);
+          countdown = dueTime - timerTime;
+          // countup = processTime(student.test1StartTime + timerTime, 2);
+          countup = timerTime;
+          progressBar = student.test1StartTime + student.totalTime1 - timerTime;
+          // timer is paused (test 1)
         } else if (student.isTimer1Paused && !student.isTest1Over) {
-          // console.log("option 5a called");
+          // console.log("option 4a called");
           countdown = student.totalTime1;
-          return countdown;
+          countup = student.test1StartTime + Date.now();
+          progressBar = student.totalTime1;
         }
 
       } else if (testNo == "test2") {
-        // in case timer has not started yet (test 2)
-        if (student.test2StartTime == 0 && !student.isTest2Over) {
-          // console.log("option 1b called");
-          unprocessedTimeObj = new Date(student.totalTime2);
-          unprocessedHour = unprocessedTimeObj.getHours();
-          processedHour = unprocessedHour - 7;
-          countdown = unprocessedTimeObj.setHours(processedHour);
-          return countdown;
+        // in case timer has not started yet (test 2) OR: timer has ended
+        if ((student.test2StartTime == 0 && !student.isTest2Over) || student.isTest2Over) {
+          // console.log("option 1a called");
+          countup = 0;
+          countdown = processTime(student.totalTime2, 7);
+          progressBar = student.totalTime2;
           // timer 2 runs out to zero
         } else if (student.totalTime2 + student.test2StartTime <= Date.now() && !student.isTest2Over) {
-          // console.log("option 2b called");
+          // console.log("option 2a called");
           countdown = 0;
+          countup = student.totalTime2;
+          progressBar = 0;
           student.isTest2Over = true;
           student.isTimer2Paused = false;
           students.$save(student).then(function() {
-            return countdown;
           });
-        // timer has ended
-      } else if (student.isTest2Over) {
-          // console.log("option 3b called");
-          unprocessedTimeObj = new Date(student.totalTime2);
-          unprocessedHour = unprocessedTimeObj.getHours();
-          processedHour = unprocessedHour - 7;
-          countdown = unprocessedTimeObj.setHours(processedHour);
-          return countdown;
         // timer is counting down (test 2)
       } else if (!student.isTimer2Paused && !student.isTest2Over) {
-        // console.log("option 4b called");
-        unprocessedTime = student.test2StartTime + student.totalTime2;
-        unprocessedTimeObj = new Date(unprocessedTime);
-        unprocessedHour = unprocessedTimeObj.getHours();
-        processedHour = unprocessedHour - 7;
-        var dueTime = unprocessedTimeObj.setHours(processedHour);
-        // timer is paused (test 2)
-      } else if (student.isTimer2Paused && !student.isTest2Over) {
-          // console.log("option 5b called");
+          // console.log("option 3a called");
+          dueTime = processTime(student.test2StartTime + student.totalTime2, 7);
+          countdown = dueTime - timerTime;
+          // countup = processTime(student.test2StartTime + timerTime, 2);
+          countup = timerTime;
+          progressBar = student.test2StartTime + student.totalTime2 - timerTime;
+          // timer is paused (test 2)
+        } else if (student.isTimer2Paused && !student.isTest2Over) {
+          // console.log("option 4a called");
           countdown = student.totalTime2;
-          return countdown;
+          countup = student.test2StartTime + Date.now();
+          progressBar = student.totalTime2;
         }
       }
 
-      // timeLeftInMillisecs = dueTime - $scope.time;
-      timeLeftInMillisecs = dueTime - timerTime;
-      // console.log("timerTime = " + timerTime);
-      countdown = timeLeftInMillisecs;
-      return countdown;
+      return {
+        countdown: countdown,
+        countup: countup,
+        progressBar: progressBar
+      }
     };
 
     $scope.pauseTimer = function(student, testNo) {
@@ -306,20 +298,33 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     $scope.testTime = function(student, testNo) {
 
       if (testNo == "test1") {
-        time = StudentCrud.parseTime(student.test1Time);
+        unprocessedTime = student.test1Time;
       } else if (testNo == "test2") {
-        time = StudentCrud.parseTime(student.test2Time);
+        unprocessedTime = student.test2Time;
       } else if (testNo == "test1Ext") {
-        time = StudentCrud.parseTime(student.test1Time * student.extendTime);
+        unprocessedTime = student.test1Time * student.extendTime;
       } else if (testNo == "test2Ext") {
-        time = StudentCrud.parseTime(student.test2Time * student.extendTime);
+        unprocessedTime = student.test2Time * student.extendTime;
       }
+
+      time = processTime(unprocessedTime, 7);
+
       return time;
     };
 
 // progress bar data
 
+$scope.width1 = function() {
+  // (( + ) / testTime(student, 'test1Ext').total) + '%'}
+}
 
+$scope.part1 = function() {
+  return testTime(student, 'test1Ext').total;
+};
+
+$scope.part2 = function() {
+  return timer(student, 'test1');
+};
 
 
 // Begin AngularStrap popover

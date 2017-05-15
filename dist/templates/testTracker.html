@@ -163,7 +163,7 @@
           </tr>
         </table>
       </div>
-<!--COUNDOWN 1-->
+<!--COUNTDOWN 1-->
       <div class="test1TimeCell marginRight col-lg-5 col-md-5 col-sm-5 col-xs-5">
         <table>
           <tr>
@@ -172,7 +172,7 @@
             </td>
             <td>
               <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
-                {{testTime(student, "test1").hour}}:{{testTime(student, "test1").minute}}:{{testTime(student, "test1").second}}
+                {{testTime(student, "test1") | date: 'h:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -182,8 +182,7 @@
             </td>
             <td>
               <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
-                {{testTime(student, "test1Ext").total}}
-                <!-- {{testTime(student, "test1Ext").hour}}:{{testTime(student, "test1Ext").minute}}:{{testTime(student, "test1Ext").second}} -->
+                {{testTime(student, "test1Ext") | date: 'h:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -192,10 +191,18 @@
               <p class="dataPointLabel countdown" ng-class="{'redText': student.isSafeToDelete}">countdown: </p>
             </td>
             <td>
-              <!-- <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">{{timer(student, "test1").hour}}h, {{timer(student, "test1").minute}}m, {{timer(student, "test1").second}}s</p> -->
               <p class="dataPoint countdown" ng-class="{'redText': student.isSafeToDelete}">
-                {{timer(student, "test1")}}
-                <!-- {{timer(student, "test1") | date: 'h:mm:ss'}} -->
+                {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="dataPointLabel countdown" ng-class="{'redText': student.isSafeToDelete}">countup: </p>
+            </td>
+            <td>
+              <p class="dataPoint countdown" ng-class="{'redText': student.isSafeToDelete}">
+                {{timer(student, "test1").countup | date: 'H:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -303,7 +310,7 @@
             </td>
             <td>
               <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
-                {{testTime(student, "test2").hour}}:{{testTime(student, "test2").minute}}:{{testTime(student, "test2").second}}
+                {{testTime(student, "test2") | date: 'h:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -313,7 +320,7 @@
             </td>
             <td>
               <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
-                {{testTime(student, "test2Ext").hour}}:{{testTime(student, "test2Ext").minute}}:{{testTime(student, "test2Ext").second}}
+                {{testTime(student, "test2Ext") | date: 'h:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -322,9 +329,18 @@
               <p class="dataPointLabel countdown" ng-class="{'redText': student.isSafeToDelete}">countdown: </p>
             </td>
             <td>
-              <!-- <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">{{timer(student, "test2").hour}}h, {{timer(student, "test2").minute}}m, {{timer(student, "test2").second}}s</p> -->
               <p class="dataPoint countdown" ng-class="{'redText': student.isSafeToDelete}">
-                {{timer(student, "test2") | date: 'h:mm:ss'}}
+                {{timer(student, "test2").countdown | date: 'h:mm:ss'}}
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="dataPointLabel countdown" ng-class="{'redText': student.isSafeToDelete}">countup: </p>
+            </td>
+            <td>
+              <p class="dataPoint countdown" ng-class="{'redText': student.isSafeToDelete}">
+                {{timer(student, "test2").countup | date: 'H:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -338,10 +354,9 @@
     </div>
     <div class="marginRight marginLeft col-lg-6 col-md-6 col-sm-6 col-xs-6">
       <div class="progress">
-        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="(testTime(student, 'test1Ext').total - timer(student, 'test1')) / testTime(student, 'test1Ext').total" aria-valuemin="0" aria-valuemax="100" ng-style="{width : ((testTime(student, 'test1Ext').total + timer(student, 'test1')) / testTime(student, 'test1Ext').total) + '%'}">
-          {{timer(student, "test1") | date: 'h:mm:ss'}}
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="(testTime(student, 'test1Ext').total - timer(student, 'test1')) / testTime(student, 'test1Ext').total" aria-valuemin="0" aria-valuemax="100" ng-style="{width :(timer(student, 'test1').progressBar) / (student.test1Time * student.extendTime) * 100 + '%'}">
+          {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
         </div>
-        {{((testTime(student, 'test1Ext').total - student.test1StartTime + timer(student, 'test1')) / testTime(student, 'test1Ext').total) + '%'}}
       </div>
     </div>
     <div class="marginRight marginLeft col-lg-6 col-md-6 col-sm-6 col-xs-6">
