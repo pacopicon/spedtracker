@@ -377,10 +377,16 @@
 
 
       <div class="progress"> <!-- Begin Bars -->
-        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: bottomBarWidth(student, 'test1') + '%'}">
+        <!-- <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: bottomBarWidth(student, 'test1') + '%'}">
           {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
         </div>
         <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: topBarWidth(student, 'test1') + '%'}">
+          {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
+        </div> -->
+        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test1').bottomBarWidth + '%'}">
+          {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
+        </div>
+        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test1').topBarWidth + '%'}">
           {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
         </div>
       </div>

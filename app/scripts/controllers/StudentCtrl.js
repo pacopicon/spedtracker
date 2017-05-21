@@ -62,16 +62,28 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
     $scope.timer = function(student, testNo) {
 
       timerTime = Date.now();
+      extendTime = student.extendTime;
 
       if (testNo == "test1") {
+
+        testStartTime = student.test1StartTime;
+        totalTime = student.totalTime1;
+        testTime = student.test1Time;
+        extension = (testTime * extendTime) - testTime;
+        actualTestTime = totalTime - extension;
+        // ratios for bar widths
+        bottomBarRatio = extension / totalTime;
+        topBarRatio = 1 - bottomBarRatio;
+
         // in case timer has not started yet (test 1) OR: timer has ended
         if ((student.test1StartTime == 0 && !student.isTest1Over) || student.isTest1Over) {
-          // console.log("option 1a called");
-          totalTime = student.totalTime1
+          topBarWidth = 100 * topBarRatio;
+          bottomBarWidth = 100 * bottomBarRatio;
           countdown = processTime(totalTime, 7);
           // timer 1 runs out to zero
         } else if (student.totalTime1 + student.test1StartTime <= Date.now() && !student.isTest1Over) {
-          // console.log("option 2a called");
+          topBarWidth = 0;
+          bottomBarWidth = 0;
           countdown = 18000000;
           student.isTest1Over = true;
           student.isTimer1Paused = false;
@@ -79,28 +91,48 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
           });
         // timer is counting down (test 1)
         } else if (!student.isTimer1Paused && !student.isTest1Over) {
-          // console.log("option 3a called");
-          testStartTime = student.test1StartTime;
-          totalTime = student.totalTime1;
-          testTime = student.test1Time
+          // fn to manipulate new Date object
           dueTime = processTime(testStartTime + totalTime, 7);
+          topBarDividend = testStartTime + actualTestTime - timerTime;
+          bottomBarDividend = testStartTime + extension - timerTime
+          // ultimate outputs
+          topBarWidth = topBarDividend / actualTestTime * 100 * topBarRatio;
+          bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
           countdown = dueTime - timerTime;
         // timer is paused (test 1)
         } else if (student.isTimer1Paused && !student.isTest1Over) {
-          // console.log("option 4a called");
-          totalTime = student.totalTime1;
+          bottomBarDividend = testStartTime + extension - timerTime;
+          if (actualTestTime == 0) {
+            topBarWidth = 0;
+            bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
+          } else if (actualTestTime > 0) {
+            topBarWidth = actualTestTime / testTime * 100 * topBarRatio;
+            bottomBarWidth = 100 * bottomBarRatio;
+          }
+
           countdown = totalTime;
         }
 
       } else if (testNo == "test2") {
-        // in case timer has not started yet (test 2) OR: timer has ended
+
+        testStartTime = student.test2StartTime;
+        totalTime = student.totalTime2;
+        testTime = student.test2Time;
+        extension = (testTime * extendTime) - testTime;
+        actualTestTime = totalTime - extension;
+        // ratios for bar widths
+        bottomBarRatio = extension / totalTime;
+        topBarRatio = 1 - bottomBarRatio;
+
+        // in case timer has not started yet (test 1) OR: timer has ended
         if ((student.test2StartTime == 0 && !student.isTest2Over) || student.isTest2Over) {
-          // console.log("option 1a called");
-          totalTime = student.totalTime2
+          topBarWidth = 100 * topBarRatio;
+          bottomBarWidth = 100 * bottomBarRatio;
           countdown = processTime(totalTime, 7);
-          // timer 2 runs out to zero
+          // timer 1 runs out to zero
         } else if (student.totalTime2 + student.test2StartTime <= Date.now() && !student.isTest2Over) {
-          // console.log("option 2a called");
+          topBarWidth = 0;
+          bottomBarWidth = 0;
           countdown = 18000000;
           student.isTest2Over = true;
           student.isTimer2Paused = false;
@@ -108,23 +140,36 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
           });
         // timer is counting down (test 2)
         } else if (!student.isTimer2Paused && !student.isTest2Over) {
-          // console.log("option 3a called");
-          testStartTime = student.test2StartTime;
-          totalTime = student.totalTime2;
-          testTime = student.test2Time
+          // fn to manipulate new Date object
           dueTime = processTime(testStartTime + totalTime, 7);
+          topBarDividend = testStartTime + actualTestTime - timerTime;
+          bottomBarDividend = testStartTime + extension - timerTime;
+          // ultimate outputs
+          topBarWidth = topBarDividend / actualTestTime * 100 * topBarRatio;
+          bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
           countdown = dueTime - timerTime;
-        // timer is paused (test 2)
+        // timer is paused (test 1)
         } else if (student.isTimer2Paused && !student.isTest2Over) {
-          // console.log("option 4a called");
-          totalTime = student.totalTime2;
+          bottomBarDividend = testStartTime + extension - timerTime
+          if (actualTestTime == 0) {
+            topBarWidth = 0;
+            bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
+          } else if (actualTestTime > 0) {
+            topBarWidth = actualTestTime / testTime * 100 * topBarRatio;
+            bottomBarWidth = 100 * bottomBarRatio;
+          }
+
           countdown = totalTime;
         }
       }
 
+      // console.log("topBarWidth = " + topBarWidth);
+      // console.log("bottomBarWidth = " + bottomBarWidth);
+
       return {
         countdown: countdown,
-        countup: countup
+        topBarWidth: topBarWidth,
+        bottomBarWidth: bottomBarWidth
       }
     };
 
