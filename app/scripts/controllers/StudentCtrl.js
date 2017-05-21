@@ -70,6 +70,8 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         totalTime = student.totalTime1;
         testTime = student.test1Time;
         extension = (testTime * extendTime) - testTime;
+        // when timer is eating away at extension:
+        // extension = (totalTime) - testTime;
         actualTestTime = totalTime - extension;
         // ratios for bar widths
         bottomBarRatio = extension / totalTime;
@@ -169,7 +171,13 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       return {
         countdown: countdown,
         topBarWidth: topBarWidth,
-        bottomBarWidth: bottomBarWidth
+        bottomBarWidth: bottomBarWidth,
+        actualTestTime: actualTestTime,
+        testTime: testTime,
+        topBarDividend: topBarDividend,
+        bottomBarDividend: bottomBarDividend,
+        topBarRatio: topBarRatio,
+        bottomBarRatio: bottomBarRatio
       }
     };
 

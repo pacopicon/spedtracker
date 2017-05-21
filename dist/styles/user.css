@@ -349,8 +349,8 @@ section {
 }
 
 .studentDisplay {
-  /*height: 17em;*/
-  height: 7em;
+  height: 17em;
+  /*height: 7em;*/
   display:table-row;
   width: 100%;
   margin-left: 0.5em;
