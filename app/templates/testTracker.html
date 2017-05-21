@@ -62,6 +62,7 @@
   </div>
 <!--end HEADING-->
 <!--STUDENT DISPLAY-->
+  <div class="alert alert-danger" role="alert" ng-show="alert">oops! you did not enter the required information!</div>
   <div class="row studentDisplay marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="student in students" ng-mouseleave="hover = false">
 <!--name and extend-time-->
     <div class="nameCell marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -178,11 +179,21 @@
           </tr>
           <tr>
             <td>
-              <p class="dataPointLabel" ng-class="{'redText': student.isSafeToDelete}">ext. time: </p>
+              <p class="dataPointLabel" ng-class="{'redText': student.isSafeToDelete}">extension: </p>
             </td>
             <td>
               <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
                 {{testTime(student, "test1Ext") | date: 'h:mm:ss'}}
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="dataPointLabel" ng-class="{'redText': student.isSafeToDelete}">total time: </p>
+            </td>
+            <td>
+              <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
+                {{testTime(student, "test1total") | date: 'h:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -316,11 +327,21 @@
           </tr>
           <tr>
             <td>
-              <p class="dataPointLabel" ng-class="{'redText': student.isSafeToDelete}">ext. time: </p>
+              <p class="dataPointLabel" ng-class="{'redText': student.isSafeToDelete}">extension: </p>
             </td>
             <td>
               <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
                 {{testTime(student, "test2Ext") | date: 'h:mm:ss'}}
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="dataPointLabel" ng-class="{'redText': student.isSafeToDelete}">total time: </p>
+            </td>
+            <td>
+              <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
+                {{testTime(student, "test2total") | date: 'h:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -355,28 +376,20 @@
     <div class="marginRight marginLeft col-lg-6 col-md-6 col-sm-6 col-xs-6">
 
 
-      <div class="progress">
-        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="(timer(student, 'test1').progressBar - ((student.extendTime * student.test1Time) - student.test1Time)) / (student.test1Time * student.extendTime - ((student.extendTime * student.test1Time) - student.test1Time)) * 100" aria-valuemin="0" aria-valuemax="100" ng-style="{width :(timer(student, 'test1').progressBar - ((student.extendTime * student.test1Time) - student.test1Time)) / (student.test1Time * student.extendTime - ((student.extendTime * student.test1Time) - student.test1Time)) * 100 + '%'}">
+      <div class="progress"> <!-- Begin Bars -->
+        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (bottomBarWidth(student, 'test1') * bottomBarRatio(student, 'test1')) + '%'}">
           {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
         </div>
-        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="(timer(student, 'test1').extProgressBar - student.testTime) / ((student.test1Time * student.extendTime) - student.testTime) * 100" aria-valuemin="0" aria-valuemax="100" ng-style="{width :(timer(student, 'test1').extProgressBar - student.testTime) / ((student.test1Time * student.extendTime) - student.testTime) * 100 + '%'}">
+        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (topBarWidth(student, 'test1') * (1 - bottomBarRatio(student, 'test1'))) + '%'}">
           {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
         </div>
       </div>
 
-      <div class="progress">
-        <div class="progress-bar progress-bar-success" ng-style="width: 35%">
-          <span class="sr-only">35% Complete (success)</span>
-        </div>
-        <div class="progress-bar progress-bar-warning progress-bar-striped" ng-style="width: 20%">
-          <span class="sr-only">20% Complete (warning)</span>
-        </div>
-      </div>
-
-
-    </div>
-    <div class="marginRight marginLeft col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    </div>
+      <!-- <div class="barContainer">
+        <div class="topBar" ng-style="{height: }"></div>
+        <div class="bottomBar" ng-style="{height: }"></div>
+      </div> -->
+    </div> <!-- End Bars-->
   </div> <!-- student Display and ng-repeat end -->
 <!--FORM-->
   <div class="displayText">

@@ -343,7 +343,13 @@ section {
   float: right;
 }
 
+.balert {
+  /*transition: all 5s ease-in-out;*/
+  transition-delay: 1s ease-in-out;
+}
+
 .studentDisplay {
+  /*height: 17em;*/
   height: 7em;
   display:table-row;
   width: 100%;
@@ -371,6 +377,49 @@ section {
 .marginLeft {
   margin-left: 0;
   padding-left: 0;
+}
+
+.greenText {
+  color: #6FC853;
+}
+
+.redText, .redBtnText {
+  color: #e05d6f;
+}
+
+/*.redBorder {
+  border: #e05d6f;
+}*/
+
+.redCell {
+  border: 2.5px solid #e05d6f;
+  color: #e05d6f;
+}
+
+.grayCell {
+  border: 2.5px solid #3f4e62;
+  color: #3f4e62;
+}
+
+.redBtn {
+  border: 2.5px solid #e05d6f;
+  color: #e05d6f;
+}
+
+.grayText {
+  color: #3f4e62;
+}
+
+.yellowText {
+  color: #C3C300;
+}
+
+.yellowCell {
+  background-color: #C3C300;
+}
+
+.yellowBorder {
+  border: #C3C300;
 }
 
 .nameCell {
@@ -523,47 +572,28 @@ section {
   padding-left: 0.2em;
 }
 
-.greenText {
-  color: #6FC853;
+.barContainer {
+  height: 40em;
+  width: 5em;
 }
 
-.redText, .redBtnText {
-  color: #e05d6f;
+.topBar, .bottomBar {
+  width: 5em;
 }
 
-/*.redBorder {
-  border: #e05d6f;
-}*/
+/* yellow,    green,     red,       dark navy,  brown,     purple,    blue*/
+/*'#C3C300', '#6FC853', '#e05d6f', '#3f4e62',  '#AC6D39', '#8E5EC5', '#4c91cd'*/
 
-.redCell {
-  border: 2.5px solid #e05d6f;
-  color: #e05d6f;
+.topBar {
+  background-color: #6FC853;
+  border-top-right-radius: 1em;
+  border-top-left-radius: 1em;
 }
 
-.grayCell {
-  border: 2.5px solid #3f4e62;
-  color: #3f4e62;
-}
-
-.redBtn {
-  border: 2.5px solid #e05d6f;
-  color: #e05d6f;
-}
-
-.grayText {
-  color: #3f4e62;
-}
-
-.yellowText {
-  color: #C3C300;
-}
-
-.yellowCell {
+.bottomBar {
   background-color: #C3C300;
-}
-
-.yellowBorder {
-  border: #C3C300;
+  border-bottom-right-radius: 1em;
+  border-bottom-left-radius: 1em;
 }
 
 .form-fields {
