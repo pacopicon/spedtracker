@@ -361,58 +361,62 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
 // progress bar data
 
-var bottomBarRatio = function(student, test) {
-  if (test == "test1") {
-    testTime = student.test1Time;
-    extension = (testTime * student.extendTime) - testTime;
-    totalTime = testTime * student.extendTime
-    bottomBarRatio = extension / totalTime;
-  } else if (test == "test2") {
-    testTime = student.test2Time;
-    extension = (testTime * student.extendTime) - testTime;
-    totalTime = testTime * student.extendTime
-    bottomBarRatio = extension / totalTime;
-  }
-    console.log("bottomBarRatio = " + bottomBarRatio);
-  return bottomBarRatio;
-};
+    $scope.bottomBarRatio = function(student, test) {
+      if (test == "test1") {
+        testTime = student.test1Time;
+        extension = (testTime * student.extendTime) - testTime;
+        totalTime = testTime * student.extendTime
+        bottomBarRatio = extension / totalTime;
+      } else if (test == "test2") {
+        testTime = student.test2Time;
+        extension = (testTime * student.extendTime) - testTime;
+        totalTime = testTime * student.extendTime
+        bottomBarRatio = extension / totalTime;
+      }
+      return bottomBarRatio;
+    };
 
-$scope.topBarWidth = function(student, test) {
+    $scope.topBarWidth = function(student, test) {
 
-  if (test == "test1") {
-    testTime = student.test1Time;
-    topBarRatio = 1 - bottomBarRatio(student, test);
-    dividend = student.test1StartTime + testTime - $scope.time;
-    topBarWidth = dividend / testTime * 100 * topBarRatio;
-    console.log("topBarWidth = " + topBarWidth);
-  } else if (test == "test2") {
-    testTime = student.test2Time;
-    topBarRatio = 1 - bottomBarRatio(student, test);
-    dividend = student.test2StartTime + testTime - $scope.time;
-    topBarWidth = dividend / testTime * 100 * topBarRatio;
-  }
+      if (test == "test1") {
+        testTime = student.test1Time;
+        topBarRatio = 1 - $scope.bottomBarRatio(student, test);
+        dividend = student.test1StartTime + testTime - $scope.time;
+        topBarWidth = dividend / testTime * 100 * topBarRatio;
+        console.log("topBarWidth = " + topBarWidth);
+        console.log("topBarRatio = " + topBarRatio);
+      } else if (test == "test2") {
+        testTime = student.test2Time;
+        topBarRatio = 1 - $scope.bottomBarRatio(student, test);
+        dividend = student.test2StartTime + testTime - $scope.time;
+        topBarWidth = dividend / testTime * 100 * topBarRatio;
+      }
 
-  return topBarWidth;
-};
+      return topBarWidth;
+    };
 
-$scope.bottomBarWidth = function(student, test) {
-  if ($scope.topBarWidth(student, 'test1') == 0) {
-    testTime = student.test1Time;
-    extension = (testTime * student.extendTime) - testTime;
-    dividend = student.test1StartTime + extension - $scope.time
-    bottomBarWidth = dividend / extension * 100 * bottomBarRatio(student, test);
+    $scope.bottomBarWidth = function(student, test) {
 
-  } else if ($scope.topBarWidth(student, 'test2') == 0) {
-    testTime = student.test2Time;
-    extension = (testTime * student.extendTime) - testTime;
-    dividend = student.test2StartTime + extension - $scope.time
-    bottomBarWidth = dividend / extension * 100 * bottomBarRatio(student, test);
-  } else {
-    bottomBarWidth = 100;
-  }
-    console.log("bottomBarWidth = " + bottomBarWidth);
-    return bottomBarWidth;
-};
+      extendTime = student.extendTime;
+      bottomBarRatio = $scope.bottomBarRatio(student, test);
+
+      if ($scope.topBarWidth(student, 'test1') == 0) {
+        testTime = student.test1Time;
+        extension = (testTime * extendTime) - testTime;
+        dividend = student.test1StartTime + extension - $scope.time
+        bottomBarWidth = dividend / extension * 100 * bottomBarRatio;
+      } else if ($scope.topBarWidth(student, 'test2') == 0) {
+        testTime = student.test2Time;
+        extension = (testTime * extendTime) - testTime;
+        dividend = student.test2StartTime + extension - $scope.time
+        bottomBarWidth = dividend / extension * 100 * bottomBarRatio;
+      } else {
+        bottomBarWidth = 100 * bottomBarRatio;
+      }
+        console.log("bottomBarWidth = " + bottomBarWidth);
+        console.log("bottomBarRatio = " + bottomBarRatio);
+        return bottomBarWidth;
+    };
 
 // Begin AngularStrap popover
 
