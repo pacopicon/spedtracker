@@ -41,11 +41,11 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
       }
 
       students.$save(student).then(function() {
-        console.log("promise passed");
+        // console.log("promise passed");
         var promise = $interval(function() {$scope.timer(student, testNo)}, 1000);
       });
 
-      console.log("promise: " + promise);
+      // console.log("promise: " + promise);
       return promise;
     };
 
@@ -74,20 +74,29 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         totalTime = student.totalTime1;
         testTime = student.test1Time;
         extension = (testTime * extendTime) - testTime;
-        // when timer is eating away at extension:
-        // extension = (totalTime) - testTime;
+
         actualTestTime = totalTime - extension;
+
+        if (actualTestTime > 0) {
+          actualExtension = totalTime - actualTestTime;
+        } else if (actualTestTime <= 0) {
+          actualExtension = totalTime;
+        }
+
+
         // ratios for bar widths
         bottomBarRatio = extension / (testTime * extendTime);
         topBarRatio = 1 - bottomBarRatio;
 
         // in case timer has not started yet (test 1) OR: timer has ended
-        if ((student.test1StartTime == 0 && !student.isTest1Over) || student.isTest1Over) {
+        if ((student.test1StartTime == 0 && !student.isTest1Over && !student.isTimer1Paused) || student.isTest1Over) {
           topBarWidth = 100 * topBarRatio;
           bottomBarWidth = 100 * bottomBarRatio;
           countdown = processTime(totalTime, 7);
           // timer 1 runs out to zero
-        } else if (student.totalTime1 + student.test1StartTime <= Date.now() && !student.isTest1Over) {
+        } else if (student.totalTime1 + student.test1StartTime - Date.now() <= 0 && !student.isTimer1Paused && !student.isTest1Over) {
+          console.log("timer ran out")
+
           topBarWidth = 0;
           bottomBarWidth = 0;
           countdown = 18000000;
@@ -97,7 +106,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
           });
         // timer is counting down (test 1)
         } else if (!student.isTimer1Paused && !student.isTest1Over) {
-
           topBarDividend = testStartTime + actualTestTime - timerTime;
 
           if (topBarDividend > 0) {
@@ -105,7 +113,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
             bottomBarDividend = extension;
           } else if (topBarDividend <= 0) {
             topBarWidth = 0;
-            bottomBarDividend = testStartTime + extension - timerTime;
+            bottomBarDividend = testStartTime + actualExtension - timerTime;
           }
           // fn to manipulate new Date object
           dueTime = processTime(testStartTime + totalTime, 7);
@@ -114,17 +122,23 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
           bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
           countdown = dueTime - timerTime;
         // timer is paused (test 1)
-        } else if (student.isTimer1Paused && !student.isTest1Over) {
-          bottomBarDividend = testStartTime + extension - timerTime;
-          if (actualTestTime == 0) {
-            topBarWidth = 0;
-            bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
-          } else if (actualTestTime > 0) {
-            topBarWidth = actualTestTime / testTime * 100 * topBarRatio;
-            bottomBarWidth = 100 * bottomBarRatio;
-          }
+      } else if (!student.isTest1Over && student.isTimer1Paused) {
+          // console.log("timer is paused");
 
+          // topBarDividend = testStartTime + actualTestTime - timerTime;
+
+          if (actualTestTime > 0) {
+            topBarWidth = actualTestTime / testTime * 100 * topBarRatio;
+            bottomBarDividend = extension;
+
+          } else if (actualTestTime <= 0) {
+            topBarWidth = 0;
+            bottomBarDividend = actualExtension;
+
+          }
+          bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
           countdown = totalTime;
+          // console.log("topBarWidth = " + topBarWidth);
         }
 
       } else if (testNo == "test2") {
@@ -206,17 +220,22 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         student.test2StartTime = 0;
         student.pausedTime2 = Date.now();
       }
+      // students.$save(student).then(function() {
+      //   $scope.timer(student, testNo);
+      // });
+
       students.$save(student).then(function() {
         $interval.cancel(promise);
       });
 
 
       $scope.$on('$destroy', function() {
-        // Make sure that the interval is destroyed too
         $interval.cancel(promise);
       });
 
-      console.log("promise: " + promise);
+      $scope.timer(student, testNo);
+
+      // console.log("promise: " + promise);
     };
 
     $scope.resumeTimer = function(student, testNo) {
@@ -228,7 +247,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         student.pausedTotal2 += Date.now() - student.pausedTime2;
       }
 
-      console.log("resumeTimer called");
       students.$save(student).then(function() {
         $scope.startTimer(student, testNo);
       });
@@ -251,7 +269,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         student.isTimer2Start = false;
       }
 
-      console.log("resumeTimer called");
+      // console.log("resumeTimer called");
       students.$save(student).then(function() {
         $interval.cancel(promise);
       });
