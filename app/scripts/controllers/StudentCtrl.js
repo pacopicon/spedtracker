@@ -63,6 +63,10 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
 
       timerTime = Date.now();
       extendTime = student.extendTime;
+      topBarDividend = 0,
+      bottomBarDividend = 0,
+      topBarRatio = 0,
+      bottomBarRatio = 0
 
       if (testNo == "test1") {
 
@@ -74,7 +78,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
         // extension = (totalTime) - testTime;
         actualTestTime = totalTime - extension;
         // ratios for bar widths
-        bottomBarRatio = extension / totalTime;
+        bottomBarRatio = extension / (testTime * extendTime);
         topBarRatio = 1 - bottomBarRatio;
 
         // in case timer has not started yet (test 1) OR: timer has ended
@@ -93,12 +97,20 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
           });
         // timer is counting down (test 1)
         } else if (!student.isTimer1Paused && !student.isTest1Over) {
+
+          topBarDividend = testStartTime + actualTestTime - timerTime;
+
+          if (topBarDividend > 0) {
+            topBarWidth = topBarDividend / actualTestTime * 100 * topBarRatio;
+            bottomBarDividend = extension;
+          } else if (topBarDividend <= 0) {
+            topBarWidth = 0;
+            bottomBarDividend = testStartTime + extension - timerTime;
+          }
           // fn to manipulate new Date object
           dueTime = processTime(testStartTime + totalTime, 7);
-          topBarDividend = testStartTime + actualTestTime - timerTime;
-          bottomBarDividend = testStartTime + extension - timerTime
           // ultimate outputs
-          topBarWidth = topBarDividend / actualTestTime * 100 * topBarRatio;
+
           bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
           countdown = dueTime - timerTime;
         // timer is paused (test 1)
