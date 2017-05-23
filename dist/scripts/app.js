@@ -1,6 +1,6 @@
 var spedtracker = angular.module("spedtracker", ["ui.router", "firebase", "ui.bootstrap", "ngAnimate", "ngSanitize", "mgcrea.ngStrap", "chart.js", "wt.responsive", "ngCookies"]);
 
-spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvider, $modalProvider, $popoverProvider) {
+spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvider, $popoverProvider) {
 
     $locationProvider.html5Mode({
         enabled: true,
@@ -74,10 +74,6 @@ spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvid
     angular.extend($datepickerProvider.defaults, {
       dateFormat: 'dd/MM/yyyy',
       startWeek: 1
-    });
-
-    angular.extend($modalProvider.defaults, {
-      html: true
     });
 
     angular.extend($popoverProvider.defaults, {
