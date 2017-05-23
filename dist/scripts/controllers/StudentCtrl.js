@@ -109,7 +109,8 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "mod
           topBarDividend = testStartTime + actualTestTime - timerTime;
 
           if (topBarDividend > 0) {
-            topBarWidth = topBarDividend / actualTestTime * 100 * topBarRatio;
+            // topBarWidth = topBarDividend / actualTestTime * 100 * topBarRatio;
+            topBarWidth = topBarDividend / testTime * 100 * topBarRatio;
             bottomBarDividend = extension;
           } else if (topBarDividend <= 0) {
             topBarWidth = 0;
