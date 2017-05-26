@@ -1,4 +1,4 @@
-var spedtracker = angular.module("spedtracker", ["ui.router", "firebase", "ui.bootstrap", "ngAnimate", "ngSanitize", "mgcrea.ngStrap", "chart.js", "wt.responsive", "ngCookies"]);
+var spedtracker = angular.module("spedtracker", ["ui.router", "firebase", "ui.bootstrap", "ngAnimate", "ngSanitize", "mgcrea.ngStrap", "chart.js", "ngCookies"]);
 
 spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvider, $popoverProvider) {
 

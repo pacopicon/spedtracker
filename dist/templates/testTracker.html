@@ -383,21 +383,27 @@
         <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: topBarWidth(student, 'test1') + '%'}">
           {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
         </div> -->
-        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test1').bottomBarWidth + '%'}">
+        <!-- <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test1').bottomBarWidth + '%'}">
           {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
         </div>
         <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test1').topBarWidth + '%'}">
           {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
+        </div> -->
+        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: barWidth(student, 'test1').bottom + '%'}">
+          {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
+        </div>
+        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: barWidth(student, 'test1').top + '%'}">
+          {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
         </div>
       </div>
-      normal testTime = {{timer(student, "test1").testTime}}<br>
+      <!-- normal testTime = {{timer(student, "test1").testTime}}<br>
       actual testTime = {{timer(student, "test1").actualTestTime}}<br>
       topBarDividend = {{timer(student, "test1").topBarDividend}}<br>
       bottomBarDividend = {{timer(student, "test1").bottomBarDividend}}<br>
       topBarWidth = {{timer(student, "test1").topBarWidth}}<br>
       bottomBarWidth = {{timer(student, "test1").bottomBarWidth}}<br>
       topBarRatio = {{timer(student, "test1").topBarRatio}}<br>
-      bottomBarRatio = {{timer(student, "test1").bottomBarRatio}}<br>
+      bottomBarRatio = {{timer(student, "test1").bottomBarRatio}}<br> -->
 
 
 
