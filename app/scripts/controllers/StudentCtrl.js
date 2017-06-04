@@ -62,72 +62,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     $scope.timer = function(student, testNo) {
 
       extendTime = student.extendTime;
-
-      if (testNo == "test1") {
-
-        testStartTime = student.test1StartTime;
-        totalTime = student.totalTime1;
-        testTime = student.test1Time;
-
-        // in case timer has not started yet (test 1) OR: timer has ended
-        if ((student.test1StartTime == 0 && !student.isTest1Over && !student.isTimer1Paused) || student.isTest1Over) {
-          countdown = processTime(totalTime, 19);
-        // timer 1 runs out to zero
-        } else if (student.totalTime1 + student.test1StartTime - Date.now() <= 0 && !student.isTimer1Paused && !student.isTest1Over) {
-          countdown = 18000000;
-          student.isTest1Over = true;
-          student.isTimer1Paused = false;
-          students.$save(student).then(function() {
-          });
-        // timer is counting down (test 1)
-        } else if (!student.isTimer1Paused && !student.isTest1Over) {
-          // fn to manipulate new Date object
-          dueTime = processTime(testStartTime + totalTime, 19);
-          // ultimate outputs
-          countdown = dueTime - $scope.time;
-        // timer is paused (test 1)
-        } else if (!student.isTest1Over && student.isTimer1Paused) {
-          // countdown = totalTime;
-          countdown = processTime(totalTime, 19);
-        }
-
-      } else if (testNo == "test2") {
-
-        testStartTime = student.test2StartTime;
-        totalTime = student.totalTime2;
-        testTime = student.test2Time;
-
-        // in case timer has not started yet (test 1) OR: timer has ended
-        if ((student.test2StartTime == 0 && !student.isTest2Over && !student.isTimer2Paused) || student.isTest2Over) {
-          countdown = processTime(totalTime, 19);
-          // timer 1 runs out to zero
-        } else if (student.totalTime2 + student.test2StartTime - Date.now() <= 0 && !student.isTimer2Paused && !student.isTest2Over) {
-          countdown = 18000000;
-          student.isTest2Over = true;
-          student.isTimer2Paused = false;
-          students.$save(student).then(function() {
-          });
-        // timer is counting down (test 2)
-        } else if (!student.isTimer2Paused && !student.isTest2Over) {
-          // fn to manipulate new Date object
-          dueTime = processTime(testStartTime + totalTime, 19);
-          // ultimate outputs
-          countdown = dueTime - $scope.time;
-        // timer is paused (test 1)
-        } else if (!student.isTest2Over && student.isTimer2Paused) {
-          // countdown = totalTime;
-          countdown = processTime(totalTime, 19);
-        }
-      }
-
-      return {
-        countdown: countdown
-      }
-    };
-
-    $scope.barWidth = function(student, testNo) {
-
-      extendTime = student.extendTime;
       topBarDividend = 0,
       bottomBarDividend = 0,
       topBarRatio = 0,
@@ -146,38 +80,43 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         } else if (actualTestTime <= 0) {
           actualExtension = totalTime;
         }
-        // ratios for bar widths
+
         bottomBarRatio = extension / (testTime * extendTime);
         topBarRatio = 1 - bottomBarRatio;
 
         // in case timer has not started yet (test 1) OR: timer has ended
         if ((student.test1StartTime == 0 && !student.isTest1Over && !student.isTimer1Paused) || student.isTest1Over) {
-          console.log("test 1: timer has not yet started OR timer has ended");
           topBarWidth = 100 * topBarRatio;
           bottomBarWidth = 100 * bottomBarRatio;
-          // timer 1 runs out to zero
+          countdown = processTime(totalTime, 19);
+        // timer 1 runs out to zero
         } else if (student.totalTime1 + student.test1StartTime - Date.now() <= 0 && !student.isTimer1Paused && !student.isTest1Over) {
-          console.log("test 1: timer has run out");
           topBarWidth = 0;
           bottomBarWidth = 0;
+          countdown = 18000000;
+          student.isTest1Over = true;
+          student.isTimer1Paused = false;
+          students.$save(student).then(function() {
+          });
         // timer is counting down (test 1)
         } else if (!student.isTimer1Paused && !student.isTest1Over) {
           topBarDividend = testStartTime + actualTestTime - $scope.time;
 
           if (topBarDividend > 0) {
-            // topBarWidth = topBarDividend / actualTestTime * 100 * topBarRatio;
             topBarWidth = topBarDividend / testTime * 100 * topBarRatio;
             bottomBarDividend = extension;
           } else if (topBarDividend <= 0) {
             topBarWidth = 0;
-            bottomBarDividend = testStartTime + actualExtension - $scope.time;
+            bottomBarDividend = testStartTime + totalTime - $scope.time;
           }
           // ultimate outputs
           bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
-          // console.log("test 1: timer is counting down");
-          // console.log("topBarWidth: " + topBarWidth);
+          // fn to manipulate new Date object
+          dueTime = processTime(testStartTime + totalTime, 19);
+          // ultimate outputs
+          countdown = dueTime - $scope.time;
         // timer is paused (test 1)
-      } else if (!student.isTest1Over && student.isTimer1Paused) {
+        } else if (!student.isTest1Over && student.isTimer1Paused) {
           if (actualTestTime > 0) {
             topBarWidth = actualTestTime / testTime * 100 * topBarRatio;
             bottomBarDividend = extension;
@@ -185,10 +124,10 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
           } else if (actualTestTime <= 0) {
             topBarWidth = 0;
             bottomBarDividend = actualExtension;
-
+            console.log("hit");
           }
           bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
-          console.log("test 1: timer is paused");
+          countdown = processTime(totalTime, 19);
         }
 
       } else if (testNo == "test2") {
@@ -213,29 +152,38 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         if ((student.test2StartTime == 0 && !student.isTest2Over && !student.isTimer2Paused) || student.isTest2Over) {
           topBarWidth = 100 * topBarRatio;
           bottomBarWidth = 100 * bottomBarRatio;
+
+          countdown = processTime(totalTime, 19);
           // timer 1 runs out to zero
         } else if (student.totalTime2 + student.test2StartTime - Date.now() <= 0 && !student.isTimer2Paused && !student.isTest2Over) {
-          console.log("timer ran out")
-
           topBarWidth = 0;
           bottomBarWidth = 0;
+
+          countdown = 18000000;
+          student.isTest2Over = true;
+          student.isTimer2Paused = false;
+          students.$save(student).then(function() {
+          });
         // timer is counting down (test 2)
-      } else if (!student.isTimer2Paused && !student.isTest2Over) {
+        } else if (!student.isTimer2Paused && !student.isTest2Over) {
           topBarDividend = testStartTime + actualTestTime - $scope.time;
 
           if (topBarDividend > 0) {
-            // topBarWidth = topBarDividend / actualTestTime * 100 * topBarRatio;
             topBarWidth = topBarDividend / testTime * 100 * topBarRatio;
             bottomBarDividend = extension;
           } else if (topBarDividend <= 0) {
             topBarWidth = 0;
-            bottomBarDividend = testStartTime + actualExtension - $scope.time;
+            bottomBarDividend = testStartTime + totalTime - $scope.time;
           }
           // ultimate outputs
           bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
+          // fn to manipulate new Date object
+          dueTime = processTime(testStartTime + totalTime, 19);
+          // ultimate outputs
           countdown = dueTime - $scope.time;
         // timer is paused (test 1)
-      } else if (!student.isTest2Over && student.isTimer2Paused) {
+        } else if (!student.isTest2Over && student.isTimer2Paused) {
+
           if (actualTestTime > 0) {
             topBarWidth = actualTestTime / testTime * 100 * topBarRatio;
             bottomBarDividend = extension;
@@ -246,14 +194,148 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
           }
           bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
+          countdown = processTime(totalTime, 19);
         }
       }
 
       return {
+        countdown: countdown,
         top: topBarWidth,
-        bottom: bottomBarWidth
+        bottom: bottomBarWidth,
+        topBarDividend: topBarDividend,
+        bottomBarDividend: bottomBarDividend
       }
     };
+
+
+    // $scope.barWidth = function(student, testNo) {
+    //
+    //   extendTime = student.extendTime;
+    //   topBarDividend = 0,
+    //   bottomBarDividend = 0,
+    //   topBarRatio = 0,
+    //   bottomBarRatio = 0
+    //
+    //   if (testNo == "test1") {
+    //
+    //     testStartTime = student.test1StartTime;
+    //     totalTime = student.totalTime1;
+    //     testTime = student.test1Time;
+    //     extension = (testTime * extendTime) - testTime;
+    //     actualTestTime = totalTime - extension;
+    //
+    //     if (actualTestTime > 0) {
+    //       actualExtension = totalTime - actualTestTime;
+    //     } else if (actualTestTime <= 0) {
+    //       actualExtension = totalTime;
+    //     }
+    //     // ratios for bar widths
+    //     bottomBarRatio = extension / (testTime * extendTime);
+    //     topBarRatio = 1 - bottomBarRatio;
+    //
+    //     // in case timer has not started yet (test 1) OR: timer has ended
+    //     if ((student.test1StartTime == 0 && !student.isTest1Over && !student.isTimer1Paused) || student.isTest1Over) {
+    //       console.log("test 1: timer has not yet started OR timer has ended");
+    //       topBarWidth = 100 * topBarRatio;
+    //       bottomBarWidth = 100 * bottomBarRatio;
+    //       // timer 1 runs out to zero
+    //     } else if (student.totalTime1 + student.test1StartTime - Date.now() <= 0 && !student.isTimer1Paused && !student.isTest1Over) {
+    //       console.log("test 1: timer has run out");
+    //       topBarWidth = 0;
+    //       bottomBarWidth = 0;
+    //     // timer is counting down (test 1)
+    //     } else if (!student.isTimer1Paused && !student.isTest1Over) {
+    //       topBarDividend = testStartTime + actualTestTime - $scope.time;
+    //
+    //       if (topBarDividend > 0) {
+    //         // topBarWidth = topBarDividend / actualTestTime * 100 * topBarRatio;
+    //         topBarWidth = topBarDividend / testTime * 100 * topBarRatio;
+    //         bottomBarDividend = extension;
+    //       } else if (topBarDividend <= 0) {
+    //         topBarWidth = 0;
+    //         bottomBarDividend = testStartTime + actualExtension - $scope.time;
+    //       }
+    //       // ultimate outputs
+    //       bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
+    //       // console.log("test 1: timer is counting down");
+    //       // console.log("topBarWidth: " + topBarWidth);
+    //     // timer is paused (test 1)
+    //   } else if (!student.isTest1Over && student.isTimer1Paused) {
+    //       if (actualTestTime > 0) {
+    //         topBarWidth = actualTestTime / testTime * 100 * topBarRatio;
+    //         bottomBarDividend = extension;
+    //
+    //       } else if (actualTestTime <= 0) {
+    //         topBarWidth = 0;
+    //         bottomBarDividend = actualExtension;
+    //
+    //       }
+    //       bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
+    //       console.log("test 1: timer is paused");
+    //     }
+    //
+    //   } else if (testNo == "test2") {
+    //
+    //     testStartTime = student.test2StartTime;
+    //     totalTime = student.totalTime2;
+    //     testTime = student.test2Time;
+    //     extension = (testTime * extendTime) - testTime;
+    //
+    //     actualTestTime = totalTime - extension;
+    //
+    //     if (actualTestTime > 0) {
+    //       actualExtension = totalTime - actualTestTime;
+    //     } else if (actualTestTime <= 0) {
+    //       actualExtension = totalTime;
+    //     }
+    //     // ratios for bar widths
+    //     bottomBarRatio = extension / (testTime * extendTime);
+    //     topBarRatio = 1 - bottomBarRatio;
+    //
+    //     // in case timer has not started yet (test 1) OR: timer has ended
+    //     if ((student.test2StartTime == 0 && !student.isTest2Over && !student.isTimer2Paused) || student.isTest2Over) {
+    //       topBarWidth = 100 * topBarRatio;
+    //       bottomBarWidth = 100 * bottomBarRatio;
+    //       // timer 1 runs out to zero
+    //     } else if (student.totalTime2 + student.test2StartTime - Date.now() <= 0 && !student.isTimer2Paused && !student.isTest2Over) {
+    //       console.log("timer ran out")
+    //
+    //       topBarWidth = 0;
+    //       bottomBarWidth = 0;
+    //     // timer is counting down (test 2)
+    //   } else if (!student.isTimer2Paused && !student.isTest2Over) {
+    //       topBarDividend = testStartTime + actualTestTime - $scope.time;
+    //
+    //       if (topBarDividend > 0) {
+    //         // topBarWidth = topBarDividend / actualTestTime * 100 * topBarRatio;
+    //         topBarWidth = topBarDividend / testTime * 100 * topBarRatio;
+    //         bottomBarDividend = extension;
+    //       } else if (topBarDividend <= 0) {
+    //         topBarWidth = 0;
+    //         bottomBarDividend = testStartTime + actualExtension - $scope.time;
+    //       }
+    //       // ultimate outputs
+    //       bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
+    //     // timer is paused (test 1)
+    //   } else if (!student.isTest2Over && student.isTimer2Paused) {
+    //       if (actualTestTime > 0) {
+    //         topBarWidth = actualTestTime / testTime * 100 * topBarRatio;
+    //         bottomBarDividend = extension;
+    //
+    //       } else if (actualTestTime <= 0) {
+    //         topBarWidth = 0;
+    //         bottomBarDividend = actualExtension;
+    //
+    //       }
+    //       bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
+    //     }
+    //   }
+    //
+    //   return {
+    //     top: topBarWidth,
+    //     bottom: bottomBarWidth
+    //   }
+    // };
 
     $scope.pauseTimer = function(student, testNo) {
 

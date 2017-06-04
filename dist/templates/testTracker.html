@@ -222,25 +222,22 @@
       </div>
       <div class="bars col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="progress"> <!-- Begin Bars -->
-          <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: barWidth(student, 'test1').bottom + '%'}">
-            <p ng-show="timer(student, 'test1').countdown - testTime(student, 'test1ExtBar') > 0">{{timer(student, "test1").countdown - testTime(student, "test1") | date: 'H:mm:ss'}}</p>
-            <p>{{testTime(student, 'test1Ext') | date: 'H:mm:ss'}}</p>
-            <p ng-show="timer(student, 'test1').countdown - testTime(student, 'test1ExtBar') == 0">{{timer(student, "test1").countdown - testTime(student, "test1") | date: 'H:mm:ss'}}</p>
+          <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test1').bottom + '%'}">
+            <p ng-show="timer(student, 'test1').countdown - testTime(student, 'test1Ext') > 0">{{testTime(student, "test1Ext") | date: 'H:mm:ss'}}</p>
+            <p ng-show="timer(student, 'test1').countdown - testTime(student, 'test1Ext') <= 0">{{timer(student, "test1").countdown | date: 'H:mm:ss'}}</p>
           </div>
-          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: barWidth(student, 'test1').top + '%'}">
-            <!-- {{timer(student, "test1").countdown | date: 'H:mm:ss'}} -->
+          <div ng-show="timer(student, 'test1').countdown - testTime(student, 'test1Ext') > 0" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test1').top + '%'}">
             {{timer(student, "test1").countdown - testTime(student, "test1ExtBar") | date: 'H:mm:ss'}}
           </div>
+          <div ng-show="timer(student, 'test1').countdown - testTime(student, 'test1Ext') <= 0" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
+          </div>
         </div>
-        {{timer(student, 'test1').countdown - testTime(student, 'test1Ext')}}
-        <!-- normal testTime = {{timer(student, "test1").testTime}}<br>
-        actual testTime = {{timer(student, "test1").actualTestTime}}<br>
-        topBarDividend = {{timer(student, "test1").topBarDividend}}<br>
-        bottomBarDividend = {{timer(student, "test1").bottomBarDividend}}<br>
-        topBarWidth = {{timer(student, "test1").topBarWidth}}<br>
-        bottomBarWidth = {{timer(student, "test1").bottomBarWidth}}<br>
-        topBarRatio = {{timer(student, "test1").topBarRatio}}<br>
-        bottomBarRatio = {{timer(student, "test1").bottomBarRatio}}<br> -->
+        {{timer(student, 'test1').countdown - testTime(student, 'test1Ext')}}<br>
+        bottom width: {{timer(student, 'test1').bottom}}<br>
+        top width: {{timer(student, 'test1').top}}<br>
+        topBarDividend: {{timer(student, 'test1').topBarDividend}}<br>
+        bottomBarDividend: {{timer(student, 'test1').bottomBarDividend}}<br>
+
 
 
 
@@ -399,24 +396,22 @@
       </div>
       <div class="bars col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="progress"> <!-- Begin Bars -->
-          <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: barWidth(student, 'test2').bottom + '%'}">
-            <!-- {{timer(student, "test1").countdown | date: 'H:mm:ss'}} -->
-            <p ng-show="timer(student, 'test2').countdown - testTime(student, 'test2ExtBar') == 0">{{timer(student, "test2").countdown - testTime(student, "test2") | date: 'H:mm:ss'}}</p>
+          <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test2').bottom + '%'}">
+            <p ng-show="timer(student, 'test2').countdown - testTime(student, 'test2Ext') > 0">{{testTime(student, "test2Ext") | date: 'H:mm:ss'}}</p>
+            <p ng-show="timer(student, 'test2').countdown - testTime(student, 'test2Ext') <= 0">{{timer(student, "test2").countdown | date: 'H:mm:ss'}}</p>
           </div>
-          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: barWidth(student, 'test2').top + '%'}">
-            <!-- {{timer(student, "test1").countdown | date: 'H:mm:ss'}} -->
+          <div ng-show="timer(student, 'test2').countdown - testTime(student, 'test2Ext') > 0" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test2').top + '%'}">
             {{timer(student, "test2").countdown - testTime(student, "test2ExtBar") | date: 'H:mm:ss'}}
           </div>
+          <div ng-show="timer(student, 'test2').countdown - testTime(student, 'test2Ext') <= 0" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
+          </div>
         </div>
-        {{timer(student, 'test2').countdown - testTime(student, 'test2ExtBar')}}
-        <!-- normal testTime = {{timer(student, "test2").testTime}}<br>
-        actual testTime = {{timer(student, "test2").actualTestTime}}<br>
-        topBarDividend = {{timer(student, "test2").topBarDividend}}<br>
-        bottomBarDividend = {{timer(student, "test2").bottomBarDividend}}<br>
-        topBarWidth = {{timer(student, "test2").topBarWidth}}<br>
-        bottomBarWidth = {{timer(student, "test2").bottomBarWidth}}<br>
-        topBarRatio = {{timer(student, "test2").topBarRatio}}<br>
-        bottomBarRatio = {{timer(student, "test2").bottomBarRatio}}<br> -->
+        {{timer(student, 'test2').countdown - testTime(student, 'test2Ext')}}<br>
+        bottom width: {{timer(student, 'test2').bottom}}<br>
+        top width: {{timer(student, 'test2').top}}<br>
+        topBarDividend: {{timer(student, 'test2').topBarDividend}}<br>
+        bottomBarDividend: {{timer(student, 'test2').bottomBarDividend}}<br>
+
 
 
 
