@@ -513,12 +513,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         unprocessedTime = student.test1Time;
       } else if (testNo == "test2") {
         unprocessedTime = student.test2Time;
-      } else if (testNo == "test1Bar") {
-        unprocessedTime = student.test2Time;
-        return unprocessedTime;
-      } else if (testNo == "test2Bar") {
-        unprocessedTime = student.test2Time;
-        return unprocessedTime;
       } else if (testNo == "test1Ext") {
         unprocessedTime = (student.test1Time * student.extendTime) - student.test1Time;
       } else if (testNo == "test2Ext") {

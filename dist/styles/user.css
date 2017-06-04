@@ -160,7 +160,7 @@ section {
   /*padding-right: 0.5em;
   margin-right: 0.5em;*/
   padding: 0;
-  float: right;
+  /*float: right;*/
 }
 
 .name, .date, .importance, .time, .hour, .minute {
@@ -349,7 +349,7 @@ section {
 }
 
 .studentDisplay {
-  height: 25em;
+  min-height: 5em;
   /*height: 7em;*/
   display:table-row;
   width: 100%;
@@ -467,11 +467,6 @@ section {
   color: #e05d6f;
 }
 
-/*.redBtn:hover {
-  background-color: #e05d6f;
-  color: white;
-}*/
-
 .pauseBtn:hover {
   background-color: #C3C300;
   color: white
@@ -583,13 +578,21 @@ section {
   padding-left: 0.2em;
 }
 
+.fullBar {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
 .barContainer {
-  height: 40em;
-  width: 5em;
+  height: 20em;
+  width: 10em;
+  border: 0.125em solid #3f4e62;
+  border-radius: 1em;
+  background-color: white;
 }
 
 .topBar, .bottomBar {
-  width: 5em;
+  width: 9.8em;
 }
 
 /* yellow,    green,     red,       dark navy,  brown,     purple,    blue*/
@@ -597,29 +600,37 @@ section {
 
 .topBar {
   background-color: #6FC853;
-  border-top-right-radius: 1em;
-  border-top-left-radius: 1em;
+  border-top-right-radius: 0.8em;
+  border-top-left-radius: 0.8em;
+  bottom: 0;
 }
 
 .bottomBar {
   background-color: #C3C300;
-  border-bottom-right-radius: 1em;
-  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 0.8em;
+  border-bottom-left-radius: 0.8em;
+  position: absolute;
+  bottom: 2px;
 }
 
 .form-fields {
   margin-top: 1.5em;
 }
 
+/* Begin CSS for FORM */
+
+.nameForm, .extendForm {
+}
+
 .nameInput {
-  float: left;
-  width: 65%;
+  /*float: left;*/
+  width: 100%;
   /*margin-left: 0.5em;*/
 }
 
 .extendInput {
-  float: right;
-  width: 3em;
+  /*float: right;*/
+  width: 100%;
   /*padding-right: 0.5em;
   margin-right: 0.5em;*/
 }

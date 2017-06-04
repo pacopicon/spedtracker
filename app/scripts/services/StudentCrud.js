@@ -101,10 +101,41 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         };
       },
 // This function is called by the submit button in testTracker.html when user creates an item in the form
-      addStudent: function(studentName, extendTime, test1Name, test1TimeObj, test2Name, test2TimeObj) {
+      addStudent: function(studentName, extendTime, test1Name, test1TimeObj, test2Name, test2TimeObj, test3Name, test3TimeObj, test4Name, test4TimeObj) {
 
-        test1TimeNum = addHoursAndMinutes(test1TimeObj.getHours(), test1TimeObj.getMinutes());
-        test2TimeNum = addHoursAndMinutes(test2TimeObj.getHours(), test2TimeObj.getMinutes());
+        if (typeof test1Name === "undefined") {
+          test1Name = '';
+        }
+        if (typeof test2Name === "undefined") {
+          test2Name = '';
+        }
+        if (typeof test3Name === "undefined") {
+          test3Name = '';
+        }
+        if (typeof test4Name === "undefined") {
+          test4Name = '';
+        }
+
+        if (typeof test1TimeObj === "undefined") {
+          test1TimeNum = 0;
+        } else {
+          test1TimeNum = addHoursAndMinutes(test1TimeObj.getHours(), test1TimeObj.getMinutes());
+        }
+        if (typeof test2TimeObj === "undefined") {
+          test2TimeNum = 0;
+        } else {
+          test2TimeNum = addHoursAndMinutes(test2TimeObj.getHours(), test2TimeObj.getMinutes());
+        }
+        if (typeof test3TimeObj === "undefined") {
+          test3TimeNum = 0;
+        } else {
+          test3TimeNum = addHoursAndMinutes(test3TimeObj.getHours(), test3TimeObj.getMinutes());
+        }
+        if (typeof test4TimeObj === "undefined") {
+          test4TimeNum = 0;
+        } else {
+          test4TimeNum = addHoursAndMinutes(test4TimeObj.getHours(), test4TimeObj.getMinutes());
+        }
 
         students.$add({
           name: studentName,
@@ -129,6 +160,26 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           pausedTime2: 0,
           pausedTotal2: 0,
           isTest2Over: false,
+          test3Name: test3Name,
+          test3Time: test3TimeNum,
+          totalTime3: test3TimeNum * extendTime,
+          test3StartRecord: 0,
+          test3StartTime: 0,
+          isTimer3Start: false,
+          isTimer3Paused: false,
+          pausedTime3: 0,
+          pausedTotal3: 0,
+          isTest3Over: false,
+          test4Name: test4Name,
+          test4Time: test4TimeNum,
+          totalTime4: test4TimeNum * extendTime,
+          test4StartRecord: 0,
+          test4StartTime: 0,
+          isTimer4Start: false,
+          isTimer4Paused: false,
+          pausedTime4: 0,
+          pausedTotal4: 0,
+          isTest4Over: false,
           isSafeToDelete: false,
           created_at: firebase.database.ServerValue.TIMESTAMP
         }).then(function(studentsRef) {
