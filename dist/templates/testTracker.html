@@ -75,7 +75,7 @@
 <!--TEST 1 name-->
     <div class="test1 marginRight marginLeft col-lg-5 col-md-11 col-sm-11 col-xs-11">
       <div class="test1NameCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <div ng-show="!student.isTimer1Start">
+        <div ng-show="!student.isTimer1Start && !student.isTest1Over">
           <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete || student.isTest1Over}"  ng-click="startTimer(student, 'test1')">
             <p class="countBtnText">
               {{student.test1Name}}
@@ -83,9 +83,10 @@
           </button>
         </div>
         <div ng-show="student.isTest1Over">
-          <button class="disabledBtn redBtn">
+          <button class="redBtn">
             <p class="countBtnText">
               {{student.test1Name}}
+              <!-- This should be RED!!! -->
             </p>
           </button>
         </div>
@@ -173,7 +174,7 @@
             </td>
             <td>
               <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
-                {{testTime(student, "test1") | date: 'h:mm:ss'}}
+                {{testTime(student, "test1") | date: 'H:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -183,7 +184,7 @@
             </td>
             <td>
               <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
-                {{testTime(student, "test1Ext") | date: 'h:mm:ss'}}
+                {{testTime(student, "test1Ext") | date: 'H:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -193,7 +194,7 @@
             </td>
             <td>
               <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
-                {{testTime(student, "test1total") | date: 'h:mm:ss'}}
+                {{testTime(student, "test1total") | date: 'H:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -203,7 +204,7 @@
             </td>
             <td>
               <p class="dataPoint countdown" ng-class="{'redText': student.isSafeToDelete}">
-                {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
+                {{timer(student, "test1").countdown | date: 'H:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -219,6 +220,35 @@
           </tr>
         </table>
       </div>
+      <div class="bars col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="progress"> <!-- Begin Bars -->
+          <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: barWidth(student, 'test1').bottom + '%'}">
+            <p ng-show="timer(student, 'test1').countdown - testTime(student, 'test1ExtBar') > 0">{{timer(student, "test1").countdown - testTime(student, "test1") | date: 'H:mm:ss'}}</p>
+            <p>{{testTime(student, 'test1Ext') | date: 'H:mm:ss'}}</p>
+            <p ng-show="timer(student, 'test1').countdown - testTime(student, 'test1ExtBar') == 0">{{timer(student, "test1").countdown - testTime(student, "test1") | date: 'H:mm:ss'}}</p>
+          </div>
+          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: barWidth(student, 'test1').top + '%'}">
+            <!-- {{timer(student, "test1").countdown | date: 'H:mm:ss'}} -->
+            {{timer(student, "test1").countdown - testTime(student, "test1ExtBar") | date: 'H:mm:ss'}}
+          </div>
+        </div>
+        {{timer(student, 'test1').countdown - testTime(student, 'test1Ext')}}
+        <!-- normal testTime = {{timer(student, "test1").testTime}}<br>
+        actual testTime = {{timer(student, "test1").actualTestTime}}<br>
+        topBarDividend = {{timer(student, "test1").topBarDividend}}<br>
+        bottomBarDividend = {{timer(student, "test1").bottomBarDividend}}<br>
+        topBarWidth = {{timer(student, "test1").topBarWidth}}<br>
+        bottomBarWidth = {{timer(student, "test1").bottomBarWidth}}<br>
+        topBarRatio = {{timer(student, "test1").topBarRatio}}<br>
+        bottomBarRatio = {{timer(student, "test1").bottomBarRatio}}<br> -->
+
+
+
+        <!-- <div class="barContainer">
+          <div class="topBar" ng-style="{height: }"></div>
+          <div class="bottomBar" ng-style="{height: }"></div>
+        </div> -->
+      </div> <!-- End Bars-->
     </div>
 <!--TEST 2 name-->
     <div class="test2 marginRight marginLeft col-lg-5 col-md-11 col-sm-11 col-xs-11">
@@ -230,10 +260,10 @@
             </p>
           </button>
         </div>
-        <div ng-show="!student.isTest1Over || student.isTest2Over">
-          <button ng-class="{'redBtn': student.isTest2Over, 'grayCell': !student.isTest1Over}">
+        <div ng-show="(!student.isTest1Over || student.isTest2Over) && !student.isTimer2Start">
+          <button ng-class="{'grayCell': !student.isTest1Over, 'redBtn': student.isTest2Over}">
             <p class="countBtnText">
-              {{student.test1Name}}
+              {{student.test2Name}}
             </p>
           </button>
         </div>
@@ -321,7 +351,7 @@
             </td>
             <td>
               <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
-                {{testTime(student, "test2") | date: 'h:mm:ss'}}
+                {{testTime(student, "test2") | date: 'H:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -331,7 +361,7 @@
             </td>
             <td>
               <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
-                {{testTime(student, "test2Ext") | date: 'h:mm:ss'}}
+                {{testTime(student, "test2Ext") | date: 'H:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -341,7 +371,7 @@
             </td>
             <td>
               <p class="dataPoint" ng-class="{'redText': student.isSafeToDelete}">
-                {{testTime(student, "test2total") | date: 'h:mm:ss'}}
+                {{testTime(student, "test2total") | date: 'H:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -351,7 +381,7 @@
             </td>
             <td>
               <p class="dataPoint countdown" ng-class="{'redText': student.isSafeToDelete}">
-                {{timer(student, "test2").countdown | date: 'h:mm:ss'}}
+                {{timer(student, "test2").countdown | date: 'H:mm:ss'}}
               </p>
             </td>
           </tr>
@@ -367,51 +397,40 @@
           </tr>
         </table>
       </div>
+      <div class="bars col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="progress"> <!-- Begin Bars -->
+          <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: barWidth(student, 'test2').bottom + '%'}">
+            <!-- {{timer(student, "test1").countdown | date: 'H:mm:ss'}} -->
+            <p ng-show="timer(student, 'test2').countdown - testTime(student, 'test2ExtBar') == 0">{{timer(student, "test2").countdown - testTime(student, "test2") | date: 'H:mm:ss'}}</p>
+          </div>
+          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: barWidth(student, 'test2').top + '%'}">
+            <!-- {{timer(student, "test1").countdown | date: 'H:mm:ss'}} -->
+            {{timer(student, "test2").countdown - testTime(student, "test2ExtBar") | date: 'H:mm:ss'}}
+          </div>
+        </div>
+        {{timer(student, 'test2').countdown - testTime(student, 'test2ExtBar')}}
+        <!-- normal testTime = {{timer(student, "test2").testTime}}<br>
+        actual testTime = {{timer(student, "test2").actualTestTime}}<br>
+        topBarDividend = {{timer(student, "test2").topBarDividend}}<br>
+        bottomBarDividend = {{timer(student, "test2").bottomBarDividend}}<br>
+        topBarWidth = {{timer(student, "test2").topBarWidth}}<br>
+        bottomBarWidth = {{timer(student, "test2").bottomBarWidth}}<br>
+        topBarRatio = {{timer(student, "test2").topBarRatio}}<br>
+        bottomBarRatio = {{timer(student, "test2").bottomBarRatio}}<br> -->
+
+
+
+        <!-- <div class="barContainer">
+          <div class="topBar" ng-style="{height: }"></div>
+          <div class="bottomBar" ng-style="{height: }"></div>
+        </div> -->
+      </div> <!-- End Bars-->
     </div>
 <!--delete-->
     <div class="marginRight col-lg-1 col-md-1 col-sm-1 col-xs-1">
       <!-- <button class="deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete" ><p><i class="fa fa-times"></i></p></button> -->
       <p><i class="fa fa-times deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete"></i></p>
     </div>
-    <div class="marginRight marginLeft col-lg-6 col-md-6 col-sm-6 col-xs-6">
-
-
-      <div class="progress"> <!-- Begin Bars -->
-        <!-- <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: bottomBarWidth(student, 'test1') + '%'}">
-          {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
-        </div>
-        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: topBarWidth(student, 'test1') + '%'}">
-          {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
-        </div> -->
-        <!-- <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test1').bottomBarWidth + '%'}">
-          {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
-        </div>
-        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test1').topBarWidth + '%'}">
-          {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
-        </div> -->
-        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: barWidth(student, 'test1').bottom + '%'}">
-          {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
-        </div>
-        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: barWidth(student, 'test1').top + '%'}">
-          {{timer(student, "test1").countdown | date: 'h:mm:ss'}}
-        </div>
-      </div>
-      <!-- normal testTime = {{timer(student, "test1").testTime}}<br>
-      actual testTime = {{timer(student, "test1").actualTestTime}}<br>
-      topBarDividend = {{timer(student, "test1").topBarDividend}}<br>
-      bottomBarDividend = {{timer(student, "test1").bottomBarDividend}}<br>
-      topBarWidth = {{timer(student, "test1").topBarWidth}}<br>
-      bottomBarWidth = {{timer(student, "test1").bottomBarWidth}}<br>
-      topBarRatio = {{timer(student, "test1").topBarRatio}}<br>
-      bottomBarRatio = {{timer(student, "test1").bottomBarRatio}}<br> -->
-
-
-
-      <!-- <div class="barContainer">
-        <div class="topBar" ng-style="{height: }"></div>
-        <div class="bottomBar" ng-style="{height: }"></div>
-      </div> -->
-    </div> <!-- End Bars-->
   </div> <!-- student Display and ng-repeat end -->
 <!--FORM-->
   <div class="displayText">

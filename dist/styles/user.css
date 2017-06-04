@@ -383,7 +383,7 @@ section {
   color: #6FC853;
 }
 
-.redText, .redBtnText {
+.redText {
   color: #e05d6f;
 }
 
@@ -394,20 +394,6 @@ section {
 .redCell {
   border: 2.5px solid #e05d6f;
   color: #e05d6f;
-}
-
-.grayCell {
-  border: 2.5px solid #3f4e62;
-  color: #3f4e62;
-}
-
-.redBtn {
-  border: 2.5px solid #e05d6f;
-  color: #e05d6f;
-}
-
-.grayText {
-  color: #3f4e62;
 }
 
 .yellowText {
@@ -452,10 +438,6 @@ section {
   margin-top: 0.7em;
 }
 
-.redBtn {
-  cursor: default;
-}
-
 .countBtn:hover {
   background-color: #6FC853;
   color: white;
@@ -464,6 +446,31 @@ section {
 .countBtnText, .pauseBtnText, .grayText {
   margin-top: 12px;
 }
+
+.grayCell {
+  border: 2.5px solid #3f4e62;
+  color: #3f4e62;
+  cursor: not-allowed;
+}
+
+.grayText {
+  color: #3f4e62;
+}
+
+.redBtn {
+  border: 2.5px solid #e05d6f;
+  color: #e05d6f;
+  cursor: not-allowed;
+}
+
+.redText {
+  color: #e05d6f;
+}
+
+/*.redBtn:hover {
+  background-color: #e05d6f;
+  color: white;
+}*/
 
 .pauseBtn:hover {
   background-color: #C3C300;
@@ -552,6 +559,10 @@ section {
 
 .dataPoint, .dataPointLabel {
   height: 0.5em;
+}
+
+.dataPoint {
+  text-align: right;
 }
 
 .countdown {
