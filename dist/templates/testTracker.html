@@ -415,13 +415,13 @@
   <div class="displayText">
     <div class="form row">
       <form ng-submit="addStudent()"><!-- push a new message onto the array-->
-        <div class="form-fields col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="nameAndExtend marginRight marginLeft col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="form-fields marginRight marginLeft col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="nameAndExtend col-lg-4 col-md-4 col-sm-4 col-xs-12">
 <!--student name + extend button-->
-            <div class="nameForm marginRight marginLeft col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="nameForm col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <input class="form-control nameInput" ng-model="newStudentName" placeholder="enter student name"/>
             </div>
-            <div class="extendForm marginRight col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="extendForm col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip">
                 <button type="button" class="extendInput btn btn-default" ng-model="timewrap.selectedTime" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="time as time for time in times" placeholder="enter ext. time" bs-select>
                   <span class="caret">
@@ -431,45 +431,45 @@
             </div>
           </div>
 <!--test name 1-->
-          <div class="testOneAndTwo marginRight col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <div class="nameAndTime marginLeft marginRight col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="testNameForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtest1Name" placeholder="enter test" />
+          <div class="testOneAndTwo col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input class="form-control testNameInput" ng-model="newtest1Name" placeholder="enter 1st test" />
               </div>
 <!--test time 1-->
-              <div class="testTimeForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate1" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
               </div>
             </div>
 <!--test name 2-->
-            <div class="nameAndTime marginRight col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="testNameForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtest2Name" placeholder="enter test" />
+            <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input class="form-control testNameInput" ng-model="newtest2Name" placeholder="enter 2nd test" />
               </div>
 <!--test time 2-->
-              <div class="testTimeForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate2" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
               </div>
             </div>
           </div>
 <!--test name 3-->
-          <div class="testOneAndTwo marginRight col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <div class="nameAndTime marginRight marginLeft col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="testNameForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtest3Name" placeholder="enter test" />
+          <div class="testThreeAndFour col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input class="form-control testNameInput" ng-model="newtest3Name" placeholder="enter 3rd test" />
               </div>
 <!--test time 3-->
-              <div class="testTimeForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate3" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
               </div>
             </div>
 <!--test name 4-->
-            <div class="nameAndTime marginRight col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="testNameForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtest4Name" placeholder="enter test" />
+            <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input class="form-control testNameInput" ng-model="newtest4Name" placeholder="enter 4th test" />
               </div>
 <!--test time 4-->
-              <div class="testTimeForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate4" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
               </div>
             </div>
