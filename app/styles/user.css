@@ -203,10 +203,6 @@ section {
   width: 100%
 }
 
-.btn-time {
-  width: 30%;
-}
-
 .fa {
   color: #3f4e62;
 }
@@ -578,9 +574,23 @@ section {
   padding-left: 0.2em;
 }
 
+.progress {
+  height: 2em;
+}
+
+.progress-bar {
+  font-size: 40em;
+}
+
 .fullBar {
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+.barLabel {
+  line-height: 2.7em;
+  height: 100%;
+  font-size: 10em;
 }
 
 .barContainer {
@@ -614,7 +624,9 @@ section {
 }
 
 .form-fields {
-  margin-top: 1.5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  height: 2em;
 }
 
 /* Begin CSS for FORM */
@@ -635,179 +647,26 @@ section {
   margin-right: 0.5em;*/
 }
 
+.nameAndTime {
+  /*width: 100%;*/
+  height: 2em;
+}
 
+.testNameForm {
+  float: left;
+  width: 63%;
+}
 
 .testNameInput {
-  margin-left: 0.5em;
-  width: 100%;
 }
 
-.hourInput, .minInput {
-  width: 49%;
-}
-
-.hourInput {
-  float: left;
-}
-
-.minInput {
+.testTimeForm {
+  width: 37%;
   float: right;
 }
 
-/*End Item Display elements*/
-
-/*Begin Modal elements*/
-
-/*.nameEditBox, .dateEditBox, .importanceEditBox, .urgentCell, .numberCell {
-  color: #3f4e62;
+.btn-time {
 }
-
-.nameEditBox {
-  margin-left: 2.9em;
-  width: 10em;
-  border-radius: 0.3em;
-  color: black;
-  margin-bottom: 0.5em;
-}*/
-
-.dateCell {
-  position: relative;
-}
-
-.urgentCell {
-  position: relative;
-  overflow: auto;
-  width: 6em;
-  height: 3.5em;
-}
-
-.urgentLine {
-  width: 100%;
-}
-
-.urgentEditBox {
-  width: 100%;
-}
-
-.durationCell {
-  /*Should be double the width of .numberCell*/
-  width: 7em;
-}
-.numberCell {
-  position: relative;
-  overflow: auto;
-  width: 3.5em;
-}
-
-/*End Modal elements*/
-
-/*Begin Chart elements */
-
-.containerPad {
-  margin-top: 2em;
-}
-
-.label {
-  color: #3f4e62;
-  text-align: center;
-  font-size: 1.5em;
-}
-
-.btn-chart {
-  border-radius: 0.3em;
-  height: 1.5em;
-  width: 1.5em;
-  border-style: none;
-  background-color: #e7eaeb;
-  float: right;
-}
-
-.fa-refresh {
-  margin-top: 0.25em;
-}
-
-.btn-chart:hover {
-  background-color: #d8dddf;
-}
-
-.barChart {
-  margin-top: 5%;
-}
-
-.chart-legend {
-  margin-top: 1em;
-}
-
-.statement {
-  float: right;
-  width: 30%;
-}
-
-.statement2 {
-  float: right;
-  width: 40%;
-}
-
-.itemsCompleted, .itemsYetToComplete, .itemsOverdue, .itemsDueComplete, .timeCompleted, .timeYetToComplete, .timeOverdue, .timeDueComplete {
-  color: white;
-  width: 70%;
-  float: left;
-}
-
-.itemsCompleted, .timeCompleted, .comNumber {
-  color: #C3C300;
-}
-
-.itemsYetToComplete, .timeYetToComplete, .incomNumber {
-  color: #6FC853;
-}
-
-.itemsOverdue, .timeOverdue, .overdueNumber {
-  color: #e05d6f;
-}
-
-.itemsDueComplete, .timeDueComplete, .dueCompleteNumber {
-  color: #3f4e62;
-}
-
-.total {
-  color: #AC6D39;
-}
-
-.totalPercent {
-  color: #8E5EC5;
-}
-
-.comNumber, .incomNumber, .overdueNumber, .dueCompleteNumber {
-  float: left;
-}
-
-.timeCompleted, .timeYetToComplete, .timeOverdue, .timeDueComplete {
-  width: 55%;
-}
-
-/*End Chart elements */
-
-/*begin Daily, Weekly and Monthly (calendar) views*/
-
-
-
-.day {
-  border: 2.5px solid #3f4e62;
-  /*margin-left: 0;*/
-}
-
-
-
-
-
-
-
-
-
-
-/*end Daily, Weekly and Monthly (calendar) views*/
-
 
 @media only screen and (min-width : 768px) {
 

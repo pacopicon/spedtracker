@@ -223,16 +223,16 @@
       <div class="bars col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="progress fullBar">
           <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (timer(student, 'test1').bottom + timer(student, 'test1').top) + '%'}">
-            <p>{{timer(student, "test1").countdown | date: 'H:mm:ss'}}</p>
+            <p class="barLabel">{{timer(student, "test1").countdown | date: 'H:mm:ss'}}</p>
           </div>
         </div>
         <div class="progress"> <!--Begin Bars-->
           <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test1').bottom + '%'}">
-            <p ng-show="timer(student, 'test1').countdown - testTime(student, 'test1Ext') > 0">{{testTime(student, "test1Ext") | date: 'H:mm:ss'}}</p>
-            <p ng-show="timer(student, 'test1').countdown - testTime(student, 'test1Ext') <= 0">{{timer(student, "test1").countdown | date: 'H:mm:ss'}}</p>
+            <p class="barLabel" ng-show="timer(student, 'test1').countdown - testTime(student, 'test1Ext') > 0">{{testTime(student, "test1Ext") | date: 'H:mm:ss'}}</p>
+            <p class="barLabel" ng-show="timer(student, 'test1').countdown - testTime(student, 'test1Ext') <= 0">{{timer(student, "test1").countdown | date: 'H:mm:ss'}}</p>
           </div>
           <div ng-show="timer(student, 'test1').countdown - testTime(student, 'test1Ext') > 0" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test1').top + '%'}">
-            {{timer(student, "test1").countdown - testTime(student, "test1ExtBar") | date: 'H:mm:ss'}}
+            <p class="barLabel">{{timer(student, "test1").countdown - testTime(student, "test1ExtBar") | date: 'H:mm:ss'}}</p>
           </div>
           <div ng-show="timer(student, 'test1').countdown - testTime(student, 'test1Ext') <= 0" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
           </div>
@@ -389,16 +389,16 @@
       <div class="bars col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="progress fullBar">
           <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (timer(student, 'test2').bottom + timer(student, 'test2').top) + '%'}">
-            <p>{{timer(student, "test2").countdown | date: 'H:mm:ss'}}</p>
+            <p class="barLabel">{{timer(student, "test2").countdown | date: 'H:mm:ss'}}</p>
           </div>
         </div>
         <div class="progress"> <!--Begin Bars-->
           <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test2').bottom + '%'}">
-            <p ng-show="timer(student, 'test2').countdown - testTime(student, 'test2Ext') > 0">{{testTime(student, "test2Ext") | date: 'H:mm:ss'}}</p>
-            <p ng-show="timer(student, 'test2').countdown - testTime(student, 'test2Ext') <= 0">{{timer(student, "test2").countdown | date: 'H:mm:ss'}}</p>
+            <p class="barLabel" ng-show="timer(student, 'test2').countdown - testTime(student, 'test2Ext') > 0">{{testTime(student, "test2Ext") | date: 'H:mm:ss'}}</p>
+            <p class="barLabel" ng-show="timer(student, 'test2').countdown - testTime(student, 'test2Ext') <= 0">{{timer(student, "test2").countdown | date: 'H:mm:ss'}}</p>
           </div>
           <div ng-show="timer(student, 'test2').countdown - testTime(student, 'test2Ext') > 0" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'test2').top + '%'}">
-            {{timer(student, "test2").countdown - testTime(student, "test2ExtBar") | date: 'H:mm:ss'}}
+            <p class="barLabel">{{timer(student, "test2").countdown - testTime(student, "test2ExtBar") | date: 'H:mm:ss'}}</p>
           </div>
           <div ng-show="timer(student, 'test2').countdown - testTime(student, 'test2Ext') <= 0" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
           </div>
@@ -415,34 +415,64 @@
   <div class="displayText">
     <div class="form row">
       <form ng-submit="addStudent()"><!-- push a new message onto the array-->
-<!--student name + extend button-->
         <div class="form-fields col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="nameForm marginRight col-lg-2 col-md-2 col-sm-12 col-xs-12">
-            <input class="form-control nameInput" ng-model="newStudentName" placeholder="name"/>
+          <div class="nameAndExtend marginRight marginLeft col-lg-4 col-md-4 col-sm-6 col-xs-12">
+<!--student name + extend button-->
+            <div class="nameForm marginRight marginLeft col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <input class="form-control nameInput" ng-model="newStudentName" placeholder="enter student name"/>
+            </div>
+            <div class="extendForm marginRight col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip">
+                <button type="button" class="extendInput btn btn-default" ng-model="timewrap.selectedTime" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="time as time for time in times" placeholder="enter ext. time" bs-select>
+                  <span class="caret">
+                  </span>
+                </button>
+              </a>
+            </div>
           </div>
-          <div class="extendForm col-lg-2 col-md-2 col-sm-12 col-xs-12">
-            <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip">
-              <button type="button" class="extendInput btn btn-default" ng-model="timewrap.selectedTime" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="time as time for time in times" placeholder="enter extended time" bs-select>
-                <span class="caret">
-                </span>
-              </button>
-            </a>
+<!--test name 1-->
+          <div class="testOneAndTwo marginRight col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="nameAndTime marginLeft marginRight col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="testNameForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input class="form-control testNameInput" ng-model="newtest1Name" placeholder="enter test" />
+              </div>
+<!--test time 1-->
+              <div class="testTimeForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate1" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
+              </div>
+            </div>
+<!--test name 2-->
+            <div class="nameAndTime marginRight col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="testNameForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input class="form-control testNameInput" ng-model="newtest2Name" placeholder="enter test" />
+              </div>
+<!--test time 2-->
+              <div class="testTimeForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate2" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
+              </div>
+            </div>
           </div>
-  <!--countdown btn + test name-->
-          <div class="countdownBtnCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
-            <input class="form-control testNameInput" ng-model="newtest1Name" placeholder="enter test name" />
-          </div>
-  <!--test 1 time-->
-          <div class="marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
-            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate1" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
-          </div>
-  <!--countdown btn + test name-->
-          <div class="countdownBtnCell marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
-            <input class="form-control testNameInput" ng-model="newtest2Name" placeholder="enter test name" />
-          </div>
-  <!--test 2 time-->
-          <div class="marginRight col-lg-2 col-md-2 col-sm-2 col-xs-2">
-            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate2" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
+<!--test name 3-->
+          <div class="testOneAndTwo marginRight col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="nameAndTime marginRight marginLeft col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="testNameForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input class="form-control testNameInput" ng-model="newtest3Name" placeholder="enter test" />
+              </div>
+<!--test time 3-->
+              <div class="testTimeForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate3" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
+              </div>
+            </div>
+<!--test name 4-->
+            <div class="nameAndTime marginRight col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="testNameForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input class="form-control testNameInput" ng-model="newtest4Name" placeholder="enter test" />
+              </div>
+<!--test time 4-->
+              <div class="testTimeForm marginLeft marginRight col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate4" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-div">
