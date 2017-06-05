@@ -542,18 +542,16 @@ section {
 
 .test1TimeCell {
   margin-top: 0.7em;
+  margin-bottom: 0.7em;
 }
 
 .dataPointLabel {
-  margin-right: 1em;
-}
-
-.dataPoint, .dataPointLabel {
-  height: 0.5em;
+  float: left;
 }
 
 .dataPoint {
   text-align: right;
+  float: right;
 }
 
 .countdown {

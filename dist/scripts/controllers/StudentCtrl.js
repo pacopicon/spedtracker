@@ -601,7 +601,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 // Begin AngularStrap popover
 
     $scope.dateTip = {
-      "title": "enter estimated time to complete in hours",
+      "title": "enter testing extension accomodation",
       "checked": false
     };
 
@@ -609,6 +609,8 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
     $scope.newDueDate1 = new Date(new Date().setHours(1,0,0));
     $scope.newDueDate2 = new Date(new Date().setHours(1,0,0));
+    $scope.newDueDate3 = new Date(new Date().setHours(1,0,0));
+    $scope.newDueDate4 = new Date(new Date().setHours(1,0,0));
 
 
     $scope.timewrap = {};
@@ -617,22 +619,11 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
 // End ExtendTime
 
-// Begin Estimate
-
-    $scope.hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    $scope.minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
-
-    $scope.test1hourwrap = {};
-    $scope.test1minutewrap = {};
-    $scope.test2hourwrap = {};
-    $scope.test2minutewrap = {};
-// End Estimate
-
 // Begin CRUD Functions
 
     $scope.addStudent = function() {
-      if ($scope.newStudentName && $scope.timewrap.selectedTime && $scope.newtest1Name && $scope.newDueDate1 && $scope.newtest2Name && $scope.newDueDate2) {
-        StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newtest1Name, $scope.newDueDate1, $scope.newtest2Name, $scope.newDueDate2);
+      if ($scope.newStudentName && $scope.timewrap.selectedTime) {
+        StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newtest1Name, $scope.newDueDate1, $scope.newtest2Name, $scope.newDueDate2, $scope.newtest3Name, $scope.newDueDate3, $scope.newtest4Name, $scope.newDueDate4);
         var owner = "addStudent at " + Date.now();
         toggleInvert(owner);
       } else {
