@@ -323,7 +323,8 @@ section {
 /* begin CSS for StudentDisplay */
 
 .displayText p {
-  font-size: 13px;
+  /*font-size: 13px;*/
+  font-size: 1em;
 }
 
 .header {
@@ -404,15 +405,33 @@ section {
   border: #C3C300;
 }
 
-.nameCell {
+.nameAndTest {
   float: left;
-  margin-left: 0.5em;
-  /*padding-left: 2em;*/
-  /*margin-right: 3em;*/
+  padding-left: 0;
+  padding-right: 0.5em;
 }
 
+.nameCell {
+  float: left;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
 .extendTimeCell {
+  /*float: right;*/
+}
+
+.test1NameCell {
+  display: inline;
   float: right;
+}
+
+.test1Name {
+  float: left;
+}
+
+.test1TimeCell {
+  /*text-align: left;*/
+  /*line-height: 1.7em;*/
 }
 
 .countdownBtnCell {
@@ -424,14 +443,14 @@ section {
 }
 
 .countBtn, .pauseBtn, .grayCell, .redBtn {
-  border-radius: 1em;
+  /*border-radius: 1em;*/
   border: 2.5px solid #6FC853;
   background-color: white;
   color: #6FC853;
-  height: 85%;
   width: 100%;
-  /*margin-bottom: 25%;*/
+  height: 2em;
   margin-top: 0.7em;
+  font-size: 1em;
 }
 
 .countBtn:hover {
@@ -439,8 +458,8 @@ section {
   color: white;
 }
 
-.countBtnText, .pauseBtnText, .grayText {
-  margin-top: 12px;
+.countBtnText, .pauseBtnText, .grayText, .redText, .resumeBtnText, .resetBtnText, .endBtnText {
+  margin-top: 2px;
 }
 
 .grayCell {
@@ -473,13 +492,21 @@ section {
   color: #C3C300;
 }
 
-.resumeBtn, .resetBtn, .endBtn {
-  border-radius: 1em;
-  background-color: white;
-  height: 1.5em;
+.resumeResetEnd {
   width: 100%;
-  margin-bottom: 0;
-  padding-bottom: 0;
+  height: 2em;
+  margin-top: 0.7em;
+}
+
+.resumeBtn, .resetBtn, .endBtn {
+  /*border-radius: 1em;*/
+  background-color: white;
+  height: 2em;
+  margin-top: 0.7em;
+  /*height: 1.5em;*/
+  /*width: 100%;*/
+  /*margin-bottom: 0;*/
+  /*padding-bottom: 0;*/
   /*transition: all 0.4s ease-in-out;*/
 }
 
@@ -487,11 +514,12 @@ section {
   /*margin-bottom: 1%;*/
   border: 2.5px solid #6FC853;
   color: #6FC853;
-  margin-top: 0.7em;
-  border-top-right-radius: 1em;
-  border-top-left-radius: 1em;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+  float: left;
+  /*margin-top: 0.7em;*/
+  /*border-top-right-radius: 1em;*/
+  /*border-top-left-radius: 1em;*/
+  /*border-bottom-right-radius: 0;*/
+  /*border-bottom-left-radius: 0;*/
 }
 
 .resumeBtn:Hover {
@@ -503,7 +531,7 @@ section {
   /*margin-bottom: 1%;*/
   border: 2.5px solid #C3C300;
   color: #C3C300;
-  border-radius: 0;
+  /*border-radius: 0;*/
 }
 
 .resetBtn:hover {
@@ -514,10 +542,11 @@ section {
 .endBtn {
   border: 2.5px solid #e05d6f;
   color: #e05d6f;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  border-bottom-right-radius: 1em;
-  border-bottom-left-radius: 1em;
+  float: right;
+  /*border-top-right-radius: 0;*/
+  /*border-top-left-radius: 0;*/
+  /*border-bottom-right-radius: 1em;*/
+  /*border-bottom-left-radius: 1em;*/
 }
 
 .endBtn:hover {
@@ -525,33 +554,10 @@ section {
   background-color: #e05d6f;
 }
 
-.resumeBtnText, .resetBtnText, .endBtnText {
-  margin: 0;
-  padding: 0;
-  bottom: 0.7em;
-  margin-bottom: 0.5em;
-}
-
-.test1NameCell {
-  display: inline;
-}
-
-.test1Name {
-  float: left;
-}
-
-.test1TimeCell {
-  margin-top: 0.7em;
-  margin-bottom: 0.7em;
-}
-
-.dataPointLabel {
-  float: left;
-}
-
-.dataPoint {
-  text-align: right;
-  float: right;
+.dataPointLabel, .dataPoint {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+  text-align: left;
 }
 
 .countdown {
@@ -573,11 +579,11 @@ section {
 }
 
 .progress {
-  height: 2em;
+  height: 1.25em;
 }
 
 .progress-bar {
-  font-size: 40em;
+  /*font-size: 40em;*/
 }
 
 .fullBar {
@@ -586,9 +592,9 @@ section {
 }
 
 .barLabel {
-  line-height: 2.7em;
+  line-height: 1.3em;
   height: 100%;
-  font-size: 10em;
+  /*font-size: 10em;*/
 }
 
 .barContainer {
@@ -703,20 +709,6 @@ section {
 
 @media only screen and (max-width : 767px) {
 /*actually 844*/
-  .nameCell {
-    padding-left: 1em;
-  }
-
-  .dateCell {
-    padding-left: 0.5em;
-  }
-
-  .name {
-    padding-right: 0.9em;
-    position: relative;
-    min-width: 85%;
-  }
-
   .btn-wrap {
     padding-left: 0;
     margin-left: 0;
@@ -731,313 +723,64 @@ section {
 
 @media only screen and (max-width : 767px) {
 
-  .nameCell {
-    margin-left: 0.9em;
-  }
-
-  .dateCell {
-    margin-left: 0.55em;
-  }
-
-  .minute {
-    margin-left: 0;
-  }
-
 }
 
 @media only screen and (max-width : 781px) {
   /*actually 858*/
-  .nameCell {
-    min-width: 50%;
-  }
 
 }
 
 @media only screen and (max-width : 969px) {
 
-  .hour-and-minute {
-    margin-right: 0.9em;
-    width: 100%;
-  }
-
 }
 
 @media only screen and (max-width : 429px) {
-
-  .name {
-    width: 95%;
-  }
-
-  .date, .time, .importance, .hour, .minute {
-    /*padding-right: -1em;*/
-    width: 93%;
-  }
 
 }
 
 @media only screen and (max-width : 529px) and (min-width : 430px) {
 
-  .name {
-    width: 96%;
-  }
-
-  .date, .time, .importance, .hour, .minute {
-    /*padding-right: -1em;*/
-    width: 94%;
-  }
-
 }
 
 @media only screen and (max-width : 607px) and (min-width : 530px) {
 
-  .name {
-    width: 97%;
-  }
-
-  .date, .time, .importance, .hour, .minute {
-    width: 95%;
-  }
-
-  .minute {
-    margin-left: 0;
-  }
-
-  .hour-and-minute {
-    margin-right: 0.9em;
-    width: 100%;
-  }
-
 }
 
 @media only screen and (max-width : 767px) and (min-width : 608px) {
-
-  .name {
-    width: 97%;
-  }
-
-  .date, .time, .importance, .hour, .minute {
-    width: 95%
-  }
-
-  .minute {
-    margin-left: 0;
-  }
-
-  .hour-and-minute {
-    margin-right: 0.9em;
-    /*margin-left: 0;*/
-    width: 100%;
-  }
-
 }
 
 @media only screen and (max-width : 799px) and (min-width : 768px) {
-
-
-  .name {
-    width: 96.2%
-  }
-
-  .date, .time {
-    width: 30.5%;
-  }
-
-  .importance {
-    width: 30.5%;
-  }
-
-  .hour, .minute {
-    width: 46.7%;
-  }
-
-  .hour-and-minute {
-    margin-right: 0.9em;
-    /*margin-left: 0.9em;*/
-    width: 100%;
-  }
 
 }
 
 @media only screen and (max-width : 969px) and (min-width : 800px) {
 
-
-  .name {
-    width: 96.6%
-  }
-
-  .date, .time {
-    width: 31%;
-  }
-
-  .importance {
-    width: 31%;
-  }
-
-  .hour, .minute {
-    width: 47.5%;
-  }
-
-  .hour-and-minute {
-    margin-right: 0.9em;
-    /*margin-left: 0.9em;*/
-    width: 100%;
-  }
-
 }
 
 @media only screen and (max-width : 991px) and (min-width : 970px) {
 
-  /*.time {
-    width: 18%;
-  }*/
-
-  .name {
-    width: 16.5%;
-  }
-
-  .time {
-    width: 10%;
-  }
-
-  .date {
-    width: 14%;
-  }
-
-  .importance {
-    width: 10%;
-  }
-
-  .hour-and-minute {
-    margin-right: 0.9em;
-    margin-left: 0.9em;
-    width: 38.2%;
-  }
-
 }
 
-
 @media only screen and (max-width : 1076px) and (min-width : 992px) {
-
-  /*.time {
-    width: 13%;
-  }*/
-
-
-
-  .date {
-    width: 14%;
-  }
-
-  .time {
-    width: 10%;
-  }
-
-  .importance {
-    width: 10%;
-  }
-
-  .hour-and-minute {
-    margin-right: 0.9em;
-    margin-left: 0.9em;
-    width: 38.8%;
-  }
-
-  /*.hour {
-    width: 50%;
-  }
-
-  .minute {
-    width: 20%;
-  }*/
 
 }
 
 @media only screen and (max-width : 1199px) and (min-width : 1077px) {
 
-  /*.name {
-    width: 70%;
-  }*/
-
-  .importance {
-    width: 9%;
-  }
-
-  .hour-and-minute {
-    margin-right: 0.9em;
-    margin-left: 0.9em;
-    width: 39.8%;
-  }
-
 }
 
 @media only screen and (max-width : 1425px) and (min-width : 1200px) {
-
-  /*.name {
-    width: 70%;
-  }*/
-
-  .importance {
-    width: 9.5%;
-  }
-
-  .hour-and-minute {
-    /*margin-right: 0.9em;*/
-    /*margin-left: 0.9em;*/
-    width: 40.2%;
-  }
 
 }
 
 @media only screen and (max-width : 1716px) and (min-width : 1426px) {
 
-  /*.name {
-    width: 70%;
-  }*/
-
-  .importance {
-    width: 11%;
-  }
-
-  .hour-and-minute {
-    /*margin-right: 0.9em;*/
-    /*margin-left: 0.9em;*/
-    width: 40.6%;
-  }
-
 }
 
 @media only screen and (max-width : 2153px) and (min-width : 1717px) {
 
-  /*.name {
-    width: 70%;
-  }*/
-
-  .importance {
-    width: 12%;
-  }
-
-  .hour-and-minute {
-    /*margin-right: 0.9em;*/
-    /*margin-left: 0.9em;*/
-    width: 41%;
-  }
-
 }
 
 @media only screen and (max-width : 2600px) and (min-width : 2154px) {
-
-  /*.name {
-    width: 70%;
-  }*/
-
-  .importance {
-    width: 13%;
-  }
-
-  .hour-and-minute {
-    /*margin-right: 0.9em;*/
-    /*margin-left: 0.9em;*/
-    width: 41.4%;
-  }
 
 }
