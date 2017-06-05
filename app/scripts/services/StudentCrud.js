@@ -101,35 +101,35 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         };
       },
 // This function is called by the submit button in testTracker.html when user creates an item in the form
-      addStudent: function(studentName, extendTime, test1Name, test1TimeObj, test2Name, test2TimeObj, test3Name, test3TimeObj, test4Name, test4TimeObj) {
+      addStudent: function(studentName, extendTime, testOneName, testOneTimeObj, testTwoName, testTwoTimeObj, testThreeName, testThreeTimeObj, test4Name, test4TimeObj) {
 
-        if (typeof test1Name === "undefined") {
-          test1Name = '';
+        if (typeof testOneName === "undefined") {
+          testOneName = '';
         }
-        if (typeof test2Name === "undefined") {
-          test2Name = '';
+        if (typeof testTwoName === "undefined") {
+          testTwoName = '';
         }
-        if (typeof test3Name === "undefined") {
-          test3Name = '';
+        if (typeof testThreeName === "undefined") {
+          testThreeName = '';
         }
         if (typeof test4Name === "undefined") {
           test4Name = '';
         }
 
-        if (typeof test1TimeObj === "undefined") {
-          test1TimeNum = 0;
+        if (typeof testOneTimeObj === "undefined") {
+          testOneTimeNum = 0;
         } else {
-          test1TimeNum = addHoursAndMinutes(test1TimeObj.getHours(), test1TimeObj.getMinutes());
+          testOneTimeNum = addHoursAndMinutes(testOneTimeObj.getHours(), testOneTimeObj.getMinutes());
         }
-        if (typeof test2TimeObj === "undefined") {
-          test2TimeNum = 0;
+        if (typeof testTwoTimeObj === "undefined") {
+          testTwoTimeNum = 0;
         } else {
-          test2TimeNum = addHoursAndMinutes(test2TimeObj.getHours(), test2TimeObj.getMinutes());
+          testTwoTimeNum = addHoursAndMinutes(testTwoTimeObj.getHours(), testTwoTimeObj.getMinutes());
         }
-        if (typeof test3TimeObj === "undefined") {
-          test3TimeNum = 0;
+        if (typeof testThreeTimeObj === "undefined") {
+          testThreeTimeNum = 0;
         } else {
-          test3TimeNum = addHoursAndMinutes(test3TimeObj.getHours(), test3TimeObj.getMinutes());
+          testThreeTimeNum = addHoursAndMinutes(testThreeTimeObj.getHours(), testThreeTimeObj.getMinutes());
         }
         if (typeof test4TimeObj === "undefined") {
           test4TimeNum = 0;
@@ -140,46 +140,46 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         students.$add({
           name: studentName,
           extendTime: extendTime,
-          test1Name: test1Name,
-          test1Time: test1TimeNum,
-          totalTime1: test1TimeNum * extendTime,
-          test1StartRecord: 0,
-          test1StartTime: 0,
-          isTimer1Start: false,
-          isTimer1Paused: false,
-          pausedTime1: 0,
-          pausedTotal1: 0,
-          isTest1Over: false,
-          test2Name: test2Name,
-          test2Time: test2TimeNum,
-          totalTime2: test2TimeNum * extendTime,
-          test2StartRecord: 0,
-          test2StartTime: 0,
-          isTimer2Start: false,
-          isTimer2Paused: false,
-          pausedTime2: 0,
-          pausedTotal2: 0,
-          isTest2Over: false,
-          test3Name: test3Name,
-          test3Time: test3TimeNum,
-          totalTime3: test3TimeNum * extendTime,
-          test3StartRecord: 0,
-          test3StartTime: 0,
-          isTimer3Start: false,
-          isTimer3Paused: false,
-          pausedTime3: 0,
-          pausedTotal3: 0,
-          isTest3Over: false,
-          test4Name: test4Name,
-          test4Time: test4TimeNum,
-          totalTime4: test4TimeNum * extendTime,
-          test4StartRecord: 0,
-          test4StartTime: 0,
-          isTimer4Start: false,
-          isTimer4Paused: false,
-          pausedTime4: 0,
-          pausedTotal4: 0,
-          isTest4Over: false,
+          testOneName: testOneName,
+          testOneTime: testOneTimeNum,
+          totalTimeOne: testOneTimeNum * extendTime,
+          testOneStartRecord: 0,
+          testOneStartTime: 0,
+          isTimerOneStart: false,
+          isTimerOnePaused: false,
+          pausedTimeOne: 0,
+          pausedTotalOne: 0,
+          isTestOneOver: false,
+          testTwoName: testTwoName,
+          testTwoTime: testTwoTimeNum,
+          totalTimeTwo: testTwoTimeNum * extendTime,
+          testTwoStartRecord: 0,
+          testTwoStartTime: 0,
+          isTimerTwoStart: false,
+          isTimerTwoPaused: false,
+          pausedTimeTwo: 0,
+          pausedTotalTwo: 0,
+          isTestTwoOver: false,
+          testThreeName: testThreeName,
+          testThreeTime: testThreeTimeNum,
+          totalTimeThree: testThreeTimeNum * extendTime,
+          testThreeStartRecord: 0,
+          testThreeStartTime: 0,
+          isTimerThreeStart: false,
+          isTimerThreePaused: false,
+          pausedTimeThree: 0,
+          pausedTotalThree: 0,
+          isTestThreeOver: false,
+          testFourName: testFourName,
+          testFourTime: testFourTimeNum,
+          totalTimeFour: testFourTimeNum * extendTime,
+          testFourStartRecord: 0,
+          testFourStartTime: 0,
+          isTimerFourStart: false,
+          isTimerFourPaused: false,
+          pausedTimeFour: 0,
+          pausedTotalFour: 0,
+          isTestFourOver: false,
           isSafeToDelete: false,
           created_at: firebase.database.ServerValue.TIMESTAMP
         }).then(function(studentsRef) {
