@@ -353,7 +353,7 @@ section {
   margin-left: 0.5em;
 }
 
-.nameCell, .countdownBtnCell, .testNameCell, .testTimeCell, .countdownCell {
+.nameCell, .countdownBtnCell, .testNameCell, .firstTestNameCell, .testTimeCell, .countdownCell {
   height: 100%;
 }
 
@@ -371,10 +371,14 @@ section {
   padding-left: 0;
 }
 
-.nameAndTest {
+.nameAndTest, .test {
   float: left;
   padding-left: 0;
   padding-right: 0.5em;
+  height: 4.5em;
+}
+
+.test {
   height: 2.5em;
 }
 
@@ -398,9 +402,14 @@ section {
 
 }
 
-.testNameCell {
+.firstTestNameCell {
+  margin-bottom: 2em;
+}
+
+.testNameCell. .firstTestNameCell {
   display: inline;
   float: right;
+  /*height: 100%;*/
 }
 
 .test1Name {
@@ -549,6 +558,8 @@ section {
 .dataPointLabel, .dataPoint {
   margin-top: 0.35em;
   margin-bottom: 0.35em;
+  padding-left: 0;
+  padding-right: 0;
   text-align: left;
 }
 
