@@ -434,6 +434,10 @@ section {
   /*line-height: 1.7em;*/
 }
 
+.testTimeCell p  {
+  font-size: 0.7em;
+}
+
 .buttonContainer {
   padding-right: 8px;
 }
