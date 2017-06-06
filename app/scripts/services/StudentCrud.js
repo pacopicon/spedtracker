@@ -112,7 +112,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         if (typeof testThreeName === "undefined") {
           testThreeName = '';
         }
-        if (typeof test4Name === "undefined") {
+        if (typeof test4Name === "undefined") { 
           test4Name = '';
         }
 

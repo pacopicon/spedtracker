@@ -49,11 +49,11 @@
       <p class="extendedTimeHeading">Ext. time:</p> -->
     </div>
     <!--test name-->
-    <div class="testOneNameCell marginRight col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="testNameCell marginRight col-lg-4 col-md-4 col-sm-4 col-xs-4">
       <!-- <p class="testName">first test:</p> -->
     </div>
     <!--test name-->
-    <div class="testOneNameCell marginRight col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    <div class="testNameCell marginRight col-lg-4 col-md-4 col-sm-4 col-xs-4">
       <!-- <p class="testName">begin test:</p> -->
     </div>
     <!--Delete-->
@@ -73,30 +73,30 @@
         </p>
         <p class="extendTimeCell marginTop" ng-class="{'redText': student.isSafeToDelete}"> | {{student.extendTime}} ext.</p>
       </div>
-<!--TEST 1 name-->
-      <div class="testOneNameCell marginRight marginLeft col-lg-10 col-md-10 col-sm-6 col-xs-6">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerOneStart && !student.isTestOneOver">
+<!-- TEST ONE NAME -->
+      <div class="testNameCell marginRight marginLeft col-lg-10 col-md-10 col-sm-6 col-xs-6">
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerOneStart && !student.isTestOneOver">
           <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete || student.isTestOneOver}"  ng-click="startTimer(student, 'testOne')">
             <p class="countBtnText">
-              Press to begin {{student.testOneName}} test
+              begin {{student.testOneName}} test
             </p>
           </button>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTestOneOver">
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTestOneOver">
           <button class="redBtn">
             <p class="countBtnText">
               {{student.testOneName}} test is over
             </p>
           </button>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTimerOneStart && !student.isTimerOnePaused && !student.isTestOneOver">
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTimerOneStart && !student.isTimerOnePaused && !student.isTestOneOver">
           <button class="pauseBtn" ng-click="pauseTimer(student, 'testOne')">
             <p class="pauseBtnText">
               {{student.testOneName}} is paused
             </p>
           </button>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.isTimerOneStart && student.isTimerOnePaused && !student.isTestOneOver">
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.isTimerOneStart && student.isTimerOnePaused && !student.isTestOneOver">
           <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testOne')">
             <p class="resumeBtnText">
               resume
@@ -115,8 +115,8 @@
         </div>
       </div>
     </div>
-<!--testOneTime-->
-    <div class="testOneTimeCell col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<!-- TEST ONE TIME -->
+    <div class="testTimeCell col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class= "start marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
         <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
           started at:
@@ -131,7 +131,7 @@
           {{totalPausedTime(student, "testOne").hour}}:{{totalPausedTime(student, "testOne").minute}}:{{totalPausedTime(student, "testOne").second}}
         </p>
       </div>
-      <div class="testOneTimeCell marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
+      <div class="testTimeCell marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
         <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
           standard end time:
         </p>
@@ -146,13 +146,16 @@
         </p>
       </div>
     </div>
-    <div class="bars col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<!-- BEGIN TEST ONE BARS -->
+      <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+      </div>
+      <div class="bars col-lg-10 col-md-10 col-sm-10 col-xs-10">
       <div class="progress fullBar">
         <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (timer(student, 'testOne').bottom + timer(student, 'testOne').top) + '%'}">
           <p class="barLabel">{{timer(student, "testOne").countdown | date: 'H:mm:ss'}}</p>
         </div>
       </div>
-      <div class="progress"> <!--Begin Bars-->
+      <div class="progress splitBar"> <!--Begin Bars-->
         <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testOne').bottom + '%'}">
           <p class="barLabel" ng-show="timer(student, 'testOne').countdown - testTime(student, 'testOneExt') > 0">{{testTime(student, "testOneExt") | date: 'H:mm:ss'}}</p>
           <p class="barLabel" ng-show="timer(student, 'testOne').countdown - testTime(student, 'testOneExt') <= 0">{{timer(student, "testOne").countdown | date: 'H:mm:ss'}}</p>
@@ -163,34 +166,37 @@
         <div ng-show="timer(student, 'testOne').countdown - testTime(student, 'testOneExt') <= 0" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
         </div>
       </div>
-    </div> <!-- End Bars-->
+    </div>
+<!-- End Bars-->
 <!-- END TEST ONE-->
 <!-- BEGIN TEST TWO -->
     <div class="nameAndTest col-lg-12 col-md-12 col-sm-12 col-xs-12">
-<!--TEST 2 name-->
-      <div class="testOneNameCell marginRight marginLeft col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2 col-sm-6 col-sm-offset-6 col-xs-6 col-xs-offset-6">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerTwoStart && !student.isTestTwoOver">
+<!--TEST TWO NAME -->
+      <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+      </div>
+      <div class="testNameCell marginRight marginLeft col-lg-10 col-md-10 col-sm-6 col-xs-6">
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerTwoStart && !student.isTestTwoOver">
           <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete || student.isTestTwoOver}"  ng-click="startTimer(student, 'testTwo')">
             <p class="countBtnText">
-              Press to begin {{student.testTwoName}} test
+              begin {{student.testTwoName}} test
             </p>
           </button>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTestOneOver">
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTestOneOver">
           <button class="redBtn">
             <p class="countBtnText">
               {{student.testTwoName}} test is over
             </p>
           </button>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTimerTwoStart && !student.isTimerTwoPaused && !student.isTestTwoOver">
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTimerTwoStart && !student.isTimerTwoPaused && !student.isTestTwoOver">
           <button class="pauseBtn" ng-click="pauseTimer(student, 'testTwo')">
             <p class="pauseBtnText">
               {{student.testTwoName}} is paused
             </p>
           </button>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.isTimerTwoStart && student.isTimerTwoPaused && !student.isTestTwoOver">
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.isTimerTwoStart && student.isTimerTwoPaused && !student.isTestTwoOver">
           <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testTwo')">
             <p class="resumeBtnText">
               resume
@@ -209,8 +215,8 @@
         </div>
       </div>
     </div>
-<!--testTwoTime-->
-    <div class="testTwoTimeCell col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<!-- TEST TWO TIME -->
+    <div class="testTimeCell col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class= "start marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
         <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
           started at:
@@ -225,7 +231,7 @@
           {{totalPausedTime(student, "testTwo").hour}}:{{totalPausedTime(student, "testTwo").minute}}:{{totalPausedTime(student, "testTwo").second}}
         </p>
       </div>
-      <div class="testTwoTimeCell marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
+      <div class="testTimeCell marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
         <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
           standard end time:
         </p>
@@ -240,14 +246,16 @@
         </p>
       </div>
     </div>
-<!-- TEST TWO BARS -->
-    <div class="bars col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<!-- BEGIN TEST TWO BARS -->
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+    </div>
+    <div class="bars col-lg-10 col-md-10 col-sm-10 col-xs-10">
       <div class="progress fullBar">
         <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (timer(student, 'testTwo').bottom + timer(student, 'testTwo').top) + '%'}">
           <p class="barLabel">{{timer(student, "testTwo").countdown | date: 'H:mm:ss'}}</p>
         </div>
       </div>
-      <div class="progress"> <!--Begin Bars-->
+      <div class="progress splitBar"> <!--Begin Bars-->
         <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testTwo').bottom + '%'}">
           <p class="barLabel" ng-show="timer(student, 'testTwo').countdown - testTime(student, 'testTwoExt') > 0">{{testTime(student, "testTwoExt") | date: 'H:mm:ss'}}</p>
           <p class="barLabel" ng-show="timer(student, 'testTwo').countdown - testTime(student, 'testTwoExt') <= 0">{{timer(student, "testTwo").countdown | date: 'H:mm:ss'}}</p>
@@ -262,22 +270,31 @@
 <!-- End Bars-->
 <!-- END TEST TWO -->
 <!-- BEGIN TEST THREE -->
-    <div class="testOneNameCell marginRight marginLeft col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2 col-sm-6 col-sm-offset-6 col-xs-6 col-xs-offset-6">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTestOneOver">
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+    </div>
+    <div class="testNameCell marginRight marginLeft col-lg-10 col-md-10 col-sm-6 col-xs-6">
+      <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerThreeStart && !student.isTestThreeOver">
+        <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete || student.isTestThreeOver}"  ng-click="startTimer(student, 'testThree')">
+          <p class="countBtnText">
+            begin {{student.testThreeName}} test
+          </p>
+        </button>
+      </div>
+      <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTestOneOver">
         <button class="redBtn">
           <p class="countBtnText">
             {{student.testThreeName}} test is over
           </p>
         </button>
       </div>
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTimerThreeStart && !student.isTimerThreePaused && !student.isTestThreeOver">
+      <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTimerThreeStart && !student.isTimerThreePaused && !student.isTestThreeOver">
         <button class="pauseBtn" ng-click="pauseTimer(student, 'testThree')">
           <p class="pauseBtnText">
             {{student.testThreeName}} is paused
           </p>
         </button>
       </div>
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.isTimerThreeStart && student.isTimerThreePaused && !student.isTestThreeOver">
+      <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.isTimerThreeStart && student.isTimerThreePaused && !student.isTestThreeOver">
         <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testThree')">
           <p class="resumeBtnText">
             resume
@@ -295,8 +312,8 @@
         </button>
       </div>
     </div>
-<!--testThreeTime-->
-    <div class="testThreeTimeCell col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<!-- TEST THREE TIME -->
+    <div class="testTimeCell col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class= "start marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
         <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
           started at:
@@ -311,7 +328,7 @@
           {{totalPausedTime(student, "testThree").hour}}:{{totalPausedTime(student, "testThree").minute}}:{{totalPausedTime(student, "testThree").second}}
         </p>
       </div>
-      <div class="testThreeTimeCell marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
+      <div class="testTimeCell marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
         <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
           standard end time:
         </p>
@@ -326,14 +343,16 @@
         </p>
       </div>
     </div>
-<!-- TEST THREE BARS -->
-    <div class="bars col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<!-- BEGIN TEST THREE BARS -->
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+    </div>
+    <div class="bars col-lg-10 col-md-10 col-sm-10 col-xs-10">
       <div class="progress fullBar">
         <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (timer(student, 'testThree').bottom + timer(student, 'testThree').top) + '%'}">
           <p class="barLabel">{{timer(student, "testThree").countdown | date: 'H:mm:ss'}}</p>
         </div>
       </div>
-      <div class="progress"> <!--Begin Bars-->
+      <div class="progress splitBar"> <!--Begin Bars-->
         <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testThree').bottom + '%'}">
           <p class="barLabel" ng-show="timer(student, 'testThree').countdown - testTime(student, 'testThreeExt') > 0">{{testTime(student, "testThreeExt") | date: 'H:mm:ss'}}</p>
           <p class="barLabel" ng-show="timer(student, 'testThree').countdown - testTime(student, 'testThreeExt') <= 0">{{timer(student, "testThree").countdown | date: 'H:mm:ss'}}</p>
@@ -348,22 +367,31 @@
 <!-- End Bars-->
 <!-- END TEST THREE -->
 <!-- BEGIN TEST FOUR -->
-    <div class="testOneNameCell marginRight marginLeft col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2 col-sm-6 col-sm-offset-6 col-xs-6 col-xs-offset-6">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTestFourOver">
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+    </div>
+    <div class="testNameCell marginRight marginLeft col-lg-10 col-md-10 col-sm-6 col-xs-6">
+      <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerFourStart && !student.isTestFourOver">
+        <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete || student.isTestFourOver}"  ng-click="startTimer(student, 'testFour')">
+          <p class="countBtnText">
+            begin {{student.testFourName}} test
+          </p>
+        </button>
+      </div>
+      <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTestFourOver">
         <button class="redBtn">
           <p class="countBtnText">
             {{student.testFourName}} test is over
           </p>
         </button>
       </div>
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTimerFourStart && !student.isTimerFourPaused && !student.isTestFourOver">
+      <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTimerFourStart && !student.isTimerFourPaused && !student.isTestFourOver">
         <button class="pauseBtn" ng-click="pauseTimer(student, 'testFour')">
           <p class="pauseBtnText">
             {{student.testFourName}} is paused
           </p>
         </button>
       </div>
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.isTimerFourStart && student.isTimerFourPaused && !student.isTestFourOver">
+      <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.isTimerFourStart && student.isTimerFourPaused && !student.isTestFourOver">
         <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testFour')">
           <p class="resumeBtnText">
             resume
@@ -382,7 +410,7 @@
       </div>
     </div>
 <!--testFourTime-->
-    <div class="testFourTimeCell col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="testTimeCell col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class= "start marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
         <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
           started at:
@@ -397,7 +425,7 @@
           {{totalPausedTime(student, "testFour").hour}}:{{totalPausedTime(student, "testFour").minute}}:{{totalPausedTime(student, "testFour").second}}
         </p>
       </div>
-      <div class="testFourTimeCell marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
+      <div class="testTimeCell marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
         <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
           standard end time:
         </p>
@@ -412,14 +440,16 @@
         </p>
       </div>
     </div>
-<!-- TEST FOUR BARS -->
-    <div class="bars col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<!-- BEGIN TEST FOUR BARS -->
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+    </div>
+    <div class="bars col-lg-10 col-md-10 col-sm-10 col-xs-10">
       <div class="progress fullBar">
         <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (timer(student, 'testFour').bottom + timer(student, 'testFour').top) + '%'}">
           <p class="barLabel">{{timer(student, "testFour").countdown | date: 'H:mm:ss'}}</p>
         </div>
       </div>
-      <div class="progress"> <!--Begin Bars-->
+      <div class="progress splitBar"> <!--Begin Bars-->
         <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testFour').bottom + '%'}">
           <p class="barLabel" ng-show="timer(student, 'testFour').countdown - testTime(student, 'testFourExt') > 0">{{testTime(student, "testFourExt") | date: 'H:mm:ss'}}</p>
           <p class="barLabel" ng-show="timer(student, 'testFour').countdown - testTime(student, 'testFourExt') <= 0">{{timer(student, "testFour").countdown | date: 'H:mm:ss'}}</p>

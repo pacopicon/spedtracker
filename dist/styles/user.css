@@ -229,23 +229,24 @@ section {
 .btn-add {
   border-radius: 1em;
   min-height: 2em;
-  border: 2.5px solid #4c91cd;
-  color: #4c91cd;
+  /*border: 2.5px solid #4c91cd;*/
+  border: 2.5px solid #5BC0DE;
+  color: #5BC0DE;
   background-color: white;
 }
 
 .btn-test {
-  border: 2.5px solid #e05d6f;
-  color: #e05d6f;
+  border: 2.5px solid #5BC0DE;
+  color: #5BC0DE;
 }
 
 .btn-add:hover {
-  background-color: #4c91cd;
+  background-color: #5BC0DE;
   color: white;
 }
 
 .btn-test:hover {
-  border: 3.5px solid #e05d6f;
+  border: 3.5px solid #5BC0DE;
 }
 
 .btn-add:active {
@@ -323,11 +324,10 @@ section {
 /* begin CSS for StudentDisplay */
 
 .displayText p {
-  /*font-size: 13px;*/
+  /*font-size: 13px;
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;*/
   font-size: 1em;
-}
-
-.header {
 }
 
 .nameHeading {
@@ -353,7 +353,7 @@ section {
   margin-left: 0.5em;
 }
 
-.nameCell, .countdownBtnCell, .test1NameCell, .test1TimeCell, .countdownCell {
+.nameCell, .countdownBtnCell, .testNameCell, .testTimeCell, .countdownCell {
   height: 100%;
 }
 
@@ -420,7 +420,7 @@ section {
   /*float: right;*/
 }
 
-.test1NameCell {
+.testNameCell {
   display: inline;
   float: right;
 }
@@ -429,9 +429,13 @@ section {
   float: left;
 }
 
-.test1TimeCell {
+.testTimeCell {
   /*text-align: left;*/
   /*line-height: 1.7em;*/
+}
+
+.buttonContainer {
+  padding-right: 8px;
 }
 
 .countdownBtnCell {
@@ -443,10 +447,11 @@ section {
 }
 
 .countBtn, .pauseBtn, .grayCell, .redBtn {
-  /*border-radius: 1em;*/
-  border: 2.5px solid #6FC853;
+  border-radius: 0.5em;
+  /*border: 2.5px solid #6FC853;*/
+  border: 2.5px solid #5CB85C;
   background-color: white;
-  color: #6FC853;
+  color: #5CB85C;
   width: 100%;
   height: 2em;
   margin-top: 0.7em;
@@ -454,7 +459,7 @@ section {
 }
 
 .countBtn:hover {
-  background-color: #6FC853;
+  background-color: #5CB85C;
   color: white;
 }
 
@@ -473,23 +478,25 @@ section {
 }
 
 .redBtn {
-  border: 2.5px solid #e05d6f;
-  color: #e05d6f;
+  /*border: 2.5px solid #e05d6f;*/
+  border: 2.5px solid #D9534F;
+  color: #D9534F;
   cursor: not-allowed;
 }
 
 .redText {
-  color: #e05d6f;
-}
-
-.pauseBtn:hover {
-  background-color: #C3C300;
-  color: white
+  color: #D9534F;
 }
 
 .pauseBtn {
-  border: 2.5px solid #C3C300;
-  color: #C3C300;
+  /*border: 2.5px solid #C3C300;*/
+  border: 2.5px solid #F0AD4E;
+  color: #F0AD4E;
+}
+
+.pauseBtn:hover {
+  background-color: #F0AD4E;
+  color: white
 }
 
 .resumeResetEnd {
@@ -499,7 +506,7 @@ section {
 }
 
 .resumeBtn, .resetBtn, .endBtn {
-  /*border-radius: 1em;*/
+  border-radius: 0.5em;
   background-color: white;
   height: 2em;
   margin-top: 0.7em;
@@ -512,8 +519,11 @@ section {
 
 .resumeBtn {
   /*margin-bottom: 1%;*/
-  border: 2.5px solid #6FC853;
-  color: #6FC853;
+  border: 2.5px solid #5CB85C;
+  /*border-top: 2.5px solid #5CB85C;
+  border-bottom: 2.5px solid #5CB85C;
+  border-left: 2.5px solid #5CB85C;*/
+  color: #5CB85C;
   float: left;
   /*margin-top: 0.7em;*/
   /*border-top-right-radius: 1em;*/
@@ -524,24 +534,24 @@ section {
 
 .resumeBtn:Hover {
   color: white;
-  background-color: #6FC853;
+  background-color: #5CB85C;
 }
 
 .resetBtn {
   /*margin-bottom: 1%;*/
-  border: 2.5px solid #C3C300;
-  color: #C3C300;
+  border: 2.5px solid #F0AD4E;
+  color: #F0AD4E;
   /*border-radius: 0;*/
 }
 
 .resetBtn:hover {
   color: white;
-  background-color: #C3C300;
+  background-color: #F0AD4E;
 }
 
 .endBtn {
-  border: 2.5px solid #e05d6f;
-  color: #e05d6f;
+  border: 2.5px solid #D9534F;
+  color: #D9534F;
   float: right;
   /*border-top-right-radius: 0;*/
   /*border-top-left-radius: 0;*/
@@ -551,7 +561,7 @@ section {
 
 .endBtn:hover {
   color: white;
-  background-color: #e05d6f;
+  background-color: #D9534F;
 }
 
 .dataPointLabel, .dataPoint {
@@ -568,7 +578,7 @@ section {
   font-size: 4em;
   margin-top: 1px;
   padding-left: 0;
-  color: #e05d6f;
+  color: #D9534F;
   float: left;
   transition: all 0.5s ease-in-out;
 }
@@ -589,6 +599,17 @@ section {
 .fullBar {
   margin-bottom: 0;
   padding-bottom: 0;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  border-bottom-left-radius: 0em;
+  border-bottom-right-radius: 0em;
+}
+
+.splitBar {
+  border-top-left-radius: 0em;
+  border-top-right-radius: 0em;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
 }
 
 .barLabel {
@@ -597,7 +618,7 @@ section {
   /*font-size: 10em;*/
 }
 
-.barContainer {
+/*.barContainer {
   height: 20em;
   width: 10em;
   border: 0.125em solid #3f4e62;
@@ -607,12 +628,12 @@ section {
 
 .topBar, .bottomBar {
   width: 9.8em;
-}
+}*/
 
 /* yellow,    green,     red,       dark navy,  brown,     purple,    blue*/
 /*'#C3C300', '#6FC853', '#e05d6f', '#3f4e62',  '#AC6D39', '#8E5EC5', '#4c91cd'*/
 
-.topBar {
+/*.topBar {
   background-color: #6FC853;
   border-top-right-radius: 0.8em;
   border-top-left-radius: 0.8em;
@@ -625,7 +646,7 @@ section {
   border-bottom-left-radius: 0.8em;
   position: absolute;
   bottom: 2px;
-}
+}*/
 
 /* Begin CSS for FORM */
 
