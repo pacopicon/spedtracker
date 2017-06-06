@@ -45,16 +45,15 @@
 <div class="displayText">
 <!--end HEADING-->
 <!--STUDENT DISPLAY-->
-  <div class="alert alert-danger" role="alert" ng-show="alert">oops! you did not enter the required information!</div>
+  <div class="alert alert-danger" role="alert" ng-show="alert">oops! please enter student name at the very least!</div>
   <div class="row studentDisplay marginLeft marginRight" ng-repeat="student in students" ng-mouseleave="hover = false">
 <!--name and extend-time-->
     <div class="nameAndTest col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="checkboxIndexName marginRight marginLeft col-lg-2 col-md-2 col-sm-12 col-xs-12">
         <input type="checkbox" class="checkbox" ng-model="student.isSafeToDelete" ng-change="saveAndToggleInvert(student)"/>
-        <p class="nameCell marginTop " ng-class="{'redText': student.isSafeToDelete}">
-          {{$index + 1}}. {{student.name}}
+        <p class="nameCell marginTop" ng-class="{'redText': student.isSafeToDelete}">
+          {{$index + 1}}. {{student.name}} ({{student.extendTime}} extension)
         </p>
-        <p class="extendTimeCell marginTop" ng-class="{'redText': student.isSafeToDelete}"> ({{student.extendTime}} extension)</p>
       </div>
 <!-- TEST ONE NAME -->
       <div class="testNameCell marginRight marginLeft col-lg-10 col-md-10 col-sm-12 col-xs-12">

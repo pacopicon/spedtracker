@@ -379,7 +379,8 @@ section {
 }
 
 .checkboxIndexName {
-
+  height: 2em;
+  white-space: normal;
 }
 
 .checkbox {
@@ -393,7 +394,8 @@ section {
   /*padding-right: 0.5em;*/
 }
 .extendTimeCell {
-  text-align: left;
+  /*text-align: left;*/
+
 }
 
 .testNameCell {
