@@ -357,11 +357,6 @@ section {
   height: 100%;
 }
 
-.checkbox {
-  float: left;
-  top: 16.5px;
-}
-
 .marginTop {
   margin-top: 16.5px;
 }
@@ -376,48 +371,29 @@ section {
   padding-left: 0;
 }
 
-.greenText {
-  color: #6FC853;
-}
-
-.redText {
-  color: #e05d6f;
-}
-
-/*.redBorder {
-  border: #e05d6f;
-}*/
-
-.redCell {
-  border: 2.5px solid #e05d6f;
-  color: #e05d6f;
-}
-
-.yellowText {
-  color: #C3C300;
-}
-
-.yellowCell {
-  background-color: #C3C300;
-}
-
-.yellowBorder {
-  border: #C3C300;
-}
-
 .nameAndTest {
   float: left;
   padding-left: 0;
   padding-right: 0.5em;
+  height: 2.5em;
+}
+
+.checkboxIndexName {
+
+}
+
+.checkbox {
+  float: left;
+  top: 16.5px;
 }
 
 .nameCell {
-  float: left;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+  text-align: left;
+  margin-left: 0.5em;
+  /*padding-right: 0.5em;*/
 }
 .extendTimeCell {
-  /*float: right;*/
+  text-align: left;
 }
 
 .testNameCell {
