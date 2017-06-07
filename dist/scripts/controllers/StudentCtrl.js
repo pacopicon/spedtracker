@@ -717,7 +717,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         }
       }
       return time;
-    }
+    };
 
     // var processTime = function(unprocessedTime, hourOption) {
     //   unprocessedTimeObj = new Date(unprocessedTime);
@@ -901,6 +901,14 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         $timeout(function turnOffAlert() {$scope.alert = false}, 3000);
       }
 
+    };
+
+    $scope.addTest(student, $scope.newtestName, $scope.newDueDate, testNo) = function() {
+      StudentCrud.addTest(student, $scope.newtestName, $scope.newDueDate, testNo);
+    };
+
+    $scope.deleteTest(student, newtestName, newDueDate, testNo) = function() {
+      StudentCrud.deleteTest(student, $scope.newtestName, $scope.newDueDate, testNo);
     };
 
     $scope.saveAndToggleInvert = function(student) {

@@ -191,17 +191,67 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         });
       }, // end of AddItem
 
-      toggleItemToDelete: function(item) {
-        var queriedItem = students.$getRecord(item.$id);
+      addTest(student, newtestName, newDueDateObj, testNo): function() {
 
-        if (queriedItem.isSafeToDelete === false) {
-          item.isSafeToDelete = true;
-        } else if (queriedItem.isSafeToDelete === true){
-          item.isSafeToDelete = false;
+        if (testNo == "testOne") {
+          student.testOneName = newtestName;
+          testOneTimeNum = addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes());
+          student.testOneTime = testOneTimeNum;
+          student.totalTimeOne = testOneTimeNum * student.extendTime;
+        } else if (testNo == "testTwo") {
+          student.testTwoName = newtestName;
+          testTwoTimeNum = addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes());
+          student.testTwoTime = testTwoTimeNum;
+          student.totalTimeTwo = testTwoTimeNum * student.extendTime;
+        } else if (testNo == "testThree") {
+          student.testThreeName = newtestName;
+          testThreeTimeNum = addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes());
+          student.testThreeTime = testThreeTimeNum;
+          student.totalTimeThree = testThreeTimeNum * student.extendTime;
+        } else if (testNo == "testFour") {
+          student.testFourName = newtestName;
+          testFourTimeNum = addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes());
+          student.testFourTime = testFourTimeNum;
+          student.totalTimeFour = testFourTimeNum * student.extendTime;
         }
 
-        students.$save(queriedItem);
+        students.$save(student);
       },
+
+      deleteTest(student, testNo): function() {
+
+        if (testNo == "testOne") {
+          student.testOneName = '';
+          student.testOneTime = 0;
+          student.totalTimeOne = 0;
+        } else if (testNo == "testTwo") {
+          student.testTwoName = '';
+          student.testTwoTime = 0;
+          student.totalTimeTwo = 0;
+        } else if (testNo == "testThree") {
+          student.testThreeName = '';
+          student.testThreeTime = 0;
+          student.totalTimeThree = 0;
+        } else if (testNo == "testFour") {
+          student.testFourName = '';
+          student.testFourTime = 0;
+          student.totalTimeFour = 0;
+        }
+
+        students.$save(student);
+      },
+
+      // toggleItemToDelete: function(item) {
+      //   var queriedItem = students.$getRecord(item.$id);
+      //
+      //   if (queriedItem.isSafeToDelete === false) {
+      //     item.isSafeToDelete = true;
+      //   } else if (queriedItem.isSafeToDelete === true){
+      //     item.isSafeToDelete = false;
+      //   }
+      //
+      //   students.$save(queriedItem);
+      // },
 
       toggleSelectForDelete: function(students) {
         for (var i = 0; i < students.length; i++) {
