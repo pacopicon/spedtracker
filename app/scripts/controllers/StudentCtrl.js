@@ -610,25 +610,25 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
       if (testNo == "testOne") {
         if (student.testOneStartRecord == 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.testOneStartRecord > 0) {
           time = student.testOneStartRecord;
         }
       } else if (testNo == "testTwo") {
         if (student.testTwoStartRecord == 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.testTwoStartRecord > 0) {
           time = student.testTwoStartRecord;
         }
       } else if (testNo == "testThree") {
         if (student.testThreeStartRecord == 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.testThreeStartRecord > 0) {
           time = student.testThreeStartRecord;
         }
       } else if (testNo == "testFour") {
         if (student.testFourStartRecord == 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.testFourStartRecord > 0) {
           time = student.testFourStartRecord;
         }
@@ -640,49 +640,49 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
       if (testNo == "testOne") {
         if (student.testOneStartRecord == 0) {
-          time = "-- : -- : --";
+          time = "00:00:00";
         } else if (student.testOneStartRecord > 0) {
           time = student.testOneTime + student.testOneStartRecord;
         }
       } else if (testNo == "testTwo") {
         if (student.testTwoStartRecord == 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.testTwoStartRecord > 0) {
           time = student.testTwoTime + student.testTwoStartRecord;
         }
       } else if (testNo == "testThree") {
         if (student.testThreeStartRecord == 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.testThreeStartRecord > 0) {
           time = student.testThreeTime + student.testThreeStartRecord;
         }
       } else if (testNo == "testFour") {
         if (student.testFourStartRecord == 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.testFourStartRecord > 0) {
           time = student.testFourTime + student.testFourStartRecord;
         }
       } else if (testNo == "exttestOne") {
         if (student.testOneStartRecord == 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.testOneStartRecord > 0) {
           time = (student.testOneTime * student.extendTime) + student.testOneStartRecord;
         }
       } else if (testNo == "exttestTwo") {
         if (student.testTwoStartRecord == 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.testTwoStartRecord > 0) {
           time = (student.testTwoTime * student.extendTime) + student.testTwoStartRecord;
         }
       } else if (testNo == "exttestThree") {
         if (student.testThreeStartRecord == 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.testThreeStartRecord > 0) {
           time = (student.testThreeTime * student.extendTime) + student.testThreeStartRecord;
         }
       } else if (testNo == "exttestFour") {
         if (student.testFourStartRecord == 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.testFourStartRecord > 0) {
           time = (student.testFourTime * student.extendTime) + student.testFourStartRecord;
         }
@@ -693,25 +693,25 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     $scope.totalPausedTime = function(student, testNo) {
       if (testNo == "testOne") {
         if (student.pausedTotalOne <= 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.pausedTotalOne > 0) {
           time = StudentCrud.parseTime(student.pausedTotalOne);
         }
       } else if (testNo == "testTwo") {
         if (student.pausedTotalTwo <= 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.pausedTotalTwo > 0) {
           time = StudentCrud.parseTime(student.pausedTotalTwo);
         }
       } else if (testNo == "testThree") {
         if (student.pausedTotalThree <= 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.pausedTotalThree > 0) {
           time = StudentCrud.parseTime(student.pausedTotalThree);
         }
       } else if (testNo == "testFour") {
         if (student.pausedTotalFour <= 0) {
-          time = "";
+          time = "00:00:00";
         } else if (student.pausedTotalFour > 0) {
           time = StudentCrud.parseTime(student.pausedTotalFour);
         }

@@ -51,9 +51,11 @@
     <div class="nameAndTest col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="checkboxIndexName marginRight marginLeft col-lg-2 col-md-2 col-sm-2 col-xs-4">
         <input type="checkbox" class="checkbox" ng-model="student.isSafeToDelete" ng-change="saveAndToggleInvert(student)"/>
-        <p class="nameCell marginTop" ng-class="{'redText': student.isSafeToDelete}">
-          {{$index + 1}}. {{student.name}} <span>({{student.extendTime}} extension)</span>
-        </p>
+        <div class="indexAndNameCell">
+          <p class="indexAndName marginTop" ng-class="{'redText': student.isSafeToDelete}">
+            {{$index + 1}}. {{student.name}} <span>({{student.extendTime}})</span>
+          </p>
+        </div>
 <!--delete-->
         <div class="deleteContainer marginRight">
           <p><i class="fa fa-times deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete"></i></p>
@@ -62,7 +64,7 @@
 <!-- TEST ONE NAME -->
       <div class="testNameCell marginRight marginLeft col-lg-10 col-md-10 col-sm-10 col-xs-8">
         <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerOneStart && !student.isTestOneOver">
-          <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete || student.isTestOneOver}"  ng-click="startTimer(student, 'testOne')">
+          <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testOne')">
             <p class="countBtnText">
               begin {{student.testOneName}} test
             </p>
@@ -161,14 +163,21 @@
 <!--TEST TWO NAME -->
       <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
       <div class="testNameCell marginRight marginLeft col-lg-10 col-md-10 col-sm-10 col-xs-8">
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerTwoStart && !student.isTestTwoOver">
-          <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete || student.isTestTwoOver}"  ng-click="startTimer(student, 'testTwo')">
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerTwoStart && student.isTestOneOver">
+          <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testTwo')">
             <p class="countBtnText">
               begin {{student.testTwoName}} test
             </p>
           </button>
         </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTestOneOver">
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerTwoStart && !student.isTestOneOver">
+          <button class="grayCell" ng-class="{'redBtn': student.isSafeToDelete}">
+            <p class="countBtnText">
+              {{student.testTwoName}} waiting on previous test
+            </p>
+          </button>
+        </div>
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTestTwoOver">
           <button class="redBtn">
             <p class="countBtnText">
               {{student.testTwoName}} test is over
@@ -182,6 +191,17 @@
             </p>
           </button>
         </div>
+
+        <div class="form">
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTimerTwoStart && !student.isTimerTwoPaused && !student.isTestTwoOver">
+            <button class="pauseBtn" ng-click="pauseTimer(student, 'testTwo')">
+              <p class="pauseBtnText">
+                pause {{student.testTwoName}} test
+              </p>
+            </button>
+          </div>
+        </div>
+
         <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.isTimerTwoStart && student.isTimerTwoPaused && !student.isTestTwoOver">
           <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testTwo')">
             <p class="resumeBtnText">
@@ -260,14 +280,21 @@
     <div class="nameAndTest col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
       <div class="testNameCell marginRight marginLeft col-lg-10 col-md-10 col-sm-10 col-xs-8">
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerThreeStart && !student.isTestThreeOver">
-          <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete || student.isTestThreeOver}"  ng-click="startTimer(student, 'testThree')">
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerThreeStart && student.isTestTwoOver">
+          <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testThree')">
             <p class="countBtnText">
               begin {{student.testThreeName}} test
             </p>
           </button>
         </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTestOneOver">
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerThreeStart && !student.isTestTwoOver">
+          <button class="grayCell" ng-class="{'redBtn': student.isSafeToDelete}">
+            <p class="countBtnText">
+              {{student.testThreeName}} waiting on previous test
+            </p>
+          </button>
+        </div>
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.isTestThreeOver">
           <button class="redBtn">
             <p class="countBtnText">
               {{student.testThreeName}} test is over
@@ -359,10 +386,17 @@
     <div class="nameAndTest col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
       <div class="testNameCell marginRight marginLeft col-lg-10 col-md-10 col-sm-10 col-xs-8">
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerFourStart && !student.isTestFourOver">
-          <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete || student.isTestFourOver}"  ng-click="startTimer(student, 'testFour')">
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerFourStart && student.isTestThreeOver">
+          <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testFour')">
             <p class="countBtnText">
               begin {{student.testFourName}} test
+            </p>
+          </button>
+        </div>
+        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerFourStart && !student.isTestThreeOver">
+          <button class="grayCell" ng-class="{'redBtn': student.isSafeToDelete}">
+            <p class="countBtnText">
+              {{student.testFourName}} waiting on previous test
             </p>
           </button>
         </div>
@@ -475,46 +509,55 @@
               </a>
             </div>
           </div>
-<!--test name 1-->
+<!--test name one -->
           <div class="testOneAndTwo col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input class="form-control testNameInput" ng-model="newtestOneName" placeholder="enter 1st test" />
               </div>
-<!--test time 1-->
+<!--test time one -->
               <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateOne" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
               </div>
             </div>
-<!--test name 2-->
+<!--test name two -->
             <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div ng-hide="addTestTwo" class="addTest">
+                <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestTwo = true"></i>
+              </div>
+              <div ng-show="addTestTwo" class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input class="form-control testNameInput" ng-model="newtestTwoName" placeholder="enter 2nd test" />
               </div>
-<!--test time 2-->
-              <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<!--test time two -->
+              <div ng-show="addTestTwo" class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateTwo" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
               </div>
             </div>
           </div>
-<!--test name 3-->
+<!--test name three -->
           <div class="testThreeAndFour col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtestThreeName" placeholder="enter 3rd test" />
+              <div ng-hide="addTestThree || !addTestTwo" class="addTest">
+                <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestThree = true"></i>
               </div>
-<!--test time 3-->
-              <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div ng-show="addTestThree" class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input class="form-control testNameInput" ng-model="newtestThreeName" placeholder="enter 2nd test" />
+              </div>
+<!--test time three -->
+              <div ng-show="addTestThree" class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateThree" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
               </div>
             </div>
-<!--test name 4-->
+<!--test name four -->
             <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtestFourName" placeholder="enter 4th test" />
+              <div ng-hide="addTestFour || !addTestThree" class="addTest">
+                <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestFour = true"></i>
               </div>
-<!--test time 4-->
-              <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <div ng-show="addTestFour" class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input class="form-control testNameInput" ng-model="newtestFourName" placeholder="enter 2nd test" />
+              </div>
+<!--test time four -->
+              <div ng-show="addTestFour" class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateFour" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
               </div>
             </div>

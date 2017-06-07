@@ -389,14 +389,13 @@ section {
   top: 16.5px;
 }
 
-.nameCell {
+.indexAndName {
   text-align: left;
-  margin-left: 0.5em;
-  /*padding-right: 0.5em;*/
 }
 
-.nameCell p {
+.indexAndNameCell p {
   overflow: hidden;
+  padding-left: 1em;
 }
 
 .extendTimeCell {
@@ -580,23 +579,31 @@ span {
 .deleteContainer {
   position: relative;
   margin-top: 1em;
+  height: 4em;
 }
+/*
+.deleteContainer:hover {
+  height: 10em;
+}*/
 
 .deleteBtn {
   position: absolute;
-  font-size: 4em;
+  font-size: 2em;
   top: 0;
   left: 0;
   right: 0;
   margin: auto;
-  color: #D9534F;
+  color: #3f4e62;
   text-align: center;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  /*padding-top: 0.5em;*/
 }
 
 .deleteBtn:hover {
-  transition: all 0.1s ease-in-out;
-  font-size: 8em;
+  cursor: pointer;
+  padding-left: 0.1em;
+  transition: all 0.5s ease-in-out;
+  color: #D9534F;
 }
 
 .progress {
@@ -732,6 +739,22 @@ hr {
 .testTimeForm {
   width: 37%;
   float: right;
+}
+
+.addTest i {
+  font-size: 2em
+}
+
+.fa-plus-square {
+  color: #3f4e62;
+  transition: all 0.5s ease-in-out;
+}
+
+.fa-plus-square:hover {
+  cursor: pointer;
+  padding-left: 0.1em;
+  color: #5BC0DE;
+  transition: all 0.5s ease-in-out;
 }
 
 .btn-time {

@@ -98,7 +98,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           hour: hours,
           minute: addZero(minutes),
           second: addZero(seconds),
-          hourMinSec: hours + ":" + addZero(minutes) + ":" + addZero(seconds) 
+          hourMinSec: hours + ":" + addZero(minutes) + ":" + addZero(seconds)
         };
       },
 // This function is called by the submit button in testTracker.html when user creates an item in the form
@@ -113,8 +113,8 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         if (typeof testThreeName === "undefined") {
           testThreeName = '';
         }
-        if (typeof test4Name === "undefined") {
-          test4Name = '';
+        if (typeof testFourName === "undefined") {
+          testFourName = '';
         }
 
         if (typeof testOneTimeObj === "undefined") {
