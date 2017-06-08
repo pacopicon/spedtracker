@@ -1,0 +1,9 @@
+<section ng-controller="StudentCtrl" class="user">
+  <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <input class="form-control testNameInput" ng-model="newtestName" placeholder="enter additional test" />
+  </div>
+  <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
+  </div>
+  <button type="submit" type="button" class="addTestBtn"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+</section>

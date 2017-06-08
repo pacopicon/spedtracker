@@ -191,7 +191,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         });
       }, // end of AddItem
 
-      addTest(student, newtestName, newDueDateObj, testNo): function() {
+      addTest: function(student, newtestName, newDueDateObj, testNo) {
 
         if (testNo == "testOne") {
           student.testOneName = newtestName;
@@ -218,7 +218,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         students.$save(student);
       },
 
-      deleteTest(student, testNo): function() {
+      deleteTest: function(student, testNo) {
 
         if (testNo == "testOne") {
           student.testOneName = '';
