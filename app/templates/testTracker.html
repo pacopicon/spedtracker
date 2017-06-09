@@ -108,7 +108,7 @@
           <div ng-show="addTestOne" class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
             <form ng-submit="addTest(student, 'testOne')">
               <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtestName" placeholder="enter 1st test" />
+                <input type="text" class="form-control testNameInput" ng-model="newtestName" placeholder="enter test" />
               </div>
               <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
@@ -117,6 +117,21 @@
             </form>
           </div>
         </div>
+
+
+        <!-- <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testOneName">
+          <div ng-hide="addTestOne" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestOne = true"></i>
+          </div>
+          <div ng-show="addTestOne" class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+            <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <input class="form-control testNameInput" ng-model="student.testOneName" placeholder="enter test" ng-change="students.$save(student)" />
+            </div>
+            <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <input type="text" size="1" class="btn-time form-control" ng-model="student.testOneTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="students.$save(student)">
+            </div>
+          </div>
+        </div> -->
 
 
 
@@ -133,7 +148,7 @@
     </div>
 <!-- TEST ONE TIME -->
     <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
-    <div class="testTimeCell col-lg-10 col-md-10 col-sm-10 col-xs-8">
+    <div class="testTimeCell col-lg-10 col-md-10 col-sm-10 col-xs-8" ng-hide="!student.testOneName">
       <div class= "start marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
         <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
           started at:
@@ -243,7 +258,7 @@
           <div ng-show="addTestTwo" class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
             <form ng-submit="addTest(student, 'testTwo')">
               <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtestName" placeholder="enter 1st test" />
+                <input class="form-control testNameInput" ng-model="newtestName" placeholder="enter test" />
               </div>
               <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
@@ -252,11 +267,19 @@
             </form>
           </div>
         </div>
+        <!-- <form class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testTwoName" ng-submit="addTest(student, 'testTwo')">
+          <div ng-hide="addTestTwo || !student.testOneName" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestTwo = true"></i>
+          </div>
+          <div ng-show="addTestTwo" class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+            <div ng-include="'/templates/inlineForm.html'"></div>
+          </div>
+        </form> -->
       </div>
     </div>
 <!-- TEST TWO TIME -->
     <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
-    <div class="testTimeCell col-lg-10 col-md-10 col-sm-10 col-xs-8">
+    <div class="testTimeCell col-lg-10 col-md-10 col-sm-10 col-xs-8" ng-hide="!student.testTwoName">
       <div class= "start marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
         <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
           started at:
@@ -365,7 +388,7 @@
           <div ng-show="addTestThree" class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
             <form ng-submit="addTest(student, 'testThree')">
               <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtestName" placeholder="enter 1st test" />
+                <input class="form-control testNameInput" ng-model="newtestName" placeholder="enter test" />
               </div>
               <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
@@ -378,8 +401,8 @@
     </div>
 <!-- TEST THREE TIME -->
     <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
-    <div class="testTimeCell col-lg-10 col-md-10 col-sm-10 col-xs-8">
-      <div class= "start marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
+    <div class="testTimeCell col-lg-10 col-md-10 col-sm-10 col-xs-8" ng-hide="!student.testThreeName">
+      <div class="start marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
         <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
           started at:
         </p>
@@ -487,7 +510,7 @@
           <div ng-show="addTestFour" class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
             <form ng-submit="addTest(student, 'testFour')">
               <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtestName" placeholder="enter 1st test" />
+                <input class="form-control testNameInput" ng-model="newtestName" placeholder="enter test" />
               </div>
               <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
@@ -500,7 +523,7 @@
     </div>
 <!--testFourTime-->
     <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
-    <div class="testTimeCell col-lg-10 col-md-10 col-sm-10 col-xs-8">
+    <div class="testTimeCell col-lg-10 col-md-10 col-sm-10 col-xs-8" ng-hide="!student.testFourName">
       <div class= "start marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
         <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
           started at:
@@ -578,7 +601,7 @@
           <div class="testOneAndTwo col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtestOneName" placeholder="enter 1st test" />
+                <input class="form-control testNameInput" ng-model="newtestOneName" placeholder="enter test" />
               </div>
 <!--test time one -->
               <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -591,7 +614,7 @@
                 <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestTwo = true"></i>
               </div>
               <div ng-show="addTestTwo" class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtestTwoName" placeholder="enter 2nd test" />
+                <input class="form-control testNameInput" ng-model="newtestTwoName" placeholder="enter test" />
               </div>
 <!--test time two -->
               <div ng-show="addTestTwo" class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -606,7 +629,7 @@
                 <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestThree = true"></i>
               </div>
               <div ng-show="addTestThree" class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtestThreeName" placeholder="enter 3rd test" />
+                <input class="form-control testNameInput" ng-model="newtestThreeName" placeholder="enter test" />
               </div>
 <!--test time three -->
               <div ng-show="addTestThree" class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -619,7 +642,7 @@
                 <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestFour = true"></i>
               </div>
               <div ng-show="addTestFour" class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="form-control testNameInput" ng-model="newtestFourName" placeholder="enter 4th test" />
+                <input class="form-control testNameInput" ng-model="newtestFourName" placeholder="enter test" />
               </div>
 <!--test time four -->
               <div ng-show="addTestFour" class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">

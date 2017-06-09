@@ -881,6 +881,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     $scope.newDueDateTwo = new Date(new Date().setHours(1,0,0));
     $scope.newDueDateThree = new Date(new Date().setHours(1,0,0));
     $scope.newDueDateFour = new Date(new Date().setHours(1,0,0));
+    $scope.newtestName = " ";
 
 
     $scope.timewrap = {};
@@ -906,6 +907,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     };
 
     $scope.addTest = function(student, testNo) {
+  
       StudentCrud.addTest(student, $scope.newtestName, $scope.newDueDate, testNo);
     };
 

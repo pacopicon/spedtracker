@@ -193,6 +193,8 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
       addTest: function(student, newtestName, newDueDateObj, testNo) {
 
+        console.log("adding " + testNo + ", a " + newtestName + " test to student, " + student.studentName + ", with duration of " + addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes()));
+
         if (testNo == "testOne") {
           student.testOneName = newtestName;
           testOneTimeNum = addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes());
