@@ -101,12 +101,14 @@
             </p>
           </button>
         </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testOneName">
+        <!-- <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testOneName">
           <div ng-hide="addTestOne" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
             <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestOne = true"></i>
           </div>
           <div ng-show="addTestOne" class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+
             <form ng-submit="addTest(student, 'testOne')">
+
               <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" class="form-control testNameInput" ng-model="newtestName" placeholder="enter test" />
               </div>
@@ -114,9 +116,11 @@
                 <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
               </div>
               <button type="submit" type="button" class="addTestBtn"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+
             </form>
+
           </div>
-        </div>
+        </div> -->
 
 
         <!-- <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testOneName">
@@ -135,14 +139,14 @@
 
 
 
-        <!-- <form class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testOneName" ng-submit="addTest(student, 'testOne')">
+        <form class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testOneName" ng-submit="addTest(student, 'testOne')">
           <div ng-hide="addTestOne" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
             <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestOne = true"></i>
           </div>
           <div ng-show="addTestOne" class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
             <div ng-include="'/templates/inlineForm.html'"></div>
           </div>
-        </form> -->
+        </form>
 
       </div>
     </div>
@@ -251,7 +255,7 @@
             </p>
           </button>
         </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testTwoName">
+        <!-- <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testTwoName">
           <div ng-hide="addTestTwo || !student.testOneName" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
             <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestTwo = true"></i>
           </div>
@@ -266,15 +270,15 @@
               <button type="submit" type="button" class="addTestBtn"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
             </form>
           </div>
-        </div>
-        <!-- <form class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testTwoName" ng-submit="addTest(student, 'testTwo')">
+        </div> -->
+        <form class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testTwoName" ng-submit="addTest(student, 'testTwo')">
           <div ng-hide="addTestTwo || !student.testOneName" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
             <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestTwo = true"></i>
           </div>
           <div ng-show="addTestTwo" class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
             <div ng-include="'/templates/inlineForm.html'"></div>
           </div>
-        </form> -->
+        </form>
       </div>
     </div>
 <!-- TEST TWO TIME -->
@@ -381,7 +385,7 @@
             </p>
           </button>
         </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testThreeName">
+        <!-- <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testThreeName">
           <div ng-hide="addTestThree || !student.testTwoName" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
             <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestThree = true"></i>
           </div>
@@ -396,7 +400,15 @@
               <button type="submit" type="button" class="addTestBtn"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
             </form>
           </div>
-        </div>
+        </div> -->
+        <form class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testThreeName" ng-submit="addTest(student, 'testThree')">
+          <div ng-hide="addTestThree || !student.testTwoName" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestThree = true"></i>
+          </div>
+          <div ng-show="addTestThree" class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+            <div ng-include="'/templates/inlineForm.html'"></div>
+          </div>
+        </form>
       </div>
     </div>
 <!-- TEST THREE TIME -->
@@ -503,7 +515,7 @@
             </p>
           </button>
         </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testFourName">
+        <!-- <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testFourName">
           <div ng-hide="addTestFour || !student.testThreeName" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
             <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestFour = true"></i>
           </div>
@@ -518,7 +530,15 @@
               <button type="submit" type="button" class="addTestBtn"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
             </form>
           </div>
-        </div>
+        </div> -->
+        <form class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.testFourName" ng-submit="addTest(student, 'testFour')">
+          <div ng-hide="addTestFour || !student.testThreeName" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestFour = true"></i>
+          </div>
+          <div ng-show="addTestFour" class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+            <div ng-include="'/templates/inlineForm.html'"></div>
+          </div>
+        </form>
       </div>
     </div>
 <!--testFourTime-->

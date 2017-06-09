@@ -226,7 +226,7 @@ section {
   padding-left: 0.9;
 }
 
-.addStudentBtn {
+.addStudentBtn, .addTestBtn {
   border-radius: 1em;
   min-height: 2em;
   /*border: 2.5px solid #4c91cd;*/
@@ -235,30 +235,40 @@ section {
   background-color: white;
 }
 
-.btn-test {
-  border: 2.5px solid #5BC0DE;
-  color: #5BC0DE;
-}
-
-.addStudentBtn:hover {
+.addStudentBtn:hover, .addTestBtn:hover {
   background-color: #5BC0DE;
   color: white;
 }
 
-.btn-test:hover {
-  border: 3.5px solid #5BC0DE;
+.addTestBtn {
+  max-width: 1em;
+  position: relative;
+}
+
+.fa-thumbs-up {
+  color: #5BC0DE;
+  position: absolute;
+  /*margin-right: 5px;*/
+  /*padding-right: 5px;*/
+  margin: 0;
+  top: 5px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.thumbsUpOn {
+  color: white;
+}
+
+.thumbsUpOff {
+  color: #5BC0DE;
 }
 
 .addStudentBtn:active {
   background-color: #0B5FAA;
   color: white;
 }
-
-.btn-test:active {
-  background-color: #e05d6f;
-  color: white
-}
-
 
 /* end CSS for Form */
 
@@ -749,6 +759,10 @@ hr {
 .testTimeForm {
   width: 37%;
   float: right;
+}
+
+.inlineTestTimeForm {
+  width: 25%;
 }
 
 .addTest i {
