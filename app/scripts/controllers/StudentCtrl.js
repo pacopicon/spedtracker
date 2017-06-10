@@ -774,10 +774,10 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
 // Begin AngularStrap popover
 
-    $scope.dateTip = {
-      "title": "enter testing extension accomodation",
-      "checked": false
-    };
+    // $scope.dateTip = {
+    //   "title": "enter testing extension accomodation",
+    //   "checked": false
+    // };
 
 // Begin test properties
 
@@ -817,7 +817,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
     $scope.scopeTestTime = function(testTime) {
       $scope.newTestTime = testTime;
-      console.log("attribute = " + $scope.newTestTime);
     };
 
     $scope.processTimeInput = function(student, testNo) {

@@ -144,7 +144,7 @@ section {
 
 .main-body {
   border-radius: 0em;
-  background-color: white;
+  /*background-color: white;*/
   padding: 1em;
   margin-bottom: 2em;
   min-height: 30%;
@@ -191,11 +191,11 @@ section {
   min-width: 4em;
 }
 
-.date, .btn-date, .time, .btn-time, .importance, .hour-and-minute, .hour, .btn-hour, .minute, .hourInput, .minInput, .extendInput, .nameInput {
+.btn-time {
   resize: horizontal;
 }
 
-.btn-date:hover, .btn-time:hover, .name:hover {
+.form-control:hover {
   color: #d8dddf;
 }
 
@@ -243,6 +243,7 @@ section {
 .addTestBtn {
   max-width: 1em;
   position: relative;
+  /*float: right;*/
 }
 
 .fa-thumbs-up {
@@ -381,7 +382,7 @@ section {
   padding-left: 0;
 }
 
-.nameAndTest {
+.studentTest {
   float: left;
   padding-left: 0;
   padding-right: 0.5em;
@@ -392,6 +393,7 @@ section {
 .checkboxIndexName {
   height: 2em;
   white-space: normal;
+  float: left;
 }
 
 .checkbox {
@@ -437,6 +439,11 @@ span {
 
 .buttonContainer {
   padding-right: 8px;
+  margin-top: 0.7em;
+}
+
+.buttonContainer p {
+  line-height: 1.8em;
 }
 
 .countdownBtnCell {
@@ -454,8 +461,7 @@ span {
   background-color: white;
   color: #5CB85C;
   width: 100%;
-  height: 2em;
-  margin-top: 0.7em;
+  height: 2.5em;
   font-size: 1em;
 }
 
@@ -567,12 +573,18 @@ span {
 
 /* Begin in-line Form CSS */
 
-.inlineNameForm {
-
+.inlineForm {
+  padding: 0;
 }
 
-.inlineTestForm {
+.inlineNameForm, .inlineTestTimeForm {
+  padding-left: 3.75px;
+  padding-right: 3.75px;
+  width: 15%;
+}
 
+.inlineTestTimeForm {
+  width: 5%;
 }
 
 /* End in-line Form CSS */
@@ -779,9 +791,6 @@ hr {
   padding-left: 0.1em;
   color: #5BC0DE;
   transition: all 0.5s ease-in-out;
-}
-
-.btn-time {
 }
 
 @media only screen and (min-width : 1200px) {
