@@ -772,102 +772,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       return time;
     };
 
-// progress bar data
-
-    // $scope.bottomBarRatio = function(student, test) {
-    //   if (test == "testOne") {
-    //     testTime = student.testOneTime;
-    //     totalTime = testTime * student.extendTime;
-    //     extension = totalTime - testTime;
-    //     bottomBarRatio = extension / totalTime;
-    //   } else if (test == "testTwo") {
-    //     testTime = student.testTwoTime;
-    //     totalTime = testTime * student.extendTime;
-    //     extension = totalTime - testTime;
-    //     bottomBarRatio = extension / totalTime;
-    //   } else if (test == "testThree") {
-    //     testTime = student.testThreeTime;
-    //     totalTime = testTime * student.extendTime;
-    //     extension = totalTime - testTime;
-    //     bottomBarRatio = extension / totalTime;
-    //   } else if (test == "testFour") {
-    //     testTime = student.testFourTime;
-    //     totalTime = testTime * student.extendTime;
-    //     extension = totalTime - testTime;
-    //     bottomBarRatio = extension / totalTime;
-    //   }
-    //   return bottomBarRatio;
-    // };
-    //
-    // $scope.topBarWidth = function(student, test) {
-    //
-    //   extendTime = student.extendTime;
-    //   topBarRatio = 1 - $scope.bottomBarRatio(student, test);
-    //
-    //   if (test == "testOne") {
-    //     testTime = student.testOneTime;
-    //     extension = (testTime * extendTime) - testTime;
-    //     actualTestTime = student.totalTimeOne - extension;
-    //     dividend = student.testOneStartTime + actualTestTime - $scope.time;
-    //     topBarWidth = dividend / actualTestTime * 100 * topBarRatio;
-    //     console.log("topBarWidth = " + topBarWidth);
-    //     console.log("topBarRatio = " + topBarRatio);
-    //   } else if (test == "testTwo") {
-    //     testTime = student.testTwoTime;
-    //     extension = (testTime * extendTime) - testTime;
-    //     actualTestTime = student.totalTimeTwo - extension;
-    //     dividend = student.testTwoStartTime + actualTestTime - $scope.time;
-    //     topBarWidth = dividend / actualTestTime * 100 * topBarRatio;
-    //   } else if (test == "testThree") {
-    //     testTime = student.testThreeTime;
-    //     extension = (testTime * extendTime) - testTime;
-    //     actualTestTime = student.totalTimeThree - extension;
-    //     dividend = student.testThreeStartTime + actualTestTime - $scope.time;
-    //     topBarWidth = dividend / actualTestTime * 100 * topBarRatio;
-    //   } else if (test == "testFour") {
-    //     testTime = student.testFourTime;
-    //     extension = (testTime * extendTime) - testTime;
-    //     actualTestTime = student.totalTimeFour - extension;
-    //     dividend = student.testFourStartTime + actualTestTime - $scope.time;
-    //     topBarWidth = dividend / actualTestTime * 100 * topBarRatio;
-    //   }
-    //
-    //   return topBarWidth;
-    // };
-    //
-    // $scope.bottomBarWidth = function(student, test) {
-    //
-    //   extendTime = student.extendTime;
-    //   bottomBarRatio = $scope.bottomBarRatio(student, test);
-    //
-    //   if ($scope.topBarWidth(student, 'testOne') == 0) {
-    //     testTime = student.testOneTime;
-    //     extension = (testTime * extendTime) - testTime;
-    //     dividend = student.testOneStartTime + extension - $scope.time
-    //     bottomBarWidth = dividend / extension * 100 * bottomBarRatio;
-    //   } else if ($scope.topBarWidth(student, 'testTwo') == 0) {
-    //     testTime = student.testTwoTime;
-    //     extension = (testTime * extendTime) - testTime;
-    //     dividend = student.testTwoStartTime + extension - $scope.time
-    //     bottomBarWidth = dividend / extension * 100 * bottomBarRatio;
-    //   } else if ($scope.topBarWidth(student, 'testThree') == 0) {
-    //     testTime = student.testThreeTime;
-    //     extension = (testTime * extendTime) - testTime;
-    //     dividend = student.testThreeStartTime + extension - $scope.time
-    //     bottomBarWidth = dividend / extension * 100 * bottomBarRatio;
-    //   } else if ($scope.topBarWidth(student, 'testFour') == 0) {
-    //     testTime = student.testFourTime;
-    //     extension = (testTime * extendTime) - testTime;
-    //     dividend = student.testFourStartTime + extension - $scope.time
-    //     bottomBarWidth = dividend / extension * 100 * bottomBarRatio;
-    //   } else {
-    //     bottomBarWidth = 100 * bottomBarRatio;
-    //   }
-    //     console.log("bottomBarWidth = " + bottomBarWidth);
-    //     console.log("bottomBarRatio = " + bottomBarRatio);
-    //     return bottomBarWidth;
-    // };
-
 // Begin AngularStrap popover
 
     $scope.dateTip = {
@@ -877,18 +781,23 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
 // Begin test properties
 
-    $scope.newDueDateOne = new Date(new Date().setHours(1,0,0));
-    $scope.newDueDateTwo = new Date(new Date().setHours(1,0,0));
-    $scope.newDueDateThree = new Date(new Date().setHours(1,0,0));
-    $scope.newDueDateFour = new Date(new Date().setHours(1,0,0));
-    $scope.newtestName = " ";
+    $scope.newDueDateOne = new Date(new Date().setHours(0,0,0));
+    $scope.newDueDateTwo = new Date(new Date().setHours(0,0,0));
+    $scope.newDueDateThree = new Date(new Date().setHours(0,0,0));
+    $scope.newDueDateFour = new Date(new Date().setHours(0,0,0));
+    // $scope.newtestName = " ";
 
 
     $scope.timewrap = {};
 
     $scope.times = [1, 1.5, 2, 2.5, 3];
 
-    $scope.newDueDate = new Date(new Date().setHours(1,0,0));
+    $scope.isFormOneComplete = false;
+    $scope.isFormTwoComplete = false;
+    $scope.isFormThreeComplete = false;
+    $scope.isFormFourComplete = false;
+
+    // $scope.newDueDate = new Date(new Date().setHours(1,0,0));
 
 // End test properties
 
@@ -906,13 +815,17 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
     };
 
-    $scope.addTest = function(student, testNo) {
-  
-      StudentCrud.addTest(student, $scope.newtestName, $scope.newDueDate, testNo);
+    $scope.scopeTestTime = function(testTime) {
+      $scope.newTestTime = testTime;
+      console.log("attribute = " + $scope.newTestTime);
+    };
+
+    $scope.processTimeInput = function(student, testNo) {
+      StudentCrud.processTimeInput(student, $scope.newTestTime, testNo);
     };
 
     $scope.deleteTest = function(student, testNo) {
-      StudentCrud.deleteTest(student, $scope.newtestName, $scope.newDueDate, testNo);
+      StudentCrud.deleteTest(student, student.testOneName, student.testOneTime, testNo);
     };
 
     $scope.saveAndToggleInvert = function(student) {

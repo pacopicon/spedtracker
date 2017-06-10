@@ -1,9 +1,0 @@
-<section ng-controller="StudentCtrl" class="user">
-  <div class="inlineNameForm col-lg-3 col-md-3 col-sm-3 col-xs-3">
-    <input class="form-control testNameInput" type="text" name="input" ng-model="newtestName" placeholder="enter additional test" ng-change="students.$save(student)"/>
-  </div>
-  <div class="inlineTestTimeForm col-lg-2 col-md-2 col-sm-2 col-xs-2">
-    <input type="text" size="1" class="btn-time form-control" ng-model="newDueDate" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
-  </div>
-  <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false"><i class="fa fa-thumbs-up" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
-</section>
