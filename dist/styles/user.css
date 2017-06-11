@@ -15,7 +15,7 @@
   height: 100%;
   width: 3.5em;
   bottom: 0.35em;
-  color: white;
+  color: #D6F3FF;
   font-size: 3em;
   font-weight: 700;
   text-decoration: none;
@@ -37,13 +37,13 @@ li {
 }
 
 .navbar .fa {
-  color: white;
+  color: #D6F3FF;
   font-size: 0.5em;
   /*font-family: 'Montserrat', sans-serif;*/
 }
 
 .navbar p {
-  color: white;
+  color: #D6F3FF;
   float: right;
   font-family: 'Montserrat', sans-serif;
 }
@@ -121,7 +121,7 @@ section {
 
 .clock {
   background-color: #3f4e62;
-  color: white;
+  color: #D6F3FF;
   padding-top: 0.09em;
   padding-bottom: 0.09em;
 }
@@ -144,7 +144,7 @@ section {
 
 .main-body {
   border-radius: 0em;
-  /*background-color: white;*/
+  /*background-color: #D6F3FF;*/
   padding: 1em;
   margin-bottom: 2em;
   min-height: 30%;
@@ -232,12 +232,12 @@ section {
   /*border: 2.5px solid #4c91cd;*/
   border: 2.5px solid #5BC0DE;
   color: #5BC0DE;
-  background-color: white;
+  background-color: #D6F3FF;
 }
 
 .addStudentBtn:hover, .addTestBtn:hover {
   background-color: #5BC0DE;
-  color: white;
+  color: #D6F3FF;
 }
 
 .addTestBtn {
@@ -259,7 +259,7 @@ section {
 }
 
 .thumbsUpOn {
-  color: white;
+  color: #D6F3FF;
 }
 
 .thumbsUpOff {
@@ -268,7 +268,7 @@ section {
 
 .addStudentBtn:active {
   background-color: #0B5FAA;
-  color: white;
+  color: #D6F3FF;
 }
 
 /* end CSS for Form */
@@ -277,7 +277,7 @@ section {
 
 .formControls {
   border-radius: 1em;
-  background-color: white;
+  background-color: #D6F3FF;
   min-height: 1.8em;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
@@ -302,7 +302,7 @@ section {
 
 .controlBtn {
   border: 2.5px solid #3f4e62;
-  background-color: white;
+  background-color: #D6F3FF;
   color: #3f4e62;
   height: 1.8em;
   border-radius: 1em;
@@ -323,7 +323,7 @@ section {
 
 .controlBtn:hover {
   background-color: #3f4e62;
-  color: white
+  color: #D6F3FF
 }
 
 .controlBtn:active {
@@ -338,7 +338,7 @@ section {
   /*font-size: 13px;
   margin-top: 0.35em;
   margin-bottom: 0.35em;*/
-  font-size: 1em;
+  /*font-size: 1em;*/
 }
 
 .nameHeading {
@@ -458,7 +458,7 @@ span {
   border-radius: 0.5em;
   /*border: 2.5px solid #6FC853;*/
   border: 2.5px solid #5CB85C;
-  background-color: white;
+  background-color: #D6F3FF;
   color: #5CB85C;
   width: 100%;
   height: 2.5em;
@@ -467,7 +467,7 @@ span {
 
 .countBtn:hover {
   background-color: #5CB85C;
-  color: white;
+  color: #D6F3FF;
 }
 
 .countBtnText, .pauseBtnText, .grayText, .redText, .resumeBtnText, .resetBtnText, .endBtnText {
@@ -503,7 +503,7 @@ span {
 
 .pauseBtn:hover {
   background-color: #F0AD4E;
-  color: white
+  color: #D6F3FF
 }
 
 .resumeResetEnd {
@@ -514,7 +514,7 @@ span {
 
 .resumeBtn, .resetBtn, .endBtn {
   border-radius: 0.5em;
-  background-color: white;
+  background-color: #D6F3FF;
   height: 2em;
   margin-top: 0.7em;
   /*height: 1.5em;*/
@@ -540,25 +540,27 @@ span {
 }
 
 .resumeBtn:Hover {
-  color: white;
+  color: #D6F3FF;
   background-color: #5CB85C;
 }
 
 .resetBtn {
   /*margin-bottom: 1%;*/
   border: 2.5px solid #F0AD4E;
-  color: #F0AD4E;
+  /*color: #F0AD4E;*/
+  color: #D6F3FF;
   /*border-radius: 0;*/
 }
 
 .resetBtn:hover {
-  color: white;
+  color: #D6F3FF;
   background-color: #F0AD4E;
 }
 
 .endBtn {
   border: 2.5px solid #D9534F;
-  color: #D9534F;
+  /*color: #D9534F;*/
+  color: #D6F3FF;
   float: right;
   /*border-top-right-radius: 0;*/
   /*border-top-left-radius: 0;*/
@@ -567,7 +569,7 @@ span {
 }
 
 .endBtn:hover {
-  color: white;
+  color: #D6F3FF;
   background-color: #D9534F;
 }
 
@@ -668,6 +670,7 @@ span {
 .barLabel {
   line-height: 1.3em;
   height: 100%;
+  color: #D6F3FF;
   /*font-size: 10em;*/
 }
 
@@ -686,7 +689,7 @@ hr {
   width: 10em;
   border: 0.125em solid #3f4e62;
   border-radius: 1em;
-  background-color: white;
+  background-color: #D6F3FF;
 }
 .topBar, .bottomBar {
   width: 9.8em;
