@@ -179,46 +179,12 @@ section {
   padding-right: 0;
 }
 
-.date, .minute, .importance {
-  overflow: visible;
-}
-
-.date, .time, .hour, .minute {
-  padding-bottom: 0.9em;
-}
-
-.date, .time, .importance, .hour, .minute, .hour-and-minute, .addStudentBtn {
-  min-width: 4em;
-}
-
-.btn-time {
-  resize: horizontal;
-}
-
 .form-control:hover {
   color: #d8dddf;
 }
 
-.btn-date, .addStudentBtn {
-  width: 100%
-}
-
 .fa {
   color: #3f4e62;
-}
-
-.hour-and-minute {
-  width: 33.1%;
-  padding: 0;
-  margin-right: 0;
-}
-
-.hour {
-  width: 47.5%;
-}
-
-.minute {
-  width: 47.5%;
 }
 
 .btn-div {
@@ -233,6 +199,11 @@ section {
   border: 2.5px solid #5BC0DE;
   color: #5BC0DE;
   background-color: #D6F3FF;
+}
+
+.addStudentBtn {
+  width: 100%;
+  min-width: 4em;
 }
 
 .addStudentBtn:hover, .addTestBtn:hover {
@@ -364,9 +335,6 @@ section {
   margin-left: 0.5em;
 }
 
-.textColor {
-  color: #3f4e62;
-}
 
 .nameCell, .countdownBtnCell, .testNameCell, .testTimeCell, .countdownCell {
   height: 100%;
@@ -654,6 +622,18 @@ section {
   color: #D9534F;
 }
 
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
+/* Begin CSS for Bars */
+
 .progress {
   height: 1.25em;
 }
@@ -685,44 +665,6 @@ section {
   color: #D6F3FF;
   /*font-size: 10em;*/
 }
-
-hr {
-    display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: inset;
-    border-width: 1px;
-}
-
-/*.barContainer {
-  height: 20em;
-  width: 10em;
-  border: 0.125em solid #3f4e62;
-  border-radius: 1em;
-  background-color: #D6F3FF;
-}
-.topBar, .bottomBar {
-  width: 9.8em;
-}*/
-
-/* yellow,    green,     red,       dark navy,  brown,     purple,    blue*/
-/*'#C3C300', '#6FC853', '#e05d6f', '#3f4e62',  '#AC6D39', '#8E5EC5', '#4c91cd'*/
-
-/*.topBar {
-  background-color: #6FC853;
-  border-top-right-radius: 0.8em;
-  border-top-left-radius: 0.8em;
-  bottom: 0;
-}
-.bottomBar {
-  background-color: #C3C300;
-  border-bottom-right-radius: 0.8em;
-  border-bottom-left-radius: 0.8em;
-  position: absolute;
-  bottom: 2px;
-}*/
 
 /* Begin CSS for FORM */
 
@@ -807,6 +749,9 @@ hr {
   color: #5BC0DE;
   transition: all 0.5s ease-in-out;
 }
+
+/* End CSS for FORM */
+
 
 @media only screen and (min-width : 1200px) {
 
