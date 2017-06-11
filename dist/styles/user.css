@@ -364,6 +364,10 @@ section {
   margin-left: 0.5em;
 }
 
+.textColor {
+  color: #3f4e62;
+}
+
 .nameCell, .countdownBtnCell, .testNameCell, .testTimeCell, .countdownCell {
   height: 100%;
 }
@@ -382,7 +386,7 @@ section {
   padding-left: 0;
 }
 
-.studentTest {
+.student {
   float: left;
   padding-left: 0;
   padding-right: 0.5em;
@@ -414,13 +418,21 @@ section {
   /*text-align: left;*/
 }
 
-span {
-  white-space: normal;
+.allTests {
+
 }
 
 .testNameCell {
   display: inline;
-  float: right;
+}
+
+.testTimeData {
+  padding-right: 0;
+}
+
+.testTimeData p {
+  font-size: 0.7em;
+  line-height: 1em;
 }
 
 .countBtn p, .redBtn p, .pauseBtn p {
@@ -432,14 +444,12 @@ span {
   /*line-height: 1.7em;*/
 }
 
-.testTimeCell p  {
-  font-size: 0.7em;
-  line-height: 1.2em;
-}
-
 .buttonContainer {
-  padding-right: 8px;
-  margin-top: 0.7em;
+  /*padding-right: 8px;*/
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0.3em;
+  /*margin-top: 0.7em;*/
 }
 
 .buttonContainer p {
@@ -595,13 +605,15 @@ span {
   margin-top: 0.35em;
   margin-bottom: 0;
   padding-bottom: 0;
-  text-align: center;
+  text-align: left;
   padding-left: 0;
   padding-right: 0;
 }
 
 .bars {
   height: 2.8em;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .progress-bar p {
@@ -799,11 +811,11 @@ hr {
 @media only screen and (min-width : 1200px) {
 
   .dataPair {
-    border-right: 0.125em solid;
+    /*border-right: 0.125em solid;*/
   }
 
   .dataPairPause {
-    border-left: 0.125em solid;
+    /*border-left: 0.125em solid;*/
   }
 
 }
