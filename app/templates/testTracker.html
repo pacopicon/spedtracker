@@ -177,365 +177,373 @@
     </div> <!-- END DATA BUTTONS AND BARS -->
 <!-- End Bars-->
 <!-- END TEST ONE-->
-<!-- BEGIN TEST TWO -->
-    <div class="studentTest col-lg-12 col-md-12 col-sm-12 col-xs-12">
-<!--TEST TWO NAME -->
-      <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
-      <div class="testNameCell marginRight marginLeft col-lg-10 col-md-10 col-sm-10 col-xs-8">
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeTwo > 0 && !student.isTimerTwoStart && student.isTestOneOver">
-          <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testTwo')">
-            <p class="countBtnText">
-              begin {{student.testTwoName}} test
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeTwo > 0 && !student.isTimerTwoStart && !student.isTestOneOver">
-          <button class="grayCell" ng-class="{'redBtn': student.isSafeToDelete}">
-            <p class="countBtnText">
-              {{student.testTwoName}} waiting on previous test
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeTwo > 0 && student.isTestTwoOver">
-          <button class="redBtn">
-            <p class="countBtnText">
-              {{student.testTwoName}} test is over
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeTwo > 0 && student.isTimerTwoStart && !student.isTimerTwoPaused && !student.isTestTwoOver">
-          <button class="pauseBtn" ng-click="pauseTimer(student, 'testTwo')">
-            <p class="pauseBtnText">
-              pause {{student.testTwoName}} test
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.totalTimeTwo > 0 && student.isTimerTwoStart && student.isTimerTwoPaused && !student.isTestTwoOver">
-          <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testTwo')">
-            <p class="resumeBtnText">
-              resume
-            </p>
-          </button>
-          <button class="resetBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resetTimer(student, 'testTwo')">
-            <p class="resetBtnText">
-              reset
-            </p>
-          </button>
-          <button class="endBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="endTimer(student, 'testTwo')">
-            <p class="endBtnText">
-              end
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeTwo == 0">
-          <div ng-hide="AddInlineTestTwo || student.totalTimeOne == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-            <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestTwo = true"></i>
-          </div>
-          <div ng-show="AddInlineTestTwo" class="inlineForm col-lg-11 col-md-11 col-sm-11 col-xs-11">
-            <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <input type="text" class="form-control testNameInput" ng-model="student.testTwoName" placeholder="enter test" ng-change="students.$save(student)"/>
-            </div>
-            <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <input type="text" size="1" class="btn-time form-control" ng-model="student.testTwoTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testTwoTime)">
-            </div>
-            <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testTwo')"><i class="fa fa-thumbs-up" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
-          </div>
-        </div>
-      </div>
-    </div>
 <!-- TEST TWO TIME -->
-    <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
-    <div class="testTimeCell col-lg-10 col-md-10 col-sm-10 col-xs-8" ng-hide="student.totalTimeTwo == 0">
-      <div class= "start marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
-        <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
-          started at:
-        </p>
-        <p class="dataPoint dataPair col-lg-3 col-md-4 col-sm-4 col-xs-4" ng-class="{'redText': student.isSafeToDelete}">
-          {{startTime(student, "testTwo") | date: 'mediumTime'}}
-        </p>
-        <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
-          time paused:
-        </p>
-        <p class="dataPoint col-lg-3 col-md-4 col-sm-4 col-xs-4" ng-class="{'redText': student.isSafeToDelete}">
-          {{totalPausedTime(student, "testTwo").hourMinSec}}
-        </p>
-      </div>
-      <div class="testTimeCell marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
-        <p class="dataPointLabel dataPairPause col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
-          std. end time:
-        </p>
-        <p class="dataPoint dataPair col-lg-3 col-md-4 col-sm-4 col-xs-4" ng-class="{'redText': student.isSafeToDelete}">
-          {{endTime(student, "testTwo") | date: 'mediumTime'}}
-        </p>
-        <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
-          ext. end time:
-        </p>
-        <p class="dataPoint col-lg-3 col-md-4 col-sm-4 col-xs-4" ng-class="{'redText': student.isSafeToDelete}">
-          {{endTime(student, "exttestTwo") | date: 'mediumTime'}}
-        </p>
-      </div>
-    </div>
-<!-- BEGIN TEST TWO BARS -->
-    <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
-    <div ng-show="student.totalTimeTwo > 0" class="bars col-lg-10 col-md-10 col-sm-10 col-xs-8">
-      <div class="progress fullBar">
-        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (timer(student, 'testTwo').bottom + timer(student, 'testTwo').top) + '%'}">
-          <p class="barLabel">{{timer(student, "testTwo").countdown | date: 'H:mm:ss'}}</p>
+    <div class="DataButtonsAndBars">
+      <div class="testTimeData col-lg-2 col-md-2 col-sm-2 col-xs-4" ng-hide="student.totalTimeTwo == 0">
+        <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            started at:
+          </p>
+          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            {{startTime(student, "testTwo") | date: 'mediumTime'}}
+          </p>
+        </div>
+        <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            time paused:
+          </p>
+          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            {{totalPausedTime(student, "testTwo").hourMinSec}}
+          </p>
+        </div>
+        <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p class="dataPointLabel dataPairPause col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            std. end time:
+          </p>
+          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            {{endTime(student, "testTwo") | date: 'mediumTime'}}
+          </p>
+        </div>
+        <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            ext. end time:
+          </p>
+          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            {{endTime(student, "exttestTwo") | date: 'mediumTime'}}
+          </p>
         </div>
       </div>
-      <div class="progress splitBar"> <!--Begin Bars-->
-        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testTwo').bottom + '%'}">
-          <p class="barLabel" ng-show="timer(student, 'testTwo').countdown - testTime(student, 'testTwoExt') > 0">{{testTime(student, "testTwoExt") | date: 'H:mm:ss'}}</p>
-          <p class="barLabel" ng-show="timer(student, 'testTwo').countdown - testTime(student, 'testTwoExt') <= 0">{{timer(student, "testTwo").countdown | date: 'H:mm:ss'}}</p>
+  <!-- TEST TWO NAME -->
+      <div class="buttonsAndBars col-lg-10 col-md-10 col-sm-10 col-xs-8">
+        <div class="testNameCell marginRight marginLeft">
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeTwo > 0 && !student.isTimerTwoStart && student.isTestOneOver">
+            <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testTwo')">
+              <p class="countBtnText">
+                begin {{student.testTwoName}} test
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeTwo > 0 && !student.isTestOneOver">
+            <button class="grayCell" ng-class="{'redBtn': student.isSafeToDelete}">
+              <p class="countBtnText">
+                {{student.testTwoName}} waiting on previous test
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeTwo > 0 && student.isTestTwoOver">
+            <button class="redBtn">
+              <p class="countBtnText">
+                {{student.testTwoName}} test is over
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeTwo > 0 && student.isTimerTwoStart && !student.isTimerTwoPaused && !student.isTestTwoOver">
+            <button class="pauseBtn" ng-click="pauseTimer(student, 'testTwo')">
+              <p class="pauseBtnText">
+                pause {{student.testTwoName}} test
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.totalTimeTwo > 0 && student.isTimerTwoStart && student.isTimerTwoPaused && !student.isTestTwoOver">
+            <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testTwo')">
+              <p class="resumeBtnText">
+                resume
+              </p>
+            </button>
+            <button class="resetBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resetTimer(student, 'testTwo')">
+              <p class="resetBtnText">
+                reset
+              </p>
+            </button>
+            <button class="endBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="endTimer(student, 'testTwo')">
+              <p class="endBtnText">
+                end
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeTwo == 0">
+            <div ng-hide="AddInlineTestTwo || student.totalTimeOne == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
+              <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestTwo = true"></i>
+            </div>
+            <div ng-show="AddInlineTestTwo" class="inlineForm col-lg-11 col-md-11 col-sm-11 col-xs-11">
+              <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" class="form-control testNameInput" ng-model="student.testTwoName" placeholder="enter test" ng-change="students.$save(student)"/>
+              </div>
+              <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" size="1" class="btn-time form-control" ng-model="student.testTwoTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testTwoTime)">
+              </div>
+              <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testTwo')"><i class="fa fa-thumbs-up" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
+            </div>
+          </div>
         </div>
-        <div ng-show="timer(student, 'testTwo').countdown - testTime(student, 'testTwoExt') > 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testTwo').top + '%'}">
-          <p class="barLabel">{{timer(student, "testTwo").countdown - testTime(student, "testTwoExtBar") | date: 'H:mm:ss'}}</p>
-        </div>
-        <div ng-show="timer(student, 'testTwo').countdown - testTime(student, 'testTwoExt') <= 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
+  <!-- BEGIN TEST TWO BARS -->
+        <div ng-show="student.totalTimeTwo > 0" class="bars col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="progress fullBar">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (timer(student, 'testTwo').bottom + timer(student, 'testTwo').top) + '%'}">
+              <p class="barLabel">{{timer(student, "testTwo").countdown | date: 'H:mm:ss'}}</p>
+            </div>
+          </div>
+          <div class="progress splitBar"> <!--Begin Bars-->
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testTwo').bottom + '%'}">
+              <p class="barLabel" ng-show="timer(student, 'testTwo').countdown - testTime(student, 'testTwoExt') > 0">{{testTime(student, "testTwoExt") | date: 'H:mm:ss'}}</p>
+              <p class="barLabel" ng-show="timer(student, 'testTwo').countdown - testTime(student, 'testTwoExt') <= 0">{{timer(student, "testTwo").countdown | date: 'H:mm:ss'}}</p>
+            </div>
+            <div ng-show="timer(student, 'testTwo').countdown - testTime(student, 'testTwoExt') > 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testTwo').top + '%'}">
+              <p class="barLabel">{{timer(student, "testTwo").countdown - testTime(student, "testTwoExtBar") | date: 'H:mm:ss'}}</p>
+            </div>
+            <div ng-show="timer(student, 'testTwo').countdown - testTime(student, 'testTwoExt') <= 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
+            </div>
+          </div>
+          <hr>
         </div>
       </div>
-      <hr>
-    </div>
+    </div> <!-- END DATA BUTTONS AND BARS -->
 <!-- End Bars-->
 <!-- END TEST TWO -->
-<!-- BEGIN TEST THREE -->
-    <div class="studentTest col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
-      <div class="testNameCell marginRight marginLeft col-lg-10 col-md-10 col-sm-10 col-xs-8">
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree > 0 && !student.isTimerThreeStart && student.isTestTwoOver">
-          <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testThree')">
-            <p class="countBtnText">
-              begin {{student.testThreeName}} test
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree > 0 && !student.isTimerThreeStart && !student.isTestTwoOver">
-          <button class="grayCell" ng-class="{'redBtn': student.isSafeToDelete}">
-            <p class="countBtnText">
-              {{student.testThreeName}} waiting on previous test
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree > 0 && student.isTestThreeOver">
-          <button class="redBtn">
-            <p class="countBtnText">
-              {{student.testThreeName}} test is over
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree > 0 && student.isTimerThreeStart && !student.isTimerThreePaused && !student.isTestThreeOver">
-          <button class="pauseBtn" ng-click="pauseTimer(student, 'testThree')">
-            <p class="pauseBtnText">
-              pause {{student.testThreeName}} test
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.totalTimeThree > 0 && student.isTimerThreeStart && student.isTimerThreePaused && !student.isTestThreeOver">
-          <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testThree')">
-            <p class="resumeBtnText">
-              resume
-            </p>
-          </button>
-          <button class="resetBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resetTimer(student, 'testThree')">
-            <p class="resetBtnText">
-              reset
-            </p>
-          </button>
-          <button class="endBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="endTimer(student, 'testThree')">
-            <p class="endBtnText">
-              end
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree == 0">
-          <div ng-hide="AddInlineTestThree || student.totalTimeTwo == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-            <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestThree = true"></i>
-          </div>
-          <div ng-show="AddInlineTestThree" class="inlineForm col-lg-11 col-md-11 col-sm-11 col-xs-11">
-            <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <input type="text" class="form-control testNameInput" ng-model="student.testThreeName" placeholder="enter test" ng-change="students.$save(student)"/>
-            </div>
-            <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <input type="text" size="1" class="btn-time form-control" ng-model="student.testThreeTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testThreeTime)">
-            </div>
-            <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testThree')"><i class="fa fa-thumbs-up" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
-          </div>
-        </div>
-      </div>
-    </div>
 <!-- TEST THREE TIME -->
-    <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
-    <div class="testTimeCell col-lg-10 col-md-10 col-sm-10 col-xs-8" ng-hide="student.totalTimeThree == 0">
-      <div class="start marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
-        <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
-          started at:
-        </p>
-        <p class="dataPoint dataPair col-lg-3 col-md-4 col-sm-4 col-xs-4" ng-class="{'redText': student.isSafeToDelete}">
-          {{startTime(student, "testThree") | date: 'mediumTime'}}
-        </p>
-        <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
-          time paused:
-        </p>
-        <p class="dataPoint col-lg-3 col-md-4 col-sm-4 col-xs-4" ng-class="{'redText': student.isSafeToDelete}">
-          {{totalPausedTime(student, "testThree").hourMinSec}}
-        </p>
-      </div>
-      <div class="testTimeCell marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
-        <p class="dataPointLabel dataPairPause col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
-          std. end time:
-        </p>
-        <p class="dataPoint dataPair col-lg-3 col-md-4 col-sm-4 col-xs-4" ng-class="{'redText': student.isSafeToDelete}">
-          {{endTime(student, "testThree") | date: 'mediumTime'}}
-        </p>
-        <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
-          ext. end time:
-        </p>
-        <p class="dataPoint col-lg-3 col-md-4 col-sm-4 col-xs-4" ng-class="{'redText': student.isSafeToDelete}">
-          {{endTime(student, "exttestThree") | date: 'mediumTime'}}
-        </p>
-      </div>
-    </div>
-<!-- BEGIN TEST THREE BARS -->
-    <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
-    <div ng-show="student.totalTimeThree > 0" class="bars col-lg-10 col-md-10 col-sm-10 col-xs-8">
-      <div class="progress fullBar">
-        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (timer(student, 'testThree').bottom + timer(student, 'testThree').top) + '%'}">
-          <p class="barLabel">{{timer(student, "testThree").countdown | date: 'H:mm:ss'}}</p>
+    <div class="DataButtonsAndBars">
+      <div class="testTimeData col-lg-2 col-md-2 col-sm-2 col-xs-4" ng-hide="student.totalTimeThree == 0">
+        <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            started at:
+          </p>
+          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            {{startTime(student, "testThree") | date: 'mediumTime'}}
+          </p>
+        </div>
+        <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            time paused:
+          </p>
+          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            {{totalPausedTime(student, "testThree").hourMinSec}}
+          </p>
+        </div>
+        <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p class="dataPointLabel dataPairPause col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            std. end time:
+          </p>
+          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            {{endTime(student, "testThree") | date: 'mediumTime'}}
+          </p>
+        </div>
+        <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            ext. end time:
+          </p>
+          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            {{endTime(student, "exttestThree") | date: 'mediumTime'}}
+          </p>
         </div>
       </div>
-      <div class="progress splitBar"> <!--Begin Bars-->
-        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testThree').bottom + '%'}">
-          <p class="barLabel" ng-show="timer(student, 'testThree').countdown - testTime(student, 'testThreeExt') > 0">{{testTime(student, "testThreeExt") | date: 'H:mm:ss'}}</p>
-          <p class="barLabel" ng-show="timer(student, 'testThree').countdown - testTime(student, 'testThreeExt') <= 0">{{timer(student, "testThree").countdown | date: 'H:mm:ss'}}</p>
+  <!-- TEST TWO NAME -->
+      <div class="buttonsAndBars col-lg-10 col-md-10 col-sm-10 col-xs-8">
+        <div class="testNameCell marginRight marginLeft">
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree > 0 && !student.isTimerThreeStart && student.isTestTwoOver">
+            <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testThree')">
+              <p class="countBtnText">
+                begin {{student.testThreeName}} test
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree > 0 && !student.isTestTwoOver">
+            <button class="grayCell" ng-class="{'redBtn': student.isSafeToDelete}">
+              <p class="countBtnText">
+                {{student.testThreeName}} waiting on previous test
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree > 0 && student.isTestThreeOver">
+            <button class="redBtn">
+              <p class="countBtnText">
+                {{student.testThreeName}} test is over
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree > 0 && student.isTimerThreeStart && !student.isTimerThreePaused && !student.isTestThreeOver">
+            <button class="pauseBtn" ng-click="pauseTimer(student, 'testThree')">
+              <p class="pauseBtnText">
+                pause {{student.testThreeName}} test
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.totalTimeThree > 0 && student.isTimerThreeStart && student.isTimerThreePaused && !student.isTestThreeOver">
+            <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testThree')">
+              <p class="resumeBtnText">
+                resume
+              </p>
+            </button>
+            <button class="resetBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resetTimer(student, 'testThree')">
+              <p class="resetBtnText">
+                reset
+              </p>
+            </button>
+            <button class="endBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="endTimer(student, 'testThree')">
+              <p class="endBtnText">
+                end
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree == 0">
+            <div ng-hide="AddInlineTestThree || student.totalTimeTwo == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
+              <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestThree = true"></i>
+            </div>
+            <div ng-show="AddInlineTestThree" class="inlineForm col-lg-11 col-md-11 col-sm-11 col-xs-11">
+              <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" class="form-control testNameInput" ng-model="student.testThreeName" placeholder="enter test" ng-change="students.$save(student)"/>
+              </div>
+              <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" size="1" class="btn-time form-control" ng-model="student.testThreeTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testThreeTime)">
+              </div>
+              <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testThree')"><i class="fa fa-thumbs-up" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
+            </div>
+          </div>
         </div>
-        <div ng-show="timer(student, 'testThree').countdown - testTime(student, 'testThreeExt') > 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testThree').top + '%'}">
-          <p class="barLabel">{{timer(student, "testThree").countdown - testTime(student, "testThreeExtBar") | date: 'H:mm:ss'}}</p>
-        </div>
-        <div ng-show="timer(student, 'testThree').countdown - testTime(student, 'testThreeExt') <= 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
+  <!-- BEGIN TEST THREE BARS -->
+        <div ng-show="student.totalTimeThree > 0" class="bars col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="progress fullBar">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (timer(student, 'testThree').bottom + timer(student, 'testThree').top) + '%'}">
+              <p class="barLabel">{{timer(student, "testThree").countdown | date: 'H:mm:ss'}}</p>
+            </div>
+          </div>
+          <div class="progress splitBar"> <!--Begin Bars-->
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testThree').bottom + '%'}">
+              <p class="barLabel" ng-show="timer(student, 'testThree').countdown - testTime(student, 'testThreeExt') > 0">{{testTime(student, "testThreeExt") | date: 'H:mm:ss'}}</p>
+              <p class="barLabel" ng-show="timer(student, 'testThree').countdown - testTime(student, 'testThreeExt') <= 0">{{timer(student, "testThree").countdown | date: 'H:mm:ss'}}</p>
+            </div>
+            <div ng-show="timer(student, 'testThree').countdown - testTime(student, 'testThreeExt') > 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testThree').top + '%'}">
+              <p class="barLabel">{{timer(student, "testThree").countdown - testTime(student, "testThreeExtBar") | date: 'H:mm:ss'}}</p>
+            </div>
+            <div ng-show="timer(student, 'testThree').countdown - testTime(student, 'testThreeExt') <= 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
+            </div>
+          </div>
+          <hr>
         </div>
       </div>
-      <hr>
-    </div>
+    </div> <!-- END DATA BUTTONS AND BARS -->
 <!-- End Bars-->
 <!-- END TEST THREE -->
-<!-- BEGIN TEST FOUR -->
-    <div class="studentTest col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
-      <div class="testNameCell marginRight marginLeft col-lg-10 col-md-10 col-sm-10 col-xs-8">
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour > 0 && !student.isTimerFourStart && student.isTestThreeOver">
-          <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testFour')">
-            <p class="countBtnText">
-              begin {{student.testFourName}} test
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour > 0 && !student.isTimerFourStart && !student.isTestThreeOver">
-          <button class="grayCell" ng-class="{'redBtn': student.isSafeToDelete}">
-            <p class="countBtnText">
-              {{student.testFourName}} waiting on previous test
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour > 0 && student.isTestFourOver">
-          <button class="redBtn">
-            <p class="countBtnText">
-              {{student.testFourName}} test is over
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour > 0 && student.isTimerFourStart && !student.isTimerFourPaused && !student.isTestFourOver">
-          <button class="pauseBtn" ng-click="pauseTimer(student, 'testFour')">
-            <p class="pauseBtnText">
-              pause {{student.testFourName}} test
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.totalTimeFour > 0 && student.isTimerFourStart && student.isTimerFourPaused && !student.isTestFourOver">
-          <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testFour')">
-            <p class="resumeBtnText">
-              resume
-            </p>
-          </button>
-          <button class="resetBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resetTimer(student, 'testFour')">
-            <p class="resetBtnText">
-              reset
-            </p>
-          </button>
-          <button class="endBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="endTimer(student, 'testFour')">
-            <p class="endBtnText">
-              end
-            </p>
-          </button>
-        </div>
-        <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour == 0">
-          <div ng-hide="AddInlineTestFour || student.totalTimeThree == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-            <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestFour = true"></i>
-          </div>
-          <div ng-show="AddInlineTestFour" class="inlineForm col-lg-11 col-md-11 col-sm-11 col-xs-11">
-            <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <input type="text" class="form-control testNameInput" ng-model="student.testFourName" placeholder="enter test" ng-change="students.$save(student)"/>
-            </div>
-            <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <input type="text" size="1" class="btn-time form-control" ng-model="student.testFourTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testFourTime)">
-            </div>
-            <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testFour')"><i class="fa fa-thumbs-up" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
-          </div>
-        </div>
-      </div>
-    </div>
 <!-- TEST FOUR TIME -->
-    <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
-    <div class="testTimeCell col-lg-10 col-md-10 col-sm-10 col-xs-8" ng-hide="student.totalTimeFour == 0">
-      <div class= "start marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
-        <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
-          started at:
-        </p>
-        <p class="dataPoint dataPair col-lg-3 col-md-4 col-sm-4 col-xs-4" ng-class="{'redText': student.isSafeToDelete}">
-          {{startTime(student, "testFour") | date: 'mediumTime'}}
-        </p>
-        <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
-          time paused:
-        </p>
-        <p class="dataPoint col-lg-3 col-md-4 col-sm-4 col-xs-4" ng-class="{'redText': student.isSafeToDelete}">
-          {{totalPausedTime(student, "testFour").hourMinSec}}
-        </p>
-      </div>
-      <div class="testTimeCell marginLeft marginRight col-md-6 col-sm-12 col-xs-12">
-        <p class="dataPointLabel dataPairPause col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
-          std. end time:
-        </p>
-        <p class="dataPoint dataPair col-lg-3 col-md-4 col-sm-4 col-xs-4" ng-class="{'redText': student.isSafeToDelete}">
-          {{endTime(student, "testFour") | date: 'mediumTime'}}
-        </p>
-        <p class="dataPointLabel col-lg-3 col-md-8 col-sm-8 col-xs-8" ng-class="{'redText': student.isSafeToDelete}">
-          ext. end time:
-        </p>
-        <p class="dataPoint col-lg-3 col-md-4 col-sm-4 col-xs-4" ng-class="{'redText': student.isSafeToDelete}">
-          {{endTime(student, "exttestFour") | date: 'mediumTime'}}
-        </p>
-      </div>
-    </div>
-<!-- BEGIN TEST FOUR BARS -->
-    <div class="buffer col-lg-2 col-md-2 col-sm-2 col-xs-4"></div>
-    <div ng-show="student.totalTimeFour > 0" class="bars col-lg-10 col-md-10 col-sm-10 col-xs-8">
-      <div class="progress fullBar">
-        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (timer(student, 'testFour').bottom + timer(student, 'testFour').top) + '%'}">
-          <p class="barLabel">{{timer(student, "testFour").countdown | date: 'H:mm:ss'}}</p>
+    <div class="DataButtonsAndBars">
+      <div class="testTimeData col-lg-2 col-md-2 col-sm-2 col-xs-4" ng-hide="student.totalTimeFour == 0">
+        <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            started at:
+          </p>
+          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            {{startTime(student, "testFour") | date: 'mediumTime'}}
+          </p>
+        </div>
+        <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            time paused:
+          </p>
+          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            {{totalPausedTime(student, "testFour").hourMinSec}}
+          </p>
+        </div>
+        <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p class="dataPointLabel dataPairPause col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            std. end time:
+          </p>
+          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            {{endTime(student, "testFour") | date: 'mediumTime'}}
+          </p>
+        </div>
+        <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            ext. end time:
+          </p>
+          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+            {{endTime(student, "exttestFour") | date: 'mediumTime'}}
+          </p>
         </div>
       </div>
-      <div class="progress splitBar"> <!--Begin Bars-->
-        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testFour').bottom + '%'}">
-          <p class="barLabel" ng-show="timer(student, 'testFour').countdown - testTime(student, 'testFourExt') > 0">{{testTime(student, "testFourExt") | date: 'H:mm:ss'}}</p>
-          <p class="barLabel" ng-show="timer(student, 'testFour').countdown - testTime(student, 'testFourExt') <= 0">{{timer(student, "testFour").countdown | date: 'H:mm:ss'}}</p>
+  <!-- TEST TWO NAME -->
+      <div class="buttonsAndBars col-lg-10 col-md-10 col-sm-10 col-xs-8">
+        <div class="testNameCell marginRight marginLeft">
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour > 0 && !student.isTimerFourStart && student.isTestThreeOver">
+            <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testFour')">
+              <p class="countBtnText">
+                begin {{student.testFourName}} test
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour > 0 && !student.isTestThreeOver">
+            <button class="grayCell" ng-class="{'redBtn': student.isSafeToDelete}">
+              <p class="countBtnText">
+                {{student.testFourName}} waiting on previous test
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour > 0 && student.isTestFourOver">
+            <button class="redBtn">
+              <p class="countBtnText">
+                {{student.testFourName}} test is over
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour > 0 && student.isTimerFourStart && !student.isTimerFourPaused && !student.isTestFourOver">
+            <button class="pauseBtn" ng-click="pauseTimer(student, 'testFour')">
+              <p class="pauseBtnText">
+                pause {{student.testFourName}} test
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.totalTimeFour > 0 && student.isTimerFourStart && student.isTimerFourPaused && !student.isTestFourOver">
+            <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testFour')">
+              <p class="resumeBtnText">
+                resume
+              </p>
+            </button>
+            <button class="resetBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resetTimer(student, 'testFour')">
+              <p class="resetBtnText">
+                reset
+              </p>
+            </button>
+            <button class="endBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="endTimer(student, 'testFour')">
+              <p class="endBtnText">
+                end
+              </p>
+            </button>
+          </div>
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour == 0">
+            <div ng-hide="AddInlineTestFour || student.totalTimeThree == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
+              <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestFour = true"></i>
+            </div>
+            <div ng-show="AddInlineTestFour" class="inlineForm col-lg-11 col-md-11 col-sm-11 col-xs-11">
+              <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" class="form-control testNameInput" ng-model="student.testFourName" placeholder="enter test" ng-change="students.$save(student)"/>
+              </div>
+              <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input type="text" size="1" class="btn-time form-control" ng-model="student.testFourTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testFourTime)">
+              </div>
+              <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testFour')"><i class="fa fa-thumbs-up" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
+            </div>
+          </div>
         </div>
-        <div ng-show="timer(student, 'testFour').countdown - testTime(student, 'testFourExt') > 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testFour').top + '%'}">
-          <p class="barLabel">{{timer(student, "testFour").countdown - testTime(student, "testFourExtBar") | date: 'H:mm:ss'}}</p>
-        </div>
-        <div ng-show="timer(student, 'testFour').countdown - testTime(student, 'testFourExt') <= 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
+  <!-- BEGIN TEST FOUR BARS -->
+        <div ng-show="student.totalTimeFour > 0" class="bars col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="progress fullBar">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (timer(student, 'testFour').bottom + timer(student, 'testFour').top) + '%'}">
+              <p class="barLabel">{{timer(student, "testFour").countdown | date: 'H:mm:ss'}}</p>
+            </div>
+          </div>
+          <div class="progress splitBar"> <!--Begin Bars-->
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testFour').bottom + '%'}">
+              <p class="barLabel" ng-show="timer(student, 'testFour').countdown - testTime(student, 'testFourExt') > 0">{{testTime(student, "testFourExt") | date: 'H:mm:ss'}}</p>
+              <p class="barLabel" ng-show="timer(student, 'testFour').countdown - testTime(student, 'testFourExt') <= 0">{{timer(student, "testFour").countdown | date: 'H:mm:ss'}}</p>
+            </div>
+            <div ng-show="timer(student, 'testFour').countdown - testTime(student, 'testFourExt') > 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: timer(student, 'testFour').top + '%'}">
+              <p class="barLabel">{{timer(student, "testFour").countdown - testTime(student, "testFourExtBar") | date: 'H:mm:ss'}}</p>
+            </div>
+            <div ng-show="timer(student, 'testFour').countdown - testTime(student, 'testFourExt') <= 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
+            </div>
+          </div>
+          <hr>
         </div>
       </div>
-      <hr ng-show="">
-    </div>
+    </div> <!-- END DATA BUTTONS AND BARS -->
 <!-- End Bars-->
 <!-- END TEST FOUR -->
   </div> <!-- student Display and ng-repeat end -->
