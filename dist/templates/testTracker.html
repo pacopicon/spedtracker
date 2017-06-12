@@ -49,7 +49,7 @@
       <div class="checkboxIndexName marginRight marginLeft col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <input type="checkbox" class="checkbox" ng-model="student.isSafeToDelete" ng-change="saveAndToggleInvert(student)"/>
         <div class="indexAndNameCell">
-          <p class="indexAndName marginTop textColor" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="indexAndName" ng-class="{'redText': student.isSafeToDelete}">
             {{$index + 1}}. {{student.name}} ({{student.extendTime}})
           </p>
         </div>
@@ -63,23 +63,23 @@
     </div>
 <!-- TEST ONE TIME -->
     <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div ng-hide="AddInlineTestOne || student.totalTimeOne > 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestOne = true"></i>
+      <div ng-hide="AddInlineTestOne || student.totalTimeOne > 0" class="addTest">
+        <i class="fa fa-plus" aria-hidden="true" ng-click="AddInlineTestOne = true"></i>
       </div>
       <div class="testTimeData" ng-hide="student.totalTimeOne == 0">
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             started at:
           </p>
-          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint dataPair col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{startTime(student, "testOne") | date: 'mediumTime'}}
           </p>
         </div>
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             time paused:
           </p>
-          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{totalPausedTime(student, "testOne").hourMinSec}}
           </p>
         </div>
@@ -87,15 +87,15 @@
           <p class="dataPointLabel dataPairPause col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             std. end time:
           </p>
-          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint dataPair col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{endTime(student, "testOne") | date: 'mediumTime'}}
           </p>
         </div>
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             ext. end time:
           </p>
-          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{endTime(student, "exttestOne") | date: 'mediumTime'}}
           </p>
         </div>
@@ -179,23 +179,23 @@
 <!-- END TEST ONE-->
 <!-- TEST TWO TIME -->
     <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div ng-hide="AddInlineTestTwo || student.totalTimeOne == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestTwo = true"></i>
+      <div ng-hide="AddInlineTestTwo || student.totalTimeOne == 0 || student.totalTimeTwo > 0" class="addTest">
+        <i class="fa fa-plus" aria-hidden="true" ng-click="AddInlineTestTwo = true"></i>
       </div>
       <div class="testTimeData" ng-hide="student.totalTimeTwo == 0">
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             started at:
           </p>
-          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint dataPair col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{startTime(student, "testTwo") | date: 'mediumTime'}}
           </p>
         </div>
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             time paused:
           </p>
-          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{totalPausedTime(student, "testTwo").hourMinSec}}
           </p>
         </div>
@@ -203,15 +203,15 @@
           <p class="dataPointLabel dataPairPause col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             std. end time:
           </p>
-          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint dataPair col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{endTime(student, "testTwo") | date: 'mediumTime'}}
           </p>
         </div>
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             ext. end time:
           </p>
-          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{endTime(student, "exttestTwo") | date: 'mediumTime'}}
           </p>
         </div>
@@ -302,23 +302,23 @@
 <!-- END TEST TWO -->
 <!-- TEST THREE TIME -->
     <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div ng-hide="AddInlineTestThree || student.totalTimeTwo == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestThree = true"></i>
+      <div ng-hide="AddInlineTestThree || student.totalTimeTwo == 0 || student.totalTimeThree > 0" class="addTest">
+        <i class="fa fa-plus" aria-hidden="true" ng-click="AddInlineTestThree = true"></i>
       </div>
       <div class="testTimeData" ng-hide="student.totalTimeThree == 0">
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             started at:
           </p>
-          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint dataPair col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{startTime(student, "testThree") | date: 'mediumTime'}}
           </p>
         </div>
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             time paused:
           </p>
-          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{totalPausedTime(student, "testThree").hourMinSec}}
           </p>
         </div>
@@ -326,15 +326,15 @@
           <p class="dataPointLabel dataPairPause col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             std. end time:
           </p>
-          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint dataPair col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{endTime(student, "testThree") | date: 'mediumTime'}}
           </p>
         </div>
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             ext. end time:
           </p>
-          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{endTime(student, "exttestThree") | date: 'mediumTime'}}
           </p>
         </div>
@@ -425,23 +425,23 @@
 <!-- END TEST THREE -->
 <!-- TEST FOUR TIME -->
     <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div ng-hide="AddInlineTestFour || student.totalTimeThree == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestFour = true"></i>
+      <div ng-hide="AddInlineTestFour || student.totalTimeThree == 0 || student.totalTimeFour > 0" class="addTest">
+        <i class="fa fa-plus" aria-hidden="true" ng-click="AddInlineTestFour = true"></i>
       </div>
       <div class="testTimeData" ng-hide="student.totalTimeFour == 0">
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             started at:
           </p>
-          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint dataPair col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{startTime(student, "testFour") | date: 'mediumTime'}}
           </p>
         </div>
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             time paused:
           </p>
-          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{totalPausedTime(student, "testFour").hourMinSec}}
           </p>
         </div>
@@ -449,15 +449,15 @@
           <p class="dataPointLabel dataPairPause col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             std. end time:
           </p>
-          <p class="dataPoint dataPair textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint dataPair col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{endTime(student, "testFour") | date: 'mediumTime'}}
           </p>
         </div>
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             ext. end time:
           </p>
-          <p class="dataPoint textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             {{endTime(student, "exttestFour") | date: 'mediumTime'}}
           </p>
         </div>
@@ -579,8 +579,8 @@
         </div>
 <!--test name two -->
         <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div ng-hide="addTestTwo" class="addTest">
-            <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestTwo = true"></i>
+          <div ng-hide="addTestTwo" class="addTestBottom">
+            <i class="fa fa-plus" aria-hidden="true" ng-click="addTestTwo = true"></i>
           </div>
           <div ng-show="addTestTwo" class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <input class="form-control testNameInput" ng-model="newtestTwoName" placeholder="enter test" />
@@ -594,8 +594,8 @@
 <!--test name three -->
       <div class="testThreeAndFour col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div ng-hide="addTestThree || !addTestTwo" class="addTest">
-            <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestThree = true"></i>
+          <div ng-hide="addTestThree || !addTestTwo" class="addTestBottom">
+            <i class="fa fa-plus" aria-hidden="true" ng-click="addTestThree = true"></i>
           </div>
           <div ng-show="addTestThree" class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <input class="form-control testNameInput" ng-model="newtestThreeName" placeholder="enter test" />
@@ -607,8 +607,8 @@
         </div>
 <!--test name four -->
         <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div ng-hide="addTestFour || !addTestThree" class="addTest">
-            <i class="fa fa-plus-square" aria-hidden="true" ng-click="addTestFour = true"></i>
+          <div ng-hide="addTestFour || !addTestThree" class="addTestBottom">
+            <i class="fa fa-plus" aria-hidden="true" ng-click="addTestFour = true"></i>
           </div>
           <div ng-show="addTestFour" class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <input class="form-control testNameInput" ng-model="newtestFourName" placeholder="enter test" />

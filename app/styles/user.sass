@@ -5,14 +5,16 @@
 //
 
 // I - variables
-
+$bgPrimary: #337AB7
 $bgColor: #D6F3FF
+// $bgColor: #9FE2FF
 $darkNavy: #3f4e62
 $bsBlue: #5BC0DE
 $green: #5CB85C
 $bsRed: #D9534F
 $bsYellow: #F0AD4E
 $barWith: 70%
+$btnHeight: 1.5em
 
 // II navbar
 
@@ -78,18 +80,19 @@ li
 
 /*end css for navbar*/
 
+section
+  height: 200%
+  background-color: $bgColor
+
 .body
   white-space: nowrap
-  height: 100%
-
-section
-  height: 100%
+  height: 200%
 
 .list-group
   position: relative
   margin-left: 5%
   margin-right: 5%
-  height: 100%
+  height: 200%
   font-size: 1.2em
 
 /* begin css for clock */
@@ -194,11 +197,11 @@ section
   float: left
   padding-left: 0
   padding-right: 0.5em
-  height: 2.5em
+  height: 1.5em
   padding-top: -0.5em
 
 .checkboxIndexName
-  height: 2em
+  height: 1em
   white-space: normal
   float: left
 
@@ -217,13 +220,12 @@ section
 
 .checkbox
   float: left
-  top: 16.5px
+  top: 2px
 
 .indexAndName
   text-align: left
-
-.marginTop
-  margin-top: 16.5px
+  height: 1.5em
+  padding: 0
 
 .deleteContainer
   position: relative
@@ -254,19 +256,47 @@ section
 .dataButtonsAndBars
    padding-left: 0
    padding-right: 0
+   min-height: 0
 
 .addTest
   left: 7em
+  width: 3em
+  height: 1em
+  i
+    font-size: 1em
+
+.addTestBottom
+  left: 7em
+  width: 3em
+  height: 1em
   i
     font-size: 2em
 
+.fa-plus
+  color: $darkNavy
+  transition: all 0.5s ease-in-out
+  &:hover
+    cursor: pointer
+    padding-left: 0.1em
+    color: $bsBlue
+    transition: all 0.5s ease-in-out
+
 .testTimeData
+  border-radius: 0.5em
+  // border-top-left-radius: 0.5em
+  // border-bottom-left-radius: 0.5em
+  // background-color: $bgPrimary
+  // border: 0.5px dashed $darkNavy
   width: 100% - $barWith
   padding-right: 0
   float: left
+  padding-bottom: 0.2em
   p
     font-size: 0.7em
-    line-height: 1.6em
+    line-height: 1.3em
+    // color: $bgColor
+    color: $darkNavy
+    padding-left: 0.1em
 
 .testTimeCell
   height: 100%
@@ -296,11 +326,11 @@ section
   padding-bottom: 0.3em
 
   p
-    line-height: 1.8em
+    line-height: 1em
 
 .countBtn
   border-radius: 0.5em
-  height: 2.5em
+  height: $btnHeight
   font-size: 1em
   background-color: $bgColor
   width: 100%
@@ -342,12 +372,11 @@ section
   color: $bsRed
 
 .resumeBtn
+  border: 2.5px solid $green
   border-radius: 0.5em
   background-color: $bgColor
-  height: 2.5em
-  // margin-top: 0.7em
-  border: 2.5px solid $green
-
+  height: $btnHeight
+  padding-bottom: 1em
   &:hover
     transition: all 0.2s ease-in-out
     color: $bgColor
@@ -377,9 +406,6 @@ section
   border: 2.5px solid $green
   color: $green
   float: left
-
-.countBtnText, .pauseBtnText, .grayText, .redText, .resumeBtnText, .resetBtnText, .endBtnText
-  margin-top: 2px
 
 // End CSS for Test Buttons
 
@@ -431,7 +457,7 @@ section
   height: 2.8em
   padding-left: 0
   padding-right: 0
-  margin-bottom: 0.5em
+  // margin-bottom: 0.5em
 
 .progress
   height: 1.25em
@@ -453,7 +479,7 @@ section
   border-top-right-radius: 0em
   border-bottom-left-radius: 0.5em
   border-bottom-right-radius: 0.5em
-  margin-bottom: 0.5em
+  // margin-bottom: 0.5em
 
 .barLabel
   line-height: 1.3em
@@ -533,19 +559,10 @@ section
 .inlineTestTimeForm
   width: 25%
 
-.fa-plus-square
-  color: $darkNavy
-  transition: all 0.5s ease-in-out
-
-.fa-plus-square:hover
-  cursor: pointer
-  padding-left: 0.1em
-  color: $bsBlue
-  transition: all 0.5s ease-in-out
-
 .btn-div
   padding-right: 0.9
   padding-left: 0.9
+  padding-bottom: 10em
 
 .addStudentBtn
   border-radius: 1em
