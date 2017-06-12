@@ -3,17 +3,21 @@
 /* I - variables */
 
 $bgColor: #D6F3FF
+$darkNavy: #3f4e62
+$bsBlue: #5BC0DE
+$green: #5CB85C
+$bsRed: #D9534F
+$bsYellow: #F0AD4E
 
-/*begin css for navbar*/
+// begin css for navbar
 
 .navbar
   background-color: #4c91cd
   z-index: 1
   min-height: 4.5em
 
- .left
+.left
    width: 63em
-
 
 .link
   display: inline-block
@@ -21,7 +25,7 @@ $bgColor: #D6F3FF
   height: 100%
   width: 3.5em
   bottom: 0.35em
-  color: #D6F3FF
+  color: $bgColor
   font-size: 3em
   font-weight: 700
   text-decoration: none
@@ -29,43 +33,34 @@ $bgColor: #D6F3FF
 
 
 .link:active
-  /*border: solid 0.01em #d6f3ff
+  /*border: solid 0.01em $bgColor
   font-size: 80%
-
 
 .admin
   width: 7em
-
 
 li
   padding-left: 0.5em
   padding-top: 0.15em
 
-
 .navbar .fa
-  color: #D6F3FF
+  color: $bgColor
   font-size: 0.5em
-  /*font-family: 'Montserrat', sans-serif*/
-
 
 .navbar p
-  color: #D6F3FF
+  color: $bgColor
   float: right
   font-family: 'Montserrat', sans-serif
-
 
 .navbar p .fa
   padding-bottom: 2em
   border: 0
 
-
 .navbar .fa:hover
-  color: #d6f3ff
-
+  color: $bgColor
 
 .navbar-header
   float: right
-
 
 .navbar-toggle
   padding-top: 0.85em
@@ -74,10 +69,8 @@ li
   padding-left: 0
   margin: 0
 
-
 .navbar-header .fa
   font-size: 2.5em
-
 
 /*end css for navbar*/
 
@@ -85,10 +78,8 @@ li
   white-space: nowrap
   height: 100%
 
-
 section
   height: 100%
-
 
 .list-group
   position: relative
@@ -97,268 +88,103 @@ section
   height: 100%
   font-size: 1.2em
 
-
 /* begin css for clock */
 
 .clock-container, .clock-row
   margin: 0
   padding: 0
 
-
 .column1, .column2
   padding: 0
   margin: 0
 
-
 .column2
   margin-top: 1em
-
 
 .clock, .page-name
   position: relative
   font-size: 1.5em
   overflow: hidden
-  /*max-width: 23.7em*/
   min-width: 7.5em
   margin-bottom: 1em
   padding-right: 1em
   padding-left: 1em
 
-
 .clock
-  background-color: #3f4e62
-  color: #D6F3FF
+  background-color: $darkNavy
+  color: $bgColor
   padding-top: 0.09em
   padding-bottom: 0.09em
 
-
-.clock p, .page-name p
-  padding-top: 0.45em
-  text-align: center
-
-
-.page-name p
-  /*letter-spacing: 0.2em*/
-
+  p
+    padding-top: 0.45em
+    text-align: center
 
 .page-name
-  background-color: #d6f3ff
-  border: 2.5px solid #3f4e62
+  background-color: $bgColor
+  border: 2.5px solid $darkNavy
+  color: $darkNavy
 
+  p
+    padding-top: 0.45em
+    text-align: center
 
 /* end css for clock */
 
 .main-body
   border-radius: 0em
-  /*background-color: #D6F3FF*/
   padding: 1em
   margin-bottom: 2em
   min-height: 30%
   resize: vertical
 
-
-/* Begin CSS for Form */
-
-.tip
-  width: 0
-  height: 0
-  margin: 0
-  /*padding-right: 0.5em
-  margin-right: 0.5em*/
-  padding: 0
-  /*float: right*/
-
-
-.name, .date, .importance, .time, .hour, .minute
-  padding-right: 0
-  padding-left: 0
-  /*height: 4em*/
-
-
-.name, .date, .importance, .time, .hour-and-minute, .minute
-  margin-left: 0.9em
-
-
-.formFormat
-  padding-bottom: 1em
-  color: #3f4e62
-  padding-right: 0
-
-
-.form-control:hover
-  color: #d8dddf
-
-
-.fa
-  color: #3f4e62
-
-
-.btn-div
-  padding-right: 0.9
-  padding-left: 0.9
-
-
-.addStudentBtn, .addTestBtn
-  border-radius: 1em
-  min-height: 2em
-  /*border: 2.5px solid #4c91cd*/
-  border: 2.5px solid #5BC0DE
-  color: #5BC0DE
-  background-color: #D6F3FF
-
-
-.addStudentBtn
-  width: 100%
-  min-width: 4em
-
-
-.addStudentBtn:hover, .addTestBtn:hover
-  background-color: #5BC0DE
-  color: #D6F3FF
-
-
-.addTestBtn
-  max-width: 1em
-  position: relative
-  /*float: right*/
-
-
-.fa-thumbs-up
-  color: #5BC0DE
-  position: absolute
-  /*margin-right: 5px*/
-  /*padding-right: 5px*/
-  margin: 0
-  top: 5px
-  bottom: 0
-  right: 0
-  left: 0
-
-
-.thumbsUpOn
-  color: #D6F3FF
-
-
-.thumbsUpOff
-  color: #5BC0DE
-
-
-.addStudentBtn:active
-  background-color: #0B5FAA
-  color: #D6F3FF
-
-
-/* end CSS for Form */
-
 /* begin CSS for SelectAll / ClearAll / InvertSelect */
 
 .formControls
   border-radius: 1em
-  background-color: #D6F3FF
+  background-color: $bgColor
   min-height: 1.8em
   margin-top: 0.5em
   margin-bottom: 0.5em
 
-
-
 .mainBtn
   transition: all 0.5s ease-in-out
-
 
 .IIndaryBtnYes
   transition: all 0.5s ease-in-out
 
-
 .IIndaryBtnNo
   transition: all 0.5s ease-in-out
-  /*position: absolute
-  top: -9999px
-  left: -9999px*/
   display: none
 
-
 .controlBtn
-  border: 2.5px solid #3f4e62
-  background-color: #D6F3FF
-  color: #3f4e62
+  border: 2.5px solid $darkNavy
+  background-color: $bgColor
+  color: $darkNavy
   height: 1.8em
   border-radius: 1em
   text-decoration: none
   text-align: center
   overflow: hidden
   width: 100%
-  /*margin-left: 1em*/
 
+  &:hover
+    transition: all 0.2s ease-in-out
+    background-color: $darkNavy
+    color: $bgColor
 
-.controlBtn:hover, .addStudentBtn:hover, .countBtn:hover, .pauseBtn:hover, .resumeBtn:hover, .endBtn:hover
-  transition: all 0.2s ease-in-out
+  &:active
+    background-color: #e7eaeb
 
+// end CSS for SelectAll / ClearAll / InvertSelect
 
-.controlBtn, .addStudentBtn, .countBtn, .pauseBtn, .resumeBtn, .endBtn
-  transition: all 0.2s ease-in-out
-
-
-.controlBtn:hover
-  background-color: #3f4e62
-  color: #D6F3FF
-
-
-.controlBtn:active
-  background-color: #e7eaeb
-
-
-/* end CSS for SelectAll / ClearAll / InvertSelect */
-
-/* begin CSS for StudentDisplay */
-
-.displayText p
-  /*font-size: 13px
-  margin-top: 0.35em
-  margin-bottom: 0.35em*/
-  /*font-size: 1em*/
-
-
-.nameHeading
-  margin-left: 2.6em
-  float: left
-
-
-.extendedTimeHeading
-  /*margin-left: 25px*/
-  float: right
-
-
-.balert
-  /*transition: all 5s ease-in-out*/
-  transition-delay: 1s ease-in-out
-
+// Begin CSS for student Display and Student data
 
 .studentDisplay
   min-height: 5em
-  /*height: 7em*/
-  display:table-row
+  display: table-row
   width: 100%
   margin-left: 0.5em
-
-
-
-.nameCell, .countdownBtnCell, .testNameCell, .testTimeCell, .countdownCell
-  height: 100%
-
-
-.marginTop
-  margin-top: 16.5px
-
-
-.marginRight
-  margin-right: 0
-  padding-right: 0
-
-
-.marginLeft
-  margin-left: 0
-  padding-left: 0
-
 
 .student
   float: left
@@ -367,213 +193,68 @@ section
   height: 2.5em
   padding-top: -0.5em
 
-
 .checkboxIndexName
   height: 2em
   white-space: normal
   float: left
 
+.marginRight
+  margin-right: 0
+  padding-right: 0
+
+.marginLeft
+  margin-left: 0
+  padding-left: 0
+
+.indexAndNameCell
+  p
+    overflow: hidden
+    padding-left: 1em
 
 .checkbox
   float: left
   top: 16.5px
 
-
 .indexAndName
   text-align: left
 
+.marginTop
+  margin-top: 16.5px
 
-.indexAndNameCell p
-  overflow: hidden
-  padding-left: 1em
+.deleteContainer
+  position: relative
+  margin-top: 1em
+  height: 4em
 
+.deleteBtn
+  position: absolute
+  font-size: 2em
+  top: 0
+  left: 0
+  right: 0
+  margin: auto
+  color: $darkNavy
+  text-align: center
+  transition: all 0.5s ease-in-out
 
-.extendTimeCell
-  /*text-align: left*/
+  &:hover
+    cursor: pointer
+    padding-left: 0.1em
+    transition: all 0.5s ease-in-out
+    color: $bsRed
 
+// End CSS for student
 
-.allTests
-
-
-
-.testNameCell
-  display: inline
-
+// Begin CSS for Test Data
 
 .testTimeData
   padding-right: 0
-
-
-.testTimeData p
-  font-size: 0.7em
-  line-height: 1em
-
-
-.countBtn p, .redBtn p, .pauseBtn p
-  overflow: hidden
-
+  p
+    font-size: 0.7em
+    line-height: 1em
 
 .testTimeCell
-  /*text-align: left*/
-  /*line-height: 1.7em*/
-
-
-.buttonContainer
-  /*padding-right: 8px*/
-  padding-left: 0
-  padding-right: 0
-  padding-bottom: 0.3em
-  /*margin-top: 0.7em*/
-
-
-.buttonContainer p
-  line-height: 1.8em
-
-
-.countdownBtnCell
-  padding-top: 0
-  margin-bottom: 8px
-  padding-left: 0
-  margin-left: 0
-  /*padding-bottom: 5px*/
-
-
-.countBtn, .pauseBtn, .grayCell, .redBtn
-  border-radius: 0.5em
-  /*border: 2.5px solid #6FC853*/
-  border: 2.5px solid #5CB85C
-  background-color: #D6F3FF
-  color: #5CB85C
-  width: 100%
-  height: 2.5em
-  font-size: 1em
-
-
-.countBtn:hover
-  background-color: #5CB85C
-  color: #D6F3FF
-
-
-.countBtnText, .pauseBtnText, .grayText, .redText, .resumeBtnText, .resetBtnText, .endBtnText
-  margin-top: 2px
-
-
-.grayCell
-  border: 2.5px solid #3f4e62
-  color: #3f4e62
-  cursor: not-allowed
-
-
-.grayText
-  color: #3f4e62
-
-
-.redBtn
-  /*border: 2.5px solid #e05d6f*/
-  border: 2.5px solid #D9534F
-  color: #D9534F
-  cursor: not-allowed
-
-
-.redText
-  color: #D9534F
-
-
-.pauseBtn
-  /*border: 2.5px solid #C3C300*/
-  border: 2.5px solid #F0AD4E
-  color: #F0AD4E
-
-
-.pauseBtn:hover
-  background-color: #F0AD4E
-  color: #D6F3FF
-
-
-.resumeResetEnd
-  width: 100%
-  height: 2em
-  margin-top: 0.7em
-
-
-.resumeBtn, .resetBtn, .endBtn
-  border-radius: 0.5em
-  background-color: #D6F3FF
-  height: 2em
-  margin-top: 0.7em
-  /*height: 1.5em*/
-  /*width: 100%*/
-  /*margin-bottom: 0*/
-  /*padding-bottom: 0*/
-  /*transition: all 0.4s ease-in-out*/
-
-
-.resumeBtn
-  /*margin-bottom: 1%*/
-  border: 2.5px solid #5CB85C
-  /*border-top: 2.5px solid #5CB85C
-  border-bottom: 2.5px solid #5CB85C
-  border-left: 2.5px solid #5CB85C*/
-  color: #5CB85C
-  float: left
-  /*margin-top: 0.7em*/
-  /*border-top-right-radius: 1em*/
-  /*border-top-left-radius: 1em*/
-  /*border-bottom-right-radius: 0*/
-  /*border-bottom-left-radius: 0*/
-
-
-.resumeBtn:Hover
-  color: #D6F3FF
-  background-color: #5CB85C
-
-
-.resetBtn
-  /*margin-bottom: 1%*/
-  border: 2.5px solid #F0AD4E
-  /*color: #F0AD4E*/
-  color: #D6F3FF
-  /*border-radius: 0*/
-
-
-.resetBtn:hover
-  color: #D6F3FF
-  background-color: #F0AD4E
-
-
-.endBtn
-  border: 2.5px solid #D9534F
-  /*color: #D9534F*/
-  color: #D6F3FF
-  float: right
-  /*border-top-right-radius: 0*/
-  /*border-top-left-radius: 0*/
-  /*border-bottom-right-radius: 1em*/
-  /*border-bottom-left-radius: 1em*/
-
-
-.endBtn:hover
-  color: #D6F3FF
-  background-color: #D9534F
-
-
-/* Begin in-line Form CSS */
-
-.inlineForm
-  padding: 0
-
-
-.inlineNameForm, .inlineTestTimeForm
-  padding-left: 3.75px
-  padding-right: 3.75px
-  width: 15%
-
-
-.inlineTestTimeForm
-  width: 5%
-
-
-/* End in-line Form CSS */
+  height: 100%
 
 .dataPointLabel, .dataPoint, .dataPair
   margin-top: 0.35em
@@ -583,70 +264,161 @@ section
   padding-left: 0
   padding-right: 0
 
+// End CSS for Test Data
+
+// Begin CSS for Test Buttons
+
+.testNameCell
+  height: 100%
+
+.buttonContainer
+  padding-left: 0
+  padding-right: 0
+  padding-bottom: 0.3em
+
+  p
+    line-height: 1.8em
+
+.countBtn
+  border-radius: 0.5em
+  height: 2.5em
+  font-size: 1em
+  background-color: $bgColor
+  width: 100%
+  border: 2.5px solid $green
+  color: $green
+
+  &:hover
+    background-color: $green
+    color: $bgColor
+    transition: all 0.2s ease-in-out
+
+.pauseBtn
+  @extend .countBtn
+  border: 2.5px solid $bsYellow
+  color: $bsYellow
+
+  &:hover
+    transition: all 0.2s ease-in-out
+    background-color: $bsYellow
+    color: $bgColor
+
+.grayCell
+  @extend .countBtn
+  border: 2.5px solid $darkNavy
+  color: $darkNavy
+  cursor: not-allowed
+  &:hover
+    transition: all 0.2s ease-in-out
+    background-color: $darkNavy
+    color: $bgColor
+
+.redBtn
+  @extend .countBtn
+  border: 2.5px solid $bsRed
+  color: $bsRed
+  cursor: not-allowed
+
+.redText
+  color: $bsRed
+
+.resumeBtn
+  border-radius: 0.5em
+  background-color: $bgColor
+  height: 2.5em
+  // margin-top: 0.7em
+  border: 2.5px solid $green
+
+  &:hover
+    transition: all 0.2s ease-in-out
+    color: $bgColor
+    background-color: $green
+
+.resetBtn
+  @extend .resumeBtn
+  border: 2.5px solid $bsYellow
+  color: $bgColor
+
+  &:hover
+    color: $bgColor
+    background-color: $bsYellow
+
+.endBtn
+  @extend .resumeBtn
+  border: 2.5px solid $bsRed
+  color: $bgColor
+  float: right
+
+  &:hover
+    transition: all 0.2s ease-in-out
+    color: $bgColor
+    background-color: $bsRed
+
+.resumeBtn
+  border: 2.5px solid $green
+  color: $green
+  float: left
+
+.countBtnText, .pauseBtnText, .grayText, .redText, .resumeBtnText, .resetBtnText, .endBtnText
+  margin-top: 2px
+
+// End CSS for Test Buttons
+
+// Begin in-line Form CSS
+
+.fa
+  color: $darkNavy
+
+.addTestBtn
+  @extend .addStudentBtn
+  max-width: 1em
+  position: relative
+
+  &:hover
+    background-color: $bsBlue
+    color: $bgColor
+
+.fa-thumbs-up
+  color: $bsBlue
+  position: absolute
+  margin: 0
+  top: 5px
+  bottom: 0
+  right: 0
+  left: 0
+
+.thumbsUpOn
+  color: $bgColor
+
+.thumbsUpOff
+  color: $bsBlue
+
+.inlineForm
+  padding: 0
+
+.inlineNameForm, .inlineTestTimeForm
+  padding-left: 3.75px
+  padding-right: 3.75px
+  width: 15%
+
+.inlineTestTimeForm
+  width: 5%
+
+/* End in-line Form CSS */
+
+/* Begin CSS for Bars */
 
 .bars
   height: 2.8em
   padding-left: 0
   padding-right: 0
 
-
-.progress-bar p
-  font-size: 1.5em
-
-
-.countdown
-  font-weight: bolder
-
-
-.deleteContainer
-  position: relative
-  margin-top: 1em
-  height: 4em
-
-/*
-.deleteContainer:hover
-  height: 10em
-*/
-
-.deleteBtn
-  position: absolute
-  font-size: 2em
-  top: 0
-  left: 0
-  right: 0
-  margin: auto
-  color: #3f4e62
-  text-align: center
-  transition: all 0.5s ease-in-out
-  /*padding-top: 0.5em*/
-
-
-.deleteBtn:hover
-  cursor: pointer
-  padding-left: 0.1em
-  transition: all 0.5s ease-in-out
-  color: #D9534F
-
-
-hr
-    display: block
-    margin-top: 0.5em
-    margin-bottom: 0.5em
-    margin-left: auto
-    margin-right: auto
-    border-style: inset
-    border-width: 1px
-
-
-/* Begin CSS for Bars */
-
 .progress
   height: 1.25em
 
-
 .progress-bar
-  /*font-size: 40em*/
-
+  p
+    font-size: 1.5em
 
 .fullBar
   margin-bottom: 0
@@ -656,7 +428,6 @@ hr
   border-bottom-left-radius: 0em
   border-bottom-right-radius: 0em
 
-
 .splitBar
   border-top-left-radius: 0em
   border-top-right-radius: 0em
@@ -664,13 +435,19 @@ hr
   border-bottom-right-radius: 0.5em
   margin-bottom: 0.5em
 
-
 .barLabel
   line-height: 1.3em
   height: 100%
-  color: #D6F3FF
-  /*font-size: 10em*/
+  color: $bgColor
 
+hr
+  display: block
+  margin-top: 0.5em
+  margin-bottom: 0.5em
+  margin-left: auto
+  margin-right: auto
+  border-style: inset
+  border-width: 1px
 
 /* Begin CSS for FORM */
 
@@ -679,183 +456,160 @@ hr
   margin-bottom: 1em
   min-height: 2em
 
-
-.formMargin
-  margin-left: 0.25em
-  margin-right: 0.25em
-
-
-.nameForm, .extendForm
-  padding-left: 3.75px
-  padding-right: 3.75px
-
-
 .nameAndExtend
   padding-right: 0
   padding-left: 15px
 
-
-.nameInput
-  /*float: left*/
-  width: 100%
-  /*margin-left: 0.5em*/
-
-
-.extendInput
-  /*float: right*/
-  width: 100%
-  /*padding-right: 0.5em
-  margin-right: 0.5em*/
-
-
-.nameAndTime, .testNameForm, .testTimeForm
+.nameForm
   padding-left: 3.75px
   padding-right: 3.75px
 
+.nameInput
+  width: 100%
+
+.form-control
+
+  &:hover
+    color: #d8dddf
+
+.extendForm
+  @extend .nameForm
+
+.tip
+  width: 0
+  height: 0
+  margin: 0
+  padding: 0
+
+.extendInput
+  width: 100%
+
+.nameAndTime
+  @extend .nameForm
+
+.testNameForm
+  @extend .nameForm
+
+.testTimeForm
+  @extend .nameForm
 
 .testNameForm
   float: left
   width: 63%
 
-
 .testOneAndTwo
   padding-left: 0
   padding-right: 0
-
 
 .testThreeAndFour
   padding-left: 0
   padding-right: 7.5px
 
-
 .testNameInput
-
 
 .testTimeForm
   width: 37%
   float: right
 
-
 .inlineTestTimeForm
   width: 25%
-
 
 .addTest i
   font-size: 2em
 
-
 .fa-plus-square
-  color: #3f4e62
+  color: $darkNavy
   transition: all 0.5s ease-in-out
-
 
 .fa-plus-square:hover
   cursor: pointer
   padding-left: 0.1em
-  color: #5BC0DE
+  color: $bsBlue
   transition: all 0.5s ease-in-out
 
-
-/* End CSS for FORM */
-
-
-@media only screen and (min-width : 1200px)
-
-  .dataPair
-    /*border-right: 0.125em solid*/
-
-
-  .dataPairPause
-    /*border-left: 0.125em solid*/
-
-
-
-
-@media only screen and (min-width : 768px)
-
-  .hamburger
-    display: none
-
-
-
-
-@media only screen and (max-width : 585px)
-/*actually 641*/
-
-
-
-@media only screen and (max-width : 767px)
-/*actually 844*/
-  .btn-wrap
-    padding-left: 0
-    margin-left: 0
-    padding-right: 0
-    margin-right: 0
-
-
-  .middle-wrap
-    margin-bottom: 0.5em
-
-
-
-@media only screen and (max-width : 767px)
-
-
-
-@media only screen and (max-width : 781px)
-  /*actually 858*/
-
-
-
-@media only screen and (max-width : 969px)
-
-
-
-@media only screen and (max-width : 429px)
-
-
-
-@media only screen and (max-width : 529px) and (min-width : 430px)
-
-
-
-@media only screen and (max-width : 607px) and (min-width : 530px)
-
-
-
-@media only screen and (max-width : 767px) and (min-width : 608px)
-
-
-@media only screen and (max-width : 799px) and (min-width : 768px)
-
-
-
-@media only screen and (max-width : 969px) and (min-width : 800px)
-
-
-
-@media only screen and (max-width : 991px) and (min-width : 970px)
-
-
-
-@media only screen and (max-width : 1076px) and (min-width : 992px)
-
-
-
-@media only screen and (max-width : 1199px) and (min-width : 1077px)
-
-
-
-@media only screen and (max-width : 1425px) and (min-width : 1200px)
-
-
-
-@media only screen and (max-width : 1716px) and (min-width : 1426px)
-
-
-
-@media only screen and (max-width : 2153px) and (min-width : 1717px)
-
-
-
-@media only screen and (max-width : 2600px) and (min-width : 2154px)
+.btn-div
+  padding-right: 0.9
+  padding-left: 0.9
+
+.addStudentBtn
+  border-radius: 1em
+  min-height: 2em
+  /*border: 2.5px solid #4c91cd*/
+  border: 2.5px solid $bsBlue
+  color: $bsBlue
+  background-color: $bgColor
+  width: 100%
+  min-width: 4em
+
+  &:active
+    background-color: #0B5FAA
+    color: $bgColor
+
+  &:hover
+    background-color: $bsBlue
+    color: $bgColor
+    transition: all 0.2s ease-in-out
+
+// End CSS for FORM
+
+// @media only screen and (min-width : 1200px)
+//
+// .dataPair
+// border-right: 0.125em solid
+//
+// .dataPairPause
+// border-left: 0.125em solid
+//
+//
+// @media only screen and (min-width : 768px)
+//
+// .hamburger
+//   display: none
+//
+// @media only screen and (max-width : 585px)
+// // actually 641
+//
+// @media only screen and (max-width : 767px)
+// // actually 844
+//
+// .btn-wrap
+//   padding-left: 0
+//   margin-left: 0
+//   padding-right: 0
+//   margin-right: 0
+//
+// .middle-wrap
+//   margin-bottom: 0.5em
+//
+// @media only screen and (max-width : 767px)
+//
+// @media only screen and (max-width : 781px)
+//   /*actually 858*/
+//
+// @media only screen and (max-width : 969px)
+//
+// @media only screen and (max-width : 429px)
+//
+// @media only screen and (max-width : 529px) and (min-width : 430px)
+//
+// @media only screen and (max-width : 607px) and (min-width : 530px)
+//
+// @media only screen and (max-width : 767px) and (min-width : 608px)
+//
+// @media only screen and (max-width : 799px) and (min-width : 768px)
+//
+// @media only screen and (max-width : 969px) and (min-width : 800px)
+//
+// @media only screen and (max-width : 991px) and (min-width : 970px)
+//
+// @media only screen and (max-width : 1076px) and (min-width : 992px)
+//
+// @media only screen and (max-width : 1199px) and (min-width : 1077px)
+//
+// @media only screen and (max-width : 1425px) and (min-width : 1200px)
+//
+// @media only screen and (max-width : 1716px) and (min-width : 1426px)
+//
+// @media only screen and (max-width : 2153px) and (min-width : 1717px)
+//
+// @media only screen and (max-width : 2600px) and (min-width : 2154px)

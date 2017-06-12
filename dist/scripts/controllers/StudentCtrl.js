@@ -134,7 +134,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
           } else if (actualTestTime <= 0) {
             topBarWidth = 0;
             bottomBarDividend = actualExtension;
-            console.log("hit");
           }
           bottomBarWidth = bottomBarDividend / extension * 100 * bottomBarRatio;
           countdown = processTime(totalTime, 19);

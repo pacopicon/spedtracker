@@ -19,7 +19,7 @@
 </div>
 <!--end Clock-->
 
-<!--begin ItemDisplay-->
+<!--begin Student Display-->
 <div class="container-fluid main-body w3-panel w3-card-2">
 <!--SELECT / DELETE CONTROLS-->
   <div class="row formControls marginLeft marginRight">
@@ -121,7 +121,7 @@
               </p>
             </button>
           </div>
-          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.totalTimeOne > 0 && student.isTimerOneStart && student.isTimerOnePaused && !student.isTestOneOver">
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeOne > 0 && student.isTimerOneStart && student.isTimerOnePaused && !student.isTestOneOver">
             <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testOne')">
               <p class="resumeBtnText">
                 resume
@@ -244,7 +244,7 @@
               </p>
             </button>
           </div>
-          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.totalTimeTwo > 0 && student.isTimerTwoStart && student.isTimerTwoPaused && !student.isTestTwoOver">
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeTwo > 0 && student.isTimerTwoStart && student.isTimerTwoPaused && !student.isTestTwoOver">
             <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testTwo')">
               <p class="resumeBtnText">
                 resume
@@ -336,7 +336,7 @@
           </p>
         </div>
       </div>
-  <!-- TEST TWO NAME -->
+  <!-- TEST THREE NAME -->
       <div class="buttonsAndBars col-lg-10 col-md-10 col-sm-10 col-xs-8">
         <div class="testNameCell marginRight marginLeft">
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree > 0 && !student.isTimerThreeStart && student.isTestTwoOver">
@@ -367,7 +367,7 @@
               </p>
             </button>
           </div>
-          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.totalTimeThree > 0 && student.isTimerThreeStart && student.isTimerThreePaused && !student.isTestThreeOver">
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree > 0 && student.isTimerThreeStart && student.isTimerThreePaused && !student.isTestThreeOver">
             <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testThree')">
               <p class="resumeBtnText">
                 resume
@@ -459,7 +459,7 @@
           </p>
         </div>
       </div>
-  <!-- TEST TWO NAME -->
+  <!-- TEST FOUR NAME -->
       <div class="buttonsAndBars col-lg-10 col-md-10 col-sm-10 col-xs-8">
         <div class="testNameCell marginRight marginLeft">
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour > 0 && !student.isTimerFourStart && student.isTestThreeOver">
@@ -490,7 +490,7 @@
               </p>
             </button>
           </div>
-          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" class="resumeResetEnd" ng-show="student.totalTimeFour > 0 && student.isTimerFourStart && student.isTimerFourPaused && !student.isTestFourOver">
+          <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour > 0 && student.isTimerFourStart && student.isTimerFourPaused && !student.isTestFourOver">
             <button class="resumeBtn col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-click="resumeTimer(student, 'testFour')">
               <p class="resumeBtnText">
                 resume
