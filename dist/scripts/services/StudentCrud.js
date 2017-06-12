@@ -118,28 +118,28 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         }
 
         if (typeof testOneTimeObj === "undefined") {
-          testOneTimeNum = 0;
+          testOneTimeNum = 18000000;
           totalTimeOne = 0;
         } else {
           testOneTimeNum = addHoursAndMinutes(testOneTimeObj.getHours(), testOneTimeObj.getMinutes());
           totalTimeOne = testOneTimeNum * extendTime;
         }
         if (typeof testTwoTimeObj === "undefined") {
-          testTwoTimeNum = 0;
+          testTwoTimeNum = 18000000;
           totalTimeTwo = 0;
         } else {
           testTwoTimeNum = addHoursAndMinutes(testTwoTimeObj.getHours(), testTwoTimeObj.getMinutes());
           totalTimeTwo = testTwoTimeNum * extendTime;
         }
         if (typeof testThreeTimeObj === "undefined") {
-          testThreeTimeNum = 0;
+          testThreeTimeNum = 18000000;
           totalTimeThree = 0;
         } else {
           testThreeTimeNum = addHoursAndMinutes(testThreeTimeObj.getHours(), testThreeTimeObj.getMinutes());
           totalTimeThree = testThreeTimeNum * extendTime;
         }
         if (typeof testFourTimeObj === "undefined") {
-          testFourTimeNum = 0;
+          testFourTimeNum = 18000000;
           totalTimeFour = 0;
         } else {
           testFourTimeNum = addHoursAndMinutes(testFourTimeObj.getHours(), testFourTimeObj.getMinutes());

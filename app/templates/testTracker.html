@@ -63,7 +63,10 @@
     </div>
 <!-- TEST ONE TIME -->
     <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="testTimeData col-lg-2 col-md-2 col-sm-2 col-xs-4" ng-hide="student.totalTimeOne == 0">
+      <div ng-hide="AddInlineTestOne || student.totalTimeOne > 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestOne = true"></i>
+      </div>
+      <div class="testTimeData" ng-hide="student.totalTimeOne == 0">
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             started at:
@@ -98,7 +101,7 @@
         </div>
       </div>
   <!-- TEST ONE NAME -->
-      <div class="buttonsAndBars col-lg-10 col-md-10 col-sm-10 col-xs-8">
+      <div class="buttonsAndBars">
         <div class="testNameCell marginRight marginLeft">
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeOne > 0 && !student.isTimerOneStart && !student.isTestOneOver">
             <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testOne')">
@@ -139,9 +142,6 @@
             </button>
           </div>
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeOne == 0">
-            <div ng-hide="AddInlineTestOne" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-              <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestOne = true"></i>
-            </div>
             <div ng-show="AddInlineTestOne" class="inlineForm col-lg-11 col-md-11 col-sm-11 col-xs-11">
               <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" class="form-control testNameInput" ng-model="student.testOneName" placeholder="enter test" ng-change="students.$save(student)"/>
@@ -171,7 +171,7 @@
             <div ng-show="timer(student, 'testOne').countdown - testTime(student, 'testOneExt') <= 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
             </div>
           </div>
-          <hr>
+
         </div>
       </div>
     </div> <!-- END DATA BUTTONS AND BARS -->
@@ -179,7 +179,10 @@
 <!-- END TEST ONE-->
 <!-- TEST TWO TIME -->
     <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="testTimeData col-lg-2 col-md-2 col-sm-2 col-xs-4" ng-hide="student.totalTimeTwo == 0">
+      <div ng-hide="AddInlineTestTwo || student.totalTimeOne == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestTwo = true"></i>
+      </div>
+      <div class="testTimeData" ng-hide="student.totalTimeTwo == 0">
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             started at:
@@ -214,7 +217,7 @@
         </div>
       </div>
   <!-- TEST TWO NAME -->
-      <div class="buttonsAndBars col-lg-10 col-md-10 col-sm-10 col-xs-8">
+      <div class="buttonsAndBars">
         <div class="testNameCell marginRight marginLeft">
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeTwo > 0 && !student.isTimerTwoStart && student.isTestOneOver">
             <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testTwo')">
@@ -262,15 +265,12 @@
             </button>
           </div>
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeTwo == 0">
-            <div ng-hide="AddInlineTestTwo || student.totalTimeOne == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-              <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestTwo = true"></i>
-            </div>
             <div ng-show="AddInlineTestTwo" class="inlineForm col-lg-11 col-md-11 col-sm-11 col-xs-11">
               <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" class="form-control testNameInput" ng-model="student.testTwoName" placeholder="enter test" ng-change="students.$save(student)"/>
               </div>
               <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input type="text" size="1" class="btn-time form-control" ng-model="student.testTwoTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testTwoTime)">
+                <input type="text" size="1" class="btn-time form-control" ng-model="student.testTwoTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="01:00" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testTwoTime)">
               </div>
               <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testTwo')"><i class="fa fa-thumbs-up" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
             </div>
@@ -294,7 +294,7 @@
             <div ng-show="timer(student, 'testTwo').countdown - testTime(student, 'testTwoExt') <= 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
             </div>
           </div>
-          <hr>
+
         </div>
       </div>
     </div> <!-- END DATA BUTTONS AND BARS -->
@@ -302,7 +302,10 @@
 <!-- END TEST TWO -->
 <!-- TEST THREE TIME -->
     <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="testTimeData col-lg-2 col-md-2 col-sm-2 col-xs-4" ng-hide="student.totalTimeThree == 0">
+      <div ng-hide="AddInlineTestThree || student.totalTimeTwo == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestThree = true"></i>
+      </div>
+      <div class="testTimeData" ng-hide="student.totalTimeThree == 0">
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             started at:
@@ -337,7 +340,7 @@
         </div>
       </div>
   <!-- TEST THREE NAME -->
-      <div class="buttonsAndBars col-lg-10 col-md-10 col-sm-10 col-xs-8">
+      <div class="buttonsAndBars">
         <div class="testNameCell marginRight marginLeft">
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree > 0 && !student.isTimerThreeStart && student.isTestTwoOver">
             <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testThree')">
@@ -385,9 +388,6 @@
             </button>
           </div>
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeThree == 0">
-            <div ng-hide="AddInlineTestThree || student.totalTimeTwo == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-              <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestThree = true"></i>
-            </div>
             <div ng-show="AddInlineTestThree" class="inlineForm col-lg-11 col-md-11 col-sm-11 col-xs-11">
               <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" class="form-control testNameInput" ng-model="student.testThreeName" placeholder="enter test" ng-change="students.$save(student)"/>
@@ -417,7 +417,7 @@
             <div ng-show="timer(student, 'testThree').countdown - testTime(student, 'testThreeExt') <= 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
             </div>
           </div>
-          <hr>
+
         </div>
       </div>
     </div> <!-- END DATA BUTTONS AND BARS -->
@@ -425,7 +425,10 @@
 <!-- END TEST THREE -->
 <!-- TEST FOUR TIME -->
     <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="testTimeData col-lg-2 col-md-2 col-sm-2 col-xs-4" ng-hide="student.totalTimeFour == 0">
+      <div ng-hide="AddInlineTestFour || student.totalTimeThree == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestFour = true"></i>
+      </div>
+      <div class="testTimeData" ng-hide="student.totalTimeFour == 0">
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <p class="dataPointLabel textColor col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
             started at:
@@ -460,7 +463,7 @@
         </div>
       </div>
   <!-- TEST FOUR NAME -->
-      <div class="buttonsAndBars col-lg-10 col-md-10 col-sm-10 col-xs-8">
+      <div class="buttonsAndBars">
         <div class="testNameCell marginRight marginLeft">
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour > 0 && !student.isTimerFourStart && student.isTestThreeOver">
             <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testFour')">
@@ -508,9 +511,6 @@
             </button>
           </div>
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="student.totalTimeFour == 0">
-            <div ng-hide="AddInlineTestFour || student.totalTimeThree == 0" class="addTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-              <i class="fa fa-plus-square" aria-hidden="true" ng-click="AddInlineTestFour = true"></i>
-            </div>
             <div ng-show="AddInlineTestFour" class="inlineForm col-lg-11 col-md-11 col-sm-11 col-xs-11">
               <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="text" class="form-control testNameInput" ng-model="student.testFourName" placeholder="enter test" ng-change="students.$save(student)"/>
@@ -540,7 +540,7 @@
             <div ng-show="timer(student, 'testFour').countdown - testTime(student, 'testFourExt') <= 0" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" ng-style="{width: 0 + '%'}">
             </div>
           </div>
-          <hr>
+
         </div>
       </div>
     </div> <!-- END DATA BUTTONS AND BARS -->

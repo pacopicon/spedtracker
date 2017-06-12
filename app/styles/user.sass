@@ -12,6 +12,7 @@ $bsBlue: #5BC0DE
 $green: #5CB85C
 $bsRed: #D9534F
 $bsYellow: #F0AD4E
+$barWith: 70%
 
 // II navbar
 
@@ -34,7 +35,6 @@ $bsYellow: #F0AD4E
   font-weight: 700
   text-decoration: none
   cursor: pointer
-
 
 .link:active
   /*border: solid 0.01em $bgColor
@@ -255,11 +255,18 @@ section
    padding-left: 0
    padding-right: 0
 
+.addTest
+  left: 7em
+  i
+    font-size: 2em
+
 .testTimeData
+  width: 100% - $barWith
   padding-right: 0
+  float: left
   p
     font-size: 0.7em
-    line-height: 1em
+    line-height: 1.6em
 
 .testTimeCell
   height: 100%
@@ -277,7 +284,8 @@ section
 // Begin CSS for Test Buttons
 
 .buttonsAndBars
-
+  width: $barWith
+  float: right
 
 .testNameCell
   height: 100%
@@ -423,6 +431,7 @@ section
   height: 2.8em
   padding-left: 0
   padding-right: 0
+  margin-bottom: 0.5em
 
 .progress
   height: 1.25em
@@ -451,14 +460,13 @@ section
   height: 100%
   color: $bgColor
 
-hr
-  display: block
-  margin-top: 0.5em
-  margin-bottom: 0.5em
-  margin-left: auto
-  margin-right: auto
-  border-style: inset
-  border-width: 1px
+// hr
+//   padding-top: 0.5em
+//   padding-bottom: 0.5em
+//   margin-left: auto
+//   margin-right: auto
+//   border: solid 1px $darkNavy
+//   height: 1px
 
 /* Begin CSS for FORM */
 
@@ -480,8 +488,8 @@ hr
 
 .form-control
 
-  &:hover
-    color: #d8dddf
+  // &:hover
+  //   color: #d8dddf
 
 .extendForm
   @extend .nameForm
@@ -524,9 +532,6 @@ hr
 
 .inlineTestTimeForm
   width: 25%
-
-.addTest i
-  font-size: 2em
 
 .fa-plus-square
   color: $darkNavy
