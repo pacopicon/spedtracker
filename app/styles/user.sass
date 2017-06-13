@@ -13,7 +13,7 @@ $bsBlue: #5BC0DE
 $green: #5CB85C
 $bsRed: #D9534F
 $bsYellow: #F0AD4E
-$barWith: 70%
+$barWidth: 70%
 $btnHeight: 1.5em
 
 // II navbar
@@ -190,7 +190,7 @@ section
 .studentDisplay
   min-height: 5em
   display: table-row
-  width: 100%
+  width: 500%
   margin-left: 0.5em
 
 .student
@@ -258,8 +258,14 @@ section
    padding-right: 0
    min-height: 0
 
+hr
+  margin: 0
+  width: 148% - $barWidth
+  max-width: 17.5em
+  border-top: 1px solid $darkNavy
+
 .addTest
-  left: 7em
+  // left: 7em
   width: 3em
   height: 1em
   i
@@ -283,11 +289,7 @@ section
 
 .testTimeData
   border-radius: 0.5em
-  // border-top-left-radius: 0.5em
-  // border-bottom-left-radius: 0.5em
-  // background-color: $bgPrimary
-  // border: 0.5px dashed $darkNavy
-  width: 100% - $barWith
+  width: 100% - $barWidth
   padding-right: 0
   float: left
   padding-bottom: 0.2em
@@ -314,7 +316,7 @@ section
 // Begin CSS for Test Buttons
 
 .buttonsAndBars
-  width: $barWith
+  width: $barWidth
   float: right
 
 .testNameCell
@@ -486,14 +488,6 @@ section
   height: 100%
   color: $bgColor
 
-// hr
-//   padding-top: 0.5em
-//   padding-bottom: 0.5em
-//   margin-left: auto
-//   margin-right: auto
-//   border: solid 1px $darkNavy
-//   height: 1px
-
 /* Begin CSS for FORM */
 
 .form-fields
@@ -513,9 +507,6 @@ section
   width: 100%
 
 .form-control
-
-  // &:hover
-  //   color: #d8dddf
 
 .extendForm
   @extend .nameForm
