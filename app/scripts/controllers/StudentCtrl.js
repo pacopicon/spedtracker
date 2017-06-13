@@ -669,7 +669,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     };
 
     $scope.deleteTest = function(student, testNo) {
-      StudentCrud.deleteTest(student, student.testOneName, student.testOneTime, testNo);
+      StudentCrud.deleteTest(student, testNo);
     };
 
     $scope.saveAndToggleInvert = function(student) {

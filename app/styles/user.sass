@@ -265,7 +265,6 @@ hr
   border-top: 1px solid $darkNavy
 
 .addTest
-  // left: 7em
   width: 3em
   height: 1em
   i
@@ -278,8 +277,10 @@ hr
   i
     font-size: 2em
 
-.fa-plus
+.fa
   color: $darkNavy
+
+.fa-plus, .fa-minus
   transition: all 0.5s ease-in-out
   &:hover
     cursor: pointer
@@ -369,12 +370,22 @@ hr
   border: 2.5px solid $bsRed
   color: $bsRed
   cursor: not-allowed
+  &:hover
+    transition: all 0.2s ease-in-out
+    background-color: $bsRed
+    color: $bgColor
 
 .redText
   color: $bsRed
 
-.resumeBtn
-  border: 2.5px solid $green
+.fa-minus
+  &:hover
+    cursor: pointer
+    padding-left: 0.1em
+    color: $bsRed
+    transition: all 0.5s ease-in-out
+
+.resumeBtn, .resetBtn, .endBtn
   border-radius: 0.5em
   background-color: $bgColor
   height: $btnHeight
@@ -385,19 +396,30 @@ hr
     background-color: $green
 
 .resetBtn
-  @extend .resumeBtn
-  border: 2.5px solid $bsYellow
-  color: $bgColor
+  color: $bsYellow
+  border-top: 2.5px solid $bsYellow
+  border-bottom: 2.5px solid $bsYellow
+  border-top-right-radius: 0
+  border-bottom-right-radius: 0
+  border-top-left-radius: 0
+  border-bottom-left-radius: 0
+  border-right: $bgColor
+  border-left: $bgColor
 
   &:hover
     color: $bgColor
     background-color: $bsYellow
 
 .endBtn
-  @extend .resumeBtn
   border: 2.5px solid $bsRed
-  color: $bgColor
+  color: $bsRed
   float: right
+  border-top: 2.5px solid $bsRed
+  border-bottom: 2.5px solid $bsRed
+  border-right: 2.5px solid $bsRed
+  border-top-left-radius: 0
+  border-bottom-left-radius: 0
+  border-left: $bgColor
 
   &:hover
     transition: all 0.2s ease-in-out
@@ -405,16 +427,18 @@ hr
     background-color: $bsRed
 
 .resumeBtn
-  border: 2.5px solid $green
+  border-top: 2.5px solid $green
+  border-left: 2.5px solid $green
+  border-bottom: 2.5px solid $green
+  border-top-right-radius: 0
+  border-bottom-right-radius: 0
+  border-right: $bgColor
   color: $green
   float: left
 
 // End CSS for Test Buttons
 
 // Begin in-line Form CSS
-
-.fa
-  color: $darkNavy
 
 .addTestBtn
   @extend .addStudentBtn

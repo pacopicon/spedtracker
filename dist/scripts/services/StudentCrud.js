@@ -203,19 +203,19 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
         if (testNo == "testOne") {
           student.testOneName = '';
-          student.testOneTime = 0;
+          student.testOneTime = 18000000;
           student.totalTimeOne = 0;
         } else if (testNo == "testTwo") {
           student.testTwoName = '';
-          student.testTwoTime = 0;
+          student.testTwoTime = 18000000;
           student.totalTimeTwo = 0;
         } else if (testNo == "testThree") {
           student.testThreeName = '';
-          student.testThreeTime = 0;
+          student.testThreeTime = 18000000;
           student.totalTimeThree = 0;
         } else if (testNo == "testFour") {
           student.testFourName = '';
-          student.testFourTime = 0;
+          student.testFourTime = 18000000;
           student.totalTimeFour = 0;
         }
 
