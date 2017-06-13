@@ -22,6 +22,11 @@ spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvid
             url: '/pacooverTooltip',
             controller: 'StudentCtrl',
             templateUrl: '/templates/pacooverTooltip.html'
+        })
+        .state('testDataPrintout', {
+            url: '/testDataPrintout',
+            controller: 'StudentCtrl',
+            templateUrl: '/templates/testDataPrintout.html'
         });
 
       // $stateProvider
