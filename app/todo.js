@@ -5,3 +5,4 @@
 3) Add User authentication
 4) print results in pdf
 5) fix control button animations
+6) Put comments Feed so users and other potential stakeholders get a sense of app usefulness

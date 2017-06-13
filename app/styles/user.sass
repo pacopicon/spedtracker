@@ -1,4 +1,18 @@
-@import "_variables.sass"
+$bgPrimary: #337AB7
+// $bgColor: #D6F3FF
+// $bgColor: #E2F7FF
+// $bgColor: #F0AD4E
+$bgColor: #EDFAFF
+$darkNavy: #3f4e62
+$bsBlue: #5BC0DE
+$green: #5CB85C
+$bsRed: #D9534F
+$bsYellow: #F0AD4E
+$barWidth: 79%
+$btnHeight: 1.5em
+
+// @import "variables.sass"
+//
 // Index:
 // I - navbar ---- l.
 // II - clock ---- l.
@@ -7,6 +21,7 @@
 
 .navbar
   background-color: #4c91cd
+  // background-color: $bgColor
   z-index: 1
   min-height: 4.5em
 
@@ -291,7 +306,7 @@ hr
 .testTimeCell
   height: 100%
 
-.dataPointLabel, .dataPoint, .dataPair
+.dataPoint, .dataPointLabel
   margin-top: 0.35em
   margin-bottom: 0
   padding-bottom: 0
@@ -320,12 +335,14 @@ hr
 
 .countBtn
   border-radius: 0.5em
-  height: $btnHeight
+  min-height: $btnHeight
   font-size: 1em
   background-color: $bgColor
   width: 100%
   border: 2.5px solid $green
   color: $green
+  p
+    margin: 0
 
   &:hover
     background-color: $green
