@@ -81,11 +81,11 @@
     </div>
 <!-- End Inline Form -->
 <!-- TEST ONE DATA -->
-    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeOne == 0" ng-mouseover="redHoverOne = true" ng-mouseleave="redHoverOne = false">
+    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeOne == 0 || finishedTestOneHidden" ng-mouseover="redHoverOne = true" ng-mouseleave="redHoverOne = false">
       <div class="testTimeData">
 <!-- Begin test hide -->
         <div ng-show="redHoverOne && student.isTestOneOver" class="hideTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-          <i class="fa fa-minus" aria-hidden="true" ng-click="deleteTest(student, 'testOne')"></i>
+          <i class="fa fa-minus" aria-hidden="true" ng-click="finishedTestOneHidden = true"></i>
         </div>
 <!-- End test hide -->
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverOne && student.isTestOneOver">
@@ -204,12 +204,12 @@
     </div>
 <!-- End Inline Form -->
 <!-- TEST TWO DATA -->
-    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeTwo == 0" ng-mouseover="redHoverTwo = true" ng-mouseleave="redHoverTwo = false">
+    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeTwo == 0 || finishedTestTwoHidden" ng-mouseover="redHoverTwo = true" ng-mouseleave="redHoverTwo = false">
       <div class="testTimeData">
         <hr>
 <!-- Begin test hide -->
         <div ng-show="redHoverTwo && student.isTestTwoOver" class="hideTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-          <i class="fa fa-minus" aria-hidden="true" ng-click="deleteTest(student, 'testTwo')"></i>
+          <i class="fa fa-minus" aria-hidden="true" ng-click="finishedTestTwoHidden = true"></i>
         </div>
 <!-- End test hide -->
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverTwo && student.isTestTwoOver">
@@ -336,12 +336,12 @@
     </div>
 <!-- End Inline Form -->
 <!-- TEST THREE DATA -->
-    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeThree == 0" ng-mouseover="redHoverThree = true" ng-mouseleave="redHoverThree = false">
+    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeThree == 0 || finishedTestThreeHidden" ng-mouseover="redHoverThree = true" ng-mouseleave="redHoverThree = false">
       <div class="testTimeData">
         <hr>
 <!-- Begin test hide -->
         <div ng-show="redHoverThree && student.isTestThreeOver" class="hideTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-          <i class="fa fa-minus" aria-hidden="true" ng-click="deleteTest(student, 'testThree')"></i>
+          <i class="fa fa-minus" aria-hidden="true" ng-click="finishedTestThreeHidden = true"></i>
         </div>
 <!-- End test hide -->
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverThree && student.isTestThreeOver">
@@ -467,12 +467,12 @@
     </div>
 <!-- End Inline Form -->
 <!-- TEST FOUR DATA -->
-    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeFour == 0" ng-mouseover="redHoverFour = true" ng-mouseleave="redHoverFour = false">
+    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeFour == 0 || finishedTestThreeHidden" ng-mouseover="redHoverFour = true" ng-mouseleave="redHoverFour = false">
       <div class="testTimeData">
         <hr>
 <!-- Begin test hide -->
         <div ng-show="redHoverFour && student.isTestFourOver" class="hideTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
-          <i class="fa fa-minus" aria-hidden="true" ng-click="deleteTest(student, 'testFour')"></i>
+          <i class="fa fa-minus" aria-hidden="true" ng-click="finishedTestFourHidden = true"></i>
         </div>
 <!-- End test hide -->
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverFour && student.isTestFourOver">
