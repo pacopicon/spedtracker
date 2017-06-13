@@ -549,10 +549,10 @@
     <div class="form-fields marginRight marginLeft col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="nameAndExtend col-lg-4 col-md-4 col-sm-4 col-xs-12">
 <!--student name + extend button-->
-        <div class="nameForm col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="nameForm smallWidthMargin col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <input class="form-control nameInput" ng-model="newStudentName" placeholder="enter student name"/>
         </div>
-        <div class="extendForm col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="extendForm smallWidthMargin col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <a href class="tip" data-animation="am-flip-x" bs-tooltip="dateTip">
             <button type="button" class="extendInput btn btn-default" ng-model="timewrap.selectedTime" data-html="1" data-animation="am-fade-and-scale" data-toggle="true" bs-options="time as time for time in times" placeholder="enter ext. time" bs-select>
               <span class="caret">
@@ -564,11 +564,11 @@
 <!--test name one -->
       <div class="testOneAndTwo col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <div class="testNameForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <input class="form-control testNameInput" ng-model="newtestOneName" placeholder="enter test" />
           </div>
 <!--test time one -->
-          <div class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <div class="testTimeForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateOne" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
           </div>
         </div>
@@ -577,11 +577,11 @@
           <div ng-hide="addTestTwo" class="addTestBottom">
             <i class="fa fa-plus" aria-hidden="true" ng-click="addTestTwo = true"></i>
           </div>
-          <div ng-show="addTestTwo" class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <div ng-show="addTestTwo" class="testNameForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <input class="form-control testNameInput" ng-model="newtestTwoName" placeholder="enter test" />
           </div>
 <!--test time two -->
-          <div ng-show="addTestTwo" class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <div ng-show="addTestTwo" class="testTimeForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateTwo" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
           </div>
         </div>
@@ -592,11 +592,11 @@
           <div ng-hide="addTestThree || !addTestTwo" class="addTestBottom">
             <i class="fa fa-plus" aria-hidden="true" ng-click="addTestThree = true"></i>
           </div>
-          <div ng-show="addTestThree" class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <div ng-show="addTestThree" class="testNameForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <input class="form-control testNameInput" ng-model="newtestThreeName" placeholder="enter test" />
           </div>
 <!--test time three -->
-          <div ng-show="addTestThree" class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <div ng-show="addTestThree" class="testTimeForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateThree" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
           </div>
         </div>
@@ -605,11 +605,11 @@
           <div ng-hide="addTestFour || !addTestThree" class="addTestBottom">
             <i class="fa fa-plus" aria-hidden="true" ng-click="addTestFour = true"></i>
           </div>
-          <div ng-show="addTestFour" class="testNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <div ng-show="addTestFour" class="testNameForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <input class="form-control testNameInput" ng-model="newtestFourName" placeholder="enter test" />
           </div>
 <!--test time four -->
-          <div ng-show="addTestFour" class="testTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <div ng-show="addTestFour" class="testTimeForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateFour" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
           </div>
         </div>

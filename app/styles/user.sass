@@ -526,6 +526,12 @@ hr
 .nameAndExtend
   padding-right: 0
   padding-left: 15px
+  @media only screen and (max-width : 844px)
+    padding-right: 15px
+
+.smallWidthMargin
+  @media only screen and (max-width : 844px)
+    margin-bottom: 7.5px
 
 .nameForm
   padding-left: 3.75px
@@ -564,10 +570,15 @@ hr
 .testOneAndTwo
   padding-left: 0
   padding-right: 0
+  @media only screen and (max-width : 844px)
+    padding-left: 10.5px
+    padding-right: 10.5px
 
 .testThreeAndFour
   padding-left: 0
-  padding-right: 7.5px
+  @media only screen and (max-width : 844px)
+    padding-left: 10.5px
+    padding-right: 10.5px
 
 .testNameInput
 
@@ -601,7 +612,6 @@ hr
     background-color: $bsBlue
     color: $bgColor
     transition: all 0.2s ease-in-out
-  
 
 // End CSS for FORM
 
