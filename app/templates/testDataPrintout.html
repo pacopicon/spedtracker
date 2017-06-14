@@ -1,43 +1,48 @@
 <section ng-controller="StudentCtrl" class="user">
-  <div ui-sref="testTracker" class="link"><i class="fa fa-print" aria-hidden="true"><p>back to test tracker</p></i></div>
-  <table>
+  <div ui-sref="testTracker" class="link2"><i class="fa fa-id-card" aria-hidden="true"><p>back to test tracker</p></i></div>
+  <div class="container tableWrap">
+  <table class="table table-striped table-bordered table-hover table-condensed table-responsive">
     <tr>
-      <td><p>Student name</p></td>
-      <td><p>Time Extension</p></td>
-      <td><p>Test Name</p></td>
-      <td><p>Test Start</p></td>
-      <td><p>Test Standard Time End</p></td>
-      <td><p>Test Extended Time End</p></td>
-      <td><p>Test Actual Time End</p></td>
-      <td><p>Total Time Paused</p></td>
+      <th align="center" colspan="8"><p class="title">testTracker Student Report</p></th>
+    </tr>
+    <tr>
+      <th class="column column1"><p>Student name</p></th>
+      <th class="column column2"><p>Time Extension</p></th>
+      <th class="column column3"><p>Test Name</p></th>
+      <th class="column column4"><p>Test Start</p></th>
+      <th class="column column5"><p>Test Standard Time End</p></th>
+      <th class="column column6"><p>Test Extended Time End</p></th>
+      <th class="column column7"><p>Test Actual Time End</p></th>
+      <th class="column column8"><p>Total Time Paused</p></th>
     </tr>
     <tr ng-repeat="student in students">
-      <td><p>{{student.name}}</p></td>
-      <td><p>{{student.extendTime}}</p></td>
-      <td><p ng-show="student.testOneName">{{student.testOneName}}</p><br>
-        <p ng-show="student.testTwoName">{{student.testTwoName}}</p><br>
-        <p ng-show="student.testThreeName">{{student.testThreeName}}</p><br>
+      <td class="cell"><p>{{student.name}}</p></td>
+      <td class="cell"><p>{{student.extendTime}}</p></td>
+      <td class="cell"><p ng-show="student.testOneName">{{student.testOneName}}</p>
+        <p ng-show="student.testTwoName">{{student.testTwoName}}</p>
+        <p ng-show="student.testThreeName">{{student.testThreeName}}</p>
         <p ng-show="student.testFourName">{{student.testFourName}}</p></td>
-      <td><p ng-show="student.testOneStartRecord">{{startTime(student, "testOne") | date: 'mediumTime'}}</p><br>
-        <p ng-show="student.testTwoStartRecord">{{startTime(student, "testOne") | date: 'mediumTime'}}</p><br>
-        <p ng-show="student.testThreeStartRecord">{{startTime(student, "testOne") | date: 'mediumTime'}}</p><br>
+      <td class="cell"><p ng-show="student.testOneStartRecord">{{startTime(student, "testOne") | date: 'mediumTime'}}</p>
+        <p ng-show="student.testTwoStartRecord">{{startTime(student, "testOne") | date: 'mediumTime'}}</p>
+        <p ng-show="student.testThreeStartRecord">{{startTime(student, "testOne") | date: 'mediumTime'}}</p>
         <p ng-show="student.testFourStartRecord">{{startTime(student, "testOne") | date: 'mediumTime'}}</p></td>
-      <td><p ng-show="student.testOneStartRecord">{{endTime(student, "testOne") | date: 'mediumTime'}}</p><br>
-        <p ng-show="student.testTwoStartRecord">{{endTime(student, "testTwo") | date: 'mediumTime'}}</p><br>
-        <p ng-show="student.testThreeStartRecord">{{endTime(student, "testThree") | date: 'mediumTime'}}</p><br>
+      <td class="cell"><p ng-show="student.testOneStartRecord">{{endTime(student, "testOne") | date: 'mediumTime'}}</p>
+        <p ng-show="student.testTwoStartRecord">{{endTime(student, "testTwo") | date: 'mediumTime'}}</p>
+        <p ng-show="student.testThreeStartRecord">{{endTime(student, "testThree") | date: 'mediumTime'}}</p>
         <p ng-show="student.testFourStartRecord">{{endTime(student, "testFour") | date: 'mediumTime'}}</p></td>
-      <td><p ng-show="student.testOneStartRecord">{{endTime(student, "exttestOne") | date: 'mediumTime'}}</p><br>
-        <p ng-show="student.testTwoStartRecord">{{endTime(student, "exttestTwo") | date: 'mediumTime'}}</p><br>
-        <p ng-show="student.testThreeStartRecord">{{endTime(student, "exttestThree") | date: 'mediumTime'}}</p><br>
+      <td class="cell"><p ng-show="student.testOneStartRecord">{{endTime(student, "exttestOne") | date: 'mediumTime'}}</p>
+        <p ng-show="student.testTwoStartRecord">{{endTime(student, "exttestTwo") | date: 'mediumTime'}}</p>
+        <p ng-show="student.testThreeStartRecord">{{endTime(student, "exttestThree") | date: 'mediumTime'}}</p>
         <p ng-show="student.testFourStartRecord">{{endTime(student, "exttestFour") | date: 'mediumTime'}}</p></td>
-      <td><p ng-show="student.testOneEndedAt">{{student.testOneEndedAt}}</p><br>
-        <p ng-show="student.testTwoEndedAt">{{student.testTwoEndedAt}}</p><br>
-        <p ng-show="student.testThreeEndedAt">{{student.testThreeEndedAt}}</p><br>
+      <td class="cell"><p ng-show="student.testOneEndedAt">{{student.testOneEndedAt}}</p>
+        <p ng-show="student.testTwoEndedAt">{{student.testTwoEndedAt}}</p>
+        <p ng-show="student.testThreeEndedAt">{{student.testThreeEndedAt}}</p>
         <p ng-show="student.testFourEndedAt">{{student.testFourEndedAt}}</p></td>
-      <td><p ng-show="student.pausedTotalOne">{{student.pausedTotalOne}}</p><br>
-        <p ng-show="student.pausedTotalTwo">{{student.pausedTotalTwo}}</p><br>
-        <p ng-show="student.pausedTotalThree">{{student.pausedTotalThree}}</p><br>
-        <p ng-show="student.pausedTotalFour">{{student.pausedTotalFour}}</p></td>
+      <td class="cell"><p ng-show="student.pausedTotalOne">{{totalPausedTime(student, "testOne").hourMinSec}}</p>
+        <p ng-show="student.pausedTotalTwo">{{totalPausedTime(student, "testTwo").hourMinSec}}</p>
+        <p ng-show="student.pausedTotalThree">{{totalPausedTime(student, "testThree").hourMinSec}}</p>
+        <p ng-show="student.pausedTotalFour">{{totalPausedTime(student, "testFour").hourMinSec}}</p></td>
     </tr>
   </table>
+  </div>
 </sectin>
