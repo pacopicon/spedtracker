@@ -31,33 +31,48 @@ $btnHeight: 1.5em
    width: 63em
 
 .link
-  padding-left: 49%
-  height: 1em
-  // width: 10em
-  display: inline-block
-  color: $darkNavy
-  text-decoration: none
-  cursor: pointer
-  transition: all 0.1s ease-in-out
+  min-width: 12em
   &:hover
-    padding-left: 50%
-    transition: all 0.1s ease-in-out
-  i
-    float: left
-    padding-right: 0.5em
-    font-size: 2em
+
+.linkWrap
+  position: relative
+  padding-bottom: 2.5em
+  padding-top: 2.5em
+  width: 100%
+
+.link2, .link
+  display: table
+  text-decoration: none
+  text-align: center
+  margin: 0 auto
+  border-radius: 1em
+  border: 2.5px solid $bsBlue
+  background-color: $bgColor
+  min-width: 10em
+  color: $bsBlue
+  cursor: pointer
+  font-size: 1em
+  height: 2em
   p
+    line-height: 0.5em
+    float: left
+    padding: 0
+    margin: 0
+  i
+    color: $bsBlue
     float: right
-    font-size: 0.7em
+  &:hover
+    background-color: $bsBlue
+    color: $bgColor
+    transition: all 0.2s ease-in-out
+    i
+      color: $bgColor
+      transition: all 0.2s ease-in-out
 
-.linkText
-  width: 10em
-  padding: 0
-  margin: 0
-
-  // p
-  //   font-size: 1em
-
+.link
+  min-width: 12em
+  p
+    line-height: 1em
 
 .admin
   width: 7em
@@ -138,8 +153,7 @@ section
   background-color: $darkNavy
   color: $bgColor
   padding-top: 0.09em
-  padding-bottom: 0.09em
-
+  margin-bottom: 0
   p
     padding-top: 0.45em
     text-align: center
@@ -158,6 +172,7 @@ section
 .main-body
   border-radius: 0em
   padding: 1em
+  padding-top: 0
   margin-bottom: 2em
   min-height: 30%
   resize: vertical
@@ -299,8 +314,8 @@ hr
 
 .fa-plus, .fa-minus
   transition: all 0.5s ease-in-out
+  cursor: pointer
   &:hover
-    cursor: pointer
     padding-left: 0.1em
     color: $bsBlue
     transition: all 0.5s ease-in-out
@@ -347,7 +362,6 @@ hr
   padding-left: 0
   padding-right: 0
   padding-bottom: 0.3em
-
   p
     line-height: 1em
 
@@ -359,9 +373,9 @@ hr
   width: 100%
   border: 2.5px solid $green
   color: $green
+  cursor: pointer
   p
     margin: 0
-
   &:hover
     background-color: $green
     color: $bgColor
@@ -371,7 +385,7 @@ hr
   @extend .countBtn
   border: 2.5px solid $bsYellow
   color: $bsYellow
-
+  cursor: pointer
   &:hover
     transition: all 0.2s ease-in-out
     background-color: $bsYellow
@@ -402,8 +416,8 @@ hr
 
 .fa-minus
   float: left
+  cursor: pointer
   &:hover
-    cursor: pointer
     padding-left: 0.1em
     color: $bsRed
     transition: all 0.5s ease-in-out
@@ -413,6 +427,7 @@ hr
   background-color: $bgColor
   height: $btnHeight
   padding-bottom: 1em
+  cursor: pointer
   &:hover
     transition: all 0.2s ease-in-out
     color: $bgColor
