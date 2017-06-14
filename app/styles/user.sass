@@ -185,7 +185,6 @@ section
   border-radius: 1em
   background-color: $bgColor
   min-height: 1.8em
-  margin-top: 0.5em
   margin-bottom: 0.5em
 
 .mainBtn
@@ -198,10 +197,6 @@ section
   transition: all 1s ease-in-out
   display: none
 
-// .controlWrap
-//   padding-left: 7.5px
-//   padding-right: 7.5
-
 .controlBtn
   border: 2.5px solid $darkNavy
   background-color: $bgColor
@@ -213,12 +208,10 @@ section
   overflow: hidden
   width: 100%
   transition: all 1s ease-in-out
-
   &:hover
     transition: all 0.2s ease-in-out
     background-color: $darkNavy
     color: $bgColor
-
   &:active
     background-color: #e7eaeb
 
@@ -226,10 +219,11 @@ section
 
 // Begin CSS for student Display and Student data
 
+.alert
+  transition: all 1s ease-in-out
+
 .studentDisplay
-  // min-height: 5em
   display: table-row
-  // height: 500%
   width: 100%
   margin-left: 0.5em
 
@@ -344,7 +338,6 @@ hr
   p
     font-size: 0.7em
     line-height: 1.3em
-    // color: $bgColor
     color: $darkNavy
     padding-left: 0.1em
 

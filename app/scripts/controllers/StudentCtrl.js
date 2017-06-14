@@ -664,7 +664,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         toggleInvert(owner);
       } else {
         $scope.alert = true;
-        $timeout(function turnOffAlert() {$scope.alert = false}, 3000);
+        $timeout(function turnOffAlert() {$scope.alert = false}, 5000);
       }
 
     };
@@ -686,13 +686,15 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
     $scope.saveAndToggleInvert = function(student) {
       students.$save(student);
-      var owner = "saveAndToggleInvert at " + Date.now();
-      toggleInvert(owner);
+      $scope.toggleInvert();
     };
 
-    var toggleInvert = function(owner) {
-
-      console.log("called by " + owner);
+    $scope.clearAll = function() {
+      for (i = 0; i < students.length; i++) {
+        students[i].isSafeToDelete = false;
+      }
+    }
+    $scope.toggleInvert = function() {
 
       var unsafeCount = 0;
       var safeCount = 0;
@@ -778,6 +780,26 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       $scope.clickedToDelete = false;
       $scope.deleteAppear = false;
       StudentCrud.delete(student);
+    };
+
+    $scope.startSelectedTests = function(students) {
+
+      for (i = 0; i < students.length; i++) {
+        if (students[i].isSafeToDelete) {
+          if (!students[i].isTimerOneStart && !students[i].isTestOneOver) {
+            $scope.startTimer(students[i], 'testOne')
+          } else if (!students[i].isTimerTwoStart && !students[i].isTestTwoOver) {
+            $scope.startTimer(students[i], 'testTwo')
+          } else if (!students[i].isTimerThreeStart && !students[i].isTestThreeOver) {
+            $scope.startTimer(students[i], 'testThree')
+          } else if (!students[i].isTimerFourStart && !students[i].isTestFourOver) {
+            $scope.startTimer(students[i], 'testFour')
+          } else {
+          $scope.info = true;
+          $timeout(function turnOffAlert() {$scope.info = false}, 5000);
+          }
+        }
+      }
     };
 
 // End CRUD Functions
