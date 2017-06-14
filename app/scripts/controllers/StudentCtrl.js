@@ -681,14 +681,14 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       StudentCrud.deleteTest(student, testNo);
     };
 
+    $scope.invertSelect = false;
+    $scope.selectAll = true;
+
     $scope.saveAndToggleInvert = function(student) {
       students.$save(student);
       var owner = "saveAndToggleInvert at " + Date.now();
       toggleInvert(owner);
     };
-
-    $scope.invertSelect = false;
-    $scope.selectAll = true;
 
     var toggleInvert = function(owner) {
 
@@ -706,11 +706,10 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       }
 
       $scope.clickedToDelete = false;
-      // $scope.appear = false;
 
       if (safeCount > 0) {
         $scope.clickedToDelete = true;
-        $timeout(function appear() {$scope.deleteAppear = true}, 600);
+        $timeout(function appear() {$scope.deleteAppear = true}, 1000);
       } else {
         $scope.clickedToDelete = false;
         $scope.deleteAppear = false;
@@ -726,6 +725,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       } else if (safeCount > 0 && safeCount == students.length) {
         $scope.invertSelect = false;
         $scope.selectAll = false;
+        $scope.clearSelected = true;
         $scope.clickedToDelete = true;
         console.log("invertSelect is false; selectAll is true");
       } else if (safeCount == 0) {
@@ -737,36 +737,32 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
     }
 
-    $scope.selectAllForDelete = function(students) {
-      StudentCrud.toggleSelectForDelete(students);
-      $scope.selectAll = false;
-      $scope.clickedToDelete = true;
-      $timeout(function appear() {$scope.deleteAppear = true}, 600);;
-      console.log("selectAll: " + $scope.selectAll);
-      console.log("invertSelect: " + $scope.invertSelect);
-    };
+    $scope.switchControl = function(students) {
+      if ($scope.selectAll && !$scope.invertSelect) {
 
-    $scope.undoAllSelectForDelete = function(students) {
-      StudentCrud.toggleSelectForDelete(students);
-      $scope.selectAll = true;
-      $scope.clickedToDelete = false;
-      $scope.deleteAppear = false;
-      console.log("selectAll: " + $scope.selectAll);
-      console.log("invertSelect: " + $scope.invertSelect);
-    };
+        StudentCrud.toggleSelectForDelete(students);
+        $scope.selectAll = false;
+        $scope.invertSelect = false;
+        $scope.clickedToDelete = true;
+        $timeout(function appear() {$scope.clearSelected = true}, 1000);
+        $timeout(function appear() {$scope.deleteAppear = true}, 1000);
+        // $scope.clearSelected = true;
+        // $scope.deleteAppear = true;
 
-    $scope.invertSelectForDelete = function(students) {
-      StudentCrud.toggleSelectForDelete(students);
-    };
+      } else if ($scope.clearSelected) {
 
-    // $scope.$watch(getItems, watcherFunction, true);
-    //   function getItems() {
-    //     return StudentCrud.getAllStudents();
-    //   };
-    //
-    // function watcherFunction(newData) {
-    //   toggleInvert("delete");
-    // };
+        StudentCrud.toggleSelectForDelete(students);
+        $scope.clearSelected = false;
+        $timeout(function appear() {$scope.selectAll = true}, 1000);
+        $scope.clickedToDelete = false;
+        $scope.deleteAppear = false;
+        console.log("selectAll: " + $scope.selectAll);
+        console.log("invertSelect: " + $scope.invertSelect);
+
+      } else if ($scope.invertSelect) {
+        StudentCrud.toggleSelectForDelete(students);
+      }
+    }
 
     $scope.deleteSelected = function() {
       for (var i = 0; i < students.length; i++)

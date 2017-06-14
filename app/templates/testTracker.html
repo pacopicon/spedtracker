@@ -28,14 +28,10 @@
 <!--SELECT / DELETE CONTROLS-->
   <div class="row formControls marginLeft marginRight">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginLeft marginRight btn-wrap mainBtn" ng-class="{'col-lg-6 col-md-6 col-sm-6 col-xs-6 marginLeft btn-wrap mainBtn': clickedToDelete, 'col-lg-12 col-md-12 col-sm-12 col-xs-12 marginLeft marginRight btn-wrap mainBtn': !clickedToDelete}">
-      <button class="controlBtn selectAll" ng-click="selectAllForDelete(students)" ng-show="selectAll && !invertSelect">
-        <p>select all</p>
-      </button>
-      <button class="controlBtn clearAll" ng-click="undoAllSelectForDelete(students)" ng-show="!selectAll && !invertSelect">
-        <p>clear selected</p>
-      </button>
-      <button class="controlBtn invertSelection" ng-click="invertSelectForDelete(students)" ng-show="!selectAll && invertSelect">
-        <p>invert selection</p>
+      <button class="controlBtn selectAll clearAll invertSelection" ng-click="switchControl(students)">
+        <p ng-show="selectAll && !invertSelect">select all</p>
+        <p ng-show="clearSelected  && !invertSelect">clear selected</p>
+        <p ng-show="invertSelect">invert selection</p>
       </button>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 marginRight btn-wrap IIndaryBtn" ng-show="deleteAppear" ng-class="{'IIndaryBtnYes': clickedToDelete, 'IIndaryBtnNo': !clickedToDelete}">
@@ -48,21 +44,17 @@
 
 <!-- BEGIN STUDENT DISPLAY -->
   <div class="alert alert-danger" role="alert" ng-show="alert">oops! At minimum, please enter student name and testing extension multiple.</div>
-  <div class="row studentDisplay marginLeft marginRight" ng-repeat="student in students" ng-mouseleave="hover = false">
+  <div class="row studentDisplay marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="student in students" ng-mouseleave="hover = false">
     <div class="student col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <!-- STUDENT: checkbox, name, extend-time-->
       <div class="checkboxIndexName marginRight marginLeft col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <input type="checkbox" class="checkbox" ng-model="student.isSafeToDelete" ng-change="saveAndToggleInvert(student)"/>
         <div class="indexAndNameCell">
-          <p class="indexAndName" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="indexAndName">
             {{$index + 1}}. {{student.name}} ({{student.extendTime}})
           </p>
-        </div>
 <!--delete-->
-        <div class="deleteContainer marginRight">
-          <p>
-            <i class="fa fa-times deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete"></i>
-          </p>
+          <i class="fa fa-times deleteBtn" ng-model="student" ng-click="delete(student)" ng-show="student.isSafeToDelete"></i>
         </div>
       </div>
     </div>
@@ -85,7 +77,7 @@
     </div>
 <!-- End Inline Form -->
 <!-- TEST ONE DATA -->
-    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeOne == 0 || finishedTestOneHidden" ng-mouseover="redHoverOne = true" ng-mouseleave="redHoverOne = false">
+    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeOne == 0 || finishedTestOneHidden" ng-mouseover="redHoverOne = true" ng-mouseleave="redHoverOne = false" ng-class="{'deleteHighlight': student.isSafeToDelete}">
       <div class="testTimeData">
 <!-- Begin test hide -->
         <div ng-show="redHoverOne && student.isTestOneOver" class="hideTest col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -93,34 +85,34 @@
         </div>
 <!-- End test hide -->
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverOne && student.isTestOneOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             started:
           </p>
-          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12">
             {{startTime(student, "testOne") | date: 'mediumTime'}}
           </p>
         </div>
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverOne && student.isTestOneOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             paused:
           </p>
-          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6">
             {{totalPausedTime(student, "testOne").hourMinSec}}
           </p>
         </div>
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverOne && student.isTestOneOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             std. end:
           </p>
-          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12">
             {{endTime(student, "testOne") | date: 'mediumTime'}}
           </p>
         </div>
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverOne && student.isTestOneOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             ext. end:
           </p>
-          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6">
             {{endTime(student, "exttestOne") | date: 'mediumTime'}}
           </p>
         </div>
@@ -129,7 +121,7 @@
       <div class="buttonsAndBars">
         <div class="testNameCell marginRight marginLeft">
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerOneStart && !student.isTestOneOver">
-            <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testOne')">
+            <button class="countBtn" ng-click="startTimer(student, 'testOne')">
               <p class="countBtnText">
                 start {{student.testOneName}} test
               </p>
@@ -208,7 +200,7 @@
     </div>
 <!-- End Inline Form -->
 <!-- TEST TWO DATA -->
-    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeTwo == 0 || finishedTestTwoHidden" ng-mouseover="redHoverTwo = true" ng-mouseleave="redHoverTwo = false">
+    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeTwo == 0 || finishedTestTwoHidden" ng-mouseover="redHoverTwo = true" ng-mouseleave="redHoverTwo = false" ng-class="{'deleteHighlight': student.isSafeToDelete}">
       <div class="testTimeData">
         <hr>
 <!-- Begin test hide -->
@@ -217,34 +209,34 @@
         </div>
 <!-- End test hide -->
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverTwo && student.isTestTwoOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             started:
           </p>
-          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12">
             {{startTime(student, "testTwo") | date: 'mediumTime'}}
           </p>
         </div>
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverTwo && student.isTestTwoOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             paused:
           </p>
-          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6">
             {{totalPausedTime(student, "testTwo").hourMinSec}}
           </p>
         </div>
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverTwo && student.isTestTwoOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             std. end:
           </p>
-          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12">
             {{endTime(student, "testTwo") | date: 'mediumTime'}}
           </p>
         </div>
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverTwo && student.isTestTwoOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             ext. end:
           </p>
-          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6">
             {{endTime(student, "exttestTwo") | date: 'mediumTime'}}
           </p>
         </div>
@@ -253,14 +245,14 @@
       <div class="buttonsAndBars">
         <div class="testNameCell marginRight marginLeft">
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerTwoStart && student.isTestOneOver">
-            <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testTwo')">
+            <button class="countBtn" ng-click="startTimer(student, 'testTwo')">
               <p class="countBtnText">
                 start {{student.testTwoName}} test
               </p>
             </button>
           </div>
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTestOneOver">
-            <button class="grayCell" ng-class="{'redBtn': student.isSafeToDelete}">
+            <button class="grayCell">
               <p class="countBtnText">
                 {{student.testTwoName}} waiting on previous test
               </p>
@@ -340,7 +332,7 @@
     </div>
 <!-- End Inline Form -->
 <!-- TEST THREE DATA -->
-    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeThree == 0 || finishedTestThreeHidden" ng-mouseover="redHoverThree = true" ng-mouseleave="redHoverThree = false">
+    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeThree == 0 || finishedTestThreeHidden" ng-mouseover="redHoverThree = true" ng-mouseleave="redHoverThree = false" ng-class="{'deleteHighlight': student.isSafeToDelete}">
       <div class="testTimeData">
         <hr>
 <!-- Begin test hide -->
@@ -349,34 +341,34 @@
         </div>
 <!-- End test hide -->
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverThree && student.isTestThreeOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             started:
           </p>
-          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12">
             {{startTime(student, "testThree") | date: 'mediumTime'}}
           </p>
         </div>
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverThree && student.isTestThreeOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             paused:
           </p>
-          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6">
             {{totalPausedTime(student, "testThree").hourMinSec}}
           </p>
         </div>
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverThree && student.isTestThreeOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             std. end:
           </p>
-          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12">
             {{endTime(student, "testThree") | date: 'mediumTime'}}
           </p>
         </div>
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverThree && student.isTestThreeOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             ext. end:
           </p>
-          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6">
             {{endTime(student, "exttestThree") | date: 'mediumTime'}}
           </p>
         </div>
@@ -385,14 +377,14 @@
       <div class="buttonsAndBars">
         <div class="testNameCell marginRight marginLeft">
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerThreeStart && student.isTestTwoOver">
-            <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testThree')">
+            <button class="countBtn" ng-click="startTimer(student, 'testThree')">
               <p class="countBtnText">
                 start {{student.testThreeName}} test
               </p>
             </button>
           </div>
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTestTwoOver">
-            <button class="grayCell" ng-class="{'redBtn': student.isSafeToDelete}">
+            <button class="grayCell">
               <p class="countBtnText">
                 {{student.testThreeName}} waiting on previous test
               </p>
@@ -471,7 +463,7 @@
     </div>
 <!-- End Inline Form -->
 <!-- TEST FOUR DATA -->
-    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeFour == 0 || finishedTestThreeHidden" ng-mouseover="redHoverFour = true" ng-mouseleave="redHoverFour = false">
+    <div class="dataButtonsAndBars col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="student.totalTimeFour == 0 || finishedTestThreeHidden" ng-mouseover="redHoverFour = true" ng-mouseleave="redHoverFour = false" ng-class="{'deleteHighlight': student.isSafeToDelete}">
       <div class="testTimeData">
         <hr>
 <!-- Begin test hide -->
@@ -480,34 +472,34 @@
         </div>
 <!-- End test hide -->
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverFour && student.isTestFourOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             started:
           </p>
-          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12">
             {{startTime(student, "testFour") | date: 'mediumTime'}}
           </p>
         </div>
         <div class= "testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverFour && student.isTestFourOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             paused:
           </p>
-          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6">
             {{totalPausedTime(student, "testFour").hourMinSec}}
           </p>
         </div>
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverFour && student.isTestFourOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             std. end:
           </p>
-          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-7 col-md-7 col-sm-7 col-xs-12">
             {{endTime(student, "testFour") | date: 'mediumTime'}}
           </p>
         </div>
         <div class="testTimeCell marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="redHoverFour && student.isTestFourOver">
-          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPointLabel col-lg-5 col-md-5 col-sm-5 col-xs-12">
             ext. end:
           </p>
-          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="{'redText': student.isSafeToDelete}">
+          <p class="dataPoint col-lg-6 col-md-6 col-sm-6 col-xs-6">
             {{endTime(student, "exttestFour") | date: 'mediumTime'}}
           </p>
         </div>
@@ -516,14 +508,14 @@
       <div class="buttonsAndBars">
         <div class="testNameCell marginRight marginLeft">
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTimerFourStart && student.isTestThreeOver">
-            <button class="countBtn" ng-class="{'redBtn': student.isSafeToDelete}"  ng-click="startTimer(student, 'testFour')">
+            <button class="countBtn" ng-click="startTimer(student, 'testFour')">
               <p class="countBtnText">
                 start {{student.testFourName}} test
               </p>
             </button>
           </div>
           <div class="buttonContainer col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="!student.isTestThreeOver">
-            <button class="grayCell" ng-class="{'redBtn': student.isSafeToDelete}">
+            <button class="grayCell">
               <p class="countBtnText">
                 {{student.testFourName}} waiting on previous test
               </p>
