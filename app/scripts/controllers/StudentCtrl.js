@@ -448,12 +448,21 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     };
 
     $scope.endTimer = function(student, testNo) {
+
       if (testNo == "testOne") {
         student.isTestOneOver = true;
-        timeEnded = Date.now();
+        student.testOneEndedAt = Date.now();
       } else if (testNo == "testTwo") {
         student.isTestTwoOver = true;
+        student.testTwoEndedAt = Date.now();
+      } else if (testNo == "testThree") {
+        student.isTestThreeOver = true;
+        student.testThreeEndedAt = Date.now();
+      } else if (testNo == "testFour") {
+        student.isTestFourOver = true;
+        student.testFourEndedAt = Date.now();
       }
+
       console.log("endTimer called");
       students.$save(student).then(function() {
         $interval.cancel(promise);

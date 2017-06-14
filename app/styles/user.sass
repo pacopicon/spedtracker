@@ -29,20 +29,33 @@ $btnHeight: 1.5em
    width: 63em
 
 .link
+  padding-left: 49%
+  height: 1em
+  // width: 10em
   display: inline-block
-  position: relative
-  height: 100%
-  width: 3.5em
-  bottom: 0.35em
-  color: $bgColor
-  font-size: 3em
-  font-weight: 700
+  color: $darkNavy
   text-decoration: none
   cursor: pointer
+  transition: all 0.1s ease-in-out
+  &:hover
+    padding-left: 50%
+    transition: all 0.1s ease-in-out
+  i
+    float: left
+    padding-right: 0.5em
+    font-size: 2em
+  p
+    float: right
+    font-size: 0.7em
 
-.link:active
-  /*border: solid 0.01em $bgColor
-  font-size: 80%
+.linkText
+  width: 10em
+  padding: 0
+  margin: 0
+
+  // p
+  //   font-size: 1em
+
 
 .admin
   width: 7em
