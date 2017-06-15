@@ -120,28 +120,28 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         if (typeof testOneTimeObj === "undefined") {
           testOneTimeNum = 18000000;
           totalTimeOne = 0;
-        } else {
+        } else if (testOneTimeObj) {
           testOneTimeNum = addHoursAndMinutes(testOneTimeObj.getHours(), testOneTimeObj.getMinutes());
           totalTimeOne = testOneTimeNum * extendTime;
         }
         if (typeof testTwoTimeObj === "undefined") {
           testTwoTimeNum = 18000000;
           totalTimeTwo = 0;
-        } else {
+        } else if (testTwoTimeObj) {
           testTwoTimeNum = addHoursAndMinutes(testTwoTimeObj.getHours(), testTwoTimeObj.getMinutes());
           totalTimeTwo = testTwoTimeNum * extendTime;
         }
         if (typeof testThreeTimeObj === "undefined") {
           testThreeTimeNum = 18000000;
           totalTimeThree = 0;
-        } else {
+        } else if (testThreeTimeObj) {
           testThreeTimeNum = addHoursAndMinutes(testThreeTimeObj.getHours(), testThreeTimeObj.getMinutes());
           totalTimeThree = testThreeTimeNum * extendTime;
         }
         if (typeof testFourTimeObj === "undefined") {
           testFourTimeNum = 18000000;
           totalTimeFour = 0;
-        } else {
+        } else if (testFourTimeObj) {
           testFourTimeNum = addHoursAndMinutes(testFourTimeObj.getHours(), testFourTimeObj.getMinutes());
           totalTimeFour = testFourTimeNum * extendTime;
         }
@@ -150,7 +150,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           name: studentName,
           extendTime: extendTime,
           testOneName: testOneName,
-          testOneTime: 18000000 || testOneTimeNum,
+          testOneTime:  testOneTimeNum || 18000000,
           totalTimeOne: testOneTimeNum * extendTime,
           testOneStartRecord: 0,
           testOneStartTime: 0,
@@ -161,7 +161,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           isTestOneOver: false,
           testOneEndedAt: 0,
           testTwoName: testTwoName,
-          testTwoTime: 18000000 || testTwoTimeNum,
+          testTwoTime: testTwoTimeNum || 18000000,
           totalTimeTwo: testTwoTimeNum * extendTime,
           testTwoStartRecord: 0,
           testTwoStartTime: 0,
@@ -172,7 +172,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           isTestTwoOver: false,
           testTwoEndedAt: 0,
           testThreeName: testThreeName,
-          testThreeTime: 18000000 || testThreeTimeNum,
+          testThreeTime: testThreeTimeNum || 18000000,
           totalTimeThree: testThreeTimeNum * extendTime,
           testThreeStartRecord: 0,
           testThreeStartTime: 0,
@@ -183,7 +183,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           isTestThreeOver: false,
           testThreeEndedAt: 0,
           testFourName: testFourName,
-          testFourTime: 18000000 || testFourTimeNum,
+          testFourTime: testFourTimeNum || 18000000,
           totalTimeFour: testFourTimeNum * extendTime,
           testFourStartRecord: 0,
           testFourStartTime: 0,

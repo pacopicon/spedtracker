@@ -22,11 +22,18 @@
 <div class="linkWrap">
   <button ui-sref="testDataPrintout" class="link"><p class="linkText">view data printout</p><i class="fa fa-print" aria-hidden="true"></i></button>
 </div>
-<button class= "yesNoBtn" ng-click="checkIfIdle()">check if Idle</button>
+<!-- <button class= "yesNoBtn" ng-click="checkIfIdle()">check if Idle</button> -->
 
-<div class="alert alert-warning" role="alert" ng-show="warn"><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i>The students have been inactive for some time.  Would you like to erase the student list and close this session? <button class="yesNoBtn" ng-click="deleteAllStudents()"><i class="fa fa-check" aria-hidden="true"></i></button><button class="yesNoBtn" ng-click="warningRejection()"><i class="fa fa-times" aria-hidden="true"></i></button></div>
+<div class="alert alert-danger" role="alert" ng-show="warn">
+  <div class="alert-message">Students have been inactive for at least 30 min.  Please erase student list and close session.
+  <div class="yesNoContainer">
+    <button class="yesBtn" ng-click="deleteAllStudents()"><i class="fa fa-check" aria-hidden="true"></i></button>
+    <button class="noBtn" ng-click="warningRejection()"><i class="fa fa-times" aria-hidden="true"></i></button>
+  </div>
+</div>
+</div>
 
-<div class="alert alert-danger" role="alert" ng-show="alert"><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i>oops! At minimum, please enter student name and testing extension multiple.</div>
+<div class="alert alert-warning" role="alert" ng-show="alert"><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i> oops! At minimum, please enter student name and testing extension multiple.</div>
 
 <div class="alert alert-info" role="alert" ng-show="info">There are no tests ready to start at this time.</div>
 
@@ -39,9 +46,6 @@
         <p ng-show="selectAll && !invertSelect">select all</p>
         <p ng-show="clearSelected && !invertSelect">clear selected</p>
         <p ng-show="invertSelect">invert selection</p>
-        <!-- <p ng-show="(selectAll && !invertSelect) || safeCount() == 0">select all</p>
-        <p ng-show="(clearSelected && !invertSelect) || safeCount() == students.length">clear selected</p>
-        <p ng-show="invertSelect || (safeCount() > 0 && !(safeCount() == students.length))">invert selection</p> -->
       </button>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 deleteSelectedStudents" ng-class="{'IIndaryBtnYes': deleteAppear, 'IIndaryBtnNo': !deleteAppear}">
@@ -87,7 +91,7 @@
       <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <input type="text" size="1" class="btn-time form-control" ng-model="student.testOneTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testOneTime)">
       </div>
-      <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testOne')"><i class="fa fa-thumbs-up" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
+      <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testOne')"><i class="fa fa-check checkAdd" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
     </div>
 <!-- End Inline Form -->
 <!-- TEST ONE DATA -->
@@ -210,7 +214,7 @@
       <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <input type="text" size="1" class="btn-time form-control" ng-model="student.testTwoTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="01:00" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testTwoTime)">
       </div>
-      <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testTwo')"><i class="fa fa-thumbs-up" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
+      <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testTwo')"><i class="fa fa-check checkAdd" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
     </div>
 <!-- End Inline Form -->
 <!-- TEST TWO DATA -->
@@ -342,7 +346,7 @@
       <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <input type="text" size="1" class="btn-time form-control" ng-model="student.testThreeTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testThreeTime)">
       </div>
-      <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testThree')"><i class="fa fa-thumbs-up" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
+      <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testThree')"><i class="fa fa-check checkAdd" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
     </div>
 <!-- End Inline Form -->
 <!-- TEST THREE DATA -->
@@ -473,7 +477,7 @@
       <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <input type="text" size="1" class="btn-time form-control" ng-model="student.testFourTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testFourTime)">
       </div>
-      <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testFour')"><i class="fa fa-thumbs-up" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
+      <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testFour')"><i class="fa fa-check checkAdd" aria-hidden="true" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-class="{'thumbsUpOn': mouseover, 'thumbsUpOff': !mouseover}"></i></button>
     </div>
 <!-- End Inline Form -->
 <!-- TEST FOUR DATA -->

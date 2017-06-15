@@ -10,6 +10,10 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     var refreshTime = function() {
       time = Date.now();
       $scope.time = time;
+      if (!timeoutStarted) {
+        $timeout(function dbTimeout(){$scope.checkIfIdle()}, 1800000);
+        var timeoutStarted = true;
+      }
       return $scope.time;
     };
 
@@ -72,9 +76,9 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     $scope.checkIfIdle = function() {
 
       wait = $scope.waitOption
+      idleStudents = 0;
 
       for (i = 0; i < students.length; i++) {
-        idleStudents = 0;
 
         tookTestOne = students[i].isTimerOneStart && students[i].isTestOneOver
         noTestOne = !students[i].isTimerOneStart && !students[i].isTestOneOver && students[i].created_at + wait < Date.now();
@@ -88,7 +92,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         tookTestFour = students[i].isTimerFourStart && students[i].isTestFourOver
         noTestFour = !students[i].isTimerFourStart && !students[i].isTestFourOver && students[i].testThreeEndedAt + wait < Date.now();
 
-        idle = (tookTestOne || noTestOne) && (tookTestTwo || noTestTwo) && (noTestThree || tookTestThree) && (noTestFour || tookTestFour);
+        idle = (tookTestOne || noTestOne) && (tookTestTwo || noTestTwo) && (tookTestThree || noTestThree) && (tookTestFour || noTestFour);
 
         if (idle) {
           idleStudents++;
@@ -101,7 +105,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         $scope.warn = true;
       }
       console.log("anybody idle? " + idleStudents + ". is everybody idle? " + everybodyIsIdle);
-      console.log("")
+
       return $scope.warn;
     };
 
@@ -811,7 +815,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         $scope.deleteAppear = false;
         $timeout(function appear() {$scope.selectAll = true}, 1000);
         $timeout(function appear() {$scope.clickedToDelete = false}, 1000);
-        console.log("clickedToDelete: " + $scope.clickedToDelete);
 
       } else if ($scope.invertSelect) {
         StudentCrud.toggleSelectForDelete(students);
@@ -819,7 +822,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     };
 
     $scope.delete = function(student) {
-      $timeout(toggleInvert(), 1000);
       $scope.selectAll = true;
       $scope.clickedToDelete = false;
       $scope.deleteAppear = false;
@@ -827,6 +829,12 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     };
 
     $scope.deleteSelected = function() {
+
+      $scope.clearSelected = false;
+      $scope.deleteAppear = false;
+      $timeout(function appear() {$scope.selectAll = true}, 1000);
+      $timeout(function appear() {$scope.clickedToDelete = false}, 1000);
+
       for (var i = 0; i < students.length; i++)
         if (students[i].isSafeToDelete) {
           $scope.delete(students[i]);
@@ -834,6 +842,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     };
 
     $scope.deleteAllStudents = function() {
+      $scope.warn = false;
       for (i = 0; i < students.length; i++) {
         $scope.delete(students[i]);
       }

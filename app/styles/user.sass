@@ -173,24 +173,47 @@ section
 
 .alert
   transition: all 1s ease-in-out
+  // min-height: 3em
 
-.yesNoBtn
-    border: 2.5px solid $darkNavy
-    background-color: $bsYellow
-    color: $darkNavy
-    height: 1.8em
-    border-radius: 1em
-    text-decoration: none
-    text-align: center
-    overflow: hidden
-    width: 7em
-    transition: all 1s ease-in-out
-    &:hover
-      transition: all 0.2s ease-in-out
-      background-color: $darkNavy
-      color: $bsYellow
-    &:active
-      background-color: #e7eaeb
+.alert-message
+  overflow: auto
+  // height: 5em
+//   float: left
+//   width: 100%
+  // max-width: 20em
+
+.yesNoContainer
+  width: 7em
+  float: right
+
+.yesBtn, .noBtn
+  border: 2.5px solid $bsRed
+  background-color: #F2DEDE
+  color: $bsRed
+  height: 1.8em
+  border-radius: 1em
+  text-decoration: none
+  text-align: center
+  overflow: hidden
+  width: 3em
+  transition: all 0.2s ease-in-out
+  i
+    color: $bsRed
+  &:active
+    background-color: #e7eaeb
+  &:hover
+    transition: all 0.2s ease-in-out
+    background-color: $bsRed
+    i
+      color: #F2DEDE
+
+.yesBtn
+  float: left
+  transition: all 0.2s ease-in-out
+
+.noBtn
+  float: right
+  transition: all 0.2s ease-in-out
 
 .main-body
   border-radius: 0em
@@ -517,15 +540,13 @@ hr
 // Begin in-line Form CSS
 
 .addTestBtn
-  @extend .addStudentBtn
-  max-width: 1em
+  width: 1em
   position: relative
-
   &:hover
     background-color: $bsBlue
     color: $bgColor
 
-.fa-thumbs-up
+.checkAdd
   color: $bsBlue
   position: absolute
   margin: 0
@@ -533,6 +554,10 @@ hr
   bottom: 0
   right: 0
   left: 0
+
+.addStudentBtn
+  width: 100%
+  min-width: 4em
 
 .thumbsUpOn
   color: $bgColor
@@ -666,15 +691,12 @@ hr
   padding-left: 0.9
   padding-bottom: 10em
 
-.addStudentBtn
+.addStudentBtn, .addTestBtn
   border-radius: 1em
   min-height: 2em
-  /*border: 2.5px solid #4c91cd*/
   border: 2.5px solid $bsBlue
   color: $bsBlue
   background-color: $bgColor
-  width: 100%
-  min-width: 4em
 
   &:active
     background-color: #0B5FAA
