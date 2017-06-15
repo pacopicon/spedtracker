@@ -1,4 +1,4 @@
-<section ng-controller="StudentCtrl" class="user" ng-init="$scope.clearAll()">
+<section ng-controller="StudentCtrl" class="user">
   <!-- <div ng-include="'/templates/navbar.html'"></div> -->
 <body>
 <div class="list-group">
@@ -22,24 +22,34 @@
 <div class="linkWrap">
   <button ui-sref="testDataPrintout" class="link"><p class="linkText">view data printout</p><i class="fa fa-print" aria-hidden="true"></i></button>
 </div>
+<button class= "yesNoBtn" ng-click="checkIfIdle()">check if Idle</button>
+
+<div class="alert alert-warning" role="alert" ng-show="warn"><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i>The students have been inactive for some time.  Would you like to erase the student list and close this session? <button class="yesNoBtn" ng-click="deleteAllStudents()"><i class="fa fa-check" aria-hidden="true"></i></button><button class="yesNoBtn" ng-click="warningRejection()"><i class="fa fa-times" aria-hidden="true"></i></button></div>
+
+<div class="alert alert-danger" role="alert" ng-show="alert"><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i>oops! At minimum, please enter student name and testing extension multiple.</div>
+
+<div class="alert alert-info" role="alert" ng-show="info">There are no tests ready to start at this time.</div>
 
 <!--begin Student Display-->
 <div class="container-fluid main-body w3-panel w3-card-2">
 <!--SELECT / DELETE CONTROLS-->
   <div class="row formControls marginLeft marginRight">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginLeft marginRight btn-wrap mainBtn" ng-class="{'col-lg-6 col-md-6 col-sm-6 col-xs-12 marginLeft btn-wrap mainBtn': clickedToDelete, 'col-lg-12 col-md-12 col-sm-12 col-xs-12 marginLeft marginRight btn-wrap mainBtn': !clickedToDelete}">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginLeft marginRight btn-wrap mainBtn" ng-class="{'col-lg-4 col-md-4 col-sm-4 col-xs-12 marginLeft btn-wrap mainBtn': clickedToDelete, 'col-lg-12 col-md-12 col-sm-12 col-xs-12 marginLeft marginRight btn-wrap mainBtn': !clickedToDelete}">
       <button class="controlBtn selectAll clearAll invertSelection" ng-click="switchControl(students)">
         <p ng-show="selectAll && !invertSelect">select all</p>
         <p ng-show="clearSelected && !invertSelect">clear selected</p>
         <p ng-show="invertSelect">invert selection</p>
+        <!-- <p ng-show="(selectAll && !invertSelect) || safeCount() == 0">select all</p>
+        <p ng-show="(clearSelected && !invertSelect) || safeCount() == students.length">clear selected</p>
+        <p ng-show="invertSelect || (safeCount() > 0 && !(safeCount() == students.length))">invert selection</p> -->
       </button>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 marginRight btn-wrap IIndaryBtn deleteSelectedStudents" ng-show="deleteAppear" ng-class="{'IIndaryBtnYes': clickedToDelete, 'IIndaryBtnNo': !clickedToDelete}">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 marginRight btn-wrap IIndaryBtn deleteSelectedStudents" ng-show="deleteAppear" ng-class="{'IIndaryBtnYes': clickedToDelete, 'IIndaryBtnNo': !clickedToDelete}">
       <button class="controlBtn deleteSelected" ng-click="deleteSelected()">
         <p>delete selected</p>
       </button>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 marginRight btn-wrap IIndaryBtn startSelectedTests" ng-show="deleteAppear" ng-class="{'IIndaryBtnYes': clickedToDelete, 'IIndaryBtnNo': !clickedToDelete}">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 marginRight btn-wrap IIndaryBtn startSelectedTests" ng-show="deleteAppear" ng-class="{'IIndaryBtnYes': clickedToDelete, 'IIndaryBtnNo': !clickedToDelete}">
       <button class="controlBtn deleteSelected" ng-click="startSelectedTests(students)">
         <p>start selected tests</p>
       </button>
@@ -48,8 +58,6 @@
 <!-- END HEADING -->
 
 <!-- BEGIN STUDENT DISPLAY -->
-  <div class="alert alert-danger" role="alert" ng-show="alert">oops! At minimum, please enter student name and testing extension multiple.</div>
-  <div class="alert alert-info" role="alert" ng-show="info">There are no tets ready to start at this time.</div>
   <div class="row studentDisplay marginLeft marginRight col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="student in students" ng-mouseleave="hover = false">
     <div class="student col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <!-- STUDENT: checkbox, name, extend-time-->
@@ -74,7 +82,7 @@
 <!-- Begin Inline Form -->
     <div ng-show="AddInlineTestOne && student.totalTimeOne == 0" class="inlineForm buttonsAndBars">
       <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <input type="text" class="form-control testNameInput" ng-model="student.testOneName" placeholder="enter test" ng-change="students.$save(student)"/>
+        <input type="text" class="form-control testNameInput" ng-model="student.testOneName" placeholder="test" ng-change="students.$save(student)"/>
       </div>
       <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <input type="text" size="1" class="btn-time form-control" ng-model="student.testOneTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testOneTime)">
@@ -606,7 +614,7 @@
       <div class="testOneAndTwo col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="nameAndTime col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="testNameForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input class="form-control testNameInput" ng-model="newtestOneName" placeholder="enter test" />
+            <input class="form-control testNameInput" ng-model="newtestOneName" placeholder="test" />
           </div>
 <!--test time one -->
           <div class="testTimeForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -619,7 +627,7 @@
             <i class="fa fa-plus" aria-hidden="true" ng-click="addTestTwo = true"></i>
           </div>
           <div ng-show="addTestTwo" class="testNameForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input class="form-control testNameInput" ng-model="newtestTwoName" placeholder="enter test" />
+            <input class="form-control testNameInput" ng-model="newtestTwoName" placeholder="test" />
           </div>
 <!--test time two -->
           <div ng-show="addTestTwo" class="testTimeForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -634,7 +642,7 @@
             <i class="fa fa-plus" aria-hidden="true" ng-click="addTestThree = true"></i>
           </div>
           <div ng-show="addTestThree" class="testNameForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input class="form-control testNameInput" ng-model="newtestThreeName" placeholder="enter test" />
+            <input class="form-control testNameInput" ng-model="newtestThreeName" placeholder="test" />
           </div>
 <!--test time three -->
           <div ng-show="addTestThree" class="testTimeForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -647,7 +655,7 @@
             <i class="fa fa-plus" aria-hidden="true" ng-click="addTestFour = true"></i>
           </div>
           <div ng-show="addTestFour" class="testNameForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input class="form-control testNameInput" ng-model="newtestFourName" placeholder="enter test" />
+            <input class="form-control testNameInput" ng-model="newtestFourName" placeholder="test" />
           </div>
 <!--test time four -->
           <div ng-show="addTestFour" class="testTimeForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">

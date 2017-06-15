@@ -1,7 +1,4 @@
 "todo:
-1) Test Hide does not persist travelling from page to page
-2) Make page initialize with all students as 'unsafe to delete'
-3) Fix the width of date pickers in large window width
 2) Create Self-destructing data: if last test extended End time has elapsed and computer is idle: erase all data.
 3) Add User profiles, add students to user relationship
 4) Add User authentication

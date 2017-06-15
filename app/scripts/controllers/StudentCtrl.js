@@ -67,7 +67,47 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       return processedTime;
     };
 
-    // var countup = 18000000;
+    $scope.waitOption = 1800000;
+
+    $scope.checkIfIdle = function() {
+
+      wait = $scope.waitOption
+
+      for (i = 0; i < students.length; i++) {
+        idleStudents = 0;
+
+        tookTestOne = students[i].isTimerOneStart && students[i].isTestOneOver
+        noTestOne = !students[i].isTimerOneStart && !students[i].isTestOneOver && students[i].created_at + wait < Date.now();
+
+        tookTestTwo = students[i].isTimerTwoStart && students[i].isTestTwoOver
+        noTestTwo = !students[i].isTimerTwoStart && !students[i].isTestTwoOver && students[i].testOneEndedAt + wait < Date.now();
+
+        tookTestThree = students[i].isTimerThreeStart && students[i].isTestThreeOver
+        noTestThree = !students[i].isTimerThreeStart && !students[i].isTestThreeOver && students[i].testTwoEndedAt + wait < Date.now();
+
+        tookTestFour = students[i].isTimerFourStart && students[i].isTestFourOver
+        noTestFour = !students[i].isTimerFourStart && !students[i].isTestFourOver && students[i].testThreeEndedAt + wait < Date.now();
+
+        idle = (tookTestOne) && (tookTestTwo || noTestTwo) && (noTestTwo || noTestThree || tookTestThree) && (noTestTwo || noTestThree || noTestFour || tookTestFour);
+
+        if (idle) {
+          idleStudents++;
+        }
+      }
+
+      everybodyIsIdle = idleStudents == students.length;
+
+      if (everybodyIsIdle) {
+        $scope.warn = true;
+      }
+      console.log("anybody idle? " + idleStudents + ". is everybody idle? " + everybodyIsIdle);
+      return $scope.warn;
+    };
+
+    $scope.warningRejection = function() {
+      $scope.warn = false;
+      $scope.waitOption += 1800000;
+    }
 
     $scope.timer = function(student, testNo) {
 
@@ -100,12 +140,17 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
           bottomBarWidth = 100 * bottomBarRatio;
           countdown = processTime(totalTime, 19);
         // timer 1 runs out to zero
-        } else if (student.totalTimeOne + student.testOneStartTime - Date.now() <= 0 && !student.isTimerOnePaused && !student.isTestOneOver) {
+        } else if (totalTime + testStartTime - Date.now() <= 0 && !student.isTimerOnePaused && !student.isTestOneOver) {
           topBarWidth = 0;
           bottomBarWidth = 0;
           countdown = 18000000;
           student.isTestOneOver = true;
           student.isTimerOnePaused = false;
+
+          if (totalTime + testStartTime + waitOption - Date.now() <= 0) {
+            checkIfIdle(waitOption);
+          }
+
           students.$save(student).then(function() {
           });
         // timer is counting down (test 1)
@@ -164,13 +209,18 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
           countdown = processTime(totalTime, 19);
           // timer 1 runs out to zero
-        } else if (student.totalTimeTwo + student.testTwoStartTime - Date.now() <= 0 && !student.isTimerTwoPaused && !student.isTestTwoOver) {
+        } else if (totalTime + testStartTime - Date.now() <= 0 && !student.isTimerTwoPaused && !student.isTestTwoOver) {
           topBarWidth = 0;
           bottomBarWidth = 0;
 
           countdown = 18000000;
           student.isTestTwoOver = true;
           student.isTimerTwoPaused = false;
+
+          if (totalTime + testStartTime + waitOption - Date.now() <= 0) {
+            checkIfIdle(waitOption);
+          }
+
           students.$save(student).then(function() {
           });
         // timer is counting down (test 2)
@@ -230,13 +280,18 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
           countdown = processTime(totalTime, 19);
           // timer 1 runs out to zero
-        } else if (student.totalTimeThree + student.testThreeStartTime - Date.now() <= 0 && !student.isTimerThreePaused && !student.isTestThreeOver) {
+        } else if (totalTime + testStartTime - Date.now() <= 0 && !student.isTimerThreePaused && !student.isTestThreeOver) {
           topBarWidth = 0;
           bottomBarWidth = 0;
 
           countdown = 18000000;
           student.isTestThreeOver = true;
           student.isTimerThreePaused = false;
+
+          if (totalTime + testStartTime + waitOption - Date.now() <= 0) {
+            checkIfIdle(waitOption);
+          }
+
           students.$save(student).then(function() {
           });
         // timer is counting down (test 2)
@@ -296,13 +351,18 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
           countdown = processTime(totalTime, 19);
           // timer 1 runs out to zero
-        } else if (student.totalTimeFour + student.testFourStartTime - Date.now() <= 0 && !student.isTimerFourPaused && !student.isTestFourOver) {
+        } else if (totalTime + testStartTime - Date.now() <= 0 && !student.isTimerFourPaused && !student.isTestFourOver) {
           topBarWidth = 0;
           bottomBarWidth = 0;
 
           countdown = 18000000;
           student.isTestFourOver = true;
           student.isTimerFourPaused = false;
+
+          if (totalTime + testStartTime + waitOption - Date.now() <= 0) {
+            checkIfIdle(waitOption);
+          }
+
           students.$save(student).then(function() {
           });
         // timer is counting down (test 2)
@@ -660,8 +720,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     $scope.addStudent = function() {
       if ($scope.newStudentName && $scope.timewrap.selectedTime) {
         StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newtestOneName, $scope.newDueDateOne, $scope.newtestTwoName, $scope.newDueDateTwo, $scope.newtestThreeName, $scope.newDueDateThree, $scope.newtestFourName, $scope.newDueDateFour);
-        var owner = "addStudent at " + Date.now();
-        toggleInvert(owner);
+        toggleInvert();
       } else {
         $scope.alert = true;
         $timeout(function turnOffAlert() {$scope.alert = false}, 5000);
@@ -686,15 +745,10 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
     $scope.saveAndToggleInvert = function(student) {
       students.$save(student);
-      $scope.toggleInvert();
+      toggleInvert();
     };
 
-    $scope.clearAll = function() {
-      for (i = 0; i < students.length; i++) {
-        students[i].isSafeToDelete = false;
-      }
-    }
-    $scope.toggleInvert = function() {
+    var toggleInvert = function() {
 
       var unsafeCount = 0;
       var safeCount = 0;
@@ -711,7 +765,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
       if (safeCount > 0) {
         $scope.clickedToDelete = true;
-        $timeout(function appear() {$scope.deleteAppear = true}, 1000);
+        $timeout(function appear() {$scope.deleteAppear = true}, 3000);
       } else {
         $scope.clickedToDelete = false;
         $scope.deleteAppear = false;
@@ -740,6 +794,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     }
 
     $scope.switchControl = function(students) {
+      toggleInvert();
       if ($scope.selectAll && !$scope.invertSelect) {
 
         StudentCrud.toggleSelectForDelete(students);
@@ -747,7 +802,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         $scope.invertSelect = false;
         $scope.clickedToDelete = true;
         $timeout(function appear() {$scope.clearSelected = true}, 1000);
-        $timeout(function appear() {$scope.deleteAppear = true}, 1000);
+        $timeout(function appear() {$scope.deleteAppear = true}, 3000);
         // $scope.clearSelected = true;
         // $scope.deleteAppear = true;
 
@@ -764,7 +819,15 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       } else if ($scope.invertSelect) {
         StudentCrud.toggleSelectForDelete(students);
       }
-    }
+    };
+
+    $scope.delete = function(student) {
+      $timeout(toggleInvert(), 1000);
+      $scope.selectAll = true;
+      $scope.clickedToDelete = false;
+      $scope.deleteAppear = false;
+      StudentCrud.delete(student);
+    };
 
     $scope.deleteSelected = function() {
       for (var i = 0; i < students.length; i++)
@@ -773,13 +836,10 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         }
     };
 
-    $scope.delete = function(student) {
-      var owner = "delete at " + Date.now();
-      $timeout(toggleInvert(owner), 1000);
-      $scope.selectAll = true;
-      $scope.clickedToDelete = false;
-      $scope.deleteAppear = false;
-      StudentCrud.delete(student);
+    $scope.deleteAllStudents = function() {
+      for (i = 0; i < students.length; i++) {
+        $scope.delete(students[i]);
+      }
     };
 
     $scope.startSelectedTests = function(students) {

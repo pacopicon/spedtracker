@@ -169,6 +169,29 @@ section
 
 /* end css for clock */
 
+// Begin CSS for Alerts
+
+.alert
+  transition: all 1s ease-in-out
+
+.yesNoBtn
+    border: 2.5px solid $darkNavy
+    background-color: $bsYellow
+    color: $darkNavy
+    height: 1.8em
+    border-radius: 1em
+    text-decoration: none
+    text-align: center
+    overflow: hidden
+    width: 2em
+    transition: all 1s ease-in-out
+    &:hover
+      transition: all 0.2s ease-in-out
+      background-color: $darkNavy
+      color: $bsYellow
+    &:active
+      background-color: #e7eaeb
+
 .main-body
   border-radius: 0em
   padding: 1em
@@ -188,7 +211,7 @@ section
   margin-bottom: 0.5em
 
 .mainBtn
-  transition: all 0.5s ease-in-out
+  transition: all 1s ease-in-out
 
 .IIndaryBtnYes
   transition: all 1s ease-in-out
@@ -218,9 +241,6 @@ section
 // end CSS for SelectAll / ClearAll / InvertSelect
 
 // Begin CSS for student Display and Student data
-
-.alert
-  transition: all 1s ease-in-out
 
 .studentDisplay
   display: table-row
@@ -607,7 +627,7 @@ hr
 
 .testNameForm
   float: left
-  width: 63%
+  width: 48%
 
 .testOneAndTwo
   padding-left: 0
@@ -625,7 +645,7 @@ hr
 .testNameInput
 
 .testTimeForm
-  width: 37%
+  width: 52%
   float: right
 
 .inlineTestTimeForm

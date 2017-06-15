@@ -267,8 +267,8 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
         students.$remove(student).then(function() {
           console.log("student, which is now " + student + ", has been removed");
-          });
-        }
+        });
+      }
 
     }; // end of Return
 
