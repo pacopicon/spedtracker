@@ -183,7 +183,7 @@ section
     text-decoration: none
     text-align: center
     overflow: hidden
-    width: 2em
+    width: 7em
     transition: all 1s ease-in-out
     &:hover
       transition: all 0.2s ease-in-out
@@ -211,14 +211,24 @@ section
   margin-bottom: 0.5em
 
 .mainBtn
-  transition: all 1s ease-in-out
+  padding-right: 7.5px
+  padding-left: 7.5px
+  transition: all 0.5s ease-in-out
+
+.deleteSelectedStudents
+  padding-right: 7.5px
+  padding-left: 7.5px
+
+.startSelectedTests
+  @extend .deleteSelectedStudents
+
 
 .IIndaryBtnYes
   transition: all 1s ease-in-out
 
 .IIndaryBtnNo
-  transition: all 1s ease-in-out
   display: none
+  transition: all 1s ease-in-out
 
 .controlBtn
   border: 2.5px solid $darkNavy

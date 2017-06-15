@@ -34,7 +34,7 @@
 <div class="container-fluid main-body w3-panel w3-card-2">
 <!--SELECT / DELETE CONTROLS-->
   <div class="row formControls marginLeft marginRight">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginLeft marginRight btn-wrap mainBtn" ng-class="{'col-lg-4 col-md-4 col-sm-4 col-xs-12 marginLeft btn-wrap mainBtn': clickedToDelete, 'col-lg-12 col-md-12 col-sm-12 col-xs-12 marginLeft marginRight btn-wrap mainBtn': !clickedToDelete}">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainBtn" ng-class="{'col-lg-4 col-md-4 col-sm-4 col-xs-12 mainBtn': clickedToDelete, 'col-lg-12 col-md-12 col-sm-12 col-xs-12 mainBtn': !clickedToDelete}">
       <button class="controlBtn selectAll clearAll invertSelection" ng-click="switchControl(students)">
         <p ng-show="selectAll && !invertSelect">select all</p>
         <p ng-show="clearSelected && !invertSelect">clear selected</p>
@@ -44,12 +44,12 @@
         <p ng-show="invertSelect || (safeCount() > 0 && !(safeCount() == students.length))">invert selection</p> -->
       </button>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 marginRight btn-wrap IIndaryBtn deleteSelectedStudents" ng-show="deleteAppear" ng-class="{'IIndaryBtnYes': clickedToDelete, 'IIndaryBtnNo': !clickedToDelete}">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 deleteSelectedStudents" ng-class="{'IIndaryBtnYes': deleteAppear, 'IIndaryBtnNo': !deleteAppear}">
       <button class="controlBtn deleteSelected" ng-click="deleteSelected()">
         <p>delete selected</p>
       </button>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 marginRight btn-wrap IIndaryBtn startSelectedTests" ng-show="deleteAppear" ng-class="{'IIndaryBtnYes': clickedToDelete, 'IIndaryBtnNo': !clickedToDelete}">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 startSelectedTests" ng-class="{'IIndaryBtnYes': deleteAppear, 'IIndaryBtnNo': !deleteAppear}">
       <button class="controlBtn deleteSelected" ng-click="startSelectedTests(students)">
         <p>start selected tests</p>
       </button>
