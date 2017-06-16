@@ -1,4 +1,43 @@
 <section ng-controller="LandingCtrl" class="hero-content">
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // TODO: Implement getParameterByName()
+
+    // Get the action to complete.
+    var mode = getParameterByName('mode');
+    // Get the one-time code from the query parameter.
+    var actionCode = getParameterByName('oobCode'};
+    // (Optional) Get the API key from the query parameter.
+    var apiKey = getParameterByName('apiKey'};
+
+    // Configure the Firebase SDK.
+    // This is the minimum configuration required for the API to be used.
+    var config = {
+      'apiKey': apiKey  // This key could also be copied from the web
+                        // initialization snippet found in the Firebase console.
+    };
+    var app = firebase.initializeApp(config);
+    var auth = app.auth();
+
+    // Handle the user management action.
+    switch (mode) {
+      case 'resetPassword':
+        // Display reset password handler and UI.
+        handleResetPassword(auth, actionCode);
+        break;
+      case 'recoverEmail':
+        // Display email recovery handler and UI.
+        handleRecoverEmail(auth, actionCode);
+        break;
+      case 'verifyEmail':
+        // Display email verification handler and UI.
+        handleVerifyEmail(auth, actionCode);
+        break;
+      default:
+        // Error: invalid mode.
+    }
+  }, false);
+</script>
   <div class="hero-title">
     <h1>{{hero.title}}</h1>
   </div>
@@ -6,10 +45,16 @@
 <div class="link-container">
   <div ng-controller="LandingCtrl" class="form-group forms">
     <input type="text" class="form-control emailForm" ng-model="email" placeholder="enter e-mail" />
-    <input type="text" class="form-control passwordForm" ng-model="pass" placeholder="enter password" />
+    <input type={{inputType}} class="form-control passwordForm" ng-model="password" placeholder="enter password" />
+    <input type="checkbox" id="checkbox" ng-model="passwordCheckbox" ng-click="hideShowPassword()" />
+    <label for="checkbox" ng-if="passwordCheckbox">Hide password</label>
+    <label for="checkbox" ng-if="!passwordCheckbox">Show password</label>
 
-    <div ng-click="signup(email, password)" class="signup"><p>sign up</p></div>
+
+    <div ng-click="signup(email, password)" ng-hide="logoutAppear" class="signup"><p>sign up</p></div>
+    <div ng-click="sign()" class="login" ng-show="logoutAppear"><p>log out</p></div>
     <div ng-click="login(email, password)" class="login"><p>log in</p></div>
+
   </div>
 </div>
 <section class="selling-points container clearfix">

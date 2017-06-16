@@ -17,6 +17,10 @@ firebase.initializeApp(config);
 
     var auth = firebase.auth();
 
+    var usersRef = firebase.database().ref().child("users");
+    var users = $firebaseArray(usersRef);
+
+
     return {
       getStudents: function() {
         return students;
@@ -29,6 +33,14 @@ firebase.initializeApp(config);
       getAuth: function() {
         console.log("auth = ", firebase.auth());
         return auth;
+      },
+
+      getUsers: function() {
+        return users;
+      },
+
+      getUsersRef: function() {
+        return usersRef;
       }
 
     };
