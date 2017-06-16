@@ -301,7 +301,7 @@ section
   padding-left: 0
 
 .indexAndNameCell
-  width: 9em
+  min-width: 5em
 
 .indexAndNameCell
   p
@@ -325,7 +325,7 @@ section
 
 .deleteBtn
   padding-top: 0.2em
-  float: right
+  float: left
   font-size: 1em
   width: 1em
   margin: 0
@@ -544,7 +544,8 @@ hr
   position: relative
   &:hover
     background-color: $bsBlue
-    color: $bgColor
+    i
+      color: $bgColor
 
 .checkAdd
   color: $bsBlue
@@ -558,12 +559,6 @@ hr
 .addStudentBtn
   width: 100%
   min-width: 4em
-
-.thumbsUpOn
-  color: $bgColor
-
-.thumbsUpOff
-  color: $bsBlue
 
 .inlineForm
   padding: 0

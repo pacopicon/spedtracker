@@ -8,8 +8,13 @@ spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvid
     });
 
     $stateProvider
-        .state('testTracker', {
+        .state('landing', {
             url: '/',
+            controller: 'LandingCtrl',
+            templateUrl: '/templates/landing.html'
+        })
+        .state('testTracker', {
+            url: '/testTracker',
             controller: 'StudentCtrl',
             templateUrl: '/templates/testTracker.html'
         })
@@ -30,11 +35,7 @@ spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvid
         });
 
       // $stateProvider
-      //     .state('landing', {
-      //         url: '/',
-      //         controller: 'LandingCtrl',
-      //         templateUrl: '/templates/landing.html'
-      //     })
+      //
       //     .state('user', {
       //         url: '/user',
       //         controller: 'StudentCtrl',

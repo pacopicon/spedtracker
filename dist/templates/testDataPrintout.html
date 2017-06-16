@@ -38,10 +38,10 @@
         <p ng-show="student.testTwoStartRecord">{{endTime(student, "exttestTwo") | date: 'mediumTime'}}</p>
         <p ng-show="student.testThreeStartRecord">{{endTime(student, "exttestThree") | date: 'mediumTime'}}</p>
         <p ng-show="student.testFourStartRecord">{{endTime(student, "exttestFour") | date: 'mediumTime'}}</p></td>
-      <td class="cell"><p ng-show="student.testOneEndedAt">{{student.testOneEndedAt}}</p>
-        <p ng-show="student.testTwoEndedAt">{{student.testTwoEndedAt}}</p>
-        <p ng-show="student.testThreeEndedAt">{{student.testThreeEndedAt}}</p>
-        <p ng-show="student.testFourEndedAt">{{student.testFourEndedAt}}</p></td>
+      <td class="cell"><p ng-show="student.testOneEndedAt">{{endTime(student, "actualEndOne") | date: 'mediumTime'}}</p>
+        <p ng-show="student.testTwoEndedAt">{{endTime(student, "actualEndTwo") | date: 'mediumTime'}}</p>
+        <p ng-show="student.testThreeEndedAt">{{endTime(student, "actualEndThree") | date: 'mediumTime'}}</p>
+        <p ng-show="student.testFourEndedAt">{{endTime(student, "actualEndFour") | date: 'mediumTime'}}</p></td>
       <td class="cell"><p ng-show="student.pausedTotalOne">{{totalPausedTime(student, "testOne").hourMinSec}}</p>
         <p ng-show="student.pausedTotalTwo">{{totalPausedTime(student, "testTwo").hourMinSec}}</p>
         <p ng-show="student.pausedTotalThree">{{totalPausedTime(student, "testThree").hourMinSec}}</p>
