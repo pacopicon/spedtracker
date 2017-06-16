@@ -4,9 +4,9 @@
   </div>
 </section>
 <div class="link-container">
-  <div ng-controller="AuthCtrl" class="form-group forms">
-    <input class="form-control emailForm" ng-model="email" placeholder="enter e-mail" />
-    <input class="form-control passwordForm" ng-model="pass" placeholder="enter password" />
+  <div ng-controller="LandingCtrl" class="form-group forms">
+    <input type="text" class="form-control emailForm" ng-model="email" placeholder="enter e-mail" />
+    <input type="text" class="form-control passwordForm" ng-model="pass" placeholder="enter password" />
 
     <div ng-click="signup(email, password)" class="signup"><p>sign up</p></div>
     <div ng-click="login(email, password)" class="login"><p>log in</p></div>
