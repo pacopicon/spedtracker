@@ -14,7 +14,7 @@ $btnHeight: 1.5em
 // @import "variables.sass"
 
 body.landing
-     /*background-color: #4c91cd*/
+     /*background-color: $bsBlue*/
 
 .link-container
   /*position: relative;*/
@@ -22,55 +22,74 @@ body.landing
 
 .forms
   position: relative
-  width: 30%
-  min-width: 20em
-  left: 33%
+  // width: 50%
   height: 10em
+
+.formWrap
+  position: absolute
+  width: 25%
+  margin: 0 auto
+  left: 0
+  top: 0
+  bottom: 0
+  right: 0
 
 
 .emailForm, .passwordForm
   width: 100%
-  height: 3em
+  height: 2.5em
   border-radius: 1.5em
   margin-bottom: 1em
 
-.signup, .login
-  height: 3em
-  width: 10em
+.passwordForm
+  margin-bottom: 0.7em
+
+.signup, .login, .logout
+  min-height: 2.5em
+  min-width: 2em
   border-radius: 1.5em
-  border: 2.5px solid #4c91cd
+  border: 2.5px solid $bsBlue
+  cursor: pointer
+  p
+    font-size: 20px
+    margin: 0
+    line-height: 1.5em
+    text-align: center
+    font-family: 'Montserrat', sans-serif
+    color: $bsBlue
+    overflow: auto
+  &:hover
+    background-color: $bsBlue
+    color: $bgColor
+    p
+      color: $bgColor
+  &:active
+    color: $darkNavy
+    p
+      color: white
 
-.signup p, .login p
-  font-size: 20px
-  letter-spacing: 0
-  text-align: center
-  padding-top: 0.2em
-  font-family: 'Montserrat', sans-serif
-  color: #4c91cd
+.checkboxWrap
+  min-height: 0.25em
 
-.signup p:active, .login p:active
-  color: white
+.manageBtnWrap
+  height: 3em
+  padding-left: 0
+  padding-right: 0
 
-.login:active, .signup:active
-  background-color: #4c91cd
-
-.signup
+.signup, .logOut
   float: left
-  /*margin-left: 5em*/
 
 .login
   float: right
-  /*margin-right: 5em*/
 
-.signup:hover, .login:hover
-  /*background-color: #3f4e62*/
+.interBtnSpace
+  padding-left: 0
+  padding-right: 0
+  width: 0.5em
 
-
-.signup p:hover, .login p:hover
-  color: white
 
 .fa-user-plus, .fa-sign-in
-  color: #4c91cd
+  color: $bsBlue
   font-size: 25px
 
 .textbox
@@ -100,13 +119,13 @@ body.landing
   // -moz-transform: translateY(-50%)
   // transform: translateY(-50%)
   width: 100%
-  color: #4c91cd
+  color: $bsBlue
   text-align: center
   font-size: 4rem
   font-weight: 300
   text-transform: uppercase
 
-   /*text-shadow: 12px 12px 12px #4c91cd*/
+   /*text-shadow: 12px 12px 12px $bsBlue*/
 
 .selling-points
   position: relative
@@ -129,5 +148,5 @@ body.landing
 .ion-university,
 .ion-thumbsup,
 .ion-upload
-  color: #4c91cd
+  color: $bsBlue
   font-size: 5rem

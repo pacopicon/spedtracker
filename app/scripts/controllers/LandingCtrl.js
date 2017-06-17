@@ -1,5 +1,5 @@
-spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "FirebaseRef", "UserCrud",
-  function($scope, $rootScope, FirebaseRef, UserCrud) {
+spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRef", "UserCrud",
+  function($scope, $rootScope, $q, FirebaseRef, UserCrud) {
 
   // var ref = new Firebase("https://spedtracker.firebaseio.com");
   // var auth = $firebaseAuth(ref);
@@ -30,25 +30,19 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "FirebaseRef", "U
     console.log("auth", auth);
     promise = auth.createUserWithEmailAndPassword(email, password);
     promise.catch(e => console.log(e.message));
-    console.log("promise = ", promise);
-
-    var user = auth.currentUser;
-
-    console.log("current user uid =", user.uid);
-
-    user.sendEmailVerification().then(function() {
-      console.log("verification e-mail sent");
-    }, function(error) {
-      console.log(error);
-    });
+    console.log("createUserPromise = ", promise);
 
   }
 
   auth.onAuthStateChanged(user => {
     if (user) {
       // User is signed in.
+      var user = user
+      // var user = auth.currentUser;
 
-      // $scope.logoutAppear = true;
+      console.log("current user uid =", user.uid);
+
+      $scope.logoutAppear = true;
 
       var displayName = user.displayName;
       var email = user.email;
@@ -85,40 +79,56 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "FirebaseRef", "U
       // User is signed out.
       // ...
     }
-    console.log("user.getToken() = ", user.getToken());
+    // console.log("user.getToken() = ", user.getToken());
   });
+
+  if (typeof user !== "undefined") {
+    user.sendEmailVerification().then(function() {
+      console.log("verification e-mail sent");
+    }, function(error) {
+      console.log(error);
+    });
+  }
+
+
+  $rootScope.$on("$stateChangeStart", function(){
+    });
+
+  $scope.go = function() {
+    $state.go('testTracker');
+  };
 
   $scope.signOut = function() {
     auth.signOut();
   };
-
-// if user forgets e-mail.
-  auth.sendPasswordResetEmail(user.email).then(function() {
-    // Email sent.
-  }, function(error) {
-    // An error happened.
-  });
-
-
-// user delete
-  var user = firebase.auth().currentUser;
-
-  user.delete().then(function() {
-    // User deleted.
-  }, function(error) {
-    // An error happened.
-  });
-
-// re-authentication in case Account Deletion, Primary Email Setup, and Password Change take too long:
-  var user = firebase.auth().currentUser;
-  var credential;
-
-// Prompt the user to re-provide their sign-in credentials
-  user.reauthenticate(credential).then(function() {
-    // User re-authenticated.
-  }, function(error) {
-    // An error happened.
-  });
+//
+// // if user forgets e-mail.
+//   auth.sendPasswordResetEmail(user.email).then(function() {
+//     // Email sent.
+//   }, function(error) {
+//     // An error happened.
+//   });
+//
+//
+// // user delete
+//   var user = firebase.auth().currentUser;
+//
+//   user.delete().then(function() {
+//     // User deleted.
+//   }, function(error) {
+//     // An error happened.
+//   });
+//
+// // re-authentication in case Account Deletion, Primary Email Setup, and Password Change take too long:
+//   var user = firebase.auth().currentUser;
+//   var credential;
+//
+// // Prompt the user to re-provide their sign-in credentials
+//   user.reauthenticate(credential).then(function() {
+//     // User re-authenticated.
+//   }, function(error) {
+//     // An error happened.
+//   });
 
 
 

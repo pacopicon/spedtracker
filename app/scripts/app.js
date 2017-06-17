@@ -6,7 +6,7 @@ spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvid
         enabled: true,
         requireBase: false
     });
-
+// https://spedtracker.firebaseapp.com/__/auth/action
     $stateProvider
         .state('landing', {
             url: '/',
