@@ -4,8 +4,8 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
   // var ref = new Firebase("https://spedtracker.firebaseio.com");
   // var auth = $firebaseAuth(ref);
 
-  auth = FirebaseRef.getAuth();
-  users = UserCrud.getAllUsers();
+  var auth = FirebaseRef.getAuth();
+  var users = UserCrud.getAllUsers();
 
   $scope.inputType = 'password';
 
@@ -71,6 +71,7 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
       // var user = auth.currentUser;
 
       console.log("current user uid =", user.uid);
+      console.log("current user =", auth.currentUser);
 
       // $scope.logoutAppear = true;
 
@@ -80,8 +81,8 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
       // var emailVerified = user.emailVerified;
       // var photoURL = user.photoURL;
       // var isAnonymous = user.isAnonymous;
-      var uid = user.uid;
-      UserCrud.addUser(uid);
+      // var uid = user.uid;
+      UserCrud.addUser(user.uid);
 
       if (uid = user.uid) {
         $scope.currentUser = user
