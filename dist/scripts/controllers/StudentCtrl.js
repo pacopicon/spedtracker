@@ -5,6 +5,8 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
     $scope.students = StudentCrud.getAllStudents();
 
+    $scope.users = UserCrud.getAllUsers();
+
     var students = $scope.students;
 
     var refreshTime = function() {
@@ -14,11 +16,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     };
 
     $interval(refreshTime, 1000);
-
-    if (!timeoutStarted) {
-      $timeout(function dbTimeout(){$scope.checkIfIdle()}, 1800000);
-      var timeoutStarted = true;
-    }
 
     // Custom Time in case a student already began the test
     $scope.newDueDate = new Date().setMinutes(0, 0);
@@ -110,9 +107,15 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       return $scope.warn;
     };
 
+    if (!timeoutStarted) {
+      $timeout(function dbTimeout(){$scope.checkIfIdle()}, 0);
+      var timeoutStarted = true;
+    }
+
     $scope.warningRejection = function() {
       $scope.warn = false;
       $scope.waitOption += 1800000;
+      var timeoutStarted = false;
     }
 
     $scope.timer = function(student, testNo) {
@@ -153,7 +156,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
           student.isTestOneOver = true;
           student.isTimerOnePaused = false;
 
-          checkIfIdle();
+        $scope.checkIfIdle();
 
           students.$save(student).then(function() {
           });
@@ -221,7 +224,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
           student.isTestTwoOver = true;
           student.isTimerTwoPaused = false;
 
-          checkIfIdle();
+        $scope.checkIfIdle();
 
           students.$save(student).then(function() {
           });
@@ -290,7 +293,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
           student.isTestThreeOver = true;
           student.isTimerThreePaused = false;
 
-          checkIfIdle();
+        $scope.checkIfIdle();
 
           students.$save(student).then(function() {
           });
@@ -359,7 +362,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
           student.isTestFourOver = true;
           student.isTimerFourPaused = false;
 
-            checkIfIdle();
+          $scope.checkIfIdle();
 
           students.$save(student).then(function() {
           });

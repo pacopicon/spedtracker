@@ -23,10 +23,11 @@ body.landing
 .forms
   position: relative
   // width: 50%
-  height: 10em
+  height: 30em
 
 .formWrap
   position: absolute
+  // height: 100%
   width: 25%
   margin: 0 auto
   left: 0
@@ -44,16 +45,19 @@ body.landing
 .passwordForm
   margin-bottom: 0.7em
 
-.signup, .login, .logout
+.leftBtn, .rightBtn, .bottomBtn, .topBtn
   min-height: 2.5em
   min-width: 2em
   border-radius: 1.5em
   border: 2.5px solid $bsBlue
   cursor: pointer
+  padding: 0.3em
+  margin-bottom: 0.7em
   p
     font-size: 20px
     margin: 0
-    line-height: 1.5em
+    padding: 0
+    line-height: 1.1em
     text-align: center
     font-family: 'Montserrat', sans-serif
     color: $bsBlue
@@ -72,15 +76,20 @@ body.landing
   min-height: 0.25em
 
 .manageBtnWrap
-  height: 3em
+  height: 10em
   padding-left: 0
   padding-right: 0
 
-.signup, .logOut
+.leftBtn
   float: left
 
-.login
+.rightBtn
   float: right
+
+.bottomBtn
+
+.upBtn
+
 
 .interBtnSpace
   padding-left: 0

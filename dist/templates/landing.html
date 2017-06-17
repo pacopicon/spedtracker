@@ -44,20 +44,41 @@
 </section>
 <div class="link-container">
   <div ng-controller="LandingCtrl" class="form-group forms">
-    <div class="formWrap">
+    <div ng-hide="createAnAccount" class="formWrap">
+      <div ng-hide="forward" class="manageBtnWrap col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="leftBtn col-lg-5 col-md-5 col-sm-5 col-xs-5" ng-click="choseLoginMethod('with password')"><p>log in with password</p></div>
+        <div class="rightBtn col-lg-5 col-md-5 col-sm-5 col-xs-5" ng-click="choseLoginMethod('without password')"><p>log in as guest</p></div>
+      </div>
+      <div ng-show="loginWithPassword && forward" class="loginWithPassword">
+        <input type="text" class="form-control emailForm" ng-model="email" placeholder="enter e-mail" />
+        <input type={{inputType}} class="form-control passwordForm" ng-model="password" placeholder="enter password" />
+        <div class="checkboxWrap">
+          <input type="checkbox" class="passCheckbox" ng-model="passwordCheckbox" ng-click="hideShowPassword()" />
+          <label for="checkbox" ng-if="passwordCheckbox">Hide password</label>
+          <label for="checkbox" ng-if="!passwordCheckbox">Show password</label>
+        </div>
+        <div class="manageBtnWrap col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="leftBtn col-lg-5 col-md-5 col-sm-5 col-xs-5" ng-click="signup(email, password)"><p>sign up</p></div>
+          <!-- <div class="leftBtn col-lg-5 col-md-5 col-sm-5 col-xs-5" ng-click="signOut()" ng-show="logoutAppear "><p>log out</p></div> -->
+          <div class="rightBtn col-lg-5 col-md-5 col-sm-5 col-xs-5" ng-click="login(email, password)"><p>log in</p></div>
+          <div class="bottomBtn col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="loginWithPassword = false"><p>log in without password</p></div>
+        </div>
+      </div>
+      <div ng-show="!loginWithPassword && forward" class="manageBtnWrap col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="topBtn col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="loginAnonymously()" class="login"><p>log in</p></div>
+        <div class="bottomBtn col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="loginWithPassword = true"><p>log in with password</p></div>
+      </div>
+    </div>
+    <div ng-show="createAnAccount" class="formWrap">
+      <input type="text" class="form-control emailForm" ng-model="name" placeholder="enter name" />
+      <input type="text" class="form-control emailForm" ng-model="lastName" placeholder="enter last name" />
       <input type="text" class="form-control emailForm" ng-model="email" placeholder="enter e-mail" />
       <input type={{inputType}} class="form-control passwordForm" ng-model="password" placeholder="enter password" />
-      <div class="checkboxWrap">
-        <input type="checkbox" class="passCheckbox" ng-model="passwordCheckbox" ng-click="hideShowPassword()" />
-        <label for="checkbox" ng-if="passwordCheckbox">Hide password</label>
-        <label for="checkbox" ng-if="!passwordCheckbox">Show password</label>
-      </div>
+      <input type="text" class="form-control emailForm" ng-model="state" placeholder="enter state" />
+      <input type="text" class="form-control emailForm" ng-model="city" placeholder="enter city" />
+      <input type="text" class="form-control emailForm" ng-model="school" placeholder="enter school" />
       <div class="manageBtnWrap col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="signup col-lg-5 col-md-5 col-sm-5 col-xs-5" ng-click="signup(email, password)" ng-hide="logoutAppear" ><p>sign up</p></div>
-        <div class="logOut col-lg-5 col-md-5 col-sm-5 col-xs-5" ng-click="signOut()" ng-show="logoutAppear "><p>log out</p></div>
-        <!-- <div class="interBtnSpace"></div> -->
-        <!-- <div class="login col-lg-5 col-md-5 col-sm-5 col-xs-5" ng-click="login(email, password)" class="login"><p>log in</p></div> -->
-        <div class="login col-lg-5 col-md-5 col-sm-5 col-xs-5" ng-click="go()" class="login"><p>go</p></div>
+        <div class="bottomBtn col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="createUser()"><p>sign up</p></div>
       </div>
     </div>
   </div>

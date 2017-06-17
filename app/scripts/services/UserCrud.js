@@ -10,15 +10,31 @@ spedtracker.factory("UserCrud", ["FirebaseRef",
       return users
     },
 
-    addUser: function(name, email, password, isEmailVerified, photoURL, uid) {
+    addUser: function(uid) {
+
+      id = (Math.round(Date.now() * Math.random()*16)).toString(16);
+
       users.$add({
-        name: name,
-        email: email,
-        password: password,
-        verified: isEmailVerified,
-        photoURL: photoURL,
-        uid: uid,
+        name: '',
+        name: '',
+        email: '',
+        password: '',
+        state: '',
+        city: '',
+        school: '',
+        // name: name,
+        // name: lastName,
+        // email: email,
+        // password: password,
+        // state: state,
+        // city: city,
+        // school: school,
+        uid: 0,
+        verified: false,
+        photoURL: '',
+        id: id,
         loginLog: 0,
+        createdAT: firebase.database.ServerValue.TIMESTAMP,
         lastLogin: firebase.database.ServerValue.TIMESTAMP
       }).then(function(usersRef) {
         var id = usersRef.key;

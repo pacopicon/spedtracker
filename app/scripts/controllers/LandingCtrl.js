@@ -1,5 +1,5 @@
-spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRef", "UserCrud",
-  function($scope, $rootScope, $q, FirebaseRef, UserCrud) {
+spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRef", "UserCrud", "$state",
+  function($scope, $rootScope, $q, FirebaseRef, UserCrud, $state) {
 
   // var ref = new Firebase("https://spedtracker.firebaseio.com");
   // var auth = $firebaseAuth(ref);
@@ -16,23 +16,53 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
       $scope.inputType = 'password';
   };
 
-  $scope.email = '';
-  $scope.password = '';
+  $scope.forward = false;
 
-  $scope.login = function(email, password) {
-    console.log("auth", auth);
-    promise = auth.signInWithEmailAndPassword(email, password);
+  $scope.choseLoginMethod = function(method) {
+    if (method == "with password") {
+      $scope.loginWithPassword = true;
+      $scope.forward = true;
+    } else {
+      $scope.loginWithPassword = false;
+      $scope.forward = true;
+    }
+  }
+
+  // $scope.login = function(email, password) {
+  //   console.log("auth", auth);
+  //   promise = auth.signInWithEmailAndPassword(email, password);
+  //   promise.catch(e => console.log(e.message));
+  //   console.log("promise = ", promise);
+  // };
+
+  $scope.createAnAccount = false;
+
+  $scope.loginAnonymously = function() {
+    promise = auth.signInAnonymously();
     promise.catch(e => console.log(e.message));
     console.log("promise = ", promise);
-  };
-
-  $scope.signup = function(email, password) {
-    console.log("auth", auth);
-    promise = auth.createUserWithEmailAndPassword(email, password);
-    promise.catch(e => console.log(e.message));
-    console.log("createUserPromise = ", promise);
-
+    $scope.createAnAccount = true;
+    // promise.then(function() {
+    //
+    // });
   }
+
+  // $scope.name = '';
+  // $scope.lastName = '';
+  // $scope.email = '';
+  // $scope.password = '';
+  // $scope.state = '';
+  // $scope.city = '';
+  // $scope.school = '';
+
+
+  // $scope.signup = function(email, password) {
+  //   console.log("auth", auth);
+  //   promise = auth.createUserWithEmailAndPassword(email, password);
+  //   promise.catch(e => console.log(e.message));
+  //   console.log("createUserPromise = ", promise);
+  //
+  // }
 
   auth.onAuthStateChanged(user => {
     if (user) {
@@ -42,21 +72,27 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
 
       console.log("current user uid =", user.uid);
 
-      $scope.logoutAppear = true;
+      // $scope.logoutAppear = true;
 
-      var displayName = user.displayName;
-      var email = user.email;
-      var password = user.password;
-      var emailVerified = user.emailVerified;
-      var photoURL = user.photoURL;
-      var isAnonymous = user.isAnonymous;
+      // var displayName = user.displayName;
+      // var email = user.email;
+      // var password = user.password;
+      // var emailVerified = user.emailVerified;
+      // var photoURL = user.photoURL;
+      // var isAnonymous = user.isAnonymous;
       var uid = user.uid;
-      var providerData = user.providerData;
+      UserCrud.addUser(uid);
+
+      if (uid = user.uid) {
+        $scope.currentUser = user
+      }
+
+      // var providerData = user.providerData;
 
       // userCount = 0;
       //
       // if (users.length == 0) {
-      //   UserCrud.addUser(displayName, email, $scope.password, emailVerified, photoUrl, uid);
+      //   UserCrud.addUser(uid);
       // } else if (users.length > 0) {
       //   for (var i = 0; i < users.length; i++) {
       //     if (user.uid == users[i].uid) {
@@ -66,7 +102,7 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
       //     }
       //   }
       //   if (userCount == users.length) {
-      //     UserCrud.addUser(displayName, email, $scope.password, emailVerified, photoUrl, uid);
+      //     UserCrud.addUser(uid);
       //   }
       // }
 
@@ -82,6 +118,27 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
     // console.log("user.getToken() = ", user.getToken());
   });
 
+
+  $scope.createUser = function() {
+    // UserCrud.addUser($scope.name, $scope.lastName, $scope.email, $scope.password, $scope.state, $scope.city, $scope.school);
+
+    user = $scope.currentUser
+
+    user.name = $scope.name;
+    user.lastName = $scope.lastName;
+    user.email = $scope.email
+    user.password = $scope.password
+    user.state = $scope.state
+    user.city = $scope.city
+    user.school = $scope.school
+
+
+
+    users.$save(user)
+    $state.go('testTracker');
+  };
+
+
   if (typeof user !== "undefined") {
     user.sendEmailVerification().then(function() {
       console.log("verification e-mail sent");
@@ -91,46 +148,9 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
   }
 
 
-  $rootScope.$on("$stateChangeStart", function(){
-    });
-
-  $scope.go = function() {
-    $state.go('testTracker');
-  };
-
   $scope.signOut = function() {
     auth.signOut();
   };
-//
-// // if user forgets e-mail.
-//   auth.sendPasswordResetEmail(user.email).then(function() {
-//     // Email sent.
-//   }, function(error) {
-//     // An error happened.
-//   });
-//
-//
-// // user delete
-//   var user = firebase.auth().currentUser;
-//
-//   user.delete().then(function() {
-//     // User deleted.
-//   }, function(error) {
-//     // An error happened.
-//   });
-//
-// // re-authentication in case Account Deletion, Primary Email Setup, and Password Change take too long:
-//   var user = firebase.auth().currentUser;
-//   var credential;
-//
-// // Prompt the user to re-provide their sign-in credentials
-//   user.reauthenticate(credential).then(function() {
-//     // User re-authenticated.
-//   }, function(error) {
-//     // An error happened.
-//   });
-
-
 
 // Hero material
 
