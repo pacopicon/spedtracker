@@ -162,8 +162,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           } else {
             console.log("AuthStateChange failed");
           }
-      });
-
+        });
 
         students.$add({
           currentUserUID: uid,

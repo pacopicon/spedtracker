@@ -3,45 +3,101 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
     // Remember, Firebase only accepts object, array, string, number, boolean, or null (see: https://www.firebase.com/docs/web/api/firebase/set.html)
 
-    $scope.students = StudentCrud.getAllStudents();
+// BEGIN Current User Variables and Functions
 
-    var users = UserCrud.getAllUsers();
+  var auth = FirebaseRef.getAuth();
 
-    var auth = FirebaseRef.getAuth();
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      var currentUser = auth.currentUser;
+      var uid = currentUser.uid;
+      console.log("currentUser in onAuthStateChanged = ", currentUser);
+    } else {
+      console.log("AuthStateChange failed");
+    }
+  });
 
-  //   function listenForAuthStateChange() {
-  //     auth.onAuthStateChanged(user => {
-  //       if (user) {
-  //         var currentUser = auth.currentUser;
-   //
-  //         // console.log("currentUser = ", currentUser);
-  //         // console.log("currentUser.uid = ", currentUser.uid);
-  //         return currentUser
-  //       } else {
-  //         console.log("AuthStateChange failed");
-  //       }
-  //     })
-  //   };
-   //
-  //  $scope.$watch(observeAuthChange, watcherFunction, true);
-  //   function observeAuthChange() {
-  //     return listenForAuthStateChange();
-  //   };
-   //
-  //   function watcherFunction(newData) {
-  //     console.log("newData", newData);
-  //     users.$loaded().then(function() {
-  //     uid = currentUser.uid;
-  //     for (var i = 0; i < users.length; i++) {
-  //       if (currentUser.uid == users[i].uid) {
-  //         var loggedInUser = users[i];
-  //         console.log("loggedInUser = ", loggedInUser);
-  //       }
-  //     }
-  //     });
-  //   };
+// END Current User Variables and Functions
 
-    var students = $scope.students;
+// BEGIN Student CRUD Variables and Functions
+
+    $scope.newDueDateOne = new Date(new Date().setHours(0,0,0));
+    $scope.newDueDateTwo = new Date(new Date().setHours(0,0,0));
+    $scope.newDueDateThree = new Date(new Date().setHours(0,0,0));
+    $scope.newDueDateFour = new Date(new Date().setHours(0,0,0));
+
+    $scope.timewrap = {};
+
+    $scope.times = [1, 1.5, 2, 2.5, 3];
+
+    $scope.addStudent = function() {
+      if ($scope.newStudentName && $scope.timewrap.selectedTime) {
+        StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newtestOneName, $scope.newDueDateOne, $scope.newtestTwoName, $scope.newDueDateTwo, $scope.newtestThreeName, $scope.newDueDateThree, $scope.newtestFourName, $scope.newDueDateFour);
+        toggleInvert();
+      } else {
+        $scope.alert = true;
+        $timeout(function turnOffAlert() {$scope.alert = false}, 5000);
+      }
+
+    };
+
+    $scope.delete = function(student) {
+      $scope.selectAll = true;
+      $scope.clickedToDelete = false;
+      $scope.deleteAppear = false;
+      StudentCrud.delete(student);
+    };
+
+    $scope.deleteSelected = function() {
+
+      $scope.clearSelected = false;
+      $scope.deleteAppear = false;
+      $timeout(function appear() {$scope.selectAll = true}, 1000);
+      $timeout(function appear() {$scope.clickedToDelete = false}, 1000);
+
+      for (var i = 0; i < students.length; i++)
+        if (students[i].isSafeToDelete) {
+          $scope.delete(students[i]);
+        }
+    };
+
+    $scope.deleteAllStudents = function() {
+      $scope.warn = false;
+      for (i = 0; i < students.length; i++) {
+        $scope.delete(students[i]);
+      }
+    };
+
+// END Student CRUD Variables and Functions
+
+// BEGIN TEST CRUD Variables and Functions
+
+    $scope.scopeTestTime = function(testTime) {
+      $scope.newTestTime = testTime;
+    };
+
+    $scope.processTimeInput = function(student, testNo) {
+      StudentCrud.processTimeInput(student, $scope.newTestTime, testNo);
+    };
+
+    $scope.deleteTest = function(student, testNo) {
+      StudentCrud.deleteTest(student, testNo);
+    };
+
+// END TEST CRUD Variables and Functions
+
+// BEGIN Student Test TIMER Variables and Functions
+
+    var students = StudentCrud.getAllStudents();
+    $scope.selectedStudents = function() {
+      var selectedStudentsArray = [];
+      for (var i = 0; i < students.length; i++) {
+        if (uid == students[i].currentUserUID) {
+          selectedStudentsArray.push(students[i]);
+        }
+      }
+      return selectedStudentsArray;
+    };
 
     var refreshTime = function() {
       time = Date.now();
@@ -570,6 +626,26 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       });
     };
 
+    $scope.startSelectedTests = function(students) {
+
+      for (i = 0; i < students.length; i++) {
+        if (students[i].isSafeToDelete) {
+          if (!students[i].isTimerOneStart && !students[i].isTestOneOver) {
+            $scope.startTimer(students[i], 'testOne')
+          } else if (!students[i].isTimerTwoStart && !students[i].isTestTwoOver) {
+            $scope.startTimer(students[i], 'testTwo')
+          } else if (!students[i].isTimerThreeStart && !students[i].isTestThreeOver) {
+            $scope.startTimer(students[i], 'testThree')
+          } else if (!students[i].isTimerFourStart && !students[i].isTestFourOver) {
+            $scope.startTimer(students[i], 'testFour')
+          } else {
+          $scope.info = true;
+          $timeout(function turnOffAlert() {$scope.info = false}, 5000);
+          }
+        }
+      }
+    };
+
     $scope.startTime = function(student, testNo) {
 
       if (testNo == "testOne") {
@@ -752,52 +828,9 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       return time;
     };
 
-// Begin test properties
+// END Student Test TIMER Variables and Functions
 
-    $scope.newDueDateOne = new Date(new Date().setHours(0,0,0));
-    $scope.newDueDateTwo = new Date(new Date().setHours(0,0,0));
-    $scope.newDueDateThree = new Date(new Date().setHours(0,0,0));
-    $scope.newDueDateFour = new Date(new Date().setHours(0,0,0));
-    // $scope.newtestName = " ";
-
-
-    $scope.timewrap = {};
-
-    $scope.times = [1, 1.5, 2, 2.5, 3];
-
-    $scope.isFormOneComplete = false;
-    $scope.isFormTwoComplete = false;
-    $scope.isFormThreeComplete = false;
-    $scope.isFormFourComplete = false;
-
-    // $scope.newDueDate = new Date(new Date().setHours(1,0,0));
-
-// End test properties
-
-// Begin CRUD Functions
-
-    $scope.addStudent = function() {
-      if ($scope.newStudentName && $scope.timewrap.selectedTime) {
-        StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newtestOneName, $scope.newDueDateOne, $scope.newtestTwoName, $scope.newDueDateTwo, $scope.newtestThreeName, $scope.newDueDateThree, $scope.newtestFourName, $scope.newDueDateFour);
-        toggleInvert();
-      } else {
-        $scope.alert = true;
-        $timeout(function turnOffAlert() {$scope.alert = false}, 5000);
-      }
-
-    };
-
-    $scope.scopeTestTime = function(testTime) {
-      $scope.newTestTime = testTime;
-    };
-
-    $scope.processTimeInput = function(student, testNo) {
-      StudentCrud.processTimeInput(student, $scope.newTestTime, testNo);
-    };
-
-    $scope.deleteTest = function(student, testNo) {
-      StudentCrud.deleteTest(student, testNo);
-    };
+// BEGIN UI MANIPULATION VARIABLES AND FUNCTIONS
 
     $scope.invertSelect = false;
     $scope.selectAll = true;
@@ -875,54 +908,9 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       }
     };
 
-    $scope.delete = function(student) {
-      $scope.selectAll = true;
-      $scope.clickedToDelete = false;
-      $scope.deleteAppear = false;
-      StudentCrud.delete(student);
-    };
+// END UI MANIPULATION VARIABLES AND FUNCTIONS
 
-    $scope.deleteSelected = function() {
 
-      $scope.clearSelected = false;
-      $scope.deleteAppear = false;
-      $timeout(function appear() {$scope.selectAll = true}, 1000);
-      $timeout(function appear() {$scope.clickedToDelete = false}, 1000);
-
-      for (var i = 0; i < students.length; i++)
-        if (students[i].isSafeToDelete) {
-          $scope.delete(students[i]);
-        }
-    };
-
-    $scope.deleteAllStudents = function() {
-      $scope.warn = false;
-      for (i = 0; i < students.length; i++) {
-        $scope.delete(students[i]);
-      }
-    };
-
-    $scope.startSelectedTests = function(students) {
-
-      for (i = 0; i < students.length; i++) {
-        if (students[i].isSafeToDelete) {
-          if (!students[i].isTimerOneStart && !students[i].isTestOneOver) {
-            $scope.startTimer(students[i], 'testOne')
-          } else if (!students[i].isTimerTwoStart && !students[i].isTestTwoOver) {
-            $scope.startTimer(students[i], 'testTwo')
-          } else if (!students[i].isTimerThreeStart && !students[i].isTestThreeOver) {
-            $scope.startTimer(students[i], 'testThree')
-          } else if (!students[i].isTimerFourStart && !students[i].isTestFourOver) {
-            $scope.startTimer(students[i], 'testFour')
-          } else {
-          $scope.info = true;
-          $timeout(function turnOffAlert() {$scope.info = false}, 5000);
-          }
-        }
-      }
-    };
-
-// End CRUD Functions
 
   }
 ]);
