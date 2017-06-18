@@ -53,64 +53,6 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
 
     $scope.createAnAccount = false;
 
-// END Landing.html variables
-
-
-    // var auth = FirebaseRef.getAuth();
-    // var users = UserCrud.getAllUsers();
-    //
-    // $scope.loginAnonymously = function() {
-    //   promise = auth.signInAnonymously();
-    //   promise.catch(e => console.log(e.message));
-    //   console.log("promise = ", promise);
-    //   $scope.createAnAccount = true;
-    //   listenForAuthStateChange();
-    //   var currentUser = auth.currentUser;
-    //   uid = currentUser.uid;
-    //   UserCrud.addUser(uid);
-    //
-    // };
-    //
-    // var listenForAuthStateChange = function() {
-    //   auth.onAuthStateChanged(user => {
-    //     if (user) {
-    //       var currentUser = auth.currentUser;
-    //       uid = currentUser.uid;
-    //     } else {
-    //       console.log("AuthStateChange failed");
-    //       return
-    //     }
-    // };
-    //
-    // $scope.createUser = function() {
-    //   var currentUser = auth.currentUser;
-    //   var uid = currentUser.uid;
-    //   console.log("currentUser.getToken()", currentUser.getToken());
-    //   users.$loaded().then(function() {
-    //     for (var i = 0; i < users.length; i++) {
-    //       if (currentUser.uid == users[i].uid) {
-    //         users[i].name = $scope.name;
-    //         users[i].lastName = $scope.lastName;
-    //         users[i].email = $scope.email;
-    //         users[i].password = $scope.password;
-    //         users[i].state = $scope.state;
-    //         users[i].city = $scope.city;
-    //         users[i].school = $scope.school;
-    //         users[i].loginLog += 1;
-    //
-    //         if ($scope.name && $scope.lastName && $scope.email && $scope.password && $scope.state && $scope.city && $scope.school) {
-    //           users.$save(users[i]).then(function() {
-    //             $state.go('testTracker');
-    //           });
-    //         } else {
-    //           $scope.alert = true;
-    //           $timeout(function turnOffAlert() {$scope.alert = false}, 5000);
-    //         }
-    //       }
-    //     }
-    //   });
-    // };
-
     $scope.loginAnonymously = function() {
       $scope.createAnAccount = true;
       UserCrud.loginAnonymously();
@@ -120,7 +62,6 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
     $scope.createUserProfile = function() {
       if ($scope.name && $scope.lastName && $scope.email && $scope.password && $scope.state && $scope.city && $scope.school) {
         UserCrud.createUserProfile($scope.name, $scope.lastName, $scope.email, $scope.password, $scope.state, $scope.city, $scope.school);
-        // $state.go('testTracker');
       } else {
         $scope.alert = true;
         $timeout(function turnOffAlert() {$scope.alert = false}, 5000);

@@ -54,7 +54,7 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
     promise = auth.signInAnonymously();
     promise.catch(e => console.log(e.message));
     console.log("promise = ", promise);
-    currentUser = getCurrentUser();
+    var currentUser = auth.currentUser;
     console.log("currentUser in loginAnonymously = ", currentUser);
     uid = currentUser.uid;
     addUser(uid);
