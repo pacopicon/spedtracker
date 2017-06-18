@@ -1,132 +1,143 @@
 spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRef", "UserCrud", "$state",
   function($scope, $rootScope, $q, FirebaseRef, UserCrud, $state) {
 
-  var auth = FirebaseRef.getAuth();
-  var users = UserCrud.getAllUsers();
+// BEGIN Email and Password Signup and login functions for later use:
 
-  $scope.inputType = 'password';
+    // $scope.login = function(email, password) {
+    //   console.log("auth", auth);
+    //   promise = auth.signInWithEmailAndPassword(email, password);
+    //   promise.catch(e => console.log(e.message));
+    //   console.log("promise = ", promise);
+    // };
 
-  $scope.hideShowPassword = function(){
-    if ($scope.inputType == 'password')
-      $scope.inputType = 'text';
-    else
-      $scope.inputType = 'password';
-  };
+    // $scope.signup = function(email, password) {
+    //   console.log("auth", auth);
+    //   promise = auth.createUserWithEmailAndPassword(email, password);
+    //   promise.catch(e => console.log(e.message));
+    //   console.log("createUserPromise = ", promise);
+    //
+    // }
 
-  $scope.forward = false;
+    // if (typeof user !== "undefined") {
+    //   user.sendEmailVerification().then(function() {
+    //     console.log("verification e-mail sent");
+    //   }, function(error) {
+    //     console.log(error);
+    //   });
+    // }
 
-  $scope.choseLoginMethod = function(method) {
-    if (method == "with password") {
-      $scope.loginWithPassword = true;
-      $scope.forward = true;
-    } else {
-      $scope.loginWithPassword = false;
-      $scope.forward = true;
-    }
-  }
+// END Email and Password Signup and login functions for later use:
 
-  // $scope.login = function(email, password) {
-  //   console.log("auth", auth);
-  //   promise = auth.signInWithEmailAndPassword(email, password);
-  //   promise.catch(e => console.log(e.message));
-  //   console.log("promise = ", promise);
-  // };
+// BEGIN Landing.html variables
 
-  $scope.createAnAccount = false;
+    $scope.inputType = 'password';
 
-  $scope.loginAnonymously = function() {
-    promise = auth.signInAnonymously();
-    promise.catch(e => console.log(e.message));
-    console.log("promise = ", promise);
-    $scope.createAnAccount = true;
-    listenForAuthStateChange();
-    var currentUser = auth.currentUser;
-    uid = currentUser.uid;
-    UserCrud.addUser(uid);
+    $scope.hideShowPassword = function(){
+      if ($scope.inputType == 'password')
+        $scope.inputType = 'text';
+      else
+        $scope.inputType = 'password';
+    };
 
-  };
-  // $scope.signup = function(email, password) {
-  //   console.log("auth", auth);
-  //   promise = auth.createUserWithEmailAndPassword(email, password);
-  //   promise.catch(e => console.log(e.message));
-  //   console.log("createUserPromise = ", promise);
-  //
-  // }
+    $scope.forward = false;
 
-  var listenForAuthStateChange = function() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        var currentUser = auth.currentUser;
-        uid = currentUser.uid;
-
-        // var displayName = user.displayName;
-        // var email = user.email;
-        // var password = user.password;
-        // var emailVerified = user.emailVerified;
-        // var photoURL = user.photoURL;
-        // var isAnonymous = user.isAnonymous;
-        // var uid = user.uid;
-        // var providerData = user.providerData;
-
+    $scope.choseLoginMethod = function(method) {
+      if (method == "with password") {
+        $scope.loginWithPassword = true;
+        $scope.forward = true;
       } else {
-
-        console.log("AuthStateChange failed");
-
-        return
-        // User is signed out.
-        // ...
+        $scope.loginWithPassword = false;
+        $scope.forward = true;
       }
-    // console.log("user.getToken() = ", user.getToken());
-  })
-};
+    }
 
-  $scope.createUser = function() {
-    var currentUser = auth.currentUser;
-    var uid = currentUser.uid;
-    console.log("currentUser.getToken()", currentUser.getToken());
-    users.$loaded().then(function() {
-      for (var i = 0; i < users.length; i++) {
-        if (currentUser.uid == users[i].uid) {
-          users[i].name = $scope.name;
-          users[i].lastName = $scope.lastName;
-          users[i].email = $scope.email;
-          users[i].password = $scope.password;
-          users[i].state = $scope.state;
-          users[i].city = $scope.city;
-          users[i].school = $scope.school;
-          users[i].loginLog += 1;
+    $scope.createAnAccount = false;
 
-          if ($scope.name && $scope.lastName && $scope.email && $scope.password && $scope.state && $scope.city && $scope.school) {
-            users.$save(users[i]).then(function() {
-              $state.go('testTracker');
-            });
-          } else {
-            $scope.alert = true;
-            $timeout(function turnOffAlert() {$scope.alert = false}, 5000);
-          }
-        }
+// END Landing.html variables
+
+
+    // var auth = FirebaseRef.getAuth();
+    // var users = UserCrud.getAllUsers();
+    //
+    // $scope.loginAnonymously = function() {
+    //   promise = auth.signInAnonymously();
+    //   promise.catch(e => console.log(e.message));
+    //   console.log("promise = ", promise);
+    //   $scope.createAnAccount = true;
+    //   listenForAuthStateChange();
+    //   var currentUser = auth.currentUser;
+    //   uid = currentUser.uid;
+    //   UserCrud.addUser(uid);
+    //
+    // };
+    //
+    // var listenForAuthStateChange = function() {
+    //   auth.onAuthStateChanged(user => {
+    //     if (user) {
+    //       var currentUser = auth.currentUser;
+    //       uid = currentUser.uid;
+    //     } else {
+    //       console.log("AuthStateChange failed");
+    //       return
+    //     }
+    // };
+    //
+    // $scope.createUser = function() {
+    //   var currentUser = auth.currentUser;
+    //   var uid = currentUser.uid;
+    //   console.log("currentUser.getToken()", currentUser.getToken());
+    //   users.$loaded().then(function() {
+    //     for (var i = 0; i < users.length; i++) {
+    //       if (currentUser.uid == users[i].uid) {
+    //         users[i].name = $scope.name;
+    //         users[i].lastName = $scope.lastName;
+    //         users[i].email = $scope.email;
+    //         users[i].password = $scope.password;
+    //         users[i].state = $scope.state;
+    //         users[i].city = $scope.city;
+    //         users[i].school = $scope.school;
+    //         users[i].loginLog += 1;
+    //
+    //         if ($scope.name && $scope.lastName && $scope.email && $scope.password && $scope.state && $scope.city && $scope.school) {
+    //           users.$save(users[i]).then(function() {
+    //             $state.go('testTracker');
+    //           });
+    //         } else {
+    //           $scope.alert = true;
+    //           $timeout(function turnOffAlert() {$scope.alert = false}, 5000);
+    //         }
+    //       }
+    //     }
+    //   });
+    // };
+
+    $scope.loginAnonymously = function() {
+      $scope.createAnAccount = true;
+      UserCrud.loginAnonymously();
+    };
+
+
+    $scope.createUserProfile = function() {
+      if ($scope.name && $scope.lastName && $scope.email && $scope.password && $scope.state && $scope.city && $scope.school) {
+        UserCrud.createUserProfile($scope.name, $scope.lastName, $scope.email, $scope.password, $scope.state, $scope.city, $scope.school);
+        // $state.go('testTracker');
+      } else {
+        $scope.alert = true;
+        $timeout(function turnOffAlert() {$scope.alert = false}, 5000);
       }
-    });
-  };
+    };
 
 
-  // if (typeof user !== "undefined") {
-  //   user.sendEmailVerification().then(function() {
-  //     console.log("verification e-mail sent");
-  //   }, function(error) {
-  //     console.log(error);
-  //   });
-  // }
+    $scope.signOut = function() {
+      auth.signOut();
+    };
 
+// BEGIN Hero material
 
-  $scope.signOut = function() {
-    auth.signOut();
-  };
+    $scope.hero = {};
+    $scope.hero.title = "spedtracker!"
 
-// Hero material
-
-  $scope.hero = {};
-  $scope.hero.title = "spedtracker!"
+// END Hero material
 
 }
 ]);

@@ -41,44 +41,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
   //     });
   //   };
 
-  var currentUser = FirebaseRef.getCurrentUser();
-
-  $scope.$watch(getCurrentAuthUser, watcherFunction, true);
-    function getCurrentAuthUser() {
-      return FirebaseRef.getCurrentUser();
-    };
-
-  function watcherFunction(newData) {
-    console.log("newData", newData);
-    users.$loaded().then(function() {
-    uid = currentUser.uid;
-    for (var i = 0; i < users.length; i++) {
-      if (currentUser.uid == users[i].uid) {
-        var loggedInUser = users[i];
-        console.log("loggedInUser = ", loggedInUser);
-      }
-    }
-    });
-  };
-
-  // *********
-
-  function listenForAuthStateChange() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        var currentUser = auth.currentUser;
-
-        // console.log("currentUser = ", currentUser);
-        // console.log("currentUser.uid = ", currentUser.uid);
-        return currentUser
-      } else {
-        console.log("AuthStateChange failed");
-      }
-    });
-  };
-
-
-
     var students = $scope.students;
 
     var refreshTime = function() {
@@ -816,7 +778,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
     $scope.addStudent = function() {
       if ($scope.newStudentName && $scope.timewrap.selectedTime) {
-        StudentCrud.addStudent(loggedInUser.uid, $scope.newStudentName, $scope.timewrap.selectedTime, $scope.newtestOneName, $scope.newDueDateOne, $scope.newtestTwoName, $scope.newDueDateTwo, $scope.newtestThreeName, $scope.newDueDateThree, $scope.newtestFourName, $scope.newDueDateFour);
+        StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newtestOneName, $scope.newDueDateOne, $scope.newtestTwoName, $scope.newDueDateTwo, $scope.newtestThreeName, $scope.newDueDateThree, $scope.newtestFourName, $scope.newDueDateFour);
         toggleInvert();
       } else {
         $scope.alert = true;

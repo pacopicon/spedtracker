@@ -1,10 +1,11 @@
 spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
-  function($firebaseArray, FirebaseRef, UserCrud, DataCrud) {
+  function($firebaseArray, FirebaseRef, UserCrud) {
 
 // Public variables below
     // holds data as array of objects.  Each object is one item.
     var studentsRef = FirebaseRef.getStudentsRef();
     var students = FirebaseRef.getStudents();
+    var auth = FirebaseRef.getAuth();
 
     var now = new Date();
     var nowNum = now.getTime();
@@ -102,7 +103,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         };
       },
 // This function is called by the submit button in testTracker.html when user creates an item in the form
-      addStudent: function(userUID, studentName, extendTime, testOneName, testOneTimeObj, testTwoName, testTwoTimeObj, testThreeName, testThreeTimeObj, testFourName, testFourTimeObj) {
+      addStudent: function(studentName, extendTime, testOneName, testOneTimeObj, testTwoName, testTwoTimeObj, testThreeName, testThreeTimeObj, testFourName, testFourTimeObj) {
 
         if (typeof testOneName === "undefined") {
           testOneName = '';
@@ -146,8 +147,26 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           totalTimeFour = testFourTimeNum * extendTime;
         }
 
+        var UIDpromise = UserCrud.getCurrentUser();
+        if (typeof UIDpromise !== "undefined") {
+          UIDpromise.then(function() {
+            var currentUserUID = currentUser.uid;
+          });
+        }
+
+        auth.onAuthStateChanged(user => {
+          if (user) {
+            var currentUser = auth.currentUser;
+            var uid = currentUser.uid;
+            console.log("currentUser in onAuthStateChanged = ", currentUser);
+          } else {
+            console.log("AuthStateChange failed");
+          }
+      });
+
+
         students.$add({
-          userUID: userUID,
+          currentUserUID: uid,
           name: studentName,
           extendTime: extendTime,
           testOneName: testOneName,
