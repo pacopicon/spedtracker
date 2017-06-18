@@ -3,21 +3,33 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
     // Remember, Firebase only accepts object, array, string, number, boolean, or null (see: https://www.firebase.com/docs/web/api/firebase/set.html)
 
-// BEGIN Current User Variables and Functions
+// BEGIN Current User and Current User Students Variables and Functions
 
   var auth = FirebaseRef.getAuth();
+  var students = StudentCrud.getAllStudents();
 
   auth.onAuthStateChanged(user => {
     if (user) {
       var currentUser = auth.currentUser;
-      var uid = currentUser.uid;
       console.log("currentUser in onAuthStateChanged = ", currentUser);
     } else {
       console.log("AuthStateChange failed");
     }
   });
 
-// END Current User Variables and Functions
+  $scope.selectedStudents = function() {
+    var currentUser = auth.currentUser;
+    var uid = currentUser.uid;
+    var selectedStudents = [];
+    for (var i = 0; i < students.length; i++) {
+      if (uid == students[i].currentUserUID) {
+        selectedStudents.push(students[i]);
+      }
+    }
+    return selectedStudents;
+  }
+
+// END Current User and Current User Students Variables and Functions
 
 // BEGIN Student CRUD Variables and Functions
 
@@ -87,17 +99,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 // END TEST CRUD Variables and Functions
 
 // BEGIN Student Test TIMER Variables and Functions
-
-    var students = StudentCrud.getAllStudents();
-    $scope.selectedStudents = function() {
-      var selectedStudentsArray = [];
-      for (var i = 0; i < students.length; i++) {
-        if (uid == students[i].currentUserUID) {
-          selectedStudentsArray.push(students[i]);
-        }
-      }
-      return selectedStudentsArray;
-    };
 
     var refreshTime = function() {
       time = Date.now();

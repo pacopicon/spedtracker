@@ -147,13 +147,6 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           totalTimeFour = testFourTimeNum * extendTime;
         }
 
-        var UIDpromise = UserCrud.getCurrentUser();
-        if (typeof UIDpromise !== "undefined") {
-          UIDpromise.then(function() {
-            var currentUserUID = currentUser.uid;
-          });
-        }
-
         auth.onAuthStateChanged(user => {
           if (user) {
             var currentUser = auth.currentUser;
@@ -164,8 +157,11 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           }
         });
 
+        var currentUser = auth.currentUser;
+        var uid = currentUser.uid;
+
         students.$add({
-          currentUserUID: uid,
+          currentUserUID: uid || '',
           name: studentName,
           extendTime: extendTime,
           testOneName: testOneName,
