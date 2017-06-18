@@ -102,7 +102,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         };
       },
 // This function is called by the submit button in testTracker.html when user creates an item in the form
-      addStudent: function(studentName, extendTime, testOneName, testOneTimeObj, testTwoName, testTwoTimeObj, testThreeName, testThreeTimeObj, testFourName, testFourTimeObj) {
+      addStudent: function(userUID, studentName, extendTime, testOneName, testOneTimeObj, testTwoName, testTwoTimeObj, testThreeName, testThreeTimeObj, testFourName, testFourTimeObj) {
 
         if (typeof testOneName === "undefined") {
           testOneName = '';
@@ -147,6 +147,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         }
 
         students.$add({
+          userUID: userUID,
           name: studentName,
           extendTime: extendTime,
           testOneName: testOneName,

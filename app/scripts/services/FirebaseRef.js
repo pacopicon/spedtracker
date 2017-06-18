@@ -1,5 +1,5 @@
-spedtracker.factory("FirebaseRef", ["$firebaseArray", "$firebaseObject",
-  function($firebaseArray, $firebaseObject) {
+spedtracker.factory("FirebaseRef", ["$firebaseArray",
+  function($firebaseArray) {
 
 // Initialize Firebase
 var config = {
@@ -15,10 +15,10 @@ firebase.initializeApp(config);
     var studentsRef = firebase.database().ref().child("students");
     var students = $firebaseArray(studentsRef);
 
-    var auth = firebase.auth();
-
     var usersRef = firebase.database().ref().child("users");
     var users = $firebaseArray(usersRef);
+
+    var auth = firebase.auth();
 
 
     return {
@@ -43,7 +43,7 @@ firebase.initializeApp(config);
         return usersRef;
       }
 
-    };
+    }; // end of return
 
   } // end of FirebaseRef function
 ]); // end of factory initialization

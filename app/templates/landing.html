@@ -1,54 +1,21 @@
 <section ng-controller="LandingCtrl" class="hero-content">
-  <!-- <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // TODO: Implement getParameterByName()
-
-    // Get the action to complete.
-    var mode = getParameterByName('mode');
-    // Get the one-time code from the query parameter.
-    var actionCode = getParameterByName('oobCode'};
-    // (Optional) Get the API key from the query parameter.
-    var apiKey = getParameterByName('apiKey'};
-
-    // Configure the Firebase SDK.
-    // This is the minimum configuration required for the API to be used.
-    var config = {
-      'apiKey': apiKey  // This key could also be copied from the web
-                        // initialization snippet found in the Firebase console.
-    };
-    var app = firebase.initializeApp(config);
-    var auth = app.auth();
-
-    // Handle the user management action.
-    switch (mode) {
-      case 'resetPassword':
-        // Display reset password handler and UI.
-        handleResetPassword(auth, actionCode);
-        break;
-      case 'recoverEmail':
-        // Display email recovery handler and UI.
-        handleRecoverEmail(auth, actionCode);
-        break;
-      case 'verifyEmail':
-        // Display email verification handler and UI.
-        handleVerifyEmail(auth, actionCode);
-        break;
-      default:
-        // Error: invalid mode.
-    }
-  }, false);
-</script> -->
+<!-- BEGIN TITLE -->
   <div class="hero-title">
     <h1>{{hero.title}}</h1>
   </div>
+<!-- END TITLE -->
 </section>
 <div class="link-container">
   <div ng-controller="LandingCtrl" class="form-group forms">
+<!-- CBEGIN REATE AN ACCOUNT -->
     <div ng-hide="createAnAccount" class="formWrap">
+<!-- BEGIN CHOOSE LOGIN METHOD -->
       <div ng-hide="forward" class="manageBtnWrap col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="leftBtn col-lg-5 col-md-5 col-sm-5 col-xs-5" ng-click="choseLoginMethod('with password')"><p>log in with password</p></div>
         <div class="rightBtn col-lg-5 col-md-5 col-sm-5 col-xs-5" ng-click="choseLoginMethod('without password')"><p>log in as guest</p></div>
       </div>
+<!-- END CHOOSE LOGIN METHOD -->
+<!-- BEGIN LOGIN AND SIGNUP FORMS -->
       <div ng-show="loginWithPassword && forward" class="loginWithPassword">
         <input type="text" class="form-control emailForm" ng-model="email" placeholder="enter e-mail" />
         <input type={{inputType}} class="form-control passwordForm" ng-model="password" placeholder="enter password" />
@@ -64,11 +31,16 @@
           <div class="bottomBtn col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="loginWithPassword = false"><p>log in without password</p></div>
         </div>
       </div>
+<!-- END LOGIN AND SIGNUP FORMS -->
+<!-- BEGIN ANONYMOUS LOGIN -->
       <div ng-show="!loginWithPassword && forward" class="manageBtnWrap col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="topBtn col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="loginAnonymously()" class="login"><p>log in</p></div>
         <div class="bottomBtn col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="loginWithPassword = true"><p>log in with password</p></div>
       </div>
     </div>
+<!-- END ANONYMOUS LOGIN -->
+<!-- BEGIN CREATE AN ACCOUNT -->
+    <div class="alert alert-warning" role="alert" ng-show="alert"><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i> Please enter name, last name, e-mail, desired password, the school that you are associated with and the school's state and city.</div>
     <div ng-show="createAnAccount" class="formWrap">
       <input type="text" class="form-control emailForm" ng-model="name" placeholder="enter name" />
       <input type="text" class="form-control emailForm" ng-model="lastName" placeholder="enter last name" />

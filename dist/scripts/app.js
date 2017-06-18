@@ -1,6 +1,6 @@
 var spedtracker = angular.module("spedtracker", ["ui.router", "firebase", "ui.bootstrap", "ngAnimate", "ngSanitize", "mgcrea.ngStrap", "chart.js", "ngCookies"]);
 
-spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvider, $popoverProvider) {
+spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvider, $popoverProvider, $urlRouterProvider) {
 
     $locationProvider.html5Mode({
         enabled: true,
@@ -34,49 +34,6 @@ spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvid
             templateUrl: '/templates/testDataPrintout.html'
         });
 
-      // $stateProvider
-      //
-      //     .state('user', {
-      //         url: '/user',
-      //         controller: 'StudentCtrl',
-      //         templateUrl: '/templates/user.html'
-      //     })
-      //     .state('navbar', {
-      //         url: '/navbar',
-      //         controller: 'StudentCtrl',
-      //         templateUrl: '/templates/navbar.html'
-      //     })
-      //     .state('testTracker', {
-      //         url: '/testTracker',
-      //         controller: 'StudentCtrl',
-      //         templateUrl: '/templates/testTracker.html'
-      //     })
-      //     .state('behvTracker', {
-      //         url: '/behvTracker',
-      //         controller: 'StudentCtrl',
-      //         templateUrl: '/templates/behvTracker.html'
-      //     })
-      //     .state('clock', {
-      //         url: '/clock',
-      //         controller: 'StudentCtrl',
-      //         templateUrl: '/templates/clock.html'
-      //     })
-      //     .state('graphs', {
-      //         url: '/graphs',
-      //         controller: 'StudentCtrl',
-      //         templateUrl: '/templates/graphs.html'
-      //     })
-      //     .state('pacooverTooltip', {
-      //         url: '/pacooverTooltip',
-      //         controller: 'StudentCtrl',
-      //         templateUrl: '/templates/pacooverTooltip.html'
-      //     })
-      //     .state('adminPortal', {
-      //         url: '/adminPortal',
-      //         controller: 'AdminCtrl',
-      //         templateUrl: '/templates/adminPortal.html'
-      //     });
-
     angular.extend($datepickerProvider.defaults, {
       dateFormat: 'dd/MM/yyyy',
       startWeek: 1
@@ -86,6 +43,16 @@ spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvid
       html: true
     });
 
+});
+
+spedtracker.run(function ($rootScope, $state, UserCrud) {
+  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+    if (toState.authenticate && !UserCrud.isAuthenticated()){
+      // User isn’t authenticated
+      $state.transitionTo("landing");
+      event.preventDefault();
+    }
+  });
 });
 
 spedtracker.config(['ChartJsProvider', function (ChartJsProvider) {

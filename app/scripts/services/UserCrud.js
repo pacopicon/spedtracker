@@ -10,10 +10,9 @@ spedtracker.factory("UserCrud", ["FirebaseRef",
       return users
     },
 
+    retain
+
     addUser: function(uid) {
-
-      id = (Math.round(Date.now() * Math.random()*16)).toString(16);
-
       users.$add({
         name: '',
         name: '',
@@ -22,17 +21,9 @@ spedtracker.factory("UserCrud", ["FirebaseRef",
         state: '',
         city: '',
         school: '',
-        // name: name,
-        // name: lastName,
-        // email: email,
-        // password: password,
-        // state: state,
-        // city: city,
-        // school: school,
-        uid: 0,
+        uid: uid,
         verified: false,
         photoURL: '',
-        id: id,
         loginLog: 0,
         createdAT: firebase.database.ServerValue.TIMESTAMP,
         lastLogin: firebase.database.ServerValue.TIMESTAMP
@@ -52,6 +43,10 @@ spedtracker.factory("UserCrud", ["FirebaseRef",
       users.$save(oldUser).then(function(ref) {
         console.log("users.$save called");
       });
+    },
+
+    isAuthenticated: function(boolean) {
+      return boolean;
     }
 
   }

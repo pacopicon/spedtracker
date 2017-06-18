@@ -1,11 +1,83 @@
-spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$rootScope", "$interval", "$log", "$http", "$locale", "$location", "$templateCache", '$timeout', "$q", "$sce", "$tooltip", "$popover", "$firebaseAuth", "$cookies",
-  function($scope, StudentCrud, UserCrud, $rootScope, $interval, $log, $http, $locale, $location, $templateCache, $timeout, $q, $sce, $tooltip, $popover, $firebaseAuth, $cookies) {
+spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$rootScope", "$interval", "$log", "$http", "$locale", "$location", "$templateCache", '$timeout', "$q", "$sce", "$tooltip", "$popover", "FirebaseRef", "$cookies",
+  function($scope, StudentCrud, UserCrud, $rootScope, $interval, $log, $http, $locale, $location, $templateCache, $timeout, $q, $sce, $tooltip, $popover, FirebaseRef, $cookies) {
 
     // Remember, Firebase only accepts object, array, string, number, boolean, or null (see: https://www.firebase.com/docs/web/api/firebase/set.html)
 
     $scope.students = StudentCrud.getAllStudents();
 
-    $scope.users = UserCrud.getAllUsers();
+    var users = UserCrud.getAllUsers();
+
+    var auth = FirebaseRef.getAuth();
+
+  //   function listenForAuthStateChange() {
+  //     auth.onAuthStateChanged(user => {
+  //       if (user) {
+  //         var currentUser = auth.currentUser;
+   //
+  //         // console.log("currentUser = ", currentUser);
+  //         // console.log("currentUser.uid = ", currentUser.uid);
+  //         return currentUser
+  //       } else {
+  //         console.log("AuthStateChange failed");
+  //       }
+  //     })
+  //   };
+   //
+  //  $scope.$watch(observeAuthChange, watcherFunction, true);
+  //   function observeAuthChange() {
+  //     return listenForAuthStateChange();
+  //   };
+   //
+  //   function watcherFunction(newData) {
+  //     console.log("newData", newData);
+  //     users.$loaded().then(function() {
+  //     uid = currentUser.uid;
+  //     for (var i = 0; i < users.length; i++) {
+  //       if (currentUser.uid == users[i].uid) {
+  //         var loggedInUser = users[i];
+  //         console.log("loggedInUser = ", loggedInUser);
+  //       }
+  //     }
+  //     });
+  //   };
+
+  var currentUser = FirebaseRef.getCurrentUser();
+
+  $scope.$watch(getCurrentAuthUser, watcherFunction, true);
+    function getCurrentAuthUser() {
+      return FirebaseRef.getCurrentUser();
+    };
+
+  function watcherFunction(newData) {
+    console.log("newData", newData);
+    users.$loaded().then(function() {
+    uid = currentUser.uid;
+    for (var i = 0; i < users.length; i++) {
+      if (currentUser.uid == users[i].uid) {
+        var loggedInUser = users[i];
+        console.log("loggedInUser = ", loggedInUser);
+      }
+    }
+    });
+  };
+
+  // *********
+
+  function listenForAuthStateChange() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        var currentUser = auth.currentUser;
+
+        // console.log("currentUser = ", currentUser);
+        // console.log("currentUser.uid = ", currentUser.uid);
+        return currentUser
+      } else {
+        console.log("AuthStateChange failed");
+      }
+    });
+  };
+
+
 
     var students = $scope.students;
 
@@ -744,7 +816,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
     $scope.addStudent = function() {
       if ($scope.newStudentName && $scope.timewrap.selectedTime) {
-        StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newtestOneName, $scope.newDueDateOne, $scope.newtestTwoName, $scope.newDueDateTwo, $scope.newtestThreeName, $scope.newDueDateThree, $scope.newtestFourName, $scope.newDueDateFour);
+        StudentCrud.addStudent(loggedInUser.uid, $scope.newStudentName, $scope.timewrap.selectedTime, $scope.newtestOneName, $scope.newDueDateOne, $scope.newtestTwoName, $scope.newDueDateTwo, $scope.newtestThreeName, $scope.newDueDateThree, $scope.newtestFourName, $scope.newDueDateFour);
         toggleInvert();
       } else {
         $scope.alert = true;
