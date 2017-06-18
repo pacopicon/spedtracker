@@ -65,6 +65,8 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
     return currentUser;
   };
 
+  var isAuthenticated = false;
+
   var loginAnonymously = function() {
     promise = auth.signInAnonymously();
     promise.catch(e => console.log(e.message));
@@ -73,6 +75,7 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
     console.log("currentUser in loginAnonymously = ", currentUser);
     uid = currentUser.uid;
     addUser(uid);
+    var isAuthenticated = true;
   };
 
   return {
@@ -146,8 +149,8 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
       });
     },
 
-    isAuthenticated: function(boolean) {
-      return boolean;
+    isAuthenticated: function() {
+      return isAuthenticated;
     }
 
   }
