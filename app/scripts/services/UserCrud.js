@@ -6,34 +6,25 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
 
   var auth = FirebaseRef.getAuth();
 
-  // var listenForAuthStateChange = function() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        var currentUser = auth.currentUser;
-        uid = currentUser.uid;
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      var currentUser = auth.currentUser;
+      console.log("currentUser in onAuthStateChanged = ", currentUser);
 
-        console.log("currentUser in onAuthStateChanged = ", currentUser);
+      // var displayName = user.displayName;
+      // var email = user.email;
+      // var password = user.password;
+      // var emailVerified = user.emailVerified;
+      // var photoURL = user.photoURL;
+      // var isAnonymous = user.isAnonymous;
+      // var uid = user.uid;
+      // var providerData = user.providerData;
 
-        // var displayName = user.displayName;
-        // var email = user.email;
-        // var password = user.password;
-        // var emailVerified = user.emailVerified;
-        // var photoURL = user.photoURL;
-        // var isAnonymous = user.isAnonymous;
-        // var uid = user.uid;
-        // var providerData = user.providerData;
-
-      } else {
-
-        console.log("AuthStateChange failed");
-
-        return
-        // User is signed out.
-        // ...
-      }
+    } else {
+      console.log("AuthStateChange failed");
+    }
 
   });
-// };
 
   var addUser = function(uid) {
     users.$add({
@@ -57,14 +48,6 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
     });
   };
 
-  var getCurrentUser = function() {
-    // listenForAuthStateChange();
-    var currentUser = auth.currentUser;
-    // console.log("currentUser in getCurrentUser = ", currentUser);
-    // console.log("currentUser.getToken() = ", currentUser.getToken());
-    return currentUser;
-  };
-
   var isAuthenticated = false;
 
   var loginAnonymously = function() {
@@ -82,10 +65,6 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
 
     getAllUsers: function() {
       return users
-    },
-
-    getCurrentUser: function() {
-      getCurrentUser();
     },
 
     loginAnonymously: function() {
@@ -116,28 +95,6 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
       });
     },
 
-    // addUser: function(uid) {
-    //   users.$add({
-    //     name: '',
-    //     name: '',
-    //     email: '',
-    //     password: '',
-    //     state: '',
-    //     city: '',
-    //     school: '',
-    //     uid: uid,
-    //     verified: false,
-    //     photoURL: '',
-    //     loginLog: 0,
-    //     createdAT: firebase.database.ServerValue.TIMESTAMP,
-    //     lastLogin: firebase.database.ServerValue.TIMESTAMP
-    //   }).then(function(usersRef) {
-    //     var id = usersRef.key;
-    //     console.log("added item with id " + id);
-    //     users.$indexFor(id);
-    //   });
-    // },
-
     updateUser: function(oldUser, newName, newEmail) {
 
       oldUser.name = newName;
@@ -153,8 +110,6 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
       return isAuthenticated;
     }
 
-  }
-
-
+  } // end of Return
 } // end of firebase function
 ]); // end of factory initialization

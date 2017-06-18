@@ -6,7 +6,6 @@ spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvid
         enabled: true,
         requireBase: false
     });
-// https://spedtracker.firebaseapp.com/__/auth/action
     $stateProvider
         .state('landing', {
             url: '/',
@@ -72,29 +71,3 @@ spedtracker.config(['ChartJsProvider', function (ChartJsProvider) {
       showLines: true
     });
   }]);
-
-//(function () {
-//    function config($stateProvider, $locationProvider, $urlRouterProvider) {
-//        $locationProvider
-//            .html5Mode({
-//                enabled: true,
-//                requireBase: false
-//        });
-//
-//        $stateProvider
-//            .state('landing', {
-//                url: '/',
-//                controller: 'LandingCtrl as landing',
-//                templateUrl: '/templates/landing.html'
-//            })
-//            .state('user', {
-//                url: '/user',
-//                controller: 'StudentCtrl as user',
-//                templateUrl: '/templates/user.html'
-//            });
-//    }
-//
-//    angular
-//        .module('spedtracker', ['ui.router', 'firebase'])
-//        .config(config);
-//})();
