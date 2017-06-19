@@ -52,6 +52,10 @@ spedtracker.factory("FirebaseRef", ["$firebaseArray",
         return auth;
       },
 
+      getFirebase: function() {
+        return firebase;
+      }
+
       // getUsers: function() {
       //   return users;
       // },

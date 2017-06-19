@@ -60,8 +60,8 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
 
 
     $scope.createUserProfile = function() {
-      if ($scope.name && $scope.lastName && $scope.email && $scope.password && $scope.state && $scope.city && $scope.school) {
-        UserCrud.createUserProfile($scope.name, $scope.lastName, $scope.email, $scope.password, $scope.state, $scope.city, $scope.school);
+      if ($scope.name && $scope.email && $scope.password) {
+        UserCrud.createUserProfile($scope.name, $scope.email, $scope.password);
       } else {
         $scope.alert = true;
         $timeout(function turnOffAlert() {$scope.alert = false}, 5000);
