@@ -12,8 +12,8 @@ var config = {
 };
 firebase.initializeApp(config);
 
-    var studentsRef = firebase.database().ref().child("students");
-    var students = $firebaseArray(studentsRef);
+    // var studentsRef = firebase.database().ref().child("students");
+    // var students = $firebaseArray(studentsRef);
 
     var usersRef = firebase.database().ref().child("users");
     var users = $firebaseArray(usersRef);
@@ -22,13 +22,13 @@ firebase.initializeApp(config);
 
 
     return {
-      getStudents: function() {
-        return students;
-      },
-
-      getStudentsRef: function() {
-        return studentsRef;
-      },
+      // getStudents: function() {
+      //   return students;
+      // },
+      //
+      // getStudentsRef: function() {
+      //   return studentsRef;
+      // },
 
       getAuth: function() {
         console.log("auth = ", firebase.auth());

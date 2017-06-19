@@ -27,6 +27,10 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
   });
 
   var addUser = function(uid) {
+    var students = [];
+    var student = {};
+    student.name = "0";
+    students.push(student);
     users.$add({
       name: '',
       name: '',
@@ -39,6 +43,7 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
       verified: false,
       photoURL: '',
       loginLog: 0,
+      students: students,
       createdAT: firebase.database.ServerValue.TIMESTAMP,
       lastLogin: firebase.database.ServerValue.TIMESTAMP
     }).then(function(usersRef) {
@@ -79,13 +84,13 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
         for (var i = 0; i < users.length; i++) {
           if (currentUser.uid == users[i].uid) {
             users[i].name = name;
-            users[i].lastName = lastName;
-            users[i].email = email;
-            users[i].password = password;
-            users[i].state = state;
-            users[i].city = city;
-            users[i].school = school;
-            users[i].loginLog += 1;
+            // users[i].lastName = lastName;
+            // users[i].email = email;
+            // users[i].password = password;
+            // users[i].state = state;
+            // users[i].city = city;
+            // users[i].school = school;
+            // users[i].loginLog += 1;
 
             users.$save(users[i]).then(function() {
               $state.go('testTracker');

@@ -6,19 +6,8 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 // BEGIN Current User and Current User Students Variables and Functions
 
   var auth = FirebaseRef.getAuth();
-  var students = StudentCrud.getAllStudents();
+  // var students = StudentCrud.getAllStudents();
   var users = UserCrud.getAllUsers();
-
-  $scope.currentUser = function () {
-    var currentUser = auth.currentUser;
-    var uid = currentUser.uid;
-    for (var i = 0; i < users.length; i++) {
-      if (uid == users[i].uid) {
-        var currentUser = users[i];
-      }
-    }
-    return currentUser;
-  };
 
   auth.onAuthStateChanged(user => {
     if (user) {
@@ -29,17 +18,16 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     }
   });
 
-  $scope.selectedStudents = function() {
-    var currentUser = auth.currentUser;
-    var uid = currentUser.uid; // THIS IS THROWING A NON-BREAKING ERROR: "Cannot read property 'uid' of null"  HOWEVER, data is async, and compiler is reading 'uid' from currentUser.
-    var selectedStudents = [];
-    for (var i = 0; i < students.length; i++) {
-      if (uid == students[i].currentUserUID) {
-        selectedStudents.push(students[i]);
-      }
-    }
-    return selectedStudents;
-  }
+  // $scope.currentUser = function () {
+  //   var currentUser = auth.currentUser;
+  //   var uid = currentUser.uid;
+  //   for (var i = 0; i < users.length; i++) {
+  //     if (uid == users[i].uid) {
+  //       var currentUser = users[i];
+  //     }
+  //   }
+  //   return currentUser;
+  // };
 
 // END Current User and Current User Students Variables and Functions
 
@@ -71,15 +59,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       $scope.deleteAppear = false;
       StudentCrud.delete(student);
     };
-
-     // THIS IS THROWING A NON-BREAKING ERROR: "Cannot read property 'uid' of null"  HOWEVER, data is async, and compiler is reading 'uid' from currentUser.
-    var selectedStudents = [];
-    for (var i = 0; i < students.length; i++) {
-      if (uid == students[i].currentUserUID) {
-        selectedStudents.push(students[i]);
-      }
-    }
-    return selectedStudents;
 
     $scope.deleteSelected = function() {
 

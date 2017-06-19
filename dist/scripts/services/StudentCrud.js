@@ -3,9 +3,10 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
 // Public variables below
     // holds data as array of objects.  Each object is one item.
-    var studentsRef = FirebaseRef.getStudentsRef();
-    var students = FirebaseRef.getStudents();
+    // var studentsRef = FirebaseRef.getStudentsRef();
+    // var students = FirebaseRef.getStudents();
     var auth = FirebaseRef.getAuth();
+    var users = UserCrud.getAllUsers();
 
     var now = new Date();
     var nowNum = now.getTime();
@@ -20,14 +21,6 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
 // -- FUNCTIONS CALLED BY CONTROLLER --
     return {
-      // handing ref over to AuthCtrl.js for User creation and authentication.
-      getAllStudents: function() {
-        return students;
-      },
-
-      getStudentsRef: function() {
-        return studentsRef;
-      },
       // The function below and the one underneath, 'parseTime' are both called by '$scope.parseTime' in StudentCtrl to display detailed estimated time to completion info for item in DOM
 
       parseTime: function(timeInMillisecs) {
@@ -147,21 +140,37 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           totalTimeFour = testFourTimeNum * extendTime;
         }
 
-        auth.onAuthStateChanged(user => {
-          if (user) {
-            var currentUser = auth.currentUser;
-            var uid = currentUser.uid;
-            console.log("currentUser in onAuthStateChanged = ", currentUser);
-          } else {
-            console.log("AuthStateChange failed");
+        // var currentUser = auth.currentUser;
+        // var uid = currentUser.uid;
+
+        var currentUser = function () {
+          auth.onAuthStateChanged(user => {
+            if (user) {
+              var currentUser = auth.currentUser;
+              var uid = currentUser.uid;
+              console.log("currentUser in onAuthStateChanged = ", currentUser);
+            } else {
+              console.log("AuthStateChange failed");
+            }
+          });
+
+          var currentUser = auth.currentUser;
+          var uid = currentUser.uid;
+          for (var i = 0; i < users.length; i++) {
+            if (uid == users[i].uid) {
+              var currentUser = users[i];
+            }
           }
-        });
+          console.log("currentUser in currentUser() = ", currentUser);
+          return currentUser;
+        };
 
-        var currentUser = auth.currentUser;
-        var uid = currentUser.uid;
+        currentUser = currentUser();
+        console.log("currentUser in addStudent() = ", currentUser);
+        students = currentUser.students
+        console.log("currentUser.students in addStudent() = ", currentUser.students);
 
-        students.$add({
-          currentUserUID: uid || '',
+        var student = {
           name: studentName,
           extendTime: extendTime,
           testOneName: testOneName,
@@ -210,15 +219,42 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           testFourEndedAt: 0,
           isSafeToDelete: false,
           created_at: firebase.database.ServerValue.TIMESTAMP
-        }).then(function(studentsRef) {
-          var id = studentsRef.key;
-          console.log(studentName + ": end.  Added student with id " + id);
-          students.$indexFor(id);
+        };
 
+        students.push(student);
+
+      users.$save(currentUser).then(function() {
+        console.log("Added student with name " + student.name + " into user, " + currentUser.name);
         });
-      }, // end of AddItem
+      }, // end of AddStudent
 
       deleteTest: function(student, testNo) {
+
+        auth.onAuthStateChanged(user => {
+          if (user) {
+            var currentUser = auth.currentUser;
+            var uid = currentUser.uid;
+            console.log("currentUser in onAuthStateChanged = ", currentUser);
+          } else {
+            console.log("AuthStateChange failed");
+          }
+        });
+
+        var currentUser = auth.currentUser;
+        var uid = currentUser.uid;
+
+        var currentUser = function () {
+          var currentUser = auth.currentUser;
+          var uid = currentUser.uid;
+          for (var i = 0; i < users.length; i++) {
+            if (uid == users[i].uid) {
+              var currentUser = users[i];
+            }
+          }
+          return currentUser;
+        };
+
+        var students = currentUser.students;
 
         if (testNo == "testOne") {
           student.testOneName = '';
@@ -238,10 +274,36 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           student.totalTimeFour = 0;
         }
 
-        students.$save(student);
+        users.$save(currentUser);
       },
 
       processTimeInput: function(student, newDueDateObj, testNo) {
+
+        auth.onAuthStateChanged(user => {
+          if (user) {
+            var currentUser = auth.currentUser;
+            var uid = currentUser.uid;
+            console.log("currentUser in onAuthStateChanged = ", currentUser);
+          } else {
+            console.log("AuthStateChange failed");
+          }
+        });
+
+        var currentUser = auth.currentUser;
+        var uid = currentUser.uid;
+
+        var currentUser = function () {
+          var currentUser = auth.currentUser;
+          var uid = currentUser.uid;
+          for (var i = 0; i < users.length; i++) {
+            if (uid == users[i].uid) {
+              var currentUser = users[i];
+            }
+          }
+          return currentUser;
+        };
+
+        var students = currentUser.students;
 
         console.log("newDueDateObj = " + newDueDateObj);
         if (testNo == "testOne") {
@@ -262,7 +324,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           student.totalTimeFour = testFourTimeNum * student.extendTime;
         }
 
-        students.$save(student);
+        users.$save(currentUser);
 
       },
 

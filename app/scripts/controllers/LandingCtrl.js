@@ -59,9 +59,18 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
     };
 
 
+    // $scope.createUserProfile = function() {
+    //   if ($scope.name && $scope.lastName && $scope.email && $scope.password && $scope.state && $scope.city && $scope.school) {
+    //     UserCrud.createUserProfile($scope.name, $scope.lastName, $scope.email, $scope.password, $scope.state, $scope.city, $scope.school);
+    //   } else {
+    //     $scope.alert = true;
+    //     $timeout(function turnOffAlert() {$scope.alert = false}, 5000);
+    //   }
+    // };
+
     $scope.createUserProfile = function() {
-      if ($scope.name && $scope.lastName && $scope.email && $scope.password && $scope.state && $scope.city && $scope.school) {
-        UserCrud.createUserProfile($scope.name, $scope.lastName, $scope.email, $scope.password, $scope.state, $scope.city, $scope.school);
+      if ($scope.name) {
+        UserCrud.createUserProfile($scope.name);
       } else {
         $scope.alert = true;
         $timeout(function turnOffAlert() {$scope.alert = false}, 5000);
