@@ -41,7 +41,7 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
 
     $scope.forward = false;
 
-    $scope.choseLoginMethod = function(method) {
+    $scope.chooseLoginMethod = function(method) {
       if (method == "with password") {
         $scope.loginWithPassword = true;
         $scope.forward = true;

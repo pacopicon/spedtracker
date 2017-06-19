@@ -16,101 +16,7 @@ $btnHeight: 1.5em
 // @import "variables.sass"
 //
 // Index:
-// I - navbar ---- l.
-// II - clock ---- l.
-
-// I navbar
-
-.navbar
-  background-color: #4c91cd
-  // background-color: $bgColor
-  z-index: 1
-  min-height: 4.5em
-
-.left
-   width: 63em
-
-.link
-  min-width: 12em
-  &:hover
-
-.linkWrap
-  position: relative
-  padding-bottom: 2.5em
-  padding-top: 2.5em
-  width: 100%
-
-.link2, .link
-  display: table
-  text-decoration: none
-  text-align: center
-  margin: 0 auto
-  border-radius: 1em
-  border: 2.5px solid $bsBlue
-  background-color: $bgColor
-  min-width: 10em
-  color: $bsBlue
-  cursor: pointer
-  font-size: 1em
-  height: 2em
-  p
-    line-height: 0.5em
-    float: left
-    padding: 0
-    margin: 0
-  i
-    color: $bsBlue
-    float: right
-  &:hover
-    background-color: $bsBlue
-    color: $bgColor
-    transition: all 0.2s ease-in-out
-    i
-      color: $bgColor
-      transition: all 0.2s ease-in-out
-
-.link
-  min-width: 12em
-  p
-    line-height: 1em
-
-.admin
-  width: 7em
-
-li
-  padding-left: 0.5em
-  padding-top: 0.15em
-
-.navbar .fa
-  color: $bgColor
-  font-size: 0.5em
-
-.navbar p
-  color: $bgColor
-  float: right
-  font-family: 'Montserrat', sans-serif
-
-.navbar p .fa
-  padding-bottom: 2em
-  border: 0
-
-.navbar .fa:hover
-  color: $bgColor
-
-.navbar-header
-  float: right
-
-.navbar-toggle
-  padding-top: 0.85em
-  padding-right: 0.8em
-  padding-bottom: 0
-  padding-left: 0
-  margin: 0
-
-.navbar-header .fa
-  font-size: 2.5em
-
-/*end css for navbar*/
+// I - clock ---- l.
 
 section
   height: 200%
@@ -128,6 +34,12 @@ section
   font-size: 1.2em
 
 /* begin css for clock */
+
+.pageName
+  float: left
+
+.userName
+  float: right
 
 .clock-container, .clock-row
   margin: 0
@@ -183,8 +95,10 @@ section
   // max-width: 20em
 
 .yesNoContainer
-  width: 7em
+  width: 11em
+  // text-align: center
   float: right
+  // margin-right: 42%
 
 .yesBtn, .noBtn
   border: 2.5px solid $bsRed
@@ -195,16 +109,16 @@ section
   text-decoration: none
   text-align: center
   overflow: hidden
-  width: 3em
+  width: 5em
   transition: all 0.2s ease-in-out
-  i
+  p
     color: $bsRed
   &:active
     background-color: #e7eaeb
   &:hover
     transition: all 0.2s ease-in-out
     background-color: $bsRed
-    i
+    p
       color: #F2DEDE
 
 .yesBtn
@@ -214,6 +128,68 @@ section
 .noBtn
   float: right
   transition: all 0.2s ease-in-out
+
+.linkWrap
+  position: relative
+  width: 70%
+  margin: 0 auto
+  left: 0
+  top: 0
+  bottom: 0
+  right: 0
+  min-height: 2em
+  padding-bottom: 5em
+  padding-top: 2.5em
+
+.links
+  position: absolute
+  margin: 0 auto
+  width: 100%
+
+.link2, .link
+  text-decoration: none
+  transition: all 0.2s ease-in-out
+  border-radius: 1em
+  border: 2.5px solid $bsBlue
+  background-color: $bgColor
+  min-width: 3em
+  color: $bsBlue
+  cursor: pointer
+  font-size: 1em
+  min-height: 2em
+  overflow: auto
+  p
+    line-height: 0.5em
+    float: left
+    padding: 0
+    margin: 0
+  i
+    color: $bsBlue
+    float: right
+  &:hover
+    background-color: $bsBlue
+    color: $bgColor
+    transition: all 0.2s ease-in-out
+    i
+      color: $bgColor
+      transition: all 0.2s ease-in-out
+
+.link
+  min-width: 12em
+  float: left
+  p
+    line-height: 1em
+
+.link2
+  float: right
+  border: 2.5px solid $bsRed
+  background-color: $bgColor
+  p
+    color: $bsRed
+  &:hover
+    background-color: $bsRed
+    p
+      color: $bgColor
 
 .main-body
   border-radius: 0em

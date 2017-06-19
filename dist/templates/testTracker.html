@@ -7,7 +7,8 @@
   <div class="clock-row row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column2">
       <div class= "page-name">
-        <b><p>test tracker</p></b>
+        <b><p class="pageName">test tracker</p></b>
+        <b><p class="userName">{{currentUser().name}}'s student dashboard</p></b>
       </div>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column1">
@@ -20,15 +21,18 @@
 <!--end Clock-->
 <!-- links -->
 <div class="linkWrap">
-  <button ui-sref="testDataPrintout" class="link"><p class="linkText">view data printout</p><i class="fa fa-print" aria-hidden="true"></i></button>
+  <div class="links">
+    <button ui-sref="testDataPrintout" class="link"><p class="linkText">view data printout</p><i class="fa fa-print" aria-hidden="true"></i></button>
+    <button ng-click="warnClose()" class="link2"><b><p class="linkText">Log out and close session</p></b></button>
+  </div>
 </div>
 <!-- <button class= "yesNoBtn" ng-click="checkIfIdle()">check if Idle</button> -->
 
 <div class="alert alert-danger" role="alert" ng-show="warn">
-  <div class="alert-message">Students have been inactive for at least 30 min.  Please erase student list and close session.
+  <div class="alert-message">Do you wish to erase student list and close session?
   <div class="yesNoContainer">
-    <button class="yesBtn" ng-click="deleteAllStudents()"><i class="fa fa-check" aria-hidden="true"></i></button>
-    <button class="noBtn" ng-click="warningRejection()"><i class="fa fa-times" aria-hidden="true"></i></button>
+    <button class="yesBtn" ng-click="logout()"><p>close session</p></button>
+    <button class="noBtn" ng-click="warningRejection()"><p>not yet</p></button>
   </div>
 </div>
 </div>
