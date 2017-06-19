@@ -167,6 +167,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
         currentUser = currentUser();
         console.log("currentUser in addStudent() = ", currentUser);
+        currentUser.students = [];
         students = currentUser.students
         console.log("currentUser.students in addStudent() = ", currentUser.students);
 
@@ -224,6 +225,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
         students.push(student);
 
       users.$save(currentUser).then(function() {
+
         console.log("Added student with name " + student.name + " into user, " + currentUser.name);
         });
       }, // end of AddStudent

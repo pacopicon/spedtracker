@@ -9,25 +9,27 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
   // var students = StudentCrud.getAllStudents();
   var users = UserCrud.getAllUsers();
 
-  auth.onAuthStateChanged(user => {
-    if (user) {
-      var currentUser = auth.currentUser;
-      console.log("currentUser in onAuthStateChanged = ", currentUser);
-    } else {
-      console.log("AuthStateChange failed");
-    }
-  });
+  $scope.currentUser = function () {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        var currentUser = auth.currentUser;
+        // console.log("currentUser in onAuthStateChanged = ", currentUser);
+      } else {
+        console.log("AuthStateChange failed");
+      }
+    });
 
-  // $scope.currentUser = function () {
-  //   var currentUser = auth.currentUser;
-  //   var uid = currentUser.uid;
-  //   for (var i = 0; i < users.length; i++) {
-  //     if (uid == users[i].uid) {
-  //       var currentUser = users[i];
-  //     }
-  //   }
-  //   return currentUser;
-  // };
+    var currentUser = auth.currentUser;
+    var uid = currentUser.uid;
+    for (var i = 0; i < users.length; i++) {
+      if (uid == users[i].uid) {
+        var currentUser = users[i];
+      }
+    }
+    return currentUser;
+  };
+
+  var students =
 
 // END Current User and Current User Students Variables and Functions
 

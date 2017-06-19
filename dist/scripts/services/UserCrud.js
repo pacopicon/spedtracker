@@ -27,10 +27,10 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
   });
 
   var addUser = function(uid) {
-    var students = [];
-    var student = {};
-    student.name = "0";
-    students.push(student);
+    // var students = [];
+    // var student = {};
+    // student.name = "0";
+    // students.push(student);
     users.$add({
       name: '',
       name: '',
@@ -43,7 +43,7 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
       verified: false,
       photoURL: '',
       loginLog: 0,
-      students: students,
+      // students: students,
       createdAT: firebase.database.ServerValue.TIMESTAMP,
       lastLogin: firebase.database.ServerValue.TIMESTAMP
     }).then(function(usersRef) {
