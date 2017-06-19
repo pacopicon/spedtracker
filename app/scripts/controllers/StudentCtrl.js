@@ -29,7 +29,18 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     return currentUser;
   };
 
-  var students =
+  $scope.$watch(getCurrentUser, watcherFunction, true);
+      function getCurrentUser() {
+        return $scope.currentUser();
+    };
+
+  function watcherFunction(newData) {
+    console.log("newData = ", newData);
+    var students = $scope.currentUser().students;
+    console.log("students = ", students);
+  }
+
+
 
 // END Current User and Current User Students Variables and Functions
 
@@ -158,7 +169,11 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         return $scope.timer(student, testNo);
       }
 
-      students.$save(student).then(function() {
+      // $scope.currentUser()
+      //
+      // students
+
+      users.$save($scope.currentUser()).then(function() {
         // console.log("promise passed");
         var promise = $interval(function() {$scope.timer(student, testNo)}, 1000);
       });
@@ -266,7 +281,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
         $scope.checkIfIdle();
 
-          students.$save(student).then(function() {
+          users.$save($scope.currentUser()).then(function() {
           });
         // timer is counting down (test 1)
         } else if (!student.isTimerOnePaused && !student.isTestOneOver) {
@@ -334,7 +349,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
         $scope.checkIfIdle();
 
-          students.$save(student).then(function() {
+          users.$save($scope.currentUser()).then(function() {
           });
         // timer is counting down (test 2)
         } else if (!student.isTimerTwoPaused && !student.isTestTwoOver) {
@@ -403,7 +418,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
         $scope.checkIfIdle();
 
-          students.$save(student).then(function() {
+          users.$save($scope.currentUser()).then(function() {
           });
         // timer is counting down (test 2)
       } else if (!student.isTimerThreePaused && !student.isTestThreeOver) {
@@ -472,7 +487,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
           $scope.checkIfIdle();
 
-          students.$save(student).then(function() {
+          users.$save($scope.currentUser()).then(function() {
           });
         // timer is counting down (test 2)
       } else if (!student.isTimerFourPaused && !student.isTestFourOver) {
@@ -541,7 +556,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         student.pausedTimeFour = Date.now();
       }
 
-      students.$save(student).then(function() {
+      users.$save($scope.currentUser()).then(function() {
         $interval.cancel(promise);
       });
 
@@ -569,7 +584,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         student.pausedTotalFour += Date.now() - student.pausedTimeFour;
       }
 
-      students.$save(student).then(function() {
+      users.$save($scope.currentUser()).then(function() {
         $scope.startTimer(student, testNo);
       });
     };
@@ -605,7 +620,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
         student.isTimerFourStart = false;
       }
 
-      students.$save(student).then(function() {
+      users.$save($scope.currentUser()).then(function() {
         $interval.cancel(promise);
       });
 
@@ -633,7 +648,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       }
 
       console.log("endTimer called");
-      students.$save(student).then(function() {
+      users.$save($scope.currentUser()).then(function() {
         $interval.cancel(promise);
       });
 
@@ -854,7 +869,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     $scope.selectAll = true;
 
     $scope.saveAndToggleInvert = function(student) {
-      students.$save(student);
+      users.$save($scope.currentUser());
       toggleInvert();
     };
 

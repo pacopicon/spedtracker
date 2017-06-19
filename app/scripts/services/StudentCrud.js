@@ -167,7 +167,9 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
         currentUser = currentUser();
         console.log("currentUser in addStudent() = ", currentUser);
-        currentUser.students = [];
+        if (!currentUser.students) {
+          currentUser.students = [];
+        }
         students = currentUser.students
         console.log("currentUser.students in addStudent() = ", currentUser.students);
 
