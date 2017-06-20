@@ -157,11 +157,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           }
         });
 
-        var currentUser = auth.currentUser;
-        var uid = currentUser.uid;
-
         students.$add({
-          currentUserUID: uid || '',
           name: studentName,
           extendTime: extendTime,
           testOneName: testOneName,

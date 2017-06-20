@@ -1,5 +1,5 @@
-spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRef", "UserCrud", "$state",
-  function($scope, $rootScope, $q, FirebaseRef, UserCrud, $state) {
+spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRef", "$state",
+  function($scope, $rootScope, $q, FirebaseRef, $state) {
 
 // BEGIN Email and Password Signup and login functions for later use:
 
@@ -55,13 +55,13 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
 
     $scope.loginAnonymously = function() {
       $scope.createAnAccount = true;
-      UserCrud.loginAnonymously();
+      FirebaseRef.loginAnonymously();
     };
 
 
     $scope.createUserProfile = function() {
-      if ($scope.name && $scope.lastName && $scope.email && $scope.password && $scope.state && $scope.city && $scope.school) {
-        UserCrud.createUserProfile($scope.name, $scope.lastName, $scope.email, $scope.password, $scope.state, $scope.city, $scope.school);
+      if ($scope.name && $scope.email && $scope.password) {
+        FirebaseRef.createUserProfile($scope.name, $scope.email, $scope.password);
       } else {
         $scope.alert = true;
         $timeout(function turnOffAlert() {$scope.alert = false}, 5000);
