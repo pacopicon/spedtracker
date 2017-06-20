@@ -6,6 +6,7 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 // BEGIN Current User and Current User Students Variables and Functions
 
   var auth = FirebaseRef.getAuth();
+<<<<<<< HEAD
   var students = StudentCrud.getAllStudents();
 
   auth.onAuthStateChanged(user => {
@@ -18,6 +19,42 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
   });
 
   var currentUser = auth.currentUser;
+=======
+  var students = FirebaseRef.getStudents();
+  // var users = UserCrud.getAllUsers();
+
+  // $scope.currentUser = function () {
+  //   var currentUser = auth.currentUser;
+  //   var uid = currentUser.uid;
+  //   for (var i = 0; i < users.length; i++) {
+  //     if (uid == users[i].uid) {
+  //       var currentUser = users[i];
+  //     }
+  //   }
+  //   return currentUser;
+  // };
+
+  // auth.onAuthStateChanged(user => {
+  //   if (user) {
+  //     var currentUser = auth.currentUser;
+  //     console.log("currentUser in onAuthStateChanged = ", currentUser);
+  //   } else {
+  //     console.log("AuthStateChange failed");
+  //   }
+  // });
+
+  // $scope.students = function() {
+  //   var currentUser = auth.currentUser;
+  //   var uid = currentUser.uid; // THIS IS THROWING A NON-BREAKING ERROR: "Cannot read property 'uid' of null"  HOWEVER, data is async, and compiler is reading 'uid' from currentUser.
+  //   var students = [];
+  //   for (var i = 0; i < students.length; i++) {
+  //     if (uid == students[i].currentUserUID) {
+  //       students.push(students[i]);
+  //     }
+  //   }
+  //   return students;
+  // }
+>>>>>>> 16c626ead6378d0eb8b972d6d598080c30604125
 
 // END Current User and Current User Students Variables and Functions
 
@@ -57,6 +94,12 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
       $timeout(function appear() {$scope.selectAll = true}, 1000);
       $timeout(function appear() {$scope.clickedToDelete = false}, 1000);
 
+<<<<<<< HEAD
+=======
+      var currentUser = auth.currentUser;
+      var uid = currentUser.uid;
+
+>>>>>>> 16c626ead6378d0eb8b972d6d598080c30604125
       for (var i = 0; i < students.length; i++)
         if (students[i].isSafeToDelete) {
           $scope.delete(students[i]);

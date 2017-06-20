@@ -147,6 +147,19 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           totalTimeFour = testFourTimeNum * extendTime;
         }
 
+<<<<<<< HEAD
+=======
+        auth.onAuthStateChanged(user => {
+          if (user) {
+            var currentUser = auth.currentUser;
+            var uid = currentUser.uid;
+            console.log("currentUser in onAuthStateChanged = ", currentUser);
+          } else {
+            console.log("AuthStateChange failed");
+          }
+        });
+
+>>>>>>> 16c626ead6378d0eb8b972d6d598080c30604125
         students.$add({
           name: studentName,
           extendTime: extendTime,
