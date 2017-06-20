@@ -1,5 +1,5 @@
-spedtracker.factory("FirebaseRef", ["$firebaseArray",
-  function($firebaseArray) {
+spedtracker.factory("FirebaseRef", ["$firebaseArray", "$window",
+  function($firebaseArray, $window) {
 
 // Initialize Firebase
     var config = {
@@ -12,48 +12,46 @@ spedtracker.factory("FirebaseRef", ["$firebaseArray",
     };
     firebase.initializeApp(config);
 
-    var auth = firebase.auth();
-
-    var userId = firebase.auth().currentUser.uid;
-
-    // function writeUserData(userId, name, email) {
-    //   firebase.database().ref('users/' + userId).set({
-    //     username: name,
-    //     email: email
-    //   });
-    // }
+    // $window.onload = function() {
     //
-    // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-    //   var username = snapshot.val().username;
-    //   // ...
-    // });
+    // }
 
-    // var studentsRef = firebase.database().ref().child("students");
-    var studentsRef = firebase.database().ref('users/' + userId).child("students");
-    var students = $firebaseArray(studentsRef);
+    var databaseRef = function() {
+      var auth = firebase.auth();
 
-    // var usersRef = firebase.database().ref().child("users");
-    // var users = $firebaseArray(usersRef);
-
-
-
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          var currentUser = auth.currentUser;
+          console.log("currentUser in onAuthStateChanged = ", currentUser);
+        } else {
+          console.log("AuthStateChange failed");
+        }
+      });
+      return {
+        auth: firebase.auth(),
+        userId: 0 || firebase.auth().currentUser.uid,
+        studentsRef: firebase.database().ref('users/' + userId).child("students"),
+        students: $firebaseArray(studentsRef),
+        firebase: firebase
+      }
+    }
 
     return {
       getStudents: function() {
-        return students;
+        return databaseRef().students;
       },
 
       getStudentsRef: function() {
-        return studentsRef;
+        return databaseRef().studentsRef;
       },
 
       getAuth: function() {
         console.log("auth = ", firebase.auth());
-        return auth;
+        return databaseRef().auth;
       },
 
       getFirebase: function() {
-        return firebase;
+        return databaseRef().firebase;
       }
 
       // getUsers: function() {

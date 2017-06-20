@@ -56,6 +56,7 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
           password : password
         });
       };
+      $state.go("testTracker");
     },
 
     isAuthenticated: function() {
