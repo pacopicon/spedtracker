@@ -4,8 +4,23 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 // Public variables below
     // holds data as array of objects.  Each object is one item.
     // var studentsRef = FirebaseRef.getStudentsRef();
-    var students = FirebaseRef.getStudents();
+    // var students = FirebaseRef.getStudents();
     var auth = FirebaseRef.getAuth();
+    // function getStudents() {
+    //   auth.onAuthStateChanged(user => {
+    //     if (user) {
+    //       var currentUser = auth.currentUser;
+    //       console.log("currentUser in onAuthStateChanged = ", currentUser);
+    //       var uid = currentUser.uid
+    //       const studentsRef = firebase.database().ref('users/' + uid).child("students");
+    //       const students = $firebaseArray(studentsRef);
+    //       $scope.students = $firebaseArray(studentsRef);
+    //     } else {
+    //       console.log("AuthStateChange failed");
+    //     }
+    //   });
+    // }
+
 
     var now = new Date();
     var nowNum = now.getTime();
@@ -147,70 +162,72 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
           totalTimeFour = testFourTimeNum * extendTime;
         }
 
+
         auth.onAuthStateChanged(user => {
           if (user) {
             var currentUser = auth.currentUser;
-            var uid = currentUser.uid;
-            console.log("currentUser in onAuthStateChanged = ", currentUser);
+            console.log("onAuthStateChanged hit!!!!");
+            var uid = currentUser.uid
+            const studentsRef = firebase.database().ref('users/' + uid).child("students");
+            const students = $firebaseArray(studentsRef);
+
+            students.$add({
+              name: studentName,
+              extendTime: extendTime,
+              testOneName: testOneName,
+              testOneTime:  testOneTimeNum || 18000000,
+              totalTimeOne: testOneTimeNum * extendTime,
+              testOneStartRecord: 0,
+              testOneStartTime: 0,
+              isTimerOneStart: false,
+              isTimerOnePaused: false,
+              pausedTimeOne: 0,
+              pausedTotalOne: 0,
+              isTestOneOver: false,
+              testOneEndedAt: 0,
+              testTwoName: testTwoName,
+              testTwoTime: testTwoTimeNum || 18000000,
+              totalTimeTwo: testTwoTimeNum * extendTime,
+              testTwoStartRecord: 0,
+              testTwoStartTime: 0,
+              isTimerTwoStart: false,
+              isTimerTwoPaused: false,
+              pausedTimeTwo: 0,
+              pausedTotalTwo: 0,
+              isTestTwoOver: false,
+              testTwoEndedAt: 0,
+              testThreeName: testThreeName,
+              testThreeTime: testThreeTimeNum || 18000000,
+              totalTimeThree: testThreeTimeNum * extendTime,
+              testThreeStartRecord: 0,
+              testThreeStartTime: 0,
+              isTimerThreeStart: false,
+              isTimerThreePaused: false,
+              pausedTimeThree: 0,
+              pausedTotalThree: 0,
+              isTestThreeOver: false,
+              testThreeEndedAt: 0,
+              testFourName: testFourName,
+              testFourTime: testFourTimeNum || 18000000,
+              totalTimeFour: testFourTimeNum * extendTime,
+              testFourStartRecord: 0,
+              testFourStartTime: 0,
+              isTimerFourStart: false,
+              isTimerFourPaused: false,
+              pausedTimeFour: 0,
+              pausedTotalFour: 0,
+              isTestFourOver: false,
+              testFourEndedAt: 0,
+              isSafeToDelete: false,
+              created_at: firebase.database.ServerValue.TIMESTAMP
+            }).then(function(studentsRef) {
+              var id = studentsRef.key;
+              console.log(studentName + ": end.  Added student with id " + id);
+              students.$indexFor(id);
+            });
           } else {
             console.log("AuthStateChange failed");
           }
-        });
-
-        students.$add({
-          name: studentName,
-          extendTime: extendTime,
-          testOneName: testOneName,
-          testOneTime:  testOneTimeNum || 18000000,
-          totalTimeOne: testOneTimeNum * extendTime,
-          testOneStartRecord: 0,
-          testOneStartTime: 0,
-          isTimerOneStart: false,
-          isTimerOnePaused: false,
-          pausedTimeOne: 0,
-          pausedTotalOne: 0,
-          isTestOneOver: false,
-          testOneEndedAt: 0,
-          testTwoName: testTwoName,
-          testTwoTime: testTwoTimeNum || 18000000,
-          totalTimeTwo: testTwoTimeNum * extendTime,
-          testTwoStartRecord: 0,
-          testTwoStartTime: 0,
-          isTimerTwoStart: false,
-          isTimerTwoPaused: false,
-          pausedTimeTwo: 0,
-          pausedTotalTwo: 0,
-          isTestTwoOver: false,
-          testTwoEndedAt: 0,
-          testThreeName: testThreeName,
-          testThreeTime: testThreeTimeNum || 18000000,
-          totalTimeThree: testThreeTimeNum * extendTime,
-          testThreeStartRecord: 0,
-          testThreeStartTime: 0,
-          isTimerThreeStart: false,
-          isTimerThreePaused: false,
-          pausedTimeThree: 0,
-          pausedTotalThree: 0,
-          isTestThreeOver: false,
-          testThreeEndedAt: 0,
-          testFourName: testFourName,
-          testFourTime: testFourTimeNum || 18000000,
-          totalTimeFour: testFourTimeNum * extendTime,
-          testFourStartRecord: 0,
-          testFourStartTime: 0,
-          isTimerFourStart: false,
-          isTimerFourPaused: false,
-          pausedTimeFour: 0,
-          pausedTotalFour: 0,
-          isTestFourOver: false,
-          testFourEndedAt: 0,
-          isSafeToDelete: false,
-          created_at: firebase.database.ServerValue.TIMESTAMP
-        }).then(function(studentsRef) {
-          var id = studentsRef.key;
-          console.log(studentName + ": end.  Added student with id " + id);
-          students.$indexFor(id);
-
         });
       }, // end of AddItem
 

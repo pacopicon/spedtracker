@@ -54,13 +54,32 @@ spedtracker.factory("FirebaseRef", ["$firebaseArray", "$state",
       });
     };
 
-    var setUserAndStudents = function(uid) {
-      firebase.database().ref('users/' + uid);
-      const studentsRef = firebase.database().ref('users/' + uid).child("students");
-      const students = $firebaseArray(studentsRef);
-      return students;
+    // var setUserAndStudents = function(uid) {
+    //   firebase.database().ref('users/' + uid);
+    //   const studentsRef = firebase.database().ref('users/' + uid).child("students");
+    //   console.log("studentsRef = ", studentsRef)
+    //   const students = $firebaseArray(studentsRef);
+    //   return students;
+    // };
 
+    var setUserAndStudents = function(uid) {
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          var currentUser = auth.currentUser;
+          console.log("currentUser in onAuthStateChanged = ", currentUser);
+          var uid = currentUser.uid
+          firebase.database().ref('users/' + uid);
+          const studentsRef = firebase.database().ref('users/' + uid).child("students");
+          const students = $firebaseArray(studentsRef);
+          console.log("studentsRef = ", studentsRef)
+          return students;
+        } else {
+          console.log("AuthStateChange failed");
+        }
+      });
     };
+
+
 
     var writeUserData = function(uid, name, email) {
 
