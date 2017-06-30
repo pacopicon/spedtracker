@@ -50,12 +50,12 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
 
   // var isAuthenticated = false;
   //
-  // var loginAnonymously = function() {
+  // var oAuthSignIn = function() {
   //   promise = auth.signInAnonymously();
   //   promise.catch(e => console.log(e.message));
   //   console.log("promise = ", promise);
   //   var currentUser = auth.currentUser;
-  //   console.log("currentUser in loginAnonymously = ", currentUser);
+  //   console.log("currentUser in oAuthSignIn = ", currentUser);
   //   uid = currentUser.uid;
   //   addUser(uid);
   //   var isAuthenticated = true;
@@ -67,8 +67,8 @@ spedtracker.factory("UserCrud", ["FirebaseRef", "$state",
     //   return users
     // },
     //
-    // loginAnonymously: function() {
-    //   loginAnonymously();
+    // oAuthSignIn: function() {
+    //   oAuthSignIn();
     // },
     //
     // createUserProfile: function(name, lastName, email, password, state, city, school) {

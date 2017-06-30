@@ -5,8 +5,23 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
 
 // BEGIN Current User and Current User Students Variables and Functions
 
-  var auth = FirebaseRef.getAuth();
+  var auth = firebase.auth();
   var students = FirebaseRef.getStudents();
+  // $scope.currentUser = FirebaseRef.getCurrentUser();
+  $scope.currentUser = function() {
+
+    var user = auth.currentUser;
+    var name, email, photoUrl, uid, emailVerified;
+
+    if (user != null && typeof user !== "undefined") {
+      $scope.name = user.displayName;
+      var email = user.email;
+      var photoUrl = user.photoURL;
+      var uid = user.uid;
+      return user;
+    }
+
+  }
   // var users = UserCrud.getAllUsers();
 
   // $scope.currentUser = function () {

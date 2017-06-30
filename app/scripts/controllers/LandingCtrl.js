@@ -39,29 +39,18 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
         $scope.inputType = 'password';
     };
 
-    $scope.forward = false;
-
-    $scope.chooseLoginMethod = function(method) {
-      if (method == "with password") {
-        $scope.loginWithPassword = true;
-        $scope.forward = true;
-      } else {
-        $scope.loginWithPassword = false;
-        $scope.forward = true;
-      }
-    }
-
     $scope.createAnAccount = false;
 
-    $scope.loginAnonymously = function() {
+    $scope.oAuthSignIn = function() {
+      FirebaseRef.oAuthSignIn();
       $scope.createAnAccount = true;
-      FirebaseRef.loginAnonymously();
+
     };
 
 
     $scope.createUserProfile = function() {
-      if ($scope.name && $scope.email && $scope.password) {
-        FirebaseRef.createUserProfile($scope.name, $scope.email, $scope.password);
+      if ($scope.name && $scope.email) {
+        FirebaseRef.createUserProfile($scope.name, $scope.email);
       } else {
         $scope.alert = true;
         $timeout(function turnOffAlert() {$scope.alert = false}, 5000);

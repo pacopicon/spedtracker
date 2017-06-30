@@ -3,7 +3,7 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
 // Public variables below
     // holds data as array of objects.  Each object is one item.
-    var studentsRef = FirebaseRef.getStudentsRef();
+    // var studentsRef = FirebaseRef.getStudentsRef();
     var students = FirebaseRef.getStudents();
     var auth = FirebaseRef.getAuth();
 

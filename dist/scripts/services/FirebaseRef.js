@@ -20,72 +20,154 @@ spedtracker.factory("FirebaseRef", ["$firebaseArray", "$state",
         var currentUser = auth.currentUser;
         console.log("currentUser in onAuthStateChanged = ", currentUser);
         var uid = currentUser.uid
-        setUser(uid);
+        // setUserAndStudents(uid);
+        // authHandler(authData)
       } else {
         console.log("AuthStateChange failed");
       }
     });
 
-    var setUser = function(uid) {
-      firebase.database().ref('users/' + uid);
-    };
-
-    if (typeof uid !== "undefined") {
-      var studentsRef = firebase.database().ref('users/' + uid).child("students");
-      var students = $firebaseArray(studentsRef);
-    }
+    // if (typeof uid !== "undefined") {
+    //   var studentsRef = firebase.database().ref('users/' + uid).child("students");
+    //   var students = $firebaseArray(studentsRef);
+    // }
 
     var isAuthenticated = false;
 
-    var loginAnonymously = function() {
-      promise = auth.signInAnonymously();
-      promise.catch(e => console.log(e.message));
-      console.log("promise = ", promise);
-      var currentUser = auth.currentUser;
-      console.log("currentUser in loginAnonymously = ", currentUser);
-      uid = currentUser.uid;
+    var provider = new firebase.auth.FacebookAuthProvider();
+
+    var oAuthSignIn = function() {
+
+      auth.signInWithPopup(provider).then(function(result) {
+      var token = result.credential.accessToken;
+      var user = result.user;
+      console.log("Signed in as:", result.user.uid);
+      var authData = {
+        token: token,
+        user: user
+      }
+      // authHandler(authData);
+      setUserAndStudents(result.user.uid);
       var isAuthenticated = true;
+      }).catch(function(error) {
+        console.error("Authentication failed:", error);
+      });
+    };
+
+    var setUserAndStudents = function(uid) {
+      firebase.database().ref('users/' + uid);
+      const studentsRef = firebase.database().ref('users/' + uid).child("students");
+      const students = $firebaseArray(studentsRef);
+      return students;
+
+    };
+
+    var writeUserData = function(uid, name, email) {
+
+      console.log("writeUserData hit");
+
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          var currentUser = auth.currentUser;
+          console.log("currentUser in onAuthStateChanged = ", currentUser);
+          var uid = currentUser.uid
+          // setUserAndStudents(uid);
+          // authHandler(authData)
+        } else {
+          console.log("AuthStateChange failed");
+        }
+      });
+
+      firebase.database().ref('users'/ + uid).set({
+        username: name,
+        email: email
+      });
+      $state.go('testTracker');
+    };
+
+    var authHandler = function(authData) {
+      console.log('authData = ', authData);
+      if(!authData || typeof authData === "undefined") {
+        console.log('did not receive authData');
+        return;
+      }
+
+      var storeRef = database(rebase.app).ref(this.props.storeID);
+
+      storeRef.once('value', (snapshot) => {
+        var data = snapshot.val() || {};
+
+        if(!data.owner) {
+          storeRef.set({
+            owner: authData.user.uid
+          });
+        }
+
+        this.setState({
+          uid: authData.user.uid,
+          owner: data.owner || authData.user.uid
+        });
+      });
     };
 
     return {
       getStudents: function() {
-        return students;
+        // return students;
+        auth.onAuthStateChanged(user => {
+          if (user) {
+            var currentUser = auth.currentUser;
+            console.log("currentUser in onAuthStateChanged = ", currentUser);
+            var uid = currentUser.uid
+            return setUserAndStudents(uid);
+            // authHandler(authData)
+          } else {
+            console.log("AuthStateChange failed");
+          }
+        });
       },
 
-      getStudentsRef: function() {
-        return studentsRef;
+      // getCurrentUser: function() {
+      //   auth.onAuthStateChanged(user => {
+      //     if (user) {
+      //       var currentUser = auth.currentUser;
+      //       console.log("currentUser in onAuthStateChanged = ", currentUser);
+      //       return currentUser;
+      //       // authHandler(authData)
+      //     } else {
+      //       console.log("AuthStateChange failed");
+      //     }
+      //   });
+      // },
+
+      getCurrentUser: function() {
+        return auth.currentUser;
       },
+
+      // getStudentsRef: function() {
+      //   return studentsRef;
+      // },
 
       getAuth: function() {
         console.log("auth = ", firebase.auth());
         return auth;
       },
 
-      loginAnonymously: function() {
-        loginAnonymously();
+      oAuthSignIn: function() {
+        oAuthSignIn();
       },
 
-      createUserProfile: function(name, email, password) {
-
-        var writeUserData = function(uid, name, email, password) {
-          firebase.database().ref('users'/ + uid).set({
-            username: name,
-            email: email,
-            password: password
-          });
-          $state.go('testTracker');
-        };
+      createUserProfile: function(name, email) {
 
         auth.onAuthStateChanged(user => {
           if (user) {
             var currentUser = auth.currentUser;
-            var uid = currentUser.uid;
-            writeUserData(uid, name, email, password);
-            if (!(firebase.database().ref('users/' + uid))) {
-              setUser(uid);
-            }
+            console.log("currentUser in onAuthStateChanged = ", currentUser);
+            var uid = currentUser.uid
+            writeUserData(uid, name, email);
+            // setUserAndStudents(uid);
+            // authHandler(authData)
           } else {
-            console.log("AuthStateChange in CreateUserProfile failed");
+            console.log("AuthStateChange failed");
           }
         });
 
