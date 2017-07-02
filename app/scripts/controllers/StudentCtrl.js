@@ -1,13 +1,80 @@
-spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$rootScope", "$interval", "$log", "$http", "$locale", "$location", "$templateCache", '$timeout', "$q", "$sce", "$tooltip", "$popover", "FirebaseRef", "$cookies",
-  function($scope, StudentCrud, UserCrud, $rootScope, $interval, $log, $http, $locale, $location, $templateCache, $timeout, $q, $sce, $tooltip, $popover, FirebaseRef, $cookies) {
+spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$interval", '$timeout', "$q", "$sce", "$tooltip", "$popover", "FirebaseRef", "$firebaseArray",
+  function($scope, StudentCrud, $rootScope, $interval, $timeout, $q, $sce, $tooltip, $popover, FirebaseRef, $firebaseArray) {
 
     // Remember, Firebase only accepts object, array, string, number, boolean, or null (see: https://www.firebase.com/docs/web/api/firebase/set.html)
 
 // BEGIN Current User and Current User Students Variables and Functions
 
   var auth = firebase.auth();
-  var students = FirebaseRef.getStudents();
-  // $scope.currentUser = FirebaseRef.getCurrentUser();
+
+  // $scope.students = FirebaseRef.getStudents();
+
+  var students = function() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        var currentUser = auth.currentUser;
+        console.log("currentUser in onAuthStateChanged = ", currentUser);
+        var uid = currentUser.uid
+        // const studentsRef = firebase.database().ref('users/' + uid).child("students");
+        const studentsRef = firebase.database().ref('users/' + uid).child("students");
+        const students = $firebaseArray(studentsRef);
+
+
+        return students;
+      } else {
+        console.log("AuthStateChange failed");
+      }
+    });
+  };
+
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      var currentUser = auth.currentUser;
+      console.log("currentUser in onAuthStateChanged = ", currentUser);
+      var uid = currentUser.uid
+      // const studentsRef = firebase.database().ref('users/' + uid).child("students");
+      const studentsRef = firebase.database().ref('users/' + uid).child("students");
+      $scope.students = $firebaseArray(studentsRef);
+    } else {
+      console.log("AuthStateChange failed");
+    }
+  });
+
+  // $scope.students = function() {
+  //   auth.onAuthStateChanged(user => {
+  //     if (user) {
+  //       var currentUser = auth.currentUser;
+  //       var uid = currentUser.uid
+  //       const studentsRef = firebase.database().ref('users/' + uid).child("students");
+  //       const students = $firebaseArray(studentsRef);
+  //
+  //       return students;
+  //     } else {
+  //       console.log("AuthStateChange failed");
+  //     }
+  //   });
+  // };
+
+  // $scope.students = FirebaseRef.getStudents2().$resolved;
+
+
+  // $scope.students = FirebaseRef.getStudents();
+
+  // $scope.students = function() {
+  //   var user = auth.currentUser;
+  //   var name, email, photoUrl, uid, emailVerified;
+  //
+  //   if (user != null && typeof user !== "undefined") {
+  //     var name = user.displayName;
+  //     var email = user.email;
+  //     var photoUrl = user.photoURL;
+  //     var uid = user.uid;
+  //     const studentsRef = firebase.database().ref('users/' + uid).child("students");
+  //     const students = $firebaseArray(studentsRef);
+  //     return students;
+  //   }
+  // }
+
   $scope.currentUser = function() {
 
     var user = auth.currentUser;
@@ -22,39 +89,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "UserCrud", "$ro
     }
 
   }
-  // var users = UserCrud.getAllUsers();
-
-  // $scope.currentUser = function () {
-  //   var currentUser = auth.currentUser;
-  //   var uid = currentUser.uid;
-  //   for (var i = 0; i < users.length; i++) {
-  //     if (uid == users[i].uid) {
-  //       var currentUser = users[i];
-  //     }
-  //   }
-  //   return currentUser;
-  // };
-
-  // auth.onAuthStateChanged(user => {
-  //   if (user) {
-  //     var currentUser = auth.currentUser;
-  //     console.log("currentUser in onAuthStateChanged = ", currentUser);
-  //   } else {
-  //     console.log("AuthStateChange failed");
-  //   }
-  // });
-
-  // $scope.students = function() {
-  //   var currentUser = auth.currentUser;
-  //   var uid = currentUser.uid; // THIS IS THROWING A NON-BREAKING ERROR: "Cannot read property 'uid' of null"  HOWEVER, data is async, and compiler is reading 'uid' from currentUser.
-  //   var students = [];
-  //   for (var i = 0; i < students.length; i++) {
-  //     if (uid == students[i].currentUserUID) {
-  //       students.push(students[i]);
-  //     }
-  //   }
-  //   return students;
-  // }
 
 // END Current User and Current User Students Variables and Functions
 

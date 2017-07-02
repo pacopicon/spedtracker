@@ -6,7 +6,8 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
     // var studentsRef = FirebaseRef.getStudentsRef();
     // var students = FirebaseRef.getStudents();
     var auth = FirebaseRef.getAuth();
-    // function getStudents() {
+
+    // $scope.students() = function() {
     //   auth.onAuthStateChanged(user => {
     //     if (user) {
     //       var currentUser = auth.currentUser;
@@ -15,12 +16,12 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
     //       const studentsRef = firebase.database().ref('users/' + uid).child("students");
     //       const students = $firebaseArray(studentsRef);
     //       $scope.students = $firebaseArray(studentsRef);
+    //       return $scope.students;
     //     } else {
     //       console.log("AuthStateChange failed");
     //     }
     //   });
-    // }
-
+    // };
 
     var now = new Date();
     var nowNum = now.getTime();

@@ -15,6 +15,18 @@ spedtracker.factory("FirebaseRef", ["$firebaseArray", "$state",
 
     var auth = firebase.auth();
 
+    var user = auth.currentUser;
+    var name, email, photoUrl, uid, emailVerified;
+
+    if (user != null && typeof user !== "undefined") {
+      var name = user.displayName;
+      var email = user.email;
+      var photoUrl = user.photoURL;
+      var uid = user.uid;
+      const studentsRef = firebase.database().ref('users/' + uid).child("students");
+      const students = $firebaseArray(studentsRef);
+    }
+
     auth.onAuthStateChanged(user => {
       if (user) {
         var currentUser = auth.currentUser;
@@ -79,8 +91,6 @@ spedtracker.factory("FirebaseRef", ["$firebaseArray", "$state",
       });
     };
 
-
-
     var writeUserData = function(uid, name, email) {
 
       console.log("writeUserData hit");
@@ -134,15 +144,44 @@ spedtracker.factory("FirebaseRef", ["$firebaseArray", "$state",
         // return students;
         auth.onAuthStateChanged(user => {
           if (user) {
-            var currentUser = auth.currentUser;
-            console.log("currentUser in onAuthStateChanged = ", currentUser);
-            var uid = currentUser.uid
-            return setUserAndStudents(uid);
+            // var currentUser = user;
+            // console.log("currentUser in onAuthStateChanged = ", user);
+            var uid = user.uid
+            // return setUserAndStudents(uid);
+            // var uid = currentUser.uid
+            // firebase.database().ref('users/' + uid);
+            const studentsRef = firebase.database().ref('users/' + uid).child("students");
+            const students = $firebaseArray(studentsRef);
+            // console.log("students = ", students);
+            // console.log("firebase.database().ref().child", firebase.database().ref().child);
+            return students;
             // authHandler(authData)
           } else {
             console.log("AuthStateChange failed");
           }
         });
+      },
+
+      getStudents2: function() {
+          var user = auth.currentUser;
+          var name, email, photoUrl, uid, emailVerified;
+
+          if (user != null && typeof user !== "undefined") {
+            $scope.name = user.displayName;
+            var email = user.email;
+            var photoUrl = user.photoURL;
+            var uid = user.uid;
+            return user;
+          }
+        const studentsRef = firebase.database().ref('users/' + uid).child("students");
+        const students = $firebaseArray(studentsRef);
+        return students;
+      },
+
+      getStudents3: function() {
+        const studentsRef = firebase.database().ref().child("students");
+        const students = $firebaseArray(studentsRef);
+        return students;
       },
 
       // getCurrentUser: function() {
