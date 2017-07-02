@@ -36,14 +36,6 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
 // -- FUNCTIONS CALLED BY CONTROLLER --
     return {
-      // handing ref over to AuthCtrl.js for User creation and authentication.
-      getAllStudents: function() {
-        return students;
-      },
-
-      getStudentsRef: function() {
-        return studentsRef;
-      },
       // The function below and the one underneath, 'parseTime' are both called by '$scope.parseTime' in StudentCtrl to display detailed estimated time to completion info for item in DOM
 
       parseTime: function(timeInMillisecs) {
@@ -234,69 +226,125 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef", "UserCrud",
 
       deleteTest: function(student, testNo) {
 
-        if (testNo == "testOne") {
-          student.testOneName = '';
-          student.testOneTime = 18000000;
-          student.totalTimeOne = 0;
-        } else if (testNo == "testTwo") {
-          student.testTwoName = '';
-          student.testTwoTime = 18000000;
-          student.totalTimeTwo = 0;
-        } else if (testNo == "testThree") {
-          student.testThreeName = '';
-          student.testThreeTime = 18000000;
-          student.totalTimeThree = 0;
-        } else if (testNo == "testFour") {
-          student.testFourName = '';
-          student.testFourTime = 18000000;
-          student.totalTimeFour = 0;
-        }
+        auth.onAuthStateChanged(user => {
+          if (user) {
+            var currentUser = auth.currentUser;
+            console.log("onAuthStateChanged hit!!!!");
+            var uid = currentUser.uid
+            const studentsRef = firebase.database().ref('users/' + uid).child("students");
+            const students = $firebaseArray(studentsRef);
 
-        students.$save(student);
+          if (testNo == "testOne") {
+            student.testOneName = '';
+            student.testOneTime = 18000000;
+            student.totalTimeOne = 0;
+          } else if (testNo == "testTwo") {
+            student.testTwoName = '';
+            student.testTwoTime = 18000000;
+            student.totalTimeTwo = 0;
+          } else if (testNo == "testThree") {
+            student.testThreeName = '';
+            student.testThreeTime = 18000000;
+            student.totalTimeThree = 0;
+          } else if (testNo == "testFour") {
+            student.testFourName = '';
+            student.testFourTime = 18000000;
+            student.totalTimeFour = 0;
+          }
+
+          students.$save(student);
+
+          } else {
+            console.log("AuthStateChange failed");
+          }
+        });
       },
 
       processTimeInput: function(student, newDueDateObj, testNo) {
 
-        console.log("newDueDateObj = " + newDueDateObj);
-        if (testNo == "testOne") {
-          testOneTimeNum = addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes());
-          student.testOneTime = testOneTimeNum;
-          student.totalTimeOne = testOneTimeNum * student.extendTime;
-        } else if (testNo == "testTwo") {
-          testTwoTimeNum = addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes());
-          student.testTwoTime = testTwoTimeNum;
-          student.totalTimeTwo = testTwoTimeNum * student.extendTime;
-        } else if (testNo == "testThree") {
-          testThreeTimeNum = addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes());
-          student.testThreeTime = testThreeTimeNum;
-          student.totalTimeThree = testThreeTimeNum * student.extendTime;
-        } else if (testNo == "testFour") {
-          testFourTimeNum = addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes());
-          student.testFourTime = testFourTimeNum;
-          student.totalTimeFour = testFourTimeNum * student.extendTime;
-        }
+        auth.onAuthStateChanged(user => {
+          if (user) {
+            var currentUser = auth.currentUser;
+            console.log("onAuthStateChanged hit!!!!");
+            var uid = currentUser.uid
+            const studentsRef = firebase.database().ref('users/' + uid).child("students");
+            const students = $firebaseArray(studentsRef);
 
-        students.$save(student);
+            console.log("newDueDateObj = " + newDueDateObj);
+            if (testNo == "testOne") {
+              testOneTimeNum = addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes());
+              student.testOneTime = testOneTimeNum;
+              student.totalTimeOne = testOneTimeNum * student.extendTime;
+            } else if (testNo == "testTwo") {
+              testTwoTimeNum = addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes());
+              student.testTwoTime = testTwoTimeNum;
+              student.totalTimeTwo = testTwoTimeNum * student.extendTime;
+            } else if (testNo == "testThree") {
+              testThreeTimeNum = addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes());
+              student.testThreeTime = testThreeTimeNum;
+              student.totalTimeThree = testThreeTimeNum * student.extendTime;
+            } else if (testNo == "testFour") {
+              testFourTimeNum = addHoursAndMinutes(newDueDateObj.getHours(), newDueDateObj.getMinutes());
+              student.testFourTime = testFourTimeNum;
+              student.totalTimeFour = testFourTimeNum * student.extendTime;
+            }
+
+            students.$save(student);
+
+          } else {
+            console.log("AuthStateChange failed");
+          }
+        });
 
       },
 
       toggleSelectForDelete: function(students) {
-        for (var i = 0; i < students.length; i++) {
-          if (!students[i].isSafeToDelete) {
-            students[i].isSafeToDelete = true;
-          } else if (students[i].isSafeToDelete) {
-            students[i].isSafeToDelete = false;
+
+        auth.onAuthStateChanged(user => {
+          if (user) {
+            var currentUser = auth.currentUser;
+            console.log("onAuthStateChanged hit!!!!");
+            var uid = currentUser.uid
+            const studentsRef = firebase.database().ref('users/' + uid).child("students");
+            const students = $firebaseArray(studentsRef);
+
+            for (var i = 0; i < students.length; i++) {
+              if (!students[i].isSafeToDelete) {
+                students[i].isSafeToDelete = true;
+              } else if (students[i].isSafeToDelete) {
+                students[i].isSafeToDelete = false;
+              }
+              students.$save(students[i]);
+            }
+
+          } else {
+            console.log("AuthStateChange failed");
           }
-          students.$save(students[i]);
-        }
+        });
+
       },
 
       delete: function (student) {
-        var student = students.$getRecord(student.$id);
 
-        students.$remove(student).then(function() {
-          console.log("student, which is now " + student + ", has been removed");
+        auth.onAuthStateChanged(user => {
+          if (user) {
+            var currentUser = auth.currentUser;
+            console.log("onAuthStateChanged hit!!!!");
+            var uid = currentUser.uid
+            const studentsRef = firebase.database().ref('users/' + uid).child("students");
+            const students = $firebaseArray(studentsRef);
+
+            var student = students.$getRecord(student.$id);
+
+            students.$remove(student).then(function() {
+              console.log("student, which is now " + student + ", has been removed");
+            });
+
+          } else {
+            console.log("AuthStateChange failed");
+          }
         });
+        
       }
 
     }; // end of Return
