@@ -19,7 +19,7 @@ spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
 // BEGIN Hero material
 
     $scope.hero = {};
-    $scope.hero.title = "spedtracker!"
+    $scope.hero.title = "pupil"
 
 // END Hero material
 
