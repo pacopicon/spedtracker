@@ -1,16 +1,18 @@
-<section ng-controller="LandingCtrl" class="hero-content">
+<section ng-controller="LandingCtrl">
+<section class="hero-content">
 <!-- BEGIN TITLE -->
-  <div class="hero-title">
+  <div class="hero-title" ng-class="{'hero-title closed': close, 'hero-title': !close}">
     <h1>{{hero.title}}</h1>
   </div>
 <!-- END TITLE -->
 </section>
 <div class="link-container">
-  <div ng-controller="LandingCtrl" class="form-group forms">
+  <!-- <div ng-controller="LandingCtrl" class="form-group forms"> -->
+  <div class="form-group forms">
 <!-- CBEGIN REATE AN ACCOUNT -->
     <div ng-hide="createAnAccount" class="formWrap">
 <!-- BEGIN oAuth LOGIN -->
-      <div class="manageBtnWrap col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div ng-mouseenter="close = true" ng-mouseleave="close = false" class="manageBtnWrap col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="topBtn col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="oAuthSignIn()" class="login"><p>log in with <i class="fa fa-facebook-official" aria-hidden="true"></i></p></div>
       </div>
     </div>
@@ -22,16 +24,17 @@
   <div class="point column third">
     <span class="ion-university"></span>
     <h5 class="point-title">Smart</h5>
-    <p class="point-description">You don't have to do time math anymore, let Spedtracker do it for you!</p>
+    <p class="point-description">You don't have to do time math anymore, let {{hero.title}} do it for you!</p>
   </div>
   <div class="point column third">
     <span class="ion-thumbsup"></span>
     <h5 class="point-title">Easy</h5>
-    <p class="point-description">Keeping track of 10 extended time students? With different time extensions, start times, and even tests?  No need to fear, Spedtracker is here!</p>
+    <p class="point-description">Keeping track of 10 extended time students? With different time extensions, start times, and even tests?  No need to fear, {{hero.title}} is here!</p>
   </div>
   <div class="point column third">
     <span class="ion-upload"></span>
     <h5 class="point-title">Compliant</h5>
-    <p class="point-description">Spedtracker organizes important information in an easy-to-print format for your records</p>
+    <p class="point-description">{{hero.title}} organizes important information in an easy-to-print format for your records</p>
   </div>
+</section>
 </section>

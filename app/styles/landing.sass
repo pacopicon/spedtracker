@@ -124,19 +124,40 @@ body.landing
   background-size: cover
 
 .hero-content .hero-title
-  position: absolute
+  position: relative
   top: 40%
   // -webkit-transform: translateY(-50%)
   // -moz-transform: translateY(-50%)
   // transform: translateY(-50%)
   width: 100%
+  padding: 0
+  margin: 0
+  padding-top: 5em
   color: $bsBlue
   text-align: center
   font-size: 4rem
   font-weight: 300
 
+.hero-title
+  position: absolute
+  // height: 100%
+  // width: 45%
+  margin: 0 auto
+  left: 0
+  top: 0
+  bottom: 0
+  right: 0
+  padding-top: 5em
 
-   /*text-shadow: 12px 12px 12px $bsBlue*/
+.hero-title h1
+  font-size: 6rem
+  letter-spacing: 4rem
+  transition: all 1s ease-in-out
+
+.closed
+  h1
+    letter-spacing: 0rem
+    transition: all 1s ease-in-out
 
 .selling-points
   position: relative
