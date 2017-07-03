@@ -7,23 +7,23 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
 
   // you can probably delete the function below:
 
-  var students = function() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        var currentUser = auth.currentUser;
-        console.log("currentUser in onAuthStateChanged = ", currentUser);
-        var uid = currentUser.uid
-        // const studentsRef = firebase.database().ref('users/' + uid).child("students");
-        const studentsRef = firebase.database().ref('users/' + uid).child("students");
-        const students = $firebaseArray(studentsRef);
-
-
-        return students;
-      } else {
-        console.log("AuthStateChange failed");
-      }
-    });
-  };
+  // var students = function() {
+  //   auth.onAuthStateChanged(user => {
+  //     if (user) {
+  //       var currentUser = auth.currentUser;
+  //       console.log("currentUser in onAuthStateChanged = ", currentUser);
+  //       var uid = currentUser.uid
+  //       // const studentsRef = firebase.database().ref('users/' + uid).child("students");
+  //       const studentsRef = firebase.database().ref('users/' + uid).child("students");
+  //       const students = $firebaseArray(studentsRef);
+  //
+  //
+  //       return students;
+  //     } else {
+  //       console.log("AuthStateChange failed");
+  //     }
+  //   });
+  // };
 
   auth.onAuthStateChanged(user => {
     if (user) {
@@ -77,15 +77,14 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
 
     };
 
-    $scope.saveStudent = function(student) {
-      $scope.students.$save(student);
-    };
-
     $scope.delete = function(student) {
       $scope.selectAll = true;
       $scope.clickedToDelete = false;
       $scope.deleteAppear = false;
-      StudentCrud.delete(student);
+
+      $scope.students.$remove(student).then(function() {
+        console.log("student, which is now " + student + ", has been removed");
+      });
     };
 
     $scope.deleteSelected = function() {
@@ -94,9 +93,6 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
       $scope.deleteAppear = false;
       $timeout(function appear() {$scope.selectAll = true}, 1000);
       $timeout(function appear() {$scope.clickedToDelete = false}, 1000);
-
-      var currentUser = auth.currentUser;
-      var uid = currentUser.uid;
 
       for (var i = 0; i < $scope.students.length; i++)
         if ($scope.students[i].isSafeToDelete) {
@@ -129,13 +125,35 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
       $scope.newTestTime = testTime;
     };
 
-    $scope.processTimeInput = function(student, testNo) {
-      StudentCrud.processTimeInput(student, $scope.newTestTime, testNo);
+    var addHoursAndMinutes = function(hours, minutes) {
+      var timeInMillisecs = (hours * 60 * 60 * 1000) + (minutes * 60 * 1000);
+      return timeInMillisecs;
     };
 
-    $scope.deleteTest = function(student, testNo) {
-      StudentCrud.deleteTest(student, testNo);
+    $scope.processTimeInput = function(student, testNo) {
+
+      console.log("$scope.newTestTime = " + $scope.newTestTime);
+      if (testNo == "testOne") {
+        testOneTimeNum = addHoursAndMinutes($scope.newTestTime.getHours(), $scope.newTestTime.getMinutes());
+        student.testOneTime = testOneTimeNum;
+        student.totalTimeOne = testOneTimeNum * student.extendTime;
+      } else if (testNo == "testTwo") {
+        testTwoTimeNum = addHoursAndMinutes($scope.newTestTime.getHours(), $scope.newTestTime.getMinutes());
+        student.testTwoTime = testTwoTimeNum;
+        student.totalTimeTwo = testTwoTimeNum * student.extendTime;
+      } else if (testNo == "testThree") {
+        testThreeTimeNum = addHoursAndMinutes($scope.newTestTime.getHours(), $scope.newTestTime.getMinutes());
+        student.testThreeTime = testThreeTimeNum;
+        student.totalTimeThree = testThreeTimeNum * student.extendTime;
+      } else if (testNo == "testFour") {
+        testFourTimeNum = addHoursAndMinutes($scope.newTestTime.getHours(), $scope.newTestTime.getMinutes());
+        student.testFourTime = testFourTimeNum;
+        student.totalTimeFour = testFourTimeNum * student.extendTime;
+      }
+      $scope.students.$save(student);
     };
+
+
 
 // END TEST CRUD Variables and Functions
 
@@ -828,119 +846,88 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
     $scope.selectAll = true;
 
     $scope.saveAndToggleInvert = function(student) {
-
-      auth.onAuthStateChanged(user => {
-        if (user) {
-          var currentUser = auth.currentUser;
-          // console.log("onAuthStateChanged hit!!!!");
-          var uid = currentUser.uid
-          const studentsRef = firebase.database().ref('users/' + uid).child("students");
-          const students = $firebaseArray(studentsRef);
-
-          $scope.students.$save(student);
-          toggleInvert();
-
-        } else {
-          console.log("AuthStateChange failed");
-        }
-      });
-
+      $scope.students.$save(student);
+      toggleInvert();
     };
 
     var toggleInvert = function() {
+      var unsafeCount = 0;
+      var safeCount = 0;
 
-      // auth.onAuthStateChanged(user => {
-      //   if (user) {
-      //     var currentUser = auth.currentUser;
-      //     // console.log("onAuthStateChanged hit!!!!");
-      //     var uid = currentUser.uid
-      //     const studentsRef = firebase.database().ref('users/' + uid).child("students");
-      //     const students = $firebaseArray(studentsRef);
+      for (i = 0; i < $scope.students.length; i++) {
+        if ($scope.students[i] && $scope.students[i].isSafeToDelete) {
+          safeCount++;
+        } else if ($scope.students[i] && !$scope.students[i].isSafeToDelete) {
+          unsafeCount++;
+        }
+      }
 
-          var unsafeCount = 0;
-          var safeCount = 0;
+      $scope.clickedToDelete = false;
 
-          for (i = 0; i < $scope.students.length; i++) {
-            if ($scope.students[i] && $scope.students[i].isSafeToDelete) {
-              safeCount++;
-            } else if ($scope.students[i] && !$scope.students[i].isSafeToDelete) {
-              unsafeCount++;
-            }
-          }
+      if (safeCount > 0) {
+        $scope.clickedToDelete = true;
+        $timeout(function appear() {$scope.deleteAppear = true}, 1000);
+      } else {
+        $scope.deleteAppear = false;
+        $timeout(function appear() {$scope.clickedToDelete = false}, 1000);
+      }
 
-          $scope.clickedToDelete = false;
+      console.log("clickedToDelete: " + $scope.clickedToDelete);
 
-          if (safeCount > 0) {
-            $scope.clickedToDelete = true;
-            $timeout(function appear() {$scope.deleteAppear = true}, 1000);
-          } else {
-            $scope.deleteAppear = false;
-            $timeout(function appear() {$scope.clickedToDelete = false}, 1000);
-          }
+      if (safeCount > 0 && unsafeCount > 1) {
+        $scope.invertSelect = true;
+        $scope.selectAll = false;
+        console.log("safeCount: " + safeCount);
+        console.log("invertSelect is true; selectAll is false");
+      } else if (safeCount > 0 && safeCount == $scope.students.length) {
+        $scope.invertSelect = false;
+        $scope.selectAll = false;
+        $scope.clearSelected = true;
+        $scope.clickedToDelete = true;
+        console.log("invertSelect is false; selectAll is true");
+      } else if (safeCount == 0) {
+        $scope.invertSelect = false;
+        $scope.selectAll = true;
+        $scope.clickedToDelete = false;
+        console.log("invertSelect is false; selectAll is true");
+      }
+    }
 
-          console.log("clickedToDelete: " + $scope.clickedToDelete);
-
-          if (safeCount > 0 && unsafeCount > 1) {
-            $scope.invertSelect = true;
-            $scope.selectAll = false;
-            console.log("safeCount: " + safeCount);
-            console.log("invertSelect is true; selectAll is false");
-          } else if (safeCount > 0 && safeCount == $scope.students.length) {
-            $scope.invertSelect = false;
-            $scope.selectAll = false;
-            $scope.clearSelected = true;
-            $scope.clickedToDelete = true;
-            console.log("invertSelect is false; selectAll is true");
-          } else if (safeCount == 0) {
-            $scope.invertSelect = false;
-            $scope.selectAll = true;
-            $scope.clickedToDelete = false;
-            console.log("invertSelect is false; selectAll is true");
-          }
+    $scope.toggleSelectForDelete = function(students) {
+      for (var i = 0; i < students.length; i++) {
+        if (!students[i].isSafeToDelete) {
+          students[i].isSafeToDelete = true;
+        } else if (students[i].isSafeToDelete) {
+          students[i].isSafeToDelete = false;
+        }
+        $scope.students.$save(students[i]);
+      }
     }
 
     $scope.switchControl = function(students) {
+      if ($scope.selectAll && !$scope.invertSelect) {
 
-      // auth.onAuthStateChanged(user => {
-      //   if (user) {
-      //     var currentUser = auth.currentUser;
-      //     // console.log("onAuthStateChanged hit!!!!");
-      //     var uid = currentUser.uid
-      //     const studentsRef = firebase.database().ref('users/' + uid).child("students");
-      //     const students = $firebaseArray(studentsRef);
+        $scope.toggleSelectForDelete(students);
+        $scope.selectAll = false;
+        $scope.invertSelect = false;
+        $scope.clickedToDelete = true;
+        $timeout(function appear() {$scope.clearSelected = true}, 1000);
+        $timeout(function appear() {$scope.deleteAppear = true}, 1000);
 
-          if ($scope.selectAll && !$scope.invertSelect) {
+      } else if ($scope.clearSelected) {
 
-            StudentCrud.toggleSelectForDelete(students);
-            $scope.selectAll = false;
-            $scope.invertSelect = false;
-            $scope.clickedToDelete = true;
-            $timeout(function appear() {$scope.clearSelected = true}, 1000);
-            $timeout(function appear() {$scope.deleteAppear = true}, 1000);
+        $scope.toggleSelectForDelete(students);
+        $scope.clearSelected = false;
+        $scope.deleteAppear = false;
+        $timeout(function appear() {$scope.selectAll = true}, 1000);
+        $timeout(function appear() {$scope.clickedToDelete = false}, 1000);
 
-          } else if ($scope.clearSelected) {
-
-            StudentCrud.toggleSelectForDelete(students);
-            $scope.clearSelected = false;
-            $scope.deleteAppear = false;
-            $timeout(function appear() {$scope.selectAll = true}, 1000);
-            $timeout(function appear() {$scope.clickedToDelete = false}, 1000);
-
-          } else if ($scope.invertSelect) {
-            StudentCrud.toggleSelectForDelete(students);
-          }
-
-      //   } else {
-      //     console.log("AuthStateChange failed");
-      //   }
-      // });
-
-
+      } else if ($scope.invertSelect) {
+        $scope.toggleSelectForDelete(students);
+      }
     };
 
 // END UI MANIPULATION VARIABLES AND FUNCTIONS
-
-
 
   }
 ]);

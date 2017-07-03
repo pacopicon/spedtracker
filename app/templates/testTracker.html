@@ -91,7 +91,7 @@
 <!-- Begin Inline Form -->
     <div ng-show="AddInlineTestOne && student.totalTimeOne == 0" class="inlineForm buttonsAndBars">
       <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <input type="text" class="form-control testNameInput" ng-model="student.testOneName" placeholder="test" ng-change="saveStudent(student)"/>
+        <input type="text" class="form-control testNameInput" ng-model="student.testOneName" placeholder="test" ng-change="students.$save(student)"/>
       </div>
       <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <input type="text" size="1" class="btn-time form-control" ng-model="student.testOneTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testOneTime)">
@@ -214,7 +214,7 @@
 <!-- Begin Inline Form -->
     <div ng-show="AddInlineTestTwo && student.totalTimeTwo == 0" class="inlineForm buttonsAndBars">
       <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <input type="text" class="form-control testNameInput" ng-model="student.testTwoName" placeholder="enter test" ng-change="saveStudent(student)"/>
+        <input type="text" class="form-control testNameInput" ng-model="student.testTwoName" placeholder="enter test" ng-change="students.$save(student)"/>
       </div>
       <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <input type="text" size="1" class="btn-time form-control" ng-model="student.testTwoTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="01:00" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testTwoTime)">
@@ -346,7 +346,7 @@
 <!-- Begin Inline Form -->
     <div ng-show="AddInlineTestThree && student.totalTimeThree == 0" class="inlineForm buttonsAndBars">
       <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <input type="text" class="form-control testNameInput" ng-model="student.testThreeName" placeholder="enter test" ng-change="saveStudent(student)"/>
+        <input type="text" class="form-control testNameInput" ng-model="student.testThreeName" placeholder="enter test" ng-change="students.$save(student)"/>
       </div>
       <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <input type="text" size="1" class="btn-time form-control" ng-model="student.testThreeTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testThreeTime)">
@@ -477,7 +477,7 @@
 <!-- Begin Inline Form -->
     <div ng-show="AddInlineTestFour && student.totalTimeFour == 0" class="inlineForm buttonsAndBars">
       <div class="inlineNameForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <input type="text" class="form-control testNameInput" ng-model="student.testFourName" placeholder="enter test" ng-change="saveStudent(student)"/>
+        <input type="text" class="form-control testNameInput" ng-model="student.testFourName" placeholder="enter test" ng-change="students.$save(student)"/>
       </div>
       <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <input type="text" size="1" class="btn-time form-control" ng-model="student.testFourTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testFourTime)">
