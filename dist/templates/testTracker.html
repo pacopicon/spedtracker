@@ -9,6 +9,8 @@
       <div class= "page-name">
         <b><p class="pageName">test tracker</p></b>
         <b><p class="userName">{{currentUser().displayName}}'s student dashboard</p></b>
+        <!-- <b><p class="userName" ng-bind-html-unsafe="{{currentUser().photoUrl}}"></p></b> -->
+
       </div>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column1">
@@ -23,7 +25,7 @@
 <div class="linkWrap">
   <div class="links">
     <button ui-sref="testDataPrintout" class="link"><p class="linkText">view data printout</p><i class="fa fa-print" aria-hidden="true"></i></button>
-    <button ng-click="warnClose()" class="link2"><b><p class="linkText">Log out and close session</p></b></button>
+    <button ng-click="warnClose()" class="link2"><b><p class="linkText">destroy data and log out</p></b></button>
   </div>
 </div>
 <!-- <button class= "yesNoBtn" ng-click="checkIfIdle()">check if Idle</button> -->

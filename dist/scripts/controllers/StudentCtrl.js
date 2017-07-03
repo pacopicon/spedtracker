@@ -1,5 +1,5 @@
-spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$interval", '$timeout', "$q", "$sce", "$tooltip", "$popover", "FirebaseRef", "$firebaseArray",
-  function($scope, StudentCrud, $rootScope, $interval, $timeout, $q, $sce, $tooltip, $popover, FirebaseRef, $firebaseArray) {
+spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$interval", '$timeout', "$q", "$sce", "$tooltip", "$popover", "FirebaseRef", "$firebaseArray", "$state",
+  function($scope, StudentCrud, $rootScope, $interval, $timeout, $q, $sce, $tooltip, $popover, FirebaseRef, $firebaseArray, $state) {
 
 // BEGIN Current User and Current User Students Variables and Functions
 
@@ -38,17 +38,22 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
     }
   });
 
-  $scope.currentUser = function() {
+  $scope.currentUser = function(boolean) {
 
-    var user = auth.currentUser;
-    var name, email, photoUrl, uid, emailVerified;
-
-    if (user != null && typeof user !== "undefined") {
-      $scope.name = user.displayName;
-      var email = user.email;
-      var photoUrl = user.photoURL;
-      var uid = user.uid;
+    if(typeof boolean !== 'undefined') {
+      var user = null;
       return user;
+    } else if(typeof boolean === 'undefined') {
+      var user = auth.currentUser;
+      var name, email, photoUrl, uid, emailVerified;
+
+      if (user != null && typeof user !== "undefined") {
+        $scope.name = user.displayName;
+        var email = user.email;
+        var photoUrl = user.photoURL;
+        var uid = user.uid;
+        return user;
+      }
     }
 
   }
@@ -112,9 +117,10 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
     }
 
     $scope.logout = function() {
-      deleteAllStudents().then(function() {
-        $state.go('landing');
-      });
+      deleteAllStudents();
+      $scope.currentUser(false);
+      $state.go('landing');
+
     };
 
 // END Student CRUD Variables and Functions
@@ -225,7 +231,8 @@ spedtracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
     $scope.warn = false;
 
     if (!timeoutStarted) {
-      $timeout(function dbTimeout(){$scope.checkIfIdle()}, 1800000);
+      $timeout(function dbTimeout(){$scope.warn = true}, $scope.waitOption);
+      $timeout(function dbTimeErase(){$scope.logout()}, ($scope.waitOption + 1800000));
       var timeoutStarted = true;
     }
 

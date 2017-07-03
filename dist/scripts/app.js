@@ -44,15 +44,15 @@ spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvid
 
 });
 
-spedtracker.run(function ($rootScope, $state, UserCrud) {
-  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-    if (toState.authenticate && !UserCrud.isAuthenticated()){
-      // User isn’t authenticated
-      $state.transitionTo("landing");
-      event.preventDefault();
-    }
-  });
-});
+// spedtracker.run(function ($rootScope, $state, FirebaseRef) {
+//   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+//     if (toState.authenticate && !FirebaseRef.isAuthenticated()){
+//       // User isn’t authenticated
+//       $state.transitionTo("landing");
+//       event.preventDefault();
+//     }
+//   });
+// });
 
 spedtracker.config(['ChartJsProvider', function (ChartJsProvider) {
     // Configure all charts

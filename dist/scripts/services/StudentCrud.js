@@ -3,6 +3,18 @@ spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef",
 
     var auth = FirebaseRef.getAuth();
 
+    var now = new Date();
+    var nowNum = now.getTime();
+    var week = 604800000;
+
+    var addHoursAndMinutes = function(hours, minutes) {
+      var timeInMillisecs = (hours * 60 * 60 * 1000) + (minutes * 60 * 1000);
+      return timeInMillisecs;
+    };
+
+// Public functions below.
+
+// -- FUNCTIONS CALLED BY CONTROLLER --
     return {
       // The function below and the one underneath, 'parseTime' are both called by 'this.parseTime' in StudentCtrl to display detailed estimated time to completion info for item in DOM
 
