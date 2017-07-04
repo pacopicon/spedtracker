@@ -33,30 +33,45 @@ TestTracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
       // const studentsRef = firebase.database().ref('users/' + uid).child("students");
       const studentsRef = firebase.database().ref('users/' + uid).child("students");
       $scope.students = $firebaseArray(studentsRef);
+      $scope.currentUser = user;
     } else {
       console.log("AuthStateChange failed");
     }
+    $scope.teacherName = getTeacherName($scope.currentUser.displayName);
   });
 
-  $scope.currentUser = function(boolean) {
-
-    if(typeof boolean !== 'undefined') {
-      var user = null;
-      return user;
-    } else if(typeof boolean === 'undefined') {
-      var user = auth.currentUser;
-      var name, email, photoUrl, uid, emailVerified;
-
-      if (user != null && typeof user !== "undefined") {
-        $scope.name = user.displayName;
-        var email = user.email;
-        var photoUrl = user.photoURL;
-        var uid = user.uid;
-        return user;
-      }
-    }
-
+  var getTeacherName = function(string) {
+    var string = string.trim();
+    var spaceIndex = string.indexOf(string.match(/\s/));
+    var lastName = string.slice(spaceIndex + 1, string.length);
+    return lastName;
   }
+
+  // $scope.currentUser = function(boolean) {
+  //
+  //   if(typeof boolean !== 'undefined') {
+  //     var user = null;
+  //     return user;
+  //   } else if(typeof boolean === 'undefined') {
+  //     var user = auth.currentUser;
+  //     var name, email, photoUrl, uid, emailVerified;
+  //
+  //     if (user != null && typeof user !== "undefined") {
+  //       var name = user.displayName;
+  //       var email = user.email;
+  //       var photoUrl = user.photoURL;
+  //       var uid = user.uid;
+  //       return user;
+  //     }
+  //   }
+  //
+  // }
+
+  // $scope.teacherName = getTeacherName($scope.currentUser.displayName);
+
+
+
+
 
 // END Current User and Current User Students Variables and Functions
 
@@ -118,7 +133,7 @@ TestTracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
 
     $scope.logout = function() {
       deleteAllStudents();
-      $scope.currentUser(false);
+      auth = null;
       $state.go('landing');
 
     };

@@ -10,100 +10,25 @@ $bsRed: #D9534F
 $bsYellow: #F0AD4E
 $barWidth: 70%
 $btnHeight: 1.5em
+$imgSize: 85%
+$imgGrow: 30%
+$facebookBlue: #3B5998
 
 // @import "variables.sass"
 
 body
   max-height: 200px
 
-body.landing
-     /*background-color: $bsBlue*/
-
-.emailForm, .passwordForm
-  width: 100%
-  height: 2.5em
-  border-radius: 1.5em
-  margin-bottom: 1em
-
-.passwordForm
-  margin-bottom: 0.7em
-
-.leftBtn, .rightBtn, .bottomBtn, .topBtn
-  min-height: 2.5em
-  min-width: 2em
-  border-radius: 1.5em
-  border: 2.5px solid $bsBlue
-  cursor: pointer
-  padding: 0.3em
-  margin-bottom: 0.7em
-  transition: all 0.5s ease-in-out
-  p
-    font-size: 20px
-    margin: 0
-    padding: 0
-    line-height: 1.1em
-    text-align: center
-    font-family: 'Montserrat', sans-serif
-    color: $bsBlue
-    overflow: auto
-  &:hover
-    background-color: $bsBlue
-    color: $bgColor
-    transition: all 0.5s ease-in-out
-    p
-      color: $bgColor
-  &:active
-    color: $darkNavy
-    p
-      color: white
-
-.checkboxWrap
-  min-height: 0.25em
-
-.manageBtnWrap
-  height: 10em
-  padding-left: 0
-  padding-right: 0
-
-.leftBtn
-  float: left
-
-.rightBtn
-  float: right
-
-.bottomBtn
-
-.upBtn
-
-.interBtnSpace
-  padding-left: 0
-  padding-right: 0
-  width: 0.5em
-
-
-.fa-user-plus, .fa-sign-in
-  color: $bsBlue
-  font-size: 25px
-
-.textbox
-  margin: auto
-  position: absolute
-  overflow: auto
-  width: 30%
-  height: 3%
-  top: 0
-  left: 0
-  bottom: 0
-  right: 0
-  color: #3f4e62
+// BEGIN login btn
 
 .hero-content
   position: relative
   max-height: 490px
-  // background-image: url(../assets/images/bloc_jams_bg.jpg)
+  background-image: url(../assets/images/pencil.png)
   background-repeat: no-repeat
   background-position: center center
   background-size: cover
+  top: 5em
 
 .hero-content .hero-title
   position: relative
@@ -127,56 +52,94 @@ body.landing
   margin: 0 auto
   left: 0
   top: 0
-  bottom: 0
+  bottom: 8em
   right: 0
-  margin-bottom: 12em
+  // margin-bottom: 12em
 
-.hero-title h1
-  font-size: 6rem
-  letter-spacing: 4rem
-  transition: all 1s ease-in-out
+// .hero-title h1
+//   font-size: 6rem
+//   letter-spacing: 4rem
+//   transition: all 1s ease-in-out
+//
+// img
+//   margin-top: -1.5em
+//   margin-bottom: -1.4em
+//   width: $imgSize
+//   height: $imgSize
+//   transition: all 1s ease-in-out
+//
+// img.closed
+//   margin-top: -1.5em
+//   margin-bottom: -1.4em
+//   width: $imgGrow
+//   height: $imgGrow
+//   transition: all 1s ease-in-out
 
-img
-  margin-top: -1.5em
-  margin-bottom: -1.4em
-  width: 25%
-  height: 25%
-  transition: all 1s ease-in-out
+// END icon
 
-img.closed
-  margin-top: -1.5em
-  margin-bottom: -1.4em
-  width: 30%
-  height: 30%
-  transition: all 1s ease-in-out
-
-// .closed
-//   h1
-//     letter-spacing: 0rem
-//     transition: all 1s ease-in-out
+// BEGIN login btn
 
 .link-container
-  /*position: relative;*/
-  text-align: center
-
-.forms
-  position: relative
-  // width: 50%
-  height: 30em
-
-.formWrap
   position: absolute
   // height: 100%
   width: 25%
-  height: 25%
+  height: 2.6em
   margin: 0 auto
   left: 0
-  top: 0
+  top: 37em
   bottom: 0
   right: 0
+  margin-bottom: 5em
 
-.selling-points
+.manageBtnWrap
+
+
+
+.login
+  min-height: 2.5em
+  min-width: 2em
+  border-radius: 1.5em
+  border: 2.5px solid $bsBlue
+  cursor: pointer
+  padding: 0.3em
+  margin-bottom: 0.7em
+  transition: all 0.5s ease-in-out
+  p
+    font-size: 20px
+    margin: 0
+    padding: 0
+    line-height: 1.1em
+    text-align: center
+    font-family: 'Montserrat', sans-serif
+    color: $bsBlue
+    overflow: auto
+    transition: all 0.5s ease-in-out
+  i
+    color: $facebookBlue
+    transition: all 0.5s ease-in-out
+  &:hover
+    background-color: $bsBlue
+    color: $bgColor
+    transition: all 0.5s ease-in-out
+    p
+      color: $bgColor
+      transition: all 0.5s ease-in-out
+    i
+      color: $bgColor
+      transition: all 0.5s ease-in-out
+  &:active
+    color: $darkNavy
+    p
+      color: white
+
+// END LOGIN AND ICON
+
+// BEGIN selling-points
+
+section.selling-points
   position: relative
+  // max-height: 1em
+  top: 15em
 
 .point
   display: table-cell

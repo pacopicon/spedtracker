@@ -4,23 +4,15 @@
   <!-- <div class="hero-title" ng-class="{'hero-title closed': close, 'hero-title': !close}"> -->
   <div class="hero-title">
     <!-- <h1>{{hero.title}}</h1> -->
-    <img class="pencilPic" ng-class="{'pencilPic hover': close, 'pencilPic': !close}" ng-src="assets/images/pencil.png" />
+    <!-- <img class="pencilPic" ng-class="{'pencilPic hover': close, 'pencilPic': !close}" ng-src="assets/images/pencil.png" /> -->
   </div>
 <!-- END TITLE -->
 </section>
-<div class="link-container">
-  <!-- <div ng-controller="LandingCtrl" class="form-group forms"> -->
-  <div class="form-group forms">
-<!-- CBEGIN REATE AN ACCOUNT -->
-    <div ng-hide="createAnAccount" class="formWrap">
+<div class="link-container" ng-mouseenter="close = true" ng-mouseleave="close = false">
 <!-- BEGIN oAuth LOGIN -->
-      <div ng-mouseenter="close = true" ng-mouseleave="close = false" class="manageBtnWrap col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="topBtn col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="oAuthSignIn()" class="login"><p>log in with <i class="fa fa-facebook-official" aria-hidden="true"></i></p></div>
-      </div>
-    </div>
+  <div class="login col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="oAuthSignIn()"><p>log in with <i class="fa fa-facebook-square" aria-hidden="true"></i></p></div>
+
 <!-- END oAuth LOGIN -->
-<!-- BEGIN CREATE AN ACCOUNT -->
-  </div>
 </div>
 <section class="selling-points container clearfix">
   <div class="point column third">

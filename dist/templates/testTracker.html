@@ -1,4 +1,22 @@
 <section ng-controller="StudentCtrl" class="user">
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1710165355951309',
+      xfbml      : true,
+      version    : 'v2.9'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
   <!-- <div ng-include="'/templates/navbar.html'"></div> -->
 <body>
 <div class="list-group">
@@ -8,8 +26,9 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column2">
       <div class= "page-name">
         <b><p class="pageName">test tracker</p></b>
-        <b><p class="userName">{{currentUser().displayName}}'s student dashboard</p></b>
-        <!-- <b><p class="userName" ng-bind-html-unsafe="{{currentUser().photoUrl}}"></p></b> -->
+        <!-- <b><p class="userName">Mr. {{currentUser.displayName}}'s student dashboard</p></b> -->
+        <b><p class="userName">Mr. {{teacherName}}'s student dashboard</p></b>
+        <!-- <img class="pencilPic" ng-src="{{currentUser.photoUrl}}" /> -->
 
       </div>
     </div>
@@ -25,7 +44,7 @@
 <div class="linkWrap">
   <div class="links">
     <button ui-sref="testDataPrintout" class="link"><p class="linkText">view data printout</p><i class="fa fa-print" aria-hidden="true"></i></button>
-    <button ng-click="warnClose()" class="link2"><b><p class="linkText">destroy data and log out</p></b></button>
+    <button ng-click="warnClose()" class="link2"><p class="linkText">destroy data and log out</p></button>
   </div>
 </div>
 <!-- <button class= "yesNoBtn" ng-click="checkIfIdle()">check if Idle</button> -->

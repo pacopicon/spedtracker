@@ -145,6 +145,11 @@ section
   position: absolute
   margin: 0 auto
   width: 100%
+  height: 1em
+
+.links button
+  min-height: 1em
+
 
 .link2, .link
   text-decoration: none
@@ -152,17 +157,18 @@ section
   border-radius: 1em
   border: 2.5px solid $bsBlue
   background-color: $bgColor
-  min-width: 3em
   color: $bsBlue
   cursor: pointer
   font-size: 1em
-  min-height: 2em
   overflow: auto
   p
     line-height: 0.5em
+    // height: 1em
     float: left
     padding: 0
     margin: 0
+    // overflow: auto
+    min-width: 1em
   i
     color: $bsBlue
     float: right

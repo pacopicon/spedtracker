@@ -3,12 +3,12 @@ TestTracker.factory("FirebaseRef", ["$firebaseArray", "$state",
 
     // Initialize Firebase
     var config = {
-      apiKey: "AIzaSyDu2ZzSnoFkDWE3_IqMlz-gQpaadVl2Uvc",
-      authDomain: "TestTracker.firebaseapp.com",
-      databaseURL: "https://TestTracker.firebaseio.com",
-      projectId: "TestTracker",
-      storageBucket: "TestTracker.appspot.com",
-      messagingSenderId: "71048131235"
+      apiKey: "AIzaSyC8izlYeWydf2XPRvc_hW2vcqoh3MAAlSc",
+      authDomain: "testtracker-28d26.firebaseapp.com",
+      databaseURL: "https://testtracker-28d26.firebaseio.com",
+      projectId: "testtracker-28d26",
+      storageBucket: "",
+      messagingSenderId: "682955988664"
     };
 
     firebase.initializeApp(config);
