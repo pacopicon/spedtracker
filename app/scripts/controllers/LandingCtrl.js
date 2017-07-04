@@ -1,4 +1,4 @@
-spedtracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRef", "$state",
+TestTracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRef", "$state",
   function($scope, $rootScope, $q, FirebaseRef, $state) {
 
 // BEGIN Landing.html variables

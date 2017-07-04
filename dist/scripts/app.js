@@ -1,6 +1,6 @@
-var spedtracker = angular.module("spedtracker", ["ui.router", "firebase", "ui.bootstrap", "ngAnimate", "ngSanitize", "mgcrea.ngStrap", "chart.js", "ngCookies"]);
+var TestTracker = angular.module("TestTracker", ["ui.router", "firebase", "ui.bootstrap", "ngAnimate", "ngSanitize", "mgcrea.ngStrap", "chart.js", "ngCookies"]);
 
-spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvider, $popoverProvider, $urlRouterProvider) {
+TestTracker.config(function($stateProvider, $locationProvider, $datepickerProvider, $popoverProvider, $urlRouterProvider) {
 
     $locationProvider.html5Mode({
         enabled: true,
@@ -44,7 +44,7 @@ spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvid
 
 });
 
-// spedtracker.run(function ($rootScope, $state, FirebaseRef) {
+// TestTracker.run(function ($rootScope, $state, FirebaseRef) {
 //   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
 //     if (toState.authenticate && !FirebaseRef.isAuthenticated()){
 //       // User isn’t authenticated
@@ -54,7 +54,7 @@ spedtracker.config(function($stateProvider, $locationProvider, $datepickerProvid
 //   });
 // });
 
-spedtracker.config(['ChartJsProvider', function (ChartJsProvider) {
+TestTracker.config(['ChartJsProvider', function (ChartJsProvider) {
     // Configure all charts
 
     // '#C3C300' --> yellow,

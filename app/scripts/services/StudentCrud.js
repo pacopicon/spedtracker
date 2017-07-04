@@ -1,4 +1,4 @@
-spedtracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef",
+TestTracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef",
   function($firebaseArray, FirebaseRef) {
 
     var auth = FirebaseRef.getAuth();

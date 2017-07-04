@@ -13,28 +13,11 @@ $btnHeight: 1.5em
 
 // @import "variables.sass"
 
+body
+  max-height: 200px
+
 body.landing
      /*background-color: $bsBlue*/
-
-.link-container
-  /*position: relative;*/
-  text-align: center
-
-.forms
-  position: relative
-  // width: 50%
-  height: 30em
-
-.formWrap
-  position: absolute
-  // height: 100%
-  width: 25%
-  margin: 0 auto
-  left: 0
-  top: 0
-  bottom: 0
-  right: 0
-
 
 .emailForm, .passwordForm
   width: 100%
@@ -92,7 +75,6 @@ body.landing
 
 .upBtn
 
-
 .interBtnSpace
   padding-left: 0
   padding-right: 0
@@ -117,7 +99,7 @@ body.landing
 
 .hero-content
   position: relative
-  // min-height: 600px
+  max-height: 490px
   // background-image: url(../assets/images/bloc_jams_bg.jpg)
   background-repeat: no-repeat
   background-position: center center
@@ -147,7 +129,7 @@ body.landing
   top: 0
   bottom: 0
   right: 0
-  padding-top: 5em
+  margin-bottom: 12em
 
 .hero-title h1
   font-size: 6rem
@@ -155,11 +137,15 @@ body.landing
   transition: all 1s ease-in-out
 
 img
+  margin-top: -1.5em
+  margin-bottom: -1.4em
   width: 25%
   height: 25%
   transition: all 1s ease-in-out
 
 img.closed
+  margin-top: -1.5em
+  margin-bottom: -1.4em
   width: 30%
   height: 30%
   transition: all 1s ease-in-out
@@ -168,6 +154,26 @@ img.closed
 //   h1
 //     letter-spacing: 0rem
 //     transition: all 1s ease-in-out
+
+.link-container
+  /*position: relative;*/
+  text-align: center
+
+.forms
+  position: relative
+  // width: 50%
+  height: 30em
+
+.formWrap
+  position: absolute
+  // height: 100%
+  width: 25%
+  height: 25%
+  margin: 0 auto
+  left: 0
+  top: 0
+  bottom: 0
+  right: 0
 
 .selling-points
   position: relative

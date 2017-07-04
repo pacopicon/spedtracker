@@ -1,4 +1,4 @@
-spedtracker.factory('dimensions', function () {
+TestTracker.factory('dimensions', function () {
 
     var fn = {};
 

@@ -1,13 +1,13 @@
-spedtracker.factory("FirebaseRef", ["$firebaseArray", "$state",
+TestTracker.factory("FirebaseRef", ["$firebaseArray", "$state",
   function($firebaseArray, $state) {
 
     // Initialize Firebase
     var config = {
       apiKey: "AIzaSyDu2ZzSnoFkDWE3_IqMlz-gQpaadVl2Uvc",
-      authDomain: "spedtracker.firebaseapp.com",
-      databaseURL: "https://spedtracker.firebaseio.com",
-      projectId: "spedtracker",
-      storageBucket: "spedtracker.appspot.com",
+      authDomain: "TestTracker.firebaseapp.com",
+      databaseURL: "https://TestTracker.firebaseio.com",
+      projectId: "TestTracker",
+      storageBucket: "TestTracker.appspot.com",
       messagingSenderId: "71048131235"
     };
 
