@@ -1,8 +1,10 @@
 <section ng-controller="LandingCtrl">
 <section class="hero-content">
 <!-- BEGIN TITLE -->
-  <div class="hero-title" ng-class="{'hero-title closed': close, 'hero-title': !close}">
-    <h1>{{hero.title}}</h1>
+  <!-- <div class="hero-title" ng-class="{'hero-title closed': close, 'hero-title': !close}"> -->
+  <div class="hero-title">
+    <!-- <h1>{{hero.title}}</h1> -->
+    <img class="pencilPic" ng-class="{'pencilPic hover': close, 'pencilPic': !close}" ng-src="assets/images/pencil.png" />
   </div>
 <!-- END TITLE -->
 </section>
