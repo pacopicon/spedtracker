@@ -5,26 +5,6 @@ TestTracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
 
   var auth = firebase.auth();
 
-  // you can probably delete the function below:
-
-  // var students = function() {
-  //   auth.onAuthStateChanged(user => {
-  //     if (user) {
-  //       var currentUser = auth.currentUser;
-  //       console.log("currentUser in onAuthStateChanged = ", currentUser);
-  //       var uid = currentUser.uid
-  //       // const studentsRef = firebase.database().ref('users/' + uid).child("students");
-  //       const studentsRef = firebase.database().ref('users/' + uid).child("students");
-  //       const students = $firebaseArray(studentsRef);
-  //
-  //
-  //       return students;
-  //     } else {
-  //       console.log("AuthStateChange failed");
-  //     }
-  //   });
-  // };
-
   auth.onAuthStateChanged(user => {
     if (user) {
       var currentUser = auth.currentUser;
@@ -36,6 +16,7 @@ TestTracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
       $scope.currentUser = user;
     } else {
       console.log("AuthStateChange failed");
+      $state.go('landing');
     }
     $scope.teacherName = getTeacherName($scope.currentUser.displayName);
   });
@@ -46,31 +27,6 @@ TestTracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
     var lastName = string.slice(spaceIndex + 1, string.length);
     return lastName;
   }
-
-  // $scope.currentUser = function(boolean) {
-  //
-  //   if(typeof boolean !== 'undefined') {
-  //     var user = null;
-  //     return user;
-  //   } else if(typeof boolean === 'undefined') {
-  //     var user = auth.currentUser;
-  //     var name, email, photoUrl, uid, emailVerified;
-  //
-  //     if (user != null && typeof user !== "undefined") {
-  //       var name = user.displayName;
-  //       var email = user.email;
-  //       var photoUrl = user.photoURL;
-  //       var uid = user.uid;
-  //       return user;
-  //     }
-  //   }
-  //
-  // }
-
-  // $scope.teacherName = getTeacherName($scope.currentUser.displayName);
-
-
-
 
 
 // END Current User and Current User Students Variables and Functions
@@ -133,8 +89,13 @@ TestTracker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
 
     $scope.logout = function() {
       deleteAllStudents();
-      auth = null;
-      $state.go('landing');
+      firebase.auth().signOut().then(function() {
+        console.log("signed out.");
+        $state.go('landing');
+      }).catch(function(error) {
+        console.log("Error, could not sign out properly.");
+      });
+
 
     };
 

@@ -24,7 +24,8 @@ body
 .hero-content
   position: relative
   max-height: 490px
-  background-image: url(../assets/images/pencil.png)
+  background-image: url(../assets/images/pencil-darkNavy.png)
+  // background-image: url(../assets/images/pencil.png)
   background-repeat: no-repeat
   background-position: center center
   background-size: cover
@@ -93,13 +94,11 @@ body
 
 .manageBtnWrap
 
-
-
 .login
   min-height: 2.5em
   min-width: 2em
-  border-radius: 1.5em
-  border: 2.5px solid $bsBlue
+  border-radius: 0.5em
+  border: 5px solid $darkNavy
   cursor: pointer
   padding: 0.3em
   margin-bottom: 0.7em
@@ -111,21 +110,21 @@ body
     line-height: 1.1em
     text-align: center
     font-family: 'Montserrat', sans-serif
-    color: $bsBlue
+    color: $darkNavy
     overflow: auto
     transition: all 0.5s ease-in-out
   i
     color: $facebookBlue
     transition: all 0.5s ease-in-out
   &:hover
-    background-color: $bsBlue
-    color: $bgColor
+    background-color: $darkNavy
+    color: white
     transition: all 0.5s ease-in-out
     p
-      color: $bgColor
+      color: white
       transition: all 0.5s ease-in-out
     i
-      color: $bgColor
+      color: white
       transition: all 0.5s ease-in-out
   &:active
     color: $darkNavy
@@ -156,8 +155,6 @@ section.selling-points
 .point .point-title
   font-size: 1.25rem
 
-.ion-university,
-.ion-thumbsup,
-.ion-upload
-  color: $bsBlue
+.fa-calculator, .fa-thumbs-o-up, .fa-folder-open-o
+  color: $darkNavy
   font-size: 5rem

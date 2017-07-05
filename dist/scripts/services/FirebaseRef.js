@@ -40,6 +40,8 @@ TestTracker.factory("FirebaseRef", ["$firebaseArray", "$state",
     });
 
     var provider = new firebase.auth.FacebookAuthProvider();
+    // var userGender = provider.addScope('gender');
+    // console.log("gender? ")
 
     var oAuthSignIn = function() {
 
@@ -132,6 +134,10 @@ TestTracker.factory("FirebaseRef", ["$firebaseArray", "$state",
         console.log("auth = ", firebase.auth());
         return auth;
       },
+
+      // getUserGender: function() {
+      //   return userGender;
+      // },
 
       oAuthSignIn: function() {
         oAuthSignIn();
