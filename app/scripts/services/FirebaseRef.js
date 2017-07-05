@@ -1,12 +1,12 @@
-TestTracker.factory("FirebaseRef", ["$firebaseArray", "$state",
+TestTrakker.factory("FirebaseRef", ["$firebaseArray", "$state",
   function($firebaseArray, $state) {
 
     // Initialize Firebase
     var config = {
       apiKey: "AIzaSyC8izlYeWydf2XPRvc_hW2vcqoh3MAAlSc",
-      authDomain: "testtracker-28d26.firebaseapp.com",
-      databaseURL: "https://testtracker-28d26.firebaseio.com",
-      projectId: "testtracker-28d26",
+      authDomain: "TestTrakker-28d26.firebaseapp.com",
+      databaseURL: "https://TestTrakker-28d26.firebaseio.com",
+      projectId: "TestTrakker-28d26",
       storageBucket: "",
       messagingSenderId: "682955988664"
     };
@@ -54,7 +54,7 @@ TestTracker.factory("FirebaseRef", ["$firebaseArray", "$state",
         user: user
       }
       setUserAndStudents(result.user.uid);
-      $state.go('testTracker');
+      $state.go('TestTrakker');
       }).catch(function(error) {
         console.error("Authentication failed:", error);
       });
@@ -100,7 +100,7 @@ TestTracker.factory("FirebaseRef", ["$firebaseArray", "$state",
     //     username: name,
     //     email: email
     //   });
-    //   $state.go('testTracker');
+    //   $state.go('TestTrakker');
     // };
 
     return {

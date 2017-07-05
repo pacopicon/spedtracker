@@ -1,4 +1,4 @@
-TestTracker.controller('AdminCtrl', ["$scope", "$firebaseAuth", "FirebaseRef", "UserCrud", "StudentCrud",
+TestTrakker.controller('AdminCtrl', ["$scope", "$firebaseAuth", "FirebaseRef", "UserCrud", "StudentCrud",
   function($scope, $firebaseAuth, FirebaseRef, UserCrud, StudentCrud) {
 
     // var items = FirebaseRef.getItems();

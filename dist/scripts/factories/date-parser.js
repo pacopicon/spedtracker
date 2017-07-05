@@ -1,4 +1,4 @@
-TestTracker.factory('$dateParser', function ($localeProvider) {
+TestTrakker.factory('$dateParser', function ($localeProvider) {
 
   // define a custom ParseDate object to use instead of native Date
   // to avoid date values wrapping when setting date component values

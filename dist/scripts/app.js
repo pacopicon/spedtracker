@@ -1,6 +1,6 @@
-var TestTracker = angular.module("TestTracker", ["ui.router", "firebase", "ui.bootstrap", "ngAnimate", "ngSanitize", "mgcrea.ngStrap", "chart.js", "ngCookies"]);
+var TestTrakker = angular.module("TestTrakker", ["ui.router", "firebase", "ui.bootstrap", "ngAnimate", "ngSanitize", "mgcrea.ngStrap", "chart.js", "ngCookies"]);
 
-TestTracker.config(function($stateProvider, $locationProvider, $datepickerProvider, $popoverProvider, $urlRouterProvider) {
+TestTrakker.config(function($stateProvider, $locationProvider, $datepickerProvider, $popoverProvider, $urlRouterProvider) {
 
     $locationProvider.html5Mode({
         enabled: true,
@@ -12,10 +12,10 @@ TestTracker.config(function($stateProvider, $locationProvider, $datepickerProvid
             controller: 'LandingCtrl',
             templateUrl: '/templates/landing.html'
         })
-        .state('testTracker', {
-            url: '/testTracker',
+        .state('TestTrakker', {
+            url: '/TestTrakker',
             controller: 'StudentCtrl',
-            templateUrl: '/templates/testTracker.html'
+            templateUrl: '/templates/TestTrakker.html'
         })
         .state('clock', {
             url: '/clock',
@@ -44,7 +44,7 @@ TestTracker.config(function($stateProvider, $locationProvider, $datepickerProvid
 
 });
 
-// TestTracker.run(function ($rootScope, $state, FirebaseRef) {
+// TestTrakker.run(function ($rootScope, $state, FirebaseRef) {
 //   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
 //     if (toState.authenticate && !FirebaseRef.isAuthenticated()){
 //       // User isn’t authenticated
@@ -54,7 +54,7 @@ TestTracker.config(function($stateProvider, $locationProvider, $datepickerProvid
 //   });
 // });
 
-TestTracker.config(['ChartJsProvider', function (ChartJsProvider) {
+TestTrakker.config(['ChartJsProvider', function (ChartJsProvider) {
     // Configure all charts
 
     // '#C3C300' --> yellow,

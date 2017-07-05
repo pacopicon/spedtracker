@@ -1,4 +1,4 @@
-TestTracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef",
+TestTrakker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef",
   function($firebaseArray, FirebaseRef) {
 
     var auth = FirebaseRef.getAuth();
@@ -90,7 +90,7 @@ TestTracker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef",
           hourMinSec: hours + ":" + addZero(minutes) + ":" + addZero(seconds)
         };
       },
-// This function is called by the submit button in testTracker.html when user creates an item in the form
+// This function is called by the submit button in TestTrakker.html when user creates an item in the form
       addStudent: function(studentName, extendTime, testOneName, testOneTimeObj, testTwoName, testTwoTimeObj, testThreeName, testThreeTimeObj, testFourName, testFourTimeObj) {
 
         if (typeof testOneName === "undefined") {

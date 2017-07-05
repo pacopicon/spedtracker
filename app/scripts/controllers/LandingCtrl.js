@@ -1,4 +1,4 @@
-TestTracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRef", "$state",
+TestTrakker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRef", "$state",
   function($scope, $rootScope, $q, FirebaseRef, $state) {
 
 // BEGIN Landing.html variables
@@ -19,7 +19,7 @@ TestTracker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
 // BEGIN Hero material
 
     $scope.hero = {};
-    $scope.hero.title = "TestTracker"
+    $scope.hero.title = "TestTrakker"
 
 // END Hero material
 
