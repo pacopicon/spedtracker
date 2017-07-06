@@ -1,34 +1,34 @@
 <section ng-controller="LandingCtrl">
-<section class="hero-content">
-<!-- BEGIN TITLE -->
-  <!-- <div class="hero-title" ng-class="{'hero-title closed': close, 'hero-title': !close}"> -->
-  <div class="hero-title">
-    <!-- <h1>{{hero.title}}</h1> -->
-    <!-- <img class="pencilPic" ng-class="{'pencilPic hover': close, 'pencilPic': !close}" ng-src="assets/images/pencil.png" /> -->
-  </div>
-<!-- END TITLE -->
-</section>
-<div class="link-container" ng-mouseenter="close = true" ng-mouseleave="close = false">
-<!-- BEGIN oAuth LOGIN -->
-  <div class="login col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="oAuthSignIn()"><p>log in with <i class="fa fa-facebook-square" aria-hidden="true"></i></p></div>
+  <section class="hero-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <!-- BEGIN TITLE -->
+    <!-- <div class="hero-title" ng-class="{'hero-title closed': close, 'hero-title': !close}"> -->
+    <!-- <div class="hero-title"> -->
+      <!-- <h1>{{hero.title}}</h1> -->
+      <img class="pencilPic" ng-src="assets/images/pencil-transparent-big.png" />
+    <!-- </div> -->
+  <!-- END TITLE -->
+  </section>
+  <div class="link-container" ng-mouseenter="close = true" ng-mouseleave="close = false">
+  <!-- BEGIN oAuth LOGIN -->
+    <div class="login col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="oAuthSignIn()"><p>log in with <i class="fa fa-facebook-square" aria-hidden="true"></i></p></div>
 
-<!-- END oAuth LOGIN -->
-</div>
-<section class="selling-points container clearfix">
-  <div class="point column third">
-    <i class="fa fa-calculator" aria-hidden="true"></i>
-    <h5 class="point-title">Modular Math?</h5>
-    <p class="point-description">What time is it 135 minutes after 11:37am? Let {{hero.title}} do test time math for you!</p>
+  <!-- END oAuth LOGIN -->
   </div>
-  <div class="point column third">
-    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-    <h5 class="point-title">Un-complicate!</h5>
-    <p class="point-description">Keep track of students in extended time testing with different time extensions, start times, and tests.</p>
+  <div class="selling-points container clearfix">
+    <div class="point column third">
+      <i class="fa fa-calculator" aria-hidden="true"></i>
+      <h5 class="point-title">Modular Math?</h5>
+      <p class="point-description">What time is it 135 minutes after 11:37am? Let {{hero.title}} do test time math for you!</p>
+    </div>
+    <div class="point column third">
+      <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+      <h5 class="point-title">Un-complicate!</h5>
+      <p class="point-description">Keep track of students in extended time testing with different time extensions, start times, and tests.</p>
+    </div>
+    <div class="point column third">
+      <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+      <h5 class="point-title">Compliant</h5>
+      <p class="point-description">{{hero.title}} organizes important information in an easy-to-print format for your records.</p>
+    </div>
   </div>
-  <div class="point column third">
-    <i class="fa fa-folder-open-o" aria-hidden="true"></i>
-    <h5 class="point-title">Compliant</h5>
-    <p class="point-description">{{hero.title}} organizes important information in an easy-to-print format for your records.</p>
-  </div>
-</section>
 </section>
