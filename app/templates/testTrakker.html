@@ -22,46 +22,29 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
-  <!-- <div ng-include="'/templates/navbar.html'"></div> -->
 <body>
-<div class="list-group">
-<!--begin Clock-->
-<div class="clock-container-fluid">
-  <div class="clock-row row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column2">
-      <div class= "page-name">
-        <b><p class="pageName">test tracker</p></b>
-        <!-- <b><p class="userName">Mr. {{currentUser.displayName}}'s student dashboard</p></b> -->
-        <b><p class="userName">Mr. {{teacherName}}'s student dashboard</p></b>
-        <!-- <img class="pencilPic" ng-src="{{currentUser.photoUrl}}" /> -->
-
+  <nav class="navbar navbar-default">
+    <div class="container-fluid clock">
+      <b><p class="col-lg-3 col-md-3 col-sm-3 col-xs-12 pageName">TestTrakker</p></b>
+      <b><p class="col-lg-3 col-md-3 col-sm-3 col-xs-12 pageName">{{time | date: 'short'}}</p></b>
+      <button ui-sref="testDataPrintout" class="menuBtn menu-one col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <p class="linkText">print</p>
+      </button>
+      <button ng-click="warnClose()" class="menuBtn menu-two col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <p class="linkText">logout</p>
+      </button>
+      <!-- <button></button> -->
+    </div>
+  </nav>
+  <div class="list-group">
+    <div class="alert alert-danger" role="alert" ng-show="warn">
+      <div class="alert-message">Do you wish to erase student list and close session?
+        <div class="yesNoContainer">
+          <button class="yesBtn" ng-click="logout()"><p>close session</p></button>
+          <button class="noBtn" ng-click="warningRejection()"><p>not yet</p></button>
+        </div>
       </div>
     </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column1">
-      <div class="clock">
-        <p><b>{{time | date: 'EEEE'}}, </b><b>{{time | date: 'MMMM'}} {{time | date: 'dd'}}, </b><b>{{time | date: 'yyyy'}}, </b><b> {{time | date: 'mediumTime'}}</b></p>
-      </div>
-    </div>
-  </div>
-</div>
-<!--end Clock-->
-<!-- links -->
-<div class="linkWrap">
-  <div class="links">
-    <button ui-sref="testDataPrintout" class="link"><p class="linkText">view data printout</p><i class="fa fa-print" aria-hidden="true"></i></button>
-    <button ng-click="warnClose()" class="link2"><p class="linkText">destroy data and log out</p></button>
-  </div>
-</div>
-<!-- <button class= "yesNoBtn" ng-click="checkIfIdle()">check if Idle</button> -->
-
-<div class="alert alert-danger" role="alert" ng-show="warn">
-  <div class="alert-message">Do you wish to erase student list and close session?
-  <div class="yesNoContainer">
-    <button class="yesBtn" ng-click="logout()"><p>close session</p></button>
-    <button class="noBtn" ng-click="warningRejection()"><p>not yet</p></button>
-  </div>
-</div>
-</div>
 
 <div class="alert alert-warning" role="alert" ng-show="alert"><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i> oops! At minimum, please enter student name and testing extension multiple.</div>
 
