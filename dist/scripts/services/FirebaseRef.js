@@ -4,10 +4,10 @@ TestTrakker.factory("FirebaseRef", ["$firebaseArray", "$state",
     // Initialize Firebase
     var config = {
       apiKey: "AIzaSyC9bwyy9NHISIZbKFerdIU_jjAdDeZq-To",
-      authDomain: "testtrakker.firebaseapp.com",
-      databaseURL: "https://testtrakker.firebaseio.com",
-      projectId: "testtrakker",
-      storageBucket: "",
+      authDomain: "TestTrakker.firebaseapp.com",
+      databaseURL: "https://TestTrakker.firebaseio.com",
+      projectId: "TestTrakker",
+      storageBucket: "TestTrakker.appspot.com",
       messagingSenderId: "446548077493"
     };
 
