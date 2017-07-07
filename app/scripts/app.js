@@ -43,31 +43,3 @@ TestTrakker.config(function($stateProvider, $locationProvider, $datepickerProvid
     });
 
 });
-
-// testtrakker.run(function ($rootScope, $state, FirebaseRef) {
-//   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-//     if (toState.authenticate && !FirebaseRef.isAuthenticated()){
-//       // User isn’t authenticated
-//       $state.transitionTo("landing");
-//       event.preventDefault();
-//     }
-//   });
-// });
-
-testtrakker.config(['ChartJsProvider', function (ChartJsProvider) {
-    // Configure all charts
-
-    // '#C3C300' --> yellow,
-    // '#6FC853' --> green
-    // '#e05d6f' --> red
-    // '#3f4e62'--> black
-    ChartJsProvider.setOptions({
-      // yellow, green, red, dark navy, brown, purple, blue
-      chartColors: ['#C3C300', '#6FC853', '#e05d6f', '#3f4e62',  '#AC6D39', '#8E5EC5', '#4c91cd'],
-      responsive: true
-    });
-    // Configure all line charts
-    ChartJsProvider.setOptions('line', {
-      showLines: true
-    });
-  }]);
