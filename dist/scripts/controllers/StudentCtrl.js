@@ -45,6 +45,7 @@ TestTrakker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
     $scope.addStudent = function() {
       if ($scope.newStudentName && $scope.timewrap.selectedTime) {
         StudentCrud.addStudent($scope.newStudentName, $scope.timewrap.selectedTime, $scope.newtestOneName, $scope.newDueDateOne, $scope.newtestTwoName, $scope.newDueDateTwo, $scope.newtestThreeName, $scope.newDueDateThree, $scope.newtestFourName, $scope.newDueDateFour);
+        // FirebaseRef.addUser();
         toggleInvert();
       } else {
         $scope.alert = true;
@@ -52,6 +53,63 @@ TestTrakker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
       }
 
     };
+
+    // $scope.delete = function(student, owner) {
+    //   $scope.selectAll = true;
+    //   $scope.clickedToDelete = false;
+    //   $scope.deleteAppear = false;
+    //
+    //   if(owner === "deleteSelected" || owner === "deleteAllStudents") {
+    //     $scope.students.$remove(student).then(function() {
+    //       console.log("student, which is now " + student + ", has been removed");
+    //     });
+    //   } else {
+    //     auth.onAuthStateChanged(user => {
+    //       if (user) {
+    //         $scope.students.$remove(student).then(function() {
+    //           console.log("student, which is now " + student + ", has been removed");
+    //         });
+    //       } else {
+    //         console.log("delete failed");
+    //       }
+    //     });
+    //   }
+    // };
+    //
+    // $scope.deleteSelected = function() {
+    //   var owner = "deleteSelected"
+    //   $scope.clearSelected = false;
+    //   $scope.deleteAppear = false;
+    //   $timeout(function appear() {$scope.selectAll = true}, 1000);
+    //   $timeout(function appear() {$scope.clickedToDelete = false}, 1000);
+    //
+    //   auth.onAuthStateChanged(user => {
+    //     if (user) {
+    //       for (var i = 0; i < $scope.students.length; i++) {
+    //         if ($scope.students[i].isSafeToDelete) {
+    //           $scope.delete($scope.students[i], owner);
+    //         }
+    //       }
+    //     } else {
+    //       console.log("delete failed");
+    //     }
+    //   });
+    // };
+    //
+    // var deleteAllStudents = function() {
+    //   var owner = "deleteAllStudents"
+    //   $scope.warn = false;
+    //
+    //   auth.onAuthStateChanged(user => {
+    //     if (user) {
+    //       for (i = 0; i < $scope.students.length; i++) {
+    //         $scope.delete($scope.students[i], owner);
+    //       }
+    //     } else {
+    //       console.log("delete failed");
+    //     }
+    //   });
+    // };
 
     $scope.delete = function(student) {
       $scope.selectAll = true;
@@ -61,6 +119,9 @@ TestTrakker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
       $scope.students.$remove(student).then(function() {
         console.log("student, which is now " + student + ", has been removed");
       });
+      // $scope.students.$destroy(student).then(function() {
+      //   console.log("student, which is now " + student + ", has been removed");
+      // });
     };
 
     $scope.deleteSelected = function() {
@@ -88,15 +149,7 @@ TestTrakker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
     }
 
     $scope.logout = function() {
-      deleteAllStudents();
-      firebase.auth().signOut().then(function() {
-        console.log("signed out.");
-        $state.go('landing');
-      }).catch(function(error) {
-        console.log("Error, could not sign out properly.");
-      });
-
-
+      FirebaseRef.closeSession();
     };
 
 // END Student CRUD Variables and Functions
