@@ -55,7 +55,7 @@ TestTrakker.factory("FirebaseRef", ["$firebaseArray", "$state",
       }
       setUserAndStudents(result.user.uid);
       // $state.go('testtrakker');
-      $state.transitionTo('testtrakker');
+      $state.transitionTo('tracker');
       }).catch(function(error) {
         console.error("Authentication failed:", error);
       });
@@ -101,7 +101,7 @@ TestTrakker.factory("FirebaseRef", ["$firebaseArray", "$state",
     //     username: name,
     //     email: email
     //   });
-    //   $state.go('testtrakker');
+    //   $state.go('tracker');
     // };
 
     return {
