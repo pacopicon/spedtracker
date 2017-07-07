@@ -12,10 +12,10 @@ TestTrakker.config(function($stateProvider, $locationProvider, $datepickerProvid
             controller: 'LandingCtrl',
             templateUrl: '/templates/landing.html'
         })
-        .state('TestTrakker', {
-            url: '/TestTrakker',
+        .state('testtrakker', {
+            url: '/testtrakker',
             controller: 'StudentCtrl',
-            templateUrl: '/templates/TestTrakker.html'
+            templateUrl: '/templates/testtrakker.html'
         })
         .state('clock', {
             url: '/clock',
@@ -44,7 +44,7 @@ TestTrakker.config(function($stateProvider, $locationProvider, $datepickerProvid
 
 });
 
-// TestTrakker.run(function ($rootScope, $state, FirebaseRef) {
+// testtrakker.run(function ($rootScope, $state, FirebaseRef) {
 //   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
 //     if (toState.authenticate && !FirebaseRef.isAuthenticated()){
 //       // User isn’t authenticated
@@ -54,7 +54,7 @@ TestTrakker.config(function($stateProvider, $locationProvider, $datepickerProvid
 //   });
 // });
 
-TestTrakker.config(['ChartJsProvider', function (ChartJsProvider) {
+testtrakker.config(['ChartJsProvider', function (ChartJsProvider) {
     // Configure all charts
 
     // '#C3C300' --> yellow,

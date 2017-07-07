@@ -1,4 +1,4 @@
-TestTrakker.factory('dimensions', function () {
+testtrakker.factory('dimensions', function () {
 
     var fn = {};
 
