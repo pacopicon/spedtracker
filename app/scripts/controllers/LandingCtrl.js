@@ -1,4 +1,4 @@
-testtrakker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRef", "$state",
+TestTrakker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRef", "$state",
   function($scope, $rootScope, $q, FirebaseRef, $state) {
 
 // BEGIN Landing.html variables

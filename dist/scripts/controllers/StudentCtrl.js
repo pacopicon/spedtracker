@@ -1,4 +1,4 @@
-testtrakker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$interval", '$timeout', "$q", "$sce", "$tooltip", "$popover", "FirebaseRef", "$firebaseArray", "$state",
+TestTrakker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$interval", '$timeout', "$q", "$sce", "$tooltip", "$popover", "FirebaseRef", "$firebaseArray", "$state",
   function($scope, StudentCrud, $rootScope, $interval, $timeout, $q, $sce, $tooltip, $popover, FirebaseRef, $firebaseArray, $state) {
 
 // BEGIN Current User and Current User Students Variables and Functions

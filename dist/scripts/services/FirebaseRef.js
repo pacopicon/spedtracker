@@ -1,4 +1,4 @@
-testtrakker.factory("FirebaseRef", ["$firebaseArray", "$state",
+TestTrakker.factory("FirebaseRef", ["$firebaseArray", "$state",
   function($firebaseArray, $state) {
 
     // Initialize Firebase

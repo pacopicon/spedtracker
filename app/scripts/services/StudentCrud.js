@@ -1,4 +1,4 @@
-testtrakker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef",
+TestTrakker.factory("StudentCrud", ["$firebaseArray", "FirebaseRef",
   function($firebaseArray, FirebaseRef) {
 
     var auth = FirebaseRef.getAuth();
