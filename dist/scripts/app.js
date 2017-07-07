@@ -15,7 +15,8 @@ TestTrakker.config(function($stateProvider, $locationProvider, $datepickerProvid
         .state('testtrakker', {
             url: '/testtrakker',
             controller: 'StudentCtrl',
-            templateUrl: '/templates/testtrakker.html'
+            // templateUrl: '/templates/testtrakker.html'
+            templateUrl: '/testtrakker.html'
         })
         .state('clock', {
             url: '/clock',
