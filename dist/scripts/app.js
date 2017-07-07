@@ -12,11 +12,10 @@ TestTrakker.config(function($stateProvider, $locationProvider, $datepickerProvid
             controller: 'LandingCtrl',
             templateUrl: '/templates/landing.html'
         })
-        .state('testtrakker', {
-            url: '/testtrakker',
+        .state('tracker', {
+            url: '/tracker',
             controller: 'StudentCtrl',
-            // templateUrl: '/templates/testtrakker.html'
-            templateUrl: '/testtrakker.html'
+            templateUrl: '/templates/tracker.html'
         })
         .state('clock', {
             url: '/clock',
