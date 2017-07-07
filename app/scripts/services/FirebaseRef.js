@@ -54,7 +54,8 @@ TestTrakker.factory("FirebaseRef", ["$firebaseArray", "$state",
         user: user
       }
       setUserAndStudents(result.user.uid);
-      $state.go('TestTrakker');
+      // $state.go('TestTrakker');
+      $state.transitionTo('TestTrakker');
       }).catch(function(error) {
         console.error("Authentication failed:", error);
       });
