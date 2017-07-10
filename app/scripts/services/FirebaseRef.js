@@ -85,7 +85,8 @@ TestTrakker.factory("FirebaseRef", ["$firebaseArray", "$state",
         auth.onAuthStateChanged(user => {
           if (user) {
             var uid = user.uid
-            const studentsRef = firebase.database().ref('users/' + uid).child("students");
+            // const studentsRef = firebase.database().ref('users/' + uid).child("students");
+            const studentsRef = firebase.database().ref().child("users").child("uid").child("students");
             const students = $firebaseArray(studentsRef);
             // students.$remove().then(function() {
             //   firebase.auth().signOut().then(function() {

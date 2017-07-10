@@ -149,7 +149,9 @@ TestTrakker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$
     }
 
     $scope.logout = function() {
-      FirebaseRef.closeSession();
+      promise = deleteAllStudents();
+      $state.go('landing');
+      // FirebaseRef.closeSession();
     };
 
 // END Student CRUD Variables and Functions
