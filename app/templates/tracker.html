@@ -103,7 +103,7 @@
         <input type="text" class="form-control testNameInput" ng-model="student.testOneName" placeholder="test" ng-change="students.$save(student)"/>
       </div>
       <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <input type="text" size="1" class="btn-time form-control" ng-model="student.testOneTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testOneTime)">
+        <input type="text" size="1" class="btn-time form-control" ng-model="student.testOneTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" useNative="false" bs-timepicker ng-change="scopeTestTime(student.testOneTime)">
       </div>
       <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testOne')"><i class="fa fa-check checkAdd" aria-hidden="true"></i></button>
     </div>
@@ -226,7 +226,7 @@
         <input type="text" class="form-control testNameInput" ng-model="student.testTwoName" placeholder="enter test" ng-change="students.$save(student)"/>
       </div>
       <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <input type="text" size="1" class="btn-time form-control" ng-model="student.testTwoTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="01:00" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testTwoTime)">
+        <input type="text" size="1" class="btn-time form-control" ng-model="student.testTwoTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="01:00" data-arrow-behavior="picker" data-length="1" data-minute-step="5" useNative="false" bs-timepicker ng-change="scopeTestTime(student.testTwoTime)">
       </div>
       <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testTwo')"><i class="fa fa-check checkAdd" aria-hidden="true"></i></button>
     </div>
@@ -358,7 +358,7 @@
         <input type="text" class="form-control testNameInput" ng-model="student.testThreeName" placeholder="enter test" ng-change="students.$save(student)"/>
       </div>
       <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <input type="text" size="1" class="btn-time form-control" ng-model="student.testThreeTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testThreeTime)">
+        <input type="text" size="1" class="btn-time form-control" ng-model="student.testThreeTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" useNative="false" bs-timepicker ng-change="scopeTestTime(student.testThreeTime)">
       </div>
       <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testThree')"><i class="fa fa-check checkAdd" aria-hidden="true"></i></button>
     </div>
@@ -489,7 +489,7 @@
         <input type="text" class="form-control testNameInput" ng-model="student.testFourName" placeholder="enter test" ng-change="students.$save(student)"/>
       </div>
       <div class="inlineTestTimeForm col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <input type="text" size="1" class="btn-time form-control" ng-model="student.testFourTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker ng-change="scopeTestTime(student.testFourTime)">
+        <input type="text" size="1" class="btn-time form-control" ng-model="student.testFourTime" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" useNative="false" bs-timepicker ng-change="scopeTestTime(student.testFourTime)">
       </div>
       <button type="submit" type="button" class="addTestBtn col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-mouseover="mouseover = true" ng-mouseleave="mouseover = false" ng-click="processTimeInput(student, 'testFour')"><i class="fa fa-check checkAdd" aria-hidden="true"></i></button>
     </div>
@@ -636,7 +636,7 @@
           </div>
 <!--test time one -->
           <div class="testTimeForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateOne" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
+            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateOne" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" useNative="false" bs-timepicker>
           </div>
         </div>
 <!--test name two -->
@@ -649,7 +649,7 @@
           </div>
 <!--test time two -->
           <div ng-show="addTestTwo" class="testTimeForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateTwo" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
+            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateTwo" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" useNative="false" bs-timepicker>
           </div>
         </div>
       </div>
@@ -664,7 +664,7 @@
           </div>
 <!--test time three -->
           <div ng-show="addTestThree" class="testTimeForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateThree" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
+            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateThree" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" useNative="false" bs-timepicker>
           </div>
         </div>
 <!--test name four -->
@@ -677,7 +677,7 @@
           </div>
 <!--test time four -->
           <div ng-show="addTestFour" class="testTimeForm smallWidthMargin col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateFour" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" bs-timepicker>
+            <input type="text" size="1" class="btn-time form-control" ng-model="newDueDateFour" data-time-format="HH:mm" data-autoclose="3" data-animation="am-fade-and-scale" placeholder="Time" data-arrow-behavior="picker" data-length="1" data-minute-step="5" useNative="false" bs-timepicker>
           </div>
         </div>
       </div>
