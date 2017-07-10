@@ -83,27 +83,21 @@ TestTrakker.factory("FirebaseRef", ["$firebaseArray", "$state",
       closeSession: function() {
         // return students;
         auth.onAuthStateChanged(user => {
-          if(user) {
+          if (user) {
             var uid = user.uid
             const studentsRef = firebase.database().ref('users/' + uid).child("students");
             const students = $firebaseArray(studentsRef);
-            var close = function() {
-              for (var i = 0; i < students.length; i++) {
-                students[i].$remove(student).then(function() {
-                  if(i == students.length - 1) {
-                    firebase.auth().signOut().then(function() {
-                      console.log("signed out.");
-                      $state.go('landing');
-                    }).catch(function(error) {
-                      console.log("Error, could not sign out properly.");
-                    });
-                  } else {
-                    console.log("iterating through student # ", i)
-                  }
-                });
-              }
-            }
-            close();
+            // students.$remove().then(function() {
+            //   firebase.auth().signOut().then(function() {
+            //
+            //     console.log("signed out.");
+            //     $state.go('landing');
+            //   }).catch(function(error) {
+            //     console.log("Error, could not sign out properly.");
+            //   });
+            // });
+
+
           } else {
             console.log("AuthStateChange failed");
           }
