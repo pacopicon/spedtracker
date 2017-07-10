@@ -19,7 +19,7 @@ TestTrakker.controller("LandingCtrl", ["$scope", "$rootScope", "$q", "FirebaseRe
 // BEGIN Hero material
 
     $scope.hero = {};
-    $scope.hero.title = "testtrakker"
+    $scope.hero.title = "TestTrakker"
 
 // END Hero material
 
