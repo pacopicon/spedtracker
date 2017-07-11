@@ -1,23 +1,25 @@
 .navbar{border-radius:0;font-size:1.5em;overflow:hidden;background-color:#3f4e62;line-height:2.5em;transition:all 0.2s ease-in-out}.navbar p{text-align:center;padding:0;margin:0;color:#EDFAFF}.navHeading{height:100%}.menuBtn{height:2.5em;border:2px solid #3f4e62;text-decoration:none;transition:all 0.2s ease-in-out;background-color:#3f4e62;cursor:pointer;font-size:1em;overflow:auto;text-align:center}.menuBtn p{padding:0;margin:0;color:#EDFAFF;line-height:1em}.menu-one:hover{background-color:#5BC0DE;transition:all 0.2s ease-in-out}.menu-two:hover{background-color:#D9534F;transition:all 0.2s ease-in-out}
-
 @media(min-width:767px) {
-    .navbar .navbar-nav .nav-item {
-      float: none;
-      margin-left: .1rem;
-    }
-    .navbar .navbar-nav {
-      float:none !important;
-    }
-    .navbar .collapse.in, .navbar .collapsing  {
-      clear:both;
-    }
-    .navbar-toggler {
-      display:none;
-    }
+  .navbar .navbar-nav .nav-item {
+    float: none;
+    margin-left: .1rem;
+  }
+  .navbar .navbar-nav {
+    float:none !important;
+  }
+  .navbar .collapse.in, .navbar .collapsing  {
+    clear:both;
+  }
+  .navbar-toggler {
+    display:none;
+  }
 }
 @media(max-width:768px) {
   .navbar-brand {
     width:90%;
+  }
+  .navbar-brand .navHeading {
+    margin-left: 10%
   }
 }
 

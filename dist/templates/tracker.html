@@ -22,20 +22,44 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
-<body>
-  <!-- <nav class="navbar navbar-default" ng-class="{'navbar navbar-default expand': expand, 'navbar navbar-default collapse': !expand}"> -->
-  <!-- <nav class="navbar navbar-default"> -->
-  <div ng-include="'/templates/navbar.html'"></div>
+<body ng-init="tracker = true">
+  <nav class="navbar fixed-top navbar-toggleable-sm bg-faded">
+    <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+      <span> </span>
+      <span> </span>
+      <span> </span>
+    </button>
+    <div class="hidden-sm-down navbar-brand col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <b><p class="navHeading">TestTrakker</p></b>
+    </div>
+    <div class="collapse navbar-collapse" id="collapsingNavbar">
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <b><p class="col-lg-3 col-md-3 col-sm-3 col-xs-12 navHeading">{{time | date: 'short'}}</p></b>
+        </li>
+        <li class="nav-item">
+          <button ui-sref="testDataPrintout" class="menuBtn menu-one col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <p class="linkText">print</p>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button ng-click="warnClose()" class="menuBtn menu-two col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <p class="linkText">logout</p>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-  <div class="list-group">
-    <div class="alert alert-danger" role="alert" ng-show="warn">
-      <div class="alert-message">Do you wish to erase student list and close session?
-        <div class="yesNoContainer">
-          <button class="yesBtn" ng-click="logout()"><p>close session</p></button>
-          <button class="noBtn" ng-click="warningRejection()"><p>not yet</p></button>
-        </div>
+<div class="list-group">
+  <div class="alert alert-danger" role="alert" ng-show="warn">
+    <div class="alert-message">Do you wish to erase student list and close session?
+      <div class="yesNoContainer">
+        <button class="yesBtn" ng-click="logout()"><p>close session</p></button>
+        <button class="noBtn" ng-click="warningRejection()"><p>not yet</p></button>
       </div>
     </div>
+  </div>
 
 <div class="alert alert-warning" role="alert" ng-show="alert"><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i><i class="fa fa-exclamation" aria-hidden="true"></i> oops! At minimum, please enter student name and testing extension multiple.</div>
 
