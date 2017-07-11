@@ -23,19 +23,10 @@
    }(document, 'script', 'facebook-jssdk'));
 </script>
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid clock">
-      <b><p class="col-lg-3 col-md-3 col-sm-3 col-xs-12 navHeading">TestTrakker</p></b>
-      <b><p class="col-lg-3 col-md-3 col-sm-3 col-xs-12 navHeading">{{time | date: 'short'}}</p></b>
-      <button ui-sref="testDataPrintout" class="menuBtn menu-one col-lg-3 col-md-3 col-sm-3 col-xs-12">
-        <p class="linkText">print</p>
-      </button>
-      <button ng-click="warnClose()" class="menuBtn menu-two col-lg-3 col-md-3 col-sm-3 col-xs-12">
-        <p class="linkText">logout</p>
-      </button>
-      <!-- <button></button> -->
-    </div>
-  </nav>
+  <!-- <nav class="navbar navbar-default" ng-class="{'navbar navbar-default expand': expand, 'navbar navbar-default collapse': !expand}"> -->
+  <!-- <nav class="navbar navbar-default"> -->
+  <div ng-include="'/templates/navbar.html'"></div>
+
   <div class="list-group">
     <div class="alert alert-danger" role="alert" ng-show="warn">
       <div class="alert-message">Do you wish to erase student list and close session?
@@ -53,20 +44,20 @@
 <!--begin Student Display-->
 <div class="container-fluid main-body w3-panel w3-card-2">
 <!--SELECT / DELETE CONTROLS-->
-  <div class="row formControls marginLeft marginRight">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainBtn" ng-class="{'col-lg-4 col-md-4 col-sm-4 col-xs-12 mainBtn': clickedToDelete, 'col-lg-12 col-md-12 col-sm-12 col-xs-12 mainBtn': !clickedToDelete}">
+  <div class="row formControls marginLeft marginRight" ng-hide="students.length < 2">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainBtn" ng-class="{'col-lg-4 col-md-4 col-sm-4 col-xs-4 mainBtn': clickedToDelete, 'col-lg-12 col-md-12 col-sm-12 col-xs-12 mainBtn': !clickedToDelete}">
       <button class="controlBtn selectAll clearAll invertSelection" ng-click="switchControl(students)">
         <p ng-show="selectAll && !invertSelect">select all</p>
         <p ng-show="clearSelected && !invertSelect">clear selected</p>
         <p ng-show="invertSelect">invert selection</p>
       </button>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 deleteSelectedStudents" ng-class="{'IIndaryBtnYes': deleteAppear, 'IIndaryBtnNo': !deleteAppear}">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 deleteSelectedStudents" ng-class="{'IIndaryBtnYes': deleteAppear, 'IIndaryBtnNo': !deleteAppear}">
       <button class="controlBtn deleteSelected" ng-click="deleteSelected()">
         <p>delete selected</p>
       </button>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 startSelectedTests" ng-class="{'IIndaryBtnYes': deleteAppear, 'IIndaryBtnNo': !deleteAppear}">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 startSelectedTests" ng-class="{'IIndaryBtnYes': deleteAppear, 'IIndaryBtnNo': !deleteAppear}">
       <button class="controlBtn deleteSelected" ng-click="startSelectedTests(students)">
         <p>start selected tests</p>
       </button>

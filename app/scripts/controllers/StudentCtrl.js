@@ -1,7 +1,11 @@
-TestTrakker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$interval", '$timeout', "$q", "$sce", "$tooltip", "$popover", "FirebaseRef", "$firebaseArray", "$state",
-  function($scope, StudentCrud, $rootScope, $interval, $timeout, $q, $sce, $tooltip, $popover, FirebaseRef, $firebaseArray, $state) {
+TestTrakker.controller('StudentCtrl', ["$scope", "StudentCrud", "$rootScope", "$interval", '$timeout', "$q", "$sce", "$tooltip", "$popover", "FirebaseRef", "$firebaseArray", "$state", "$window",
+  function($scope, StudentCrud, $rootScope, $interval, $timeout, $q, $sce, $tooltip, $popover, FirebaseRef, $firebaseArray, $state, $window) {
 
 // BEGIN Current User and Current User Students Variables and Functions
+
+  angular.element($window).bind('resize', function() {
+    $scope.windowWidth = $window.innerWidth;
+  });
 
   var auth = firebase.auth();
 

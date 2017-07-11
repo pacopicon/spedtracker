@@ -1,13 +1,12 @@
 <section ng-controller="StudentCtrl" class="user">
-<nav class="navbar">
 
+<!-- <nav class="navbar">
   <div class="navbar-header hamburger">
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false"><i class="fa fa-bars"></i>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <!-- <a class="navbar-brand" href="#">testtrakker!</a> -->
   </div>
   <div class="container-fluid nav-container">
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -15,11 +14,54 @@
         <li ng-click="StudentCtrlRefreshTalliesAndData()" ui-sref="testtrakker" class="link todo"><i class="fa fa-list-ol">&nbsp<p> to do</p></i></li>
         <li ng-click="StudentCtrlRefreshTalliesAndData()" ui-sref="calendar" class="link calendar"><i class="fa fa-calendar">&nbsp<p> calendar</p></i></li>
         <li ng-click="StudentCtrlRefreshTalliesAndData()" ui-sref="behvTracker" class="link complete"><i class="fa fa-archive">&nbsp<p> archive</p></i></li>
-        <!-- The link below needs ng-controller="AuthCtrl" in wrapping <div> tags!-->
+
         <li ui-sref="landing" ng-click="logout()" class="link logout"><i class="fa fa-sign-out">&nbsp<p> log out</p></i></li>
         <li ui-sref="adminPortal" class="link admin"><i class="fa fa-eye">&nbsp<p> admin portal</p></i></li>
       </ul>
-    </div> <!-- End collapse navbar-collapse -->
+    </div>
+  </div>
+</nav> -->
+
+<!-- <nav class="navbar navbar-default">
+  <div class="container-fluid clock">
+    <b><p class="col-lg-3 col-md-3 col-sm-3 col-xs-11 navHeading">TestTrakker</p></b>
+    <b><p class="col-lg-3 col-md-3 col-sm-3 col-xs-11 navHeading">{{time | date: 'short'}}</p></b>
+    <button ui-sref="testDataPrintout" class="menuBtn menu-one col-lg-3 col-md-3 col-sm-3 col-xs-11">
+      <p class="linkText">print</p>
+    </button>
+    <button ng-click="warnClose()" class="menuBtn menu-two col-lg-3 col-md-3 col-sm-3 col-xs-11">
+      <p class="linkText">logout</p>
+    </button>
+  </div>
+</nav> -->
+
+<nav class="navbar fixed-top navbar-toggleable-sm bg-faded">
+  <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+    <span> </span>
+    <span> </span>
+    <span> </span>
+  </button>
+  <div class="hidden-sm-down navbar-brand col-lg-3 col-md-3 col-sm-3 col-xs-12">
+    <b><p class="navHeading">TestTrakker</p></b>
+  </div>
+  <div class="collapse navbar-collapse" id="collapsingNavbar">
+    <ul class="nav navbar-nav">
+      <li class="nav-item">
+        <b><p class="col-lg-3 col-md-3 col-sm-3 col-xs-12 navHeading">{{time | date: 'short'}}</p></b>
+      </li>
+      <li class="nav-item">
+        <button ui-sref="testDataPrintout" class="menuBtn menu-one col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <p class="linkText">print</p>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button ng-click="warnClose()" class="menuBtn menu-two col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <p class="linkText">logout</p>
+        </button>
+      </li>
+    </ul>
+
   </div>
 </nav>
+
 </section>
